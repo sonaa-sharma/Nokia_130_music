@@ -89,9 +89,9 @@ body{
 }
 
 .mid-function-button{
-    height: 44px;
-    width: 44px;
-    border-radius: 16px;
+    height: 48px;
+    width: 48px;
+    border-radius: 20px;
     padding: 8px;
 }
 
@@ -99,4 +99,13 @@ body{
     height: 100%;
     border-radius: 12px;
     border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-pause-icon{
+    height: 36px;
+    width: 36px;
+    opacity: .2;
 }
