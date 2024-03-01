@@ -31,7 +31,6 @@ body{
     display: flex;
     flex-direction: column;
     gap: 6px;
-    color: #e6e6e6;
     color: #b3afc7;
     
 }
@@ -80,6 +79,9 @@ body{
 }
 
 .function-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 28px;
     width: 62px;
     border: 1px solid black;
@@ -97,6 +99,7 @@ body{
 
 .mid-function-button-inner{
     height: 100%;
+    width: 100%;
     border-radius: 12px;
     border: 1px solid black;
     display: flex;
@@ -108,4 +111,71 @@ body{
     height: 36px;
     width: 36px;
     opacity: .2;
+}
+
+
+.vertical-line{
+    height: 2px;
+    width: 24px;
+    background-color: #b3afc7;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.call-receive-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 8px;
+    width: 24px;
+    border-top: 2px solid #b3afc7;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-left: 2px solid #b3afc7;
+    border-right: 2px solid #b3afc7;
+}
+
+.circle{
+    color: #b3afc7;
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    border: 1px solid #b3afc7;
+    margin-top: 8px;
+}
+
+.mb-4{
+    margin-bottom: 4px;
+}
+
+.horizontal-line{
+    height: 4px;
+    width: 1px;
+    background-color: #b3afc7;
+}
+
+.voice-mail-icon{
+    width: 16px;
+}
+
+.icon{
+    fill: #b3afc7;
+    stroke: #b3afc7;
+}
+
+.no-music{
+    width: 12px;
+    height: 12px;
+}
+
+.spacebar-icon{
+    width: 12px;
+}
+
+.shift-icon{
+    width: 12px;
 }
