@@ -7,20 +7,96 @@ body{
 
 
 .mobile-body{
-    background-color: #747088;
-    height: 610px;
-    width: 238px;
-    border-radius: 40px;
-    
+    background-color: #918ca2;
+    border-radius: 44px;
+    padding: 12px 12px 10px;
+}
+
+.mobile-container{
+    box-shadow: 0px 5px 10px #484359;;
+
+    border-radius: 28px;
 }
 
 .mobile-display{
-    padding: 10px;
-    margin: 10px;
-    height: 300px;
+    height: 332px;
     width: auto;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
     background-color: black;
     background-image: image("");
+}
+
+.number-keys-container{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    color: #e6e6e6;
+    color: #b3afc7;
+    
+}
+
+.key-button-row{
+    display: flex;
+    gap: 6px;
+}
+
+.keypad-container{
+    padding: 8px 4px 16px;
+    background-color: #747088;
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px
+}
+
+.keys{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    width: 64px;
+    border: 1px solid black;
+    font-size: 20px;
+    border-radius: 12px;
+}
+
+.keys-alphabet {
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: 12px;
+}
+
+.function-key-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.function-button-column{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.function-buttons{
+    height: 28px;
+    width: 62px;
+    border: 1px solid black;
+    font-size: 20px;
+    border-radius: 8px;
+    gap: 4px;
+}
+
+.mid-function-button{
+    height: 44px;
+    width: 44px;
+    border-radius: 16px;
+    padding: 8px;
+}
+
+.mid-function-button-inner{
+    height: 100%;
+    border-radius: 12px;
+    border: 1px solid black;
 }
