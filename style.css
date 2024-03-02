@@ -17,13 +17,48 @@ body{
     border-radius: 28px;
 }
 
-.mobile-display{
-    height: 332px;
+.mobile-display-container{
+    /* height: 332px; */
     width: auto;
     border-top-left-radius: 28px;
     border-top-right-radius: 28px;
     background-color: black;
     box-shadow: 0px -2px 1px #b3afc7;
+}
+
+.speaker-container{
+    height: 48px;
+    /* background-color: aqua; */
+}
+
+.speaker{
+    background-image: url("Icons/net.png");
+    background-size: 6px;
+    width: 68px;
+    height: 6px;
+    background-color: rgb(10, 10, 10);
+    border-radius: 20px;
+    box-shadow: 0px 0px 1px 1px black inset,0px 0px 0px 1px rgba(200,200,200,.1);
+}
+
+.LCD-container{
+    padding: 0 8px;
+}
+
+.LCD{
+    background-color: rgb(25, 111, 111);
+    height: 240px;
+    width: 200px;
+}
+
+.brand-logo{
+    height: 44px;
+    /* background-color: rgb(150, 150, 49); */
+}
+
+.nokia-icon{
+  fill: #727272;
+  height: 10px;
 }
 
 .number-keys-container{
