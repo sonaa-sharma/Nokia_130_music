@@ -1,114 +1,145 @@
-.mobile-display-container{
-    /* height: 332px; */
-    width: auto;
-    border-top-left-radius: 28px;
-    border-top-right-radius: 28px;
-    background-color: black;
-    box-shadow: 0px -2px 1px #b3afc7;
+.mobile-display-container {
+  /* height: 332px; */
+  width: auto;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+  background-color: black;
+  box-shadow: 0px -2px 1px #b3afc7;
 }
 
-.speaker-container{
-    height: 48px;
-    /* background-color: aqua; */
+.speaker-container {
+  height: 48px;
+  /* background-color: aqua; */
 }
 
-.speaker{
-    background-image: url("Icons/net.png");
-    background-size: 6px;
-    width: 68px;
-    height: 6px;
-    background-color: rgb(10, 10, 10);
-    border-radius: 20px;
-    box-shadow: 0px 0px 1px 1px black inset,0px 0px 0px 1px rgba(200,200,200,.1);
+.speaker {
+  background-image: url("Icons/net.png");
+  background-size: 6px;
+  width: 68px;
+  height: 6px;
+  background-color: rgb(10, 10, 10);
+  border-radius: 20px;
+  box-shadow: 0px 0px 1px 1px black inset,
+    0px 0px 0px 1px rgba(200, 200, 200, 0.1);
 }
 
-.LCD-container{
-    padding: 0 8px;
+.LCD-container {
+  padding: 0 8px;
 }
 
-.LCD{
-    height: 240px;
-    width: 200px;
-    background-size: cover;
+.LCD {
+  height: 240px;
+  width: 200px;
+  background-size: cover;
 }
 
-.LDC-turned-off{
-    background-color: rgb(10, 10, 10);
+.LDC-turned-off {
+  background-color: rgb(10, 10, 10);
 }
 
 .lcd-on {
-/* background-image: url('wallpaper/grass.jpg'); */
-background-image: url('wallpaper/wallpaper1.jpg');
+  background-image: url('wallpaper/grass.jpg');
+  /* background-image: url("wallpaper/wp1.jpg"); */
+  display: flex;
+  flex-direction: column;
 }
 
-.brand-logo{
-    height: 44px;
-    /* background-color: rgb(150, 150, 49); */
+.brand-logo {
+  height: 44px;
+  /* background-color: rgb(150, 150, 49); */
 }
 
-.nokia-icon{
+.nokia-icon {
   fill: #727272;
   height: 10px;
 }
 
-.navbar{
-    display: flex;
-    /* height: 12px; */
-    /* background-color: #b3afc7; */
-    padding: 4px 8px ;
-    gap: 3px;
+.navbar {
+  display: flex;
+  /* height: 12px; */
+  /* background-color: #b3afc7; */
+  padding: 4px 8px;
+  gap: 3px;
 }
-.signal{
-    display: flex;
-    align-items: flex-end;
-    gap: 1px;
-}
-
-.tower{
-    background-color: white;
-    width: 3px;
+.signal {
+  display: flex;
+  align-items: flex-end;
+  gap: 1px;
 }
 
-.tower-1{
-    height: 4px;
-}
-.tower-2{
-    height: 6px;
-}
-.tower-3{
-    height: 8px;
-}
-.tower-4{
-    height: 10px;
-}
-.tower-5{
-    height: 12px;
+.tower {
+  background-color: white;
+  width: 3px;
 }
 
-.sim-card{
-    width: 20px;
-    height: 12px;
-    background-color: white;
-    border-radius: 2px;
-    font-size: 12px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    /* border-left: 1px solid transparent; */
-    /* width: 20; */
-    /* border-top: 101px solid #C66;
+.tower-1 {
+  height: 4px;
+}
+.tower-2 {
+  height: 6px;
+}
+.tower-3 {
+  height: 8px;
+}
+.tower-4 {
+  height: 10px;
+}
+.tower-5 {
+  height: 12px;
+}
+
+.sim-card {
+  /* width: 20px;
+    height: 12px; */
+  /* background-color: white; */
+  /* border-radius: 2px; */
+  /* font-size: 12px; */
+  /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+  /* border-left: 1px solid transparent; */
+  /* width: 20; */
+  /* border-top: 101px solid #C66;
     border-bottom: 30px solid #6C6;
     border-left: 30px solid #66C;
     border-right: 30px solid #CC6; */
-    
+  /* border-top-left-radius: 8px; */
+  width: 0;
+  height: 0;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid white;
+  border-left: 3px solid transparent;
+  border-right: 3px solid white;
 }
 
-.battery{
-
+.battery {
 }
 
-.time{
-    /* height: 100px; */
-    font-size: 44px;
-    color: white;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+.date-time {
+  flex-direction: column;
+  gap: 8px;
+  /* background-color: violet; */
+  padding: 20px;
+}
 
+.time {
+  /* height: 100px; */
+  font-size: 48px;
+  color: white;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.date {
+  color: white;
+}
+
+.unlock {
+  color: white;
+  padding: 4px 8px;
+}
+
+.lock-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
