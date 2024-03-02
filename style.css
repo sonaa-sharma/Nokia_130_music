@@ -24,7 +24,7 @@ body{
     border-top-left-radius: 28px;
     border-top-right-radius: 28px;
     background-color: black;
-    background-image: image("");
+    box-shadow: 0px -2px 1px #b3afc7;
 }
 
 .number-keys-container{
@@ -32,7 +32,6 @@ body{
     flex-direction: column;
     gap: 6px;
     color: #b3afc7;
-    
 }
 
 .key-button-row{
@@ -47,23 +46,32 @@ body{
     border-bottom-right-radius: 28px;
     display: flex;
     flex-direction: column;
-    gap: 12px
+    gap: 12px;
+
 }
 
 .keys{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 36px;
-    width: 64px;
+    height: 28px;
+    width: 56px;
     border: 1px solid black;
     font-size: 20px;
     border-radius: 12px;
+    box-shadow: 0px 2px 2px #38373d;
+    gap: 6px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding: 4px 4px;
+}
+
+
+.two-char-space{
+    gap: 8px;
+    align-items: last baseline;
 }
 
 .keys-alphabet {
-    padding-left: 4px;
-    padding-right: 4px;
     font-size: 12px;
 }
 
@@ -76,6 +84,7 @@ body{
     display: flex;
     flex-direction: column;
     gap: 8px;
+
 }
 
 .function-buttons{
@@ -88,6 +97,8 @@ body{
     font-size: 20px;
     border-radius: 8px;
     gap: 4px;
+    box-shadow: 0px 2px 2px #38373d;
+
 }
 
 .mid-function-button{
@@ -105,6 +116,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0px 1px 4px #38373d inset, 0px 0px 1px .5px #38373d;
 }
 
 .play-pause-icon{
@@ -113,6 +125,10 @@ body{
     opacity: .2;
 }
 
+.asterisk{
+    width: 20px;
+    stroke: #b3afc7;
+}
 
 .vertical-line{
     height: 2px;
@@ -159,7 +175,7 @@ body{
 }
 
 .voice-mail-icon{
-    width: 16px;
+    width: 12px;
 }
 
 .icon{
@@ -168,8 +184,7 @@ body{
 }
 
 .no-music{
-    width: 12px;
-    height: 12px;
+    width: 10px;
 }
 
 .spacebar-icon{
@@ -177,5 +192,21 @@ body{
 }
 
 .shift-icon{
-    width: 12px;
+    width: 8px;
+}
+
+.pop-up{
+    height: 10px;
+    width: 2px;
+    border-radius: 4px;
+    box-shadow: -.5px 1px 1px .5px #38373d;
+
+}
+
+.gap-8{
+    gap: 8px;
+}
+
+.gap-4{
+    gap: 4px;
 }
