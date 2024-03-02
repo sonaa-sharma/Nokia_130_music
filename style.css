@@ -13,8 +13,7 @@ body{
 }
 
 .mobile-container{
-    box-shadow: 0px 5px 10px #484359;;
-
+    box-shadow: 0px 10px 10px 0px #484359;
     border-radius: 28px;
 }
 
