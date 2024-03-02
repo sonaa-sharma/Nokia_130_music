@@ -56,10 +56,17 @@
 
 .navbar {
   display: flex;
+  justify-content: space-between;
   /* height: 12px; */
   /* background-color: #b3afc7; */
   padding: 4px 8px;
   gap: 3px;
+}
+
+.navbar-contents{
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
 }
 .signal {
   display: flex;
@@ -88,20 +95,20 @@
   height: 12px;
 }
 
-.sim-card {
-  /* width: 20px;
-    height: 12px; */
-  /* background-color: white; */
-  /* border-radius: 2px; */
-  /* font-size: 12px; */
-  /* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
-  /* border-left: 1px solid transparent; */
-  /* width: 20; */
-  /* border-top: 101px solid #C66;
-    border-bottom: 30px solid #6C6;
-    border-left: 30px solid #66C;
-    border-right: 30px solid #CC6; */
-  /* border-top-left-radius: 8px; */
+.sim-card{
+    /* background-color: aliceblue; */
+    display: flex;
+    font-size: 12px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.sim-cornor{
+    display: block;
+
+}
+
+
+.corner-triangle {
   width: 0;
   height: 0;
   border-top: 3px solid transparent;
@@ -110,7 +117,84 @@
   border-right: 3px solid white;
 }
 
-.battery {
+.left-rectangle{
+    height: 8px;
+    width: 5px;
+    background-color: white;
+    border-bottom-left-radius: 2px;
+}
+
+.right-rectangle{
+    height: 13px;
+    width: 10px;
+    background-color: white;
+    padding: 0 3px;
+    font-size: 11px;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+
+}
+
+.screen-lock-icon{
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.icon-top{
+    width: 8px;
+    height: 4px;
+    background-color: white;
+    border-radius: 1px;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-top-inner{
+    width: 5px;
+    height: 2px;
+    background-color: black;
+}
+
+.icon-mid{
+    width: 4px;
+    height: 4px;
+    background-color: white;
+    border-radius: 0px 0px 1px 1px;
+
+}
+
+
+.icon-bottom{
+    width: 2px;
+    height: 4px;
+    background-color: white;
+    border-radius: 0px 0px 1px 1px;
+
+}
+
+.battery-left{
+    width: 1px;
+    height: 6px ;
+    background-color: white;
+    border-radius: .5px 0px 0px .5px;
+}
+
+.battery-outer-body{
+    /* width: 20px; */
+    height: 11px;
+    background-color: white;
+    border-radius: 2px;
+    padding: 2px;
+
+}
+
+.battery-inner-body{
+    width: 14px;
+    height: 8px;
+    background-color: white;
+    border: 2px solid black;
 }
 
 .date-time {
