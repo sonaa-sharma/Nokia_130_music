@@ -136,10 +136,9 @@
 }
 
 .screen-lock-icon{
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
     gap: 8px;
+    rotate: 45 degree;
+    transform: rotate(45deg);
 }
 
 .icon-top{
@@ -147,21 +146,20 @@
     height: 4px;
     background-color: white;
     border-radius: 1px;
-    align-items: center;
-    justify-content: center;
 }
 
 .icon-top-inner{
-    width: 5px;
+    width: 4px;
     height: 2px;
     background-color: black;
 }
 
 .icon-mid{
-    width: 4px;
+    width: 4.3px;
     height: 4px;
     background-color: white;
     border-radius: 0px 0px 1px 1px;
+    margin-left: 1.5px;
 
 }
 
@@ -170,7 +168,8 @@
     width: 2px;
     height: 4px;
     background-color: white;
-    border-radius: 0px 0px 1px 1px;
+    border-radius: 0px 0px 2px 2px;
+    margin-left: 2.5px;
 
 }
 
@@ -219,6 +218,8 @@
 .unlock {
   color: white;
   padding: 4px 8px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  
 }
 
 .lock-screen {
