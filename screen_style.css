@@ -27,9 +27,18 @@
 }
 
 .LCD{
-    background-color: rgb(10, 10, 10);
     height: 240px;
     width: 200px;
+    background-size: cover;
+}
+
+.LDC-turned-off{
+    background-color: rgb(10, 10, 10);
+}
+
+.lcd-on {
+/* background-image: url('wallpaper/grass.jpg'); */
+background-image: url('wallpaper/wallpaper1.jpg');
 }
 
 .brand-logo{
@@ -47,6 +56,7 @@
     /* height: 12px; */
     /* background-color: #b3afc7; */
     padding: 4px 8px ;
+    gap: 3px;
 }
 .signal{
     display: flex;
@@ -73,4 +83,32 @@
 }
 .tower-5{
     height: 12px;
+}
+
+.sim-card{
+    width: 20px;
+    height: 12px;
+    background-color: white;
+    border-radius: 2px;
+    font-size: 12px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* border-left: 1px solid transparent; */
+    /* width: 20; */
+    /* border-top: 101px solid #C66;
+    border-bottom: 30px solid #6C6;
+    border-left: 30px solid #66C;
+    border-right: 30px solid #CC6; */
+    
+}
+
+.battery{
+
+}
+
+.time{
+    /* height: 100px; */
+    font-size: 44px;
+    color: white;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
