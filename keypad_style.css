@@ -116,11 +116,6 @@
     background-color: #b3afc7;
 }
 
-.center {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 .call-receive-icon{
     display: flex;
@@ -144,9 +139,6 @@
     margin-top: 8px;
 }
 
-.mb-4{
-    margin-bottom: 4px;
-}
 
 .horizontal-line{
     height: 4px;
@@ -181,12 +173,4 @@
     border-radius: 4px;
     box-shadow: -.5px 1px 1px .5px #38373d;
 
-}
-
-.gap-8{
-    gap: 8px;
-}
-
-.gap-4{
-    gap: 4px;
 }

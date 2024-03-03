@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="screen_style.css">
     <link rel="stylesheet" href="keypad_style.css">
-    <script type="text/javascript" async src="index.js" ></script>
+    <link rel="stylesheet" href="common.css">
+    <script type="text/javascript" async src="index.js"></script>
 </head>
 
 <body>
@@ -20,9 +21,12 @@
                 </div>
                 <div class="LCD-container">
                     <div class="lcd-off" id="lcd">
-                        
-                        
-                        <div class="navbar hide">
+                        <div class="center screen-height hide" id="brand-animation-screen">
+                            <div class="brand-animation-container">
+                                <video id="brand-animation" src="Icons\NokiaConnectingPeople.mp4"></video>
+                            </div>
+                        </div>
+                        <div class="navbar hide" id="navbar">
                             <div class="navbar-contents center">
                                 <div class="signal">
                                     <div class="tower tower-1"></div>
@@ -66,9 +70,8 @@
                                     <div class="battery-inner-body"></div>
                                 </div>
                             </div>
-
                         </div>
-                        <div class="lock-screen hide">
+                        <div class="hide lock-screen" id="lock-screen-div">
                             <div class="date-time center">
                                 <div class="time">12:00</div>
                                 <div class="date">02.03.2023</div>

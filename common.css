@@ -1,0 +1,25 @@
+.screen-height {
+  height: 240px;
+}
+
+.mb-4 {
+  margin-bottom: 4px;
+}
+
+.gap-8 {
+  gap: 8px;
+}
+
+.gap-4 {
+  gap: 4px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hide {
+  display: none;
+}

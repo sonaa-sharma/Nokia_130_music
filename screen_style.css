@@ -35,10 +35,15 @@
   flex-direction: column;
 }
 
+.brand-animation-container{
+  height: 136px;
+  overflow: hidden;
+}
+
 #brand-animation{
-  /* height: 240px; */
-  padding: 8px;
+  height: 139px;
   border: none;
+  margin: -1px -1px
 }
 
 .lcd-off {
@@ -205,6 +210,13 @@
     border: 2px solid black;
 }
 
+.lock-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
 .date-time {
   flex-direction: column;
   gap: 8px;
@@ -229,15 +241,4 @@
   padding: 4px 8px;
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   
-}
-
-.lock-screen {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-}
-
-.hide{
-  display: none;
 }
