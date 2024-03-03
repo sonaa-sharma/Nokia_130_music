@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Nokia 130 Music</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="screen_style.css">
     <link rel="stylesheet" href="keypad_style.css">
-    <link rel="stylesheet" href="index.js">
+    <script type="text/javascript" async src="index.js" ></script>
 </head>
 
 <body>
@@ -19,8 +19,10 @@
                     <div class="speaker"></div>
                 </div>
                 <div class="LCD-container">
-                    <div class="LCD lcd-on">
-                        <div class="navbar">
+                    <div class="lcd-off" id="lcd">
+                        
+                        
+                        <div class="navbar hide">
                             <div class="navbar-contents center">
                                 <div class="signal">
                                     <div class="tower tower-1"></div>
@@ -66,7 +68,7 @@
                             </div>
 
                         </div>
-                        <div class="lock-screen">
+                        <div class="lock-screen hide">
                             <div class="date-time center">
                                 <div class="time">12:00</div>
                                 <div class="date">02.03.2023</div>
@@ -111,7 +113,7 @@
                         <div class="function-buttons">
                             <div class="vertical-line"></div>
                         </div>
-                        <div class="function-buttons">
+                        <div class="function-buttons" id="power-button">
                             <div class="call-receive-icon mb-4">
                                 <div class="circle center">
                                     <div class="horizontal-line"></div>

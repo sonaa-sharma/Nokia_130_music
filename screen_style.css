@@ -27,21 +27,30 @@
   padding: 0 8px;
 }
 
-.LCD {
+#lcd {
   height: 240px;
   width: 200px;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
 }
 
-.LDC-turned-off {
+#brand-animation{
+  /* height: 240px; */
+  padding: 8px;
+  border: none;
+}
+
+.lcd-off {
   background-color: rgb(10, 10, 10);
 }
 
 .lcd-on {
   background-image: url('wallpaper/grass.jpg');
   /* background-image: url("wallpaper/wp1.jpg"); */
-  display: flex;
-  flex-direction: column;
+}
+.lcd-white{
+  background-color: white;
 }
 
 .brand-logo {
@@ -119,7 +128,7 @@
 
 .left-rectangle{
     height: 8px;
-    width: 5px;
+    width: 4.8px;
     background-color: white;
     border-bottom-left-radius: 2px;
 }
@@ -174,7 +183,7 @@
 }
 
 .battery-left{
-    width: 1px;
+    width: 2px;
     height: 6px ;
     background-color: white;
     border-radius: .5px 0px 0px .5px;
@@ -227,4 +236,8 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+}
+
+.hide{
+  display: none;
 }
