@@ -23,8 +23,9 @@ function displayBrandAnimation(show) {
 function showLockScreen() {
   displayWallPaper();
   displayNavbar();
-  displayDateTime();
+  displayLockScreen();
 }
+
 
 function getNavbar() {
   return document.getElementById("navbar");
@@ -39,7 +40,15 @@ function displayNavbar(show) {
   }
 }
 
-function displayDateTime() {}
+function displayLockScreen(show) {
+    var lockScreen = document.getElementById("lock-screen-div");
+    if(show === false){
+        lockScreen.classList.add("hide");
+    }
+    else{
+        lockScreen.classList.remove("hide");
+    }
+}
 
 function displayWallPaper(show) {
   var lcd = getLcd();
@@ -111,6 +120,7 @@ function turnOfflcd() {
   displayWallPaper(false);
   displayNavbar(false);
   displayBlackScreen();
+  displayLockScreen(false);
 }
 
 powerButton.addEventListener("mousedown", startPoweringOn);
