@@ -2,21 +2,32 @@ var powerButton = document.getElementById("power-button");
 
 var timeoutId;
 var isDeviceOn = false;
+
 var brandAnimation = document.getElementById("brand-animation");
 brandAnimation.addEventListener("ended", onBrandAnimationFinish);
 
+function setInitialState(){
+  var deviceOn = localStorage.getItem("deviceOn");
+
+  if(deviceOn === 'true'){
+    showLockScreen();
+    isDeviceOn = true;
+  }
+}
+
 function showBrandAnimation() {
-  displayBrandAnimation(false);
+  displayWhiteScreen();
+  displayBrandAnimation();
   brandAnimation.play();
 }
 
 function displayBrandAnimation(show) {
   var animationContainer = document.getElementById("brand-animation-screen");
-
+  
   if (show === false) {
-    animationContainer.classList.remove("hide");
-  } else {
     animationContainer.classList.add("hide");
+  } else {
+    animationContainer.classList.remove("hide");
   }
 }
 
@@ -25,7 +36,6 @@ function showLockScreen() {
   displayNavbar();
   displayLockScreen();
 }
-
 
 function getNavbar() {
   return document.getElementById("navbar");
@@ -81,9 +91,10 @@ function displayBlackScreen(show) {
 }
 
 function onBrandAnimationFinish() {
-  displayBrandAnimation();
+  displayBrandAnimation(false);
   displayWhiteScreen(false);
   showLockScreen();
+  localStorage.setItem("deviceOn", true)
 }
 
 function handlePowerOn() {
@@ -108,9 +119,7 @@ function getLcd() {
 }
 
 function turnOnlcd() {
-  var lcd = getLcd();
   displayBlackScreen(false);
-  displayWhiteScreen();
   showBrandAnimation();
 }
 
@@ -121,6 +130,7 @@ function turnOfflcd() {
   displayNavbar(false);
   displayBlackScreen();
   displayLockScreen(false);
+  localStorage.setItem("deviceOn", false);
 }
 
 powerButton.addEventListener("mousedown", startPoweringOn);
@@ -129,3 +139,5 @@ powerButton.addEventListener("mouseleave", stopPoweringOn);
 powerButton.addEventListener("touchstart", startPoweringOn);
 powerButton.addEventListener("touchend", stopPoweringOn);
 powerButton.addEventListener("touchcancel", stopPoweringOn);
+
+setInitialState();
