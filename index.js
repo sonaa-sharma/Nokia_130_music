@@ -1,14 +1,45 @@
-var powerButton = document.getElementById("power-button");
+setTime();
+function setTime(){
+  var time = new Date();
+  var hour = time.getHours();
+  var minutes = time.getMinutes();
+  var clockHour = document.getElementById("clock-hour");
+  var clockMin = document.getElementById("clock-min");
+  var clockYear = time.getFullYear();
+  var clockMonth = time.getMonth() + 1;
+  var clockDay = time.getDate();
+  var currentYear = document.getElementById("year");
+  if(clockMonth<10){
+    clockMonth = '0'+clockMonth;
+  }
+  var currentMonth = document.getElementById("month");
+  var currentDay = document.getElementById("day");
 
+  clockHour.innerHTML = hour;
+  clockMin.innerHTML = minutes;
+  currentYear.innerHTML = clockYear;
+  currentMonth.innerHTML = clockMonth;
+  currentDay.innerHTML = clockDay;
+}
+
+var clockInterval = setInterval(setTime, 1000);
+
+var keypadButton = document.getElementById("keypad-box");
+keypadButton.addEventListener("click", targetId);
+
+function targetId(event){
+  var clickId = event.target;
+  console.log(clickId);
+}
+
+var powerButton = document.getElementById("power-button");
 var timeoutId;
 var isDeviceOn = false;
-
 var brandAnimation = document.getElementById("brand-animation");
 brandAnimation.addEventListener("ended", onBrandAnimationFinish);
 
 function setInitialState(){
   var deviceOn = localStorage.getItem("deviceOn");
-
   if(deviceOn === 'true'){
     showLockScreen();
     isDeviceOn = true;
@@ -103,7 +134,6 @@ function handlePowerOn() {
   } else {
     turnOnlcd();
   }
-
   isDeviceOn = !isDeviceOn;
 }
 
