@@ -1,4 +1,3 @@
-setTime();
 function setTime(){
   var time = new Date();
   var hour = time.getHours();
@@ -9,31 +8,36 @@ function setTime(){
   var clockMonth = time.getMonth() + 1;
   var clockDay = time.getDate();
   var currentYear = document.getElementById("year");
-  if(clockMonth<10){
-    clockMonth = '0'+clockMonth;
-  }
   var currentMonth = document.getElementById("month");
   var currentDay = document.getElementById("day");
-
-  clockHour.innerHTML = hour;
-  clockMin.innerHTML = minutes;
-  currentYear.innerHTML = clockYear;
-  currentMonth.innerHTML = clockMonth;
-  currentDay.innerHTML = clockDay;
+  
+  clockHour.innerHTML = getTwoDigitNumber(hour);
+  clockMin.innerHTML = getTwoDigitNumber(minutes);
+  currentYear.innerHTML = getTwoDigitNumber(clockYear);
+  currentMonth.innerHTML = getTwoDigitNumber(clockMonth);
+  currentDay.innerHTML = getTwoDigitNumber(clockDay);
 }
 
-var clockInterval = setInterval(setTime, 1000);
+function getTwoDigitNumber(number){
+  var twoDigitNumber = number;
+  
+  if(number<10){
+    twoDigitNumber = '0'+number;
+  }
 
+  return twoDigitNumber;
+}
 var keypadButton = document.getElementById("keypad-box");
 keypadButton.addEventListener("click", targetId);
 
 function targetId(event){
   var clickId = event.target;
-  console.log(clickId);
 }
+
 
 var powerButton = document.getElementById("power-button");
 var timeoutId;
+var lockScreenTimeoutId;
 var isDeviceOn = false;
 var brandAnimation = document.getElementById("brand-animation");
 brandAnimation.addEventListener("ended", onBrandAnimationFinish);
@@ -66,6 +70,15 @@ function showLockScreen() {
   displayWallPaper();
   displayNavbar();
   displayLockScreen();
+  setTime()
+  lockScreenTimeoutId = setInterval(setTime, 1000);
+}
+
+function hideLockScreen(){
+  displayWallPaper(false);
+  displayNavbar(false);
+  displayLockScreen(false);
+  clearInterval(lockScreenTimeoutId);
 }
 
 function getNavbar() {
@@ -154,12 +167,8 @@ function turnOnlcd() {
 }
 
 function turnOfflcd() {
-  var lcd = getLcd();
-  displayWhiteScreen(false);
-  displayWallPaper(false);
-  displayNavbar(false);
+  hideLockScreen();
   displayBlackScreen();
-  displayLockScreen(false);
   localStorage.setItem("deviceOn", false);
 }
 
