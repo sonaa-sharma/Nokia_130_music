@@ -27,11 +27,37 @@ function getTwoDigitNumber(number){
 
   return twoDigitNumber;
 }
-var keypadButton = document.getElementById("keypad-box");
-keypadButton.addEventListener("click", targetId);
 
-function targetId(event){
-  var clickId = event.target;
+var keypadButton = document.getElementById("keypad-box");
+keypadButton.addEventListener("click", clickEventFunction);
+
+function clickEventFunction(event){
+  var targetNode = event.target;
+  var button = getButtonNode(targetNode);
+  if(!button){
+    return;
+  }
+  buttonClicked(button);
+}
+
+function buttonClicked(button){
+  console.log(button);
+}
+
+function getButtonNode(node){
+  var dataName = node.dataset.name;
+
+  while(dataName !== 'buttons' && dataName !== 'keypad-container'){
+    var newNode = node.parentNode;
+    dataName = newNode.dataset.name;
+    node = newNode;
+  }
+
+  if(dataName === 'keypad-container'){
+    return null;
+  }
+
+  return node;
 }
 
 
