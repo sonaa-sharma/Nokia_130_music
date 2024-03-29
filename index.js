@@ -41,8 +41,51 @@ function clickEventFunction(event){
 }
 
 function buttonClicked(button){
-  console.log(button);
+  console.log(button.id);
+  // switch(button.id) {
+  //   case 'left-select-button':
+  //     // displayUnlockMessage();
+  //     unlockScreenWithStar(button);
+  //     break;
+  //   case 'star-key':
+  //     // break;
+  //   default:
+  //     // code block
+  // }
+
 }
+
+
+// function unlockScreenWithStar(button){
+//   if(button.id === 'left-select-button'){
+//     displayUnlockMessage(false);
+//     displayUnlock();
+//     var showMessageTimeoutId = setTimeout(displayUnlockMessage, 2000)
+//   }
+//   else if(button.id === 'star-key'){
+//     displayDateTime();
+//   }
+//   else{
+//     displayUnlockMessage();
+//   }
+
+// }
+
+// function displayUnlockMessage(show){
+//   var message = document.getElementById("unlockMessage");
+//   AddRemoveClassList(message, 'hide', show);
+// }
+
+
+// function displayUnlock(show){
+//   var unlockText = document.getElementById("unlock");
+//   AddRemoveClassList(unlockText, 'hide-taking-space', show);
+// }
+
+// function displayDateTime(show){
+//   var message = document.getElementById("lock-screen-div");
+//   AddRemoveClassList(message, 'hide', show);
+// }
 
 function getButtonNode(node){
   var dataName = node.dataset.name;
@@ -60,10 +103,10 @@ function getButtonNode(node){
   return node;
 }
 
-
 var powerButton = document.getElementById("power-button");
 var timeoutId;
 var lockScreenTimeoutId;
+var unlockTimeoutId;
 var isDeviceOn = false;
 var brandAnimation = document.getElementById("brand-animation");
 brandAnimation.addEventListener("ended", onBrandAnimationFinish);
@@ -78,32 +121,28 @@ function setInitialState(){
 
 function showBrandAnimation() {
   displayWhiteScreen();
-  displayBrandAnimation();
+  displayBrandAnimation(false);
   brandAnimation.play();
 }
 
 function displayBrandAnimation(show) {
   var animationContainer = document.getElementById("brand-animation-screen");
-  
-  if (show === false) {
-    animationContainer.classList.add("hide");
-  } else {
-    animationContainer.classList.remove("hide");
-  }
+  AddRemoveClassList(animationContainer, 'hide', show);
 }
 
 function showLockScreen() {
   displayWallPaper();
-  displayNavbar();
-  displayLockScreen();
+  displayNavbar(false);
+  displayLockScreen(false);
   setTime()
   lockScreenTimeoutId = setInterval(setTime, 1000);
 }
 
 function hideLockScreen(){
   displayWallPaper(false);
-  displayNavbar(false);
-  displayLockScreen(false);
+  displayNavbar();
+  displayLockScreen();
+  displayUnlockMessage(false);
   clearInterval(lockScreenTimeoutId);
 }
 
@@ -112,56 +151,39 @@ function getNavbar() {
 }
 function displayNavbar(show) {
   var navbar = getNavbar();
-
-  if (show === false) {
-      navbar.classList.add("hide");
-    } else {
-      navbar.classList.remove("hide");
-  }
+  AddRemoveClassList(navbar, 'hide', show);
 }
 
 function displayLockScreen(show) {
-    var lockScreen = document.getElementById("lock-screen-div");
-    if(show === false){
-        lockScreen.classList.add("hide");
-    }
-    else{
-        lockScreen.classList.remove("hide");
-    }
+  var lockScreen = document.getElementById("lock-screen-div");
+  AddRemoveClassList(lockScreen, 'hide', show);
 }
 
 function displayWallPaper(show) {
   var lcd = getLcd();
-
-  if (show === false) {
-    lcd.classList.remove("lcd-on");
-  } else {
-    lcd.classList.add("lcd-on");
-  }
+  AddRemoveClassList(lcd, 'lcd-on', show);
 }
 
 function displayWhiteScreen(show) {
   var lcd = getLcd();
-
-  if (show === false) {
-    lcd.classList.remove("lcd-white");
-  } else {
-    lcd.classList.add("lcd-white");
-  }
+  AddRemoveClassList(lcd, 'lcd-white', show);
 }
 
 function displayBlackScreen(show) {
   var lcd = getLcd();
+  AddRemoveClassList(lcd, 'lcd-off', show);
+}
 
+function AddRemoveClassList(node, className, show){
   if (show === false) {
-    lcd.classList.remove("lcd-off");
+    node.classList.remove(className);
   } else {
-    lcd.classList.add("lcd-off");
+    node.classList.add(className);
   }
 }
 
 function onBrandAnimationFinish() {
-  displayBrandAnimation(false);
+  displayBrandAnimation();
   displayWhiteScreen(false);
   showLockScreen();
   localStorage.setItem("deviceOn", true)
