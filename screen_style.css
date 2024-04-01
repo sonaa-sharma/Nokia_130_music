@@ -246,10 +246,11 @@
   color: white;
 }
 
-.unlock {
-  color: white;
-  padding: 4px 8px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
+#bottom-navbar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: 700;
 }
 
 .hide-taking-space{

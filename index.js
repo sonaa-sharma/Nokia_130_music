@@ -64,19 +64,48 @@ function selectButtonPressed(button) {
   clearGoBackId = setTimeout(goBacktoLockScreen, 3000);
 }
 
-function goBacktoLockScreen(){
+function goBacktoLockScreen() {
   displayUnlockMessage();
   displayUnlock(false);
   isSelectkeyPressed = false;
-
 }
+
+// displayDateTime();
 
 function starKeyPressed(button) {
   if (!isSelectkeyPressed) {
     return;
   }
 
-  displayTimeDate();
+  // displayLockScreen();
+  displayDateTime();
+  displayMenuText(false);
+  displayGotoText(false);
+  displayAlarmText(false);
+  displayUnlockWithoutSpace();
+  displayUnlockMessage(false);
+
+}
+
+function displayGotoText(show) {
+  var gotoText = document.getElementById("goto");
+  AddRemoveClassList(gotoText, "hide", show);
+}
+
+function displayMenuText(show) {
+  var menuText = document.getElementById("menu");
+  AddRemoveClassList(menuText, "hide", show);
+
+}
+
+function displayAlarmText(show) {
+  var newScreen = document.getElementById("alarm");
+  AddRemoveClassList(newScreen, "hide", show);
+}
+
+function displayDateTime(show) {
+  var newScreen = document.getElementById("date-time-div");
+  AddRemoveClassList(newScreen, "hide-taking-space", show);
 }
 
 function displayUnlockMessage(show) {
@@ -89,9 +118,9 @@ function displayUnlock(show) {
   AddRemoveClassList(unlockText, "hide-taking-space", show);
 }
 
-function displayTimeDate(show) {
-  var TimeDate = document.getElementById("lock-screen-div");
-  AddRemoveClassList(TimeDate, "hide", show);
+function displayUnlockWithoutSpace(show) {
+  var unlockText = document.getElementById("unlock");
+  AddRemoveClassList(unlockText, "hide", show);
 }
 
 function getButtonNode(node) {
@@ -140,6 +169,8 @@ function showLockScreen() {
   displayNavbar(false);
   displayLockScreen(false);
   setTime();
+  // displayDateTime();
+  
   lockScreenTimeoutId = setInterval(setTime, 1000);
 }
 
