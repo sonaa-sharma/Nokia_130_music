@@ -43,6 +43,9 @@ function clickEventFunction(event) {
 function buttonClicked(button) {
   switch (button.id) {
     case "left-select-button":
+      if(isScreenOn){
+        return;
+      }
       selectButtonPressed(button);
       break;
     case "star-key":
@@ -55,7 +58,7 @@ function buttonClicked(button) {
 
 var isSelectkeyPressed = false;
 var clearGoBackId;
-
+var isScreenOn;
 function selectButtonPressed(button) {
   isSelectkeyPressed = true;
 
@@ -77,13 +80,12 @@ function starKeyPressed(button) {
     return;
   }
 
-  // displayLockScreen();
   displayDateTime();
   displayMenuText(false);
   displayGotoText(false);
   displayAlarmText(false);
   displayUnlockWithoutSpace();
-  displayUnlockMessage(false);
+  isScreenOn = true;
 
 }
 
