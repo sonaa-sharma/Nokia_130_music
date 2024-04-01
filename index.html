@@ -72,7 +72,22 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="hide lock-screen" id="lock-screen-div">
+                            <div class="apps-div hide" id="apps-div">
+                                <div class="apps-container calls">Calls
+                                    
+                                </div>
+                                <div class="apps-container">Contacts</div>
+                                <div class="apps-container">Music</div>
+                                <div class="apps-container">Video</div>
+                                <div class="apps-container">Message</div>
+                                <div class="apps-container">FM</div>
+                                <div class="apps-container">Settings</div>
+                                <div class="apps-container">Alarm</div>
+                                <div class="apps-container">Game</div>
+                            </div>
+
                             <div id="date-time-div">
                                 <div class="date-time center" >
                                     <div class="time"><span id="clock-hour"></span>:<span id="clock-min"></span></div>
@@ -83,9 +98,9 @@
                                 Press * key to unlock device
                             </div>
                             <div id="bottom-navbar">
-                                <div class="bottom-navbar-text hide" id="goto">Go to</div>
+                                <div class="bottom-navbar-text hide" id="select">Select</div>
                                 <div class="bottom-navbar-text hide" id="menu">Menu</div>
-                                <div class="bottom-navbar-text hide" id="alarm">Alarm</div>
+                                <div class="bottom-navbar-text hide" id="back">Back</div>
                             </div>
                             <div id="unlock">Unlock</div>
                         </div>
@@ -112,8 +127,8 @@
                             <div class="call-receive-icon"></div>
                         </div>
                     </div>
-                    <div class="function-buttons mid-function-button">
-                        <div class="mid-function-button-inner">
+                    <div class="function-buttons mid-function-button" data-name="buttons">
+                        <div class="mid-function-button-inner" data-name="buttons" id="mid-button-inner">
                             <img class="play-pause-icon" src="Icons/music_play_pause_regular_icon_204710.svg"
                                 alt="play-pause-icon">
                         </div>

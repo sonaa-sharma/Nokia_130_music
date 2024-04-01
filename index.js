@@ -38,12 +38,14 @@ function clickEventFunction(event) {
     return;
   }
   buttonClicked(button);
+  // console.log(button);
 }
 
 function buttonClicked(button) {
   switch (button.id) {
     case "left-select-button":
       if(isScreenOn){
+        showApps(false);
         return;
       }
       selectButtonPressed(button);
@@ -73,7 +75,15 @@ function goBacktoLockScreen() {
   isSelectkeyPressed = false;
 }
 
-// displayDateTime();
+
+function showApps(show){
+  var apps = document.getElementById("apps-div");
+  AddRemoveClassList(apps, "hide", show)
+  displayDateTimeWithoutSpace();
+  displayMenuText();
+  displaySelectText(false);
+  displayBackText(false);
+} 
 
 function starKeyPressed(button) {
   if (!isSelectkeyPressed) {
@@ -82,15 +92,14 @@ function starKeyPressed(button) {
 
   displayDateTime();
   displayMenuText(false);
-  displayGotoText(false);
-  displayAlarmText(false);
   displayUnlockWithoutSpace();
+
   isScreenOn = true;
 
 }
 
-function displayGotoText(show) {
-  var gotoText = document.getElementById("goto");
+function displayBackText(show) {
+  var gotoText = document.getElementById("back");
   AddRemoveClassList(gotoText, "hide", show);
 }
 
@@ -100,14 +109,19 @@ function displayMenuText(show) {
 
 }
 
-function displayAlarmText(show) {
-  var newScreen = document.getElementById("alarm");
+function displaySelectText(show) {
+  var newScreen = document.getElementById("select");
   AddRemoveClassList(newScreen, "hide", show);
 }
 
 function displayDateTime(show) {
   var newScreen = document.getElementById("date-time-div");
   AddRemoveClassList(newScreen, "hide-taking-space", show);
+}
+
+function displayDateTimeWithoutSpace(show) {
+  var newScreen = document.getElementById("date-time-div");
+  AddRemoveClassList(newScreen, "hide", show);
 }
 
 function displayUnlockMessage(show) {
