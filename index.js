@@ -1,4 +1,4 @@
-function setTime(){
+function setTime() {
   var time = new Date();
   var hour = time.getHours();
   var minutes = time.getMinutes();
@@ -10,7 +10,7 @@ function setTime(){
   var currentYear = document.getElementById("year");
   var currentMonth = document.getElementById("month");
   var currentDay = document.getElementById("day");
-  
+
   clockHour.innerHTML = getTwoDigitNumber(hour);
   clockMin.innerHTML = getTwoDigitNumber(minutes);
   currentYear.innerHTML = getTwoDigitNumber(clockYear);
@@ -18,11 +18,11 @@ function setTime(){
   currentDay.innerHTML = getTwoDigitNumber(clockDay);
 }
 
-function getTwoDigitNumber(number){
+function getTwoDigitNumber(number) {
   var twoDigitNumber = number;
-  
-  if(number<10){
-    twoDigitNumber = '0'+number;
+
+  if (number < 10) {
+    twoDigitNumber = "0" + number;
   }
 
   return twoDigitNumber;
@@ -31,72 +31,79 @@ function getTwoDigitNumber(number){
 var keypadButton = document.getElementById("keypad-box");
 keypadButton.addEventListener("click", clickEventFunction);
 
-function clickEventFunction(event){
+function clickEventFunction(event) {
   var targetNode = event.target;
   var button = getButtonNode(targetNode);
-  if(!button){
+  if (!button) {
     return;
   }
   buttonClicked(button);
 }
 
-function buttonClicked(button){
-  console.log(button.id);
-  // switch(button.id) {
-  //   case 'left-select-button':
-  //     // displayUnlockMessage();
-  //     unlockScreenWithStar(button);
-  //     break;
-  //   case 'star-key':
-  //     // break;
-  //   default:
-  //     // code block
-  // }
+function buttonClicked(button) {
+  switch (button.id) {
+    case "left-select-button":
+      selectButtonPressed(button);
+      break;
+    case "star-key":
+      starKeyPressed(button);
+    default:
+      clearTimeout(clearGoBackId);
+      goBacktoLockScreen();
+  }
+}
+
+var isSelectkeyPressed = false;
+var clearGoBackId;
+
+function selectButtonPressed(button) {
+  isSelectkeyPressed = true;
+
+  displayUnlockMessage(false);
+  displayUnlock();
+  clearGoBackId = setTimeout(goBacktoLockScreen, 3000);
+}
+
+function goBacktoLockScreen(){
+  displayUnlockMessage();
+  displayUnlock(false);
+  isSelectkeyPressed = false;
 
 }
 
+function starKeyPressed(button) {
+  if (!isSelectkeyPressed) {
+    return;
+  }
 
-// function unlockScreenWithStar(button){
-//   if(button.id === 'left-select-button'){
-//     displayUnlockMessage(false);
-//     displayUnlock();
-//     var showMessageTimeoutId = setTimeout(displayUnlockMessage, 2000)
-//   }
-//   else if(button.id === 'star-key'){
-//     displayDateTime();
-//   }
-//   else{
-//     displayUnlockMessage();
-//   }
+  displayTimeDate();
+}
 
-// }
+function displayUnlockMessage(show) {
+  var message = document.getElementById("unlockMessage");
+  AddRemoveClassList(message, "hide", show);
+}
 
-// function displayUnlockMessage(show){
-//   var message = document.getElementById("unlockMessage");
-//   AddRemoveClassList(message, 'hide', show);
-// }
+function displayUnlock(show) {
+  var unlockText = document.getElementById("unlock");
+  AddRemoveClassList(unlockText, "hide-taking-space", show);
+}
 
+function displayTimeDate(show) {
+  var TimeDate = document.getElementById("lock-screen-div");
+  AddRemoveClassList(TimeDate, "hide", show);
+}
 
-// function displayUnlock(show){
-//   var unlockText = document.getElementById("unlock");
-//   AddRemoveClassList(unlockText, 'hide-taking-space', show);
-// }
-
-// function displayDateTime(show){
-//   var message = document.getElementById("lock-screen-div");
-//   AddRemoveClassList(message, 'hide', show);
-// }
-
-function getButtonNode(node){
+function getButtonNode(node) {
   var dataName = node.dataset.name;
 
-  while(dataName !== 'buttons' && dataName !== 'keypad-container'){
+  while (dataName !== "buttons" && dataName !== "keypad-container") {
     var newNode = node.parentNode;
     dataName = newNode.dataset.name;
     node = newNode;
   }
 
-  if(dataName === 'keypad-container'){
+  if (dataName === "keypad-container") {
     return null;
   }
 
@@ -105,15 +112,13 @@ function getButtonNode(node){
 
 var powerButton = document.getElementById("power-button");
 var timeoutId;
-var lockScreenTimeoutId;
-var unlockTimeoutId;
 var isDeviceOn = false;
 var brandAnimation = document.getElementById("brand-animation");
 brandAnimation.addEventListener("ended", onBrandAnimationFinish);
 
-function setInitialState(){
+function setInitialState() {
   var deviceOn = localStorage.getItem("deviceOn");
-  if(deviceOn === 'true'){
+  if (deviceOn === "true") {
     showLockScreen();
     isDeviceOn = true;
   }
@@ -127,54 +132,55 @@ function showBrandAnimation() {
 
 function displayBrandAnimation(show) {
   var animationContainer = document.getElementById("brand-animation-screen");
-  AddRemoveClassList(animationContainer, 'hide', show);
+  AddRemoveClassList(animationContainer, "hide", show);
 }
 
 function showLockScreen() {
   displayWallPaper();
   displayNavbar(false);
   displayLockScreen(false);
-  setTime()
+  setTime();
   lockScreenTimeoutId = setInterval(setTime, 1000);
 }
 
-function hideLockScreen(){
+function hideLockScreen() {
   displayWallPaper(false);
   displayNavbar();
   displayLockScreen();
-  displayUnlockMessage(false);
+  displayUnlockMessage();
   clearInterval(lockScreenTimeoutId);
 }
 
 function getNavbar() {
   return document.getElementById("navbar");
 }
+
 function displayNavbar(show) {
   var navbar = getNavbar();
-  AddRemoveClassList(navbar, 'hide', show);
+  AddRemoveClassList(navbar, "hide", show);
 }
 
 function displayLockScreen(show) {
   var lockScreen = document.getElementById("lock-screen-div");
-  AddRemoveClassList(lockScreen, 'hide', show);
+  AddRemoveClassList(lockScreen, "hide", show);
 }
 
 function displayWallPaper(show) {
   var lcd = getLcd();
-  AddRemoveClassList(lcd, 'lcd-on', show);
+  AddRemoveClassList(lcd, "lcd-on", show);
 }
 
 function displayWhiteScreen(show) {
   var lcd = getLcd();
-  AddRemoveClassList(lcd, 'lcd-white', show);
+  AddRemoveClassList(lcd, "lcd-white", show);
 }
 
 function displayBlackScreen(show) {
   var lcd = getLcd();
-  AddRemoveClassList(lcd, 'lcd-off', show);
+  AddRemoveClassList(lcd, "lcd-off", show);
 }
 
-function AddRemoveClassList(node, className, show){
+function AddRemoveClassList(node, className, show) {
   if (show === false) {
     node.classList.remove(className);
   } else {
@@ -186,7 +192,7 @@ function onBrandAnimationFinish() {
   displayBrandAnimation();
   displayWhiteScreen(false);
   showLockScreen();
-  localStorage.setItem("deviceOn", true)
+  localStorage.setItem("deviceOn", true);
 }
 
 function handlePowerOn() {
