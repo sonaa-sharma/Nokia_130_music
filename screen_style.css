@@ -249,18 +249,25 @@
 }
 
 .apps-div{
-  display: ruby;
-  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  /* padding: 12px; */
+  margin: 12px 12px;
   color: black;
+  /* background-color: rgb(73, 44, 101); */
+  gap: 12px;
 
 }
 
 .apps-container{
-  margin: 4px 4px 2px;
-  height: 48px;
-  width: 48px;
-  border-radius: 12px;
+  /* margin: 4px 8px 2px; */
+  padding: 4px;
+  height: 36px;
+  width: 20%;
+  border-radius: 25px;
   background-color: aliceblue;
+  border: 1px solid red;
+  margin-left: 4px;
   
 }
 
@@ -270,3 +277,39 @@
   background-size: cover;
 }
 
+.call-log{
+  background-color: rgb(15, 229, 15);
+}
+
+.contacts{
+  background-color: blue;
+}
+
+.alarm{
+  background-color: rgb(199, 193, 193);
+}
+
+.fm{
+  background-color: rgb(88, 134, 136);
+}
+
+.music{
+  background-color: rgb(242, 57, 88);
+}
+
+.message{
+  background-color: rgb(24, 224, 24);
+
+}
+
+.calendar{
+  background-color: #b3afc7;
+}
+.torch{
+  background-color: rgb(130, 130, 167);
+
+}
+
+.settings{
+  background-color: grey;
+}

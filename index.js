@@ -83,6 +83,7 @@ function showApps(show){
   displayMenuText();
   displaySelectText(false);
   displayBackText(false);
+  displayWallPaper(false);
 } 
 
 function starKeyPressed(button) {
