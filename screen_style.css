@@ -250,47 +250,43 @@
 
 .apps-div{
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
-  /* padding: 12px; */
   margin: 12px 12px;
   color: black;
-  /* background-color: rgb(73, 44, 101); */
   gap: 12px;
 
 }
 
 .apps-container{
-  /* margin: 4px 8px 2px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
   padding: 4px;
   height: 36px;
   width: 20%;
   border-radius: 25px;
-  background-color: aliceblue;
-  border: 1px solid red;
   margin-left: 4px;
   
 }
 
-.calls{
-  background-image: url("C:\Users\91790\Saved Games\Downloads\phone-call.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 .call-log{
-  background-color: rgb(15, 229, 15);
+  background-color: #0fb00f;
 }
 
 .contacts{
-  background-color: blue;
+  /* background-color: blue; */
 }
 
 .alarm{
-  background-color: rgb(199, 193, 193);
+  /* background-color: rgb(199, 193, 193); */
+  color: white;
 }
 
 .fm{
-  background-color: rgb(88, 134, 136);
+  /* background-color: rgb(79, 182, 187); */
+  /* color: #0fb00f; */
 }
 
 .music{
@@ -298,18 +294,18 @@
 }
 
 .message{
-  background-color: rgb(24, 224, 24);
-
+  /* background-color: rgb(24, 224, 24); */
 }
 
 .calendar{
-  background-color: #b3afc7;
+  /* background-color: #b3afc7; */
 }
 .torch{
   background-color: rgb(130, 130, 167);
+  rotate: 45deg;
 
 }
 
 .settings{
-  background-color: grey;
+  /* background-color: grey; */
 }
