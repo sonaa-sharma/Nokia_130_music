@@ -122,7 +122,6 @@
 
 }
 
-
 .corner-triangle {
   width: 0;
   height: 0;
@@ -177,7 +176,6 @@
     margin-left: 1.5px;
 
 }
-
 
 .icon-bottom{
     width: 2px;
@@ -244,9 +242,7 @@
   opacity: 0;
 }
 
-.new-wallpaper{
-  background-image: url("C:\Users\91790\Saved Games\Downloads\wallpaper.jpg");
-}
+
 
 .apps-div{
   display: flex;
@@ -275,37 +271,27 @@
   background-color: #0fb00f;
 }
 
-.contacts{
-  /* background-color: blue; */
-}
+
 
 .alarm{
-  /* background-color: rgb(199, 193, 193); */
   color: white;
 }
 
-.fm{
-  /* background-color: rgb(79, 182, 187); */
-  /* color: #0fb00f; */
-}
 
 .music{
   background-color: rgb(242, 57, 88);
 }
 
-.message{
-  /* background-color: rgb(24, 224, 24); */
-}
-
-.calendar{
-  /* background-color: #b3afc7; */
-}
 .torch{
   background-color: rgb(130, 130, 167);
   rotate: 45deg;
 
 }
 
-.settings{
-  /* background-color: grey; */
+.bottom-navbar-text{
+  margin-left: 24px;
+  margin-bottom: 8px;
+  width: 30%;
 }
+
+
