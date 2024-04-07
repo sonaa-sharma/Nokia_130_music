@@ -81,7 +81,7 @@
 }
 
 .mid-function-button-inner{
-    height: 100%;
+    /* height: 100%; */
     width: 100%;
     border-radius: 12px;
     border: 1px solid black;
@@ -173,4 +173,35 @@
     border-radius: 4px;
     box-shadow: -.5px 1px 1px .5px #38373d;
 
+}
+
+.up-low{
+    /* background-color: crimson; */
+    height: 12px;
+    width: 48px;
+    border-radius: 20px;
+
+}
+
+.left-right{
+    /* background-color: chartreuse; */
+    height: 40px;
+    width: 14px;
+    border-radius: 4px;
+}
+
+.new-div{
+    /* background-color: rgb(82, 182, 182); */
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+}
+
+.outer-div{
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column ;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
 }

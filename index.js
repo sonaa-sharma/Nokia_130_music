@@ -38,25 +38,28 @@ function clickEventFunction(event) {
     return;
   }
   buttonClicked(button);
-  // console.log(button);
+  console.log(button.id);
 }
 
 function buttonClicked(button) {
   switch (button.id) {
     case "left-select-button":
-      if(isScreenOn){
+      if (isScreenOn) {
         showApps(false);
       }
       selectButtonPressed(button);
       break;
     case "star-key":
       starKeyPressed(button);
+    case "mid-button-inner":
+      playMusicApp();
+    case "mid-outer-button":
+      // changeDiv();
     default:
       clearTimeout(clearGoBackId);
       goBacktoLockScreen();
   }
 }
-
 
 var isSelectkeyPressed = false;
 var clearGoBackId;
@@ -65,13 +68,13 @@ var isScreenOn = false;
 function selectButtonPressed(button) {
   isSelectkeyPressed = true;
 
-  if(!isScreenOn){
+  if (!isScreenOn) {
     showUnlockMessage();
     return;
   }
 }
 
-function showUnlockMessage(){
+function showUnlockMessage() {
   displayUnlockMessage(false);
   displayUnlock();
   clearGoBackId = setTimeout(goBacktoLockScreen, 3000);
@@ -84,50 +87,63 @@ function goBacktoLockScreen() {
   isSelectkeyPressed = false;
 }
 
-function showApps(show){
+function showApps(show) {
   var apps = document.getElementById("apps-div");
   AddRemoveClassList(apps, "hide", show);
   manageAppsScreen();
 }
 
-function manageAppsScreen(){
+function manageAppsScreen() {
   displayUnlockWithoutSpace();
   displayDateTimeWithoutSpace();
   displayMenuText();
   displaySelectText(false);
   displayBackText(false);
   displayWallPaper(false);
-} 
+}
 
-function AppsScreenRemove(){
+function AppsScreenRemove() {
   showApps();
   displayDateTimeWithoutSpace(false);
   displaySelectText();
   displayBackText();
-} 
+}
 
-function BackToLockScreen(){
+function BackToLockScreen() {
   isScreenOn = false;
   displayDateTime(false);
   displayUnlockWithoutSpace(false);
-  // displayUnlock();
+}
 
+function playMusicApp() {
+  var music = document.getElementById("music");
+  music.style.border = "2px solid white";
+}
+
+function changeDiv(){
+  var div = document.getElementById("calls");
+  div.style.border = "2px solid white";
 }
 
 function starKeyPressed(button) {
-  if(isScreenOn){
+  if (isScreenOn) {
     return;
   }
   if (!isSelectkeyPressed) {
     return;
   }
 
-  displayDateTime();
+  // displayDateTime();
+  changeColorDateTime();
   displayMenuText(false);
   displayUnlockWithoutSpace();
 
   isScreenOn = true;
+}
 
+function changeColorDateTime(){
+  var date = document.getElementById("date-time-div");
+  date.style.backgroundColor = "grey";
 }
 
 function displayBackText(show) {
@@ -138,7 +154,6 @@ function displayBackText(show) {
 function displayMenuText(show) {
   var menuText = document.getElementById("menu");
   AddRemoveClassList(menuText, "hide", show);
-
 }
 
 function displaySelectText(show) {
@@ -217,8 +232,6 @@ function showLockScreen() {
   displayNavbar(false);
   displayLockScreen(false);
   setTime();
-  // displayDateTime();
-  
   lockScreenTimeoutId = setInterval(setTime, 1000);
 }
 

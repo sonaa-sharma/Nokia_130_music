@@ -269,6 +269,7 @@
 
 .call-log{
   background-color: #0fb00f;
+  /* border: 2px solid white; */
 }
 
 
@@ -280,8 +281,12 @@
 
 .music{
   background-color: rgb(242, 57, 88);
+
 }
 
+.message{
+  background-color: #4048dc;
+}
 .torch{
   background-color: rgb(130, 130, 167);
   rotate: 45deg;
