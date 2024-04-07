@@ -46,7 +46,6 @@ function buttonClicked(button) {
     case "left-select-button":
       if(isScreenOn){
         showApps(false);
-        return;
       }
       selectButtonPressed(button);
       break;
@@ -58,12 +57,21 @@ function buttonClicked(button) {
   }
 }
 
+
 var isSelectkeyPressed = false;
 var clearGoBackId;
-var isScreenOn;
+var isScreenOn = false;
+
 function selectButtonPressed(button) {
   isSelectkeyPressed = true;
 
+  if(!isScreenOn){
+    showUnlockMessage();
+    return;
+  }
+}
+
+function showUnlockMessage(){
   displayUnlockMessage(false);
   displayUnlock();
   clearGoBackId = setTimeout(goBacktoLockScreen, 3000);
@@ -72,13 +80,18 @@ function selectButtonPressed(button) {
 function goBacktoLockScreen() {
   displayUnlockMessage();
   displayUnlock(false);
+
   isSelectkeyPressed = false;
 }
 
-
 function showApps(show){
   var apps = document.getElementById("apps-div");
-  AddRemoveClassList(apps, "hide", show)
+  AddRemoveClassList(apps, "hide", show);
+  manageAppsScreen();
+}
+
+function manageAppsScreen(){
+  displayUnlockWithoutSpace();
   displayDateTimeWithoutSpace();
   displayMenuText();
   displaySelectText(false);
@@ -86,7 +99,25 @@ function showApps(show){
   displayWallPaper(false);
 } 
 
+function AppsScreenRemove(){
+  showApps();
+  displayDateTimeWithoutSpace(false);
+  displaySelectText();
+  displayBackText();
+} 
+
+function BackToLockScreen(){
+  isScreenOn = false;
+  displayDateTime(false);
+  displayUnlockWithoutSpace(false);
+  // displayUnlock();
+
+}
+
 function starKeyPressed(button) {
+  if(isScreenOn){
+    return;
+  }
   if (!isSelectkeyPressed) {
     return;
   }
@@ -100,8 +131,8 @@ function starKeyPressed(button) {
 }
 
 function displayBackText(show) {
-  var gotoText = document.getElementById("back");
-  AddRemoveClassList(gotoText, "hide", show);
+  var backText = document.getElementById("back");
+  AddRemoveClassList(backText, "hide", show);
 }
 
 function displayMenuText(show) {
@@ -111,8 +142,8 @@ function displayMenuText(show) {
 }
 
 function displaySelectText(show) {
-  var newScreen = document.getElementById("select");
-  AddRemoveClassList(newScreen, "hide", show);
+  var selectText = document.getElementById("select");
+  AddRemoveClassList(selectText, "hide", show);
 }
 
 function displayDateTime(show) {
@@ -271,6 +302,10 @@ function turnOnlcd() {
 function turnOfflcd() {
   hideLockScreen();
   displayBlackScreen();
+  displayMenuText();
+  AppsScreenRemove();
+  BackToLockScreen();
+
   localStorage.setItem("deviceOn", false);
 }
 
