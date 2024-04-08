@@ -127,23 +127,23 @@ function starKeyPressed(button) {
   if (!isSelectkeyPressed) {
     return;
   }
-  // displayDateTime();
-  // displayUnlockMessage();
-  // displayUnlockWithoutSpace();
+
   hideLockScreen();
   showIdleScreen();
 }
-
-// function hideLockScreen
 
 function showIdleScreen(){
 
   displayWallPaper();
   displayNavbar(false);
-  displayDateTime(false);
-  displayDate(false);
+  displayUnlockWithoutSpace();
+  displayDate();
   displayMenuText(false);
   screenName = "idleScreen";
+}
+
+function appsScreen(){
+
 }
 
 function displayDate(show) {
@@ -206,6 +206,8 @@ function getButtonNode(node) {
 
   return node;
 }
+
+// power button usecases------------
 
 var powerButton = document.getElementById("power-button");
 var timeoutId;

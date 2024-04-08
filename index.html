@@ -72,7 +72,32 @@
                             </div>
                         </div>
 
-                        <div class="hide lock-screen" id="lock-screen-div">
+                        <!-- lock screen -->
+
+                        <div id="lock-screen-div">
+                            <div id="date-time-div">
+                                <div class="date-time center">
+                                    <div class="time"><span id="clock-hour"></span>:<span id="clock-min"></span></div>
+                                    <div class="date" id="date"><span id="day"></span>.<span id="month"></span>.<span id="year"></span></div>
+                                </div>
+                            </div>
+                            <div class="hide" id="unlockMessage">
+                                Press * key to unlock device
+                            </div>
+                            <div id="unlock">Unlock</div>
+                        </div>
+
+                        <!-- menu screen -->
+
+                        <div id="menu-screen-div">
+                            <div id="bottom-navbar">
+                                <div class="bottom-navbar-text hide" id="menu">Menu</div>
+                            </div>
+                        </div>
+
+                        <!-- apps screen  -->
+
+                        <div class="app-screen-div">
                             <div class="apps-div hide" id="apps-div">
                                 <div class="apps-container call-log" id="calls">
                                     <img src="wallpaper\icon-157358_1280.png" alt="call-log" width="20px">
@@ -102,24 +127,15 @@
                                     <img src="wallpaper\gear-1807204_1920.png" alt="settings" width="44px">
                                 </div>
                             </div>
-                            <div id="date-time-div">
-                                <div class="date-time center">
-                                    <div class="time"><span id="clock-hour"></span>:<span id="clock-min"></span></div>
-                                    <div class="date"><span id="day"></span>.<span id="month"></span>.<span id="year"></span></div>
-                                </div>
-                            </div>
-                            <div class="hide" id="unlockMessage">
-                                Press * key to unlock device
-                            </div>
                             <div id="bottom-navbar">
-                                <div class="hide" id="menu">Menu</div>
                                 <div class="bottom-navbar-text hide" id="select">Select</div>
                                 <div class="bottom-navbar-text hide" id="back">Back</div>
                             </div>
-                            <div id="unlock">Unlock</div>
                         </div>
                     </div>
                 </div>
+
+
                 <div class="brand-logo center">
                     <svg class="nokia-icon" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 122.88 20.71">

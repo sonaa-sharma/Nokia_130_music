@@ -208,7 +208,7 @@
     border: 2px solid black;
 }
 
-.lock-screen {
+#lock-screen-div {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
