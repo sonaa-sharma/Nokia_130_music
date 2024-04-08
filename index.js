@@ -55,6 +55,10 @@ function buttonClicked(button) {
       break;
     case "idleScreen":
       idleScreenHandler(button);
+      break;
+    case "appScreen":
+      appScreenHandler(button);
+      break;
   }
 }
 
@@ -76,10 +80,29 @@ function lockScreenHandler(button) {
 function idleScreenHandler(button) {
   switch (button.id) {
     case "left-select-button":
-      showApps(false);
+      hideIdleScreen();
+      showMenu(false);
       break;
-   case "mid-button-inner":
-    showApps(false);
+    default:
+      break;
+  }
+}
+
+function appScreenHandler(button) {
+  switch (button.id) {
+    case "left-select-button":
+      playMusicApp();
+      break;
+      case "mid-button-inner":
+      break;
+      case "top-button":
+        changeDiv();
+      break;
+      case "left-button":
+      break;
+      case "right-button":
+      break;
+      case "bottom-button":
       break;
     default:
       break;
@@ -88,11 +111,21 @@ function idleScreenHandler(button) {
 
 function showIdleScreen() {
   displayWallPaper();
+  displayLockScreen(false);
   displayNavbar(false);
-  displayUnlockWithoutSpace();
   displayDate();
   displayMenuText(false);
+  displayDateTimeContainer(false);
   screenName = "idleScreen";
+}
+
+function hideIdleScreen() {
+  displayLockScreen();
+  displayWallPaper(false);
+  displayNavbar();
+  displayDate(false);
+  displayMenuText();
+  displayDateTimeContainer();
 }
 
 function selectButtonPressed() {
@@ -105,30 +138,41 @@ function starKeyPressed(button) {
     return;
   }
 
+  clearTimeout(clearGoBackId);
+  hideUnlockMessage()
+
   hideLockScreen();
   showIdleScreen();
 }
 
-function appsScreen() {}
+function appsScreen() {
+  
+}
 
-function showApps(show) {
-  var apps = document.getElementById("apps-div");
-  AddRemoveClassList(apps, "hide", show);
-  manageAppsScreen();
+function showMenu() {  
+  // manageAppsScreen();
+  displayNavbar(false);
+  displayAppScreen(false)
+  displaySelectText(false);
+  displayBackText(false);
+  displayAppScreenContainer(false);
+  screenName = "appScreen";
 }
 
 function manageAppsScreen() {
-  displayUnlockWithoutSpace();
-  displayDateTimeWithoutSpace();
   displayMenuText();
   displaySelectText(false);
   displayBackText(false);
   displayWallPaper(false);
 }
 
+function displayAppScreen(show){
+  var apps = document.getElementById("apps-div");
+  AddRemoveClassList(apps, "hide", show);
+}
+
 function AppsScreenRemove() {
-  showApps();
-  displayDateTimeWithoutSpace(false);
+  showMenu();
   displaySelectText();
   displayBackText();
 }
@@ -144,14 +188,19 @@ function changeDiv() {
 }
 
 function BackToLockScreen() {
-  displayDateTime(false);
+  displayDateTimeContainer(false);
   displayUnlockWithoutSpace(false);
 }
 
 function showUnlockMessage() {
   displayUnlockMessage(false);
   displayUnlock();
-  clearGoBackId = setTimeout(goBacktoLockScreen, 3000);
+  clearGoBackId = setTimeout(goBacktoLockScreen, 2000);
+}
+
+function hideUnlockMessage() {
+  displayUnlockMessage();
+  displayUnlock();
 }
 
 function goBacktoLockScreen() {
@@ -164,6 +213,11 @@ function goBacktoLockScreen() {
 function displayDate(show) {
   var date = document.getElementById("date");
   AddRemoveClassList(date, "hide", show);
+}
+
+function displayTime(show) {
+  var time = document.getElementById("time");
+  AddRemoveClassList(time, "hide", show);
 }
 
 function displayBackText(show) {
@@ -182,11 +236,11 @@ function displaySelectText(show) {
 }
 
 function displayDateTime(show) {
-  var newScreen = document.getElementById("date-time-div");
-  AddRemoveClassList(newScreen, "hide-taking-space", show);
+  displayDate(show);
+  displayTime(show);
 }
 
-function displayDateTimeWithoutSpace(show) {
+function displayDateTimeContainer(show) {
   var newScreen = document.getElementById("date-time-div");
   AddRemoveClassList(newScreen, "hide", show);
 }
@@ -204,6 +258,11 @@ function displayUnlock(show) {
 function displayUnlockWithoutSpace(show) {
   var unlockText = document.getElementById("unlock");
   AddRemoveClassList(unlockText, "hide", show);
+}
+
+function displayAppScreenContainer(show){
+  var apps = document.getElementById("app-screen-container");
+  AddRemoveClassList(apps, "hide", show);
 }
 
 function getButtonNode(node) {
@@ -249,8 +308,10 @@ function displayBrandAnimation(show) {
   var animationContainer = document.getElementById("brand-animation-screen");
   AddRemoveClassList(animationContainer, "hide", show);
 }
+var lockScreenTimeoutId;
 
 function showLockScreen() {
+  displayDateTimeContainer(false)
   displayWallPaper();
   displayNavbar(false);
   displayLockScreen(false);
@@ -263,7 +324,7 @@ function hideLockScreen() {
   displayWallPaper(false);
   displayNavbar();
   displayLockScreen();
-  displayUnlockMessage();
+  displayDateTimeContainer()
   clearInterval(lockScreenTimeoutId);
 }
 
@@ -294,6 +355,10 @@ function displayWhiteScreen(show) {
 function displayBlackScreen(show) {
   var lcd = getLcd();
   AddRemoveClassList(lcd, "lcd-off", show);
+}
+
+function displayLockScreenContainer(){
+
 }
 
 function AddRemoveClassList(node, className, show) {

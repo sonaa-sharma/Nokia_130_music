@@ -208,7 +208,7 @@
     border: 2px solid black;
 }
 
-#lock-screen-div {
+.lock-screen-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -242,7 +242,12 @@
   opacity: 0;
 }
 
-
+.app-screen-div{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between ;
+}
 
 .apps-div{
   /* background-color: #0fb00f; */
