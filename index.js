@@ -93,16 +93,19 @@ function appScreenHandler(button) {
     case "left-select-button":
       playMusicApp();
       break;
-      case "mid-button-inner":
+    case "right-select-button":
+      goToBackScreen();
       break;
-      case "top-button":
-        changeDiv();
+    case "mid-button-inner":
       break;
-      case "left-button":
+    case "top-button":
+      changeDiv();
       break;
-      case "right-button":
+    case "left-button":
       break;
-      case "bottom-button":
+    case "right-button":
+      break;
+    case "bottom-button":
       break;
     default:
       break;
@@ -139,30 +142,39 @@ function starKeyPressed(button) {
   }
 
   clearTimeout(clearGoBackId);
-  hideUnlockMessage()
+  hideUnlockMessage();
 
   hideLockScreen();
   showIdleScreen();
 }
 
-function appsScreen() {
-  
-}
-
-function showMenu() {  
+function showMenu() {
   displayNavbar(false);
-  displayAppScreen(false)
+  displayAppScreen(false);
   displaySelectText(false);
   displayBackText(false);
   displayAppScreenContainer(false);
   screenName = "appScreen";
 }
 
-function displayAppScreen(show){
+function goToBackScreen() {
+  hideMenuScreen();
+  showIdleScreen();
+}
+
+function hideMenuScreen() {
+  displayAppScreen(false);
+  displayNavbar();
+  displayAppScreen();
+  displaySelectText();
+  displayBackText();
+  displayAppScreenContainer();
+}
+
+function displayAppScreen(show) {
   var apps = document.getElementById("apps-div");
   AddRemoveClassList(apps, "hide", show);
 }
-
 
 function playMusicApp() {
   var music = document.getElementById("music");
@@ -247,7 +259,7 @@ function displayUnlockWithoutSpace(show) {
   AddRemoveClassList(unlockText, "hide", show);
 }
 
-function displayAppScreenContainer(show){
+function displayAppScreenContainer(show) {
   var apps = document.getElementById("app-screen-container");
   AddRemoveClassList(apps, "hide", show);
 }
@@ -298,7 +310,7 @@ function displayBrandAnimation(show) {
 var lockScreenTimeoutId;
 
 function showLockScreen() {
-  displayDateTimeContainer(false)
+  displayDateTimeContainer(false);
   displayWallPaper();
   displayNavbar(false);
   displayLockScreen(false);
@@ -311,7 +323,7 @@ function hideLockScreen() {
   displayWallPaper(false);
   displayNavbar();
   displayLockScreen();
-  displayDateTimeContainer()
+  displayDateTimeContainer();
   clearInterval(lockScreenTimeoutId);
 }
 
@@ -344,9 +356,7 @@ function displayBlackScreen(show) {
   AddRemoveClassList(lcd, "lcd-off", show);
 }
 
-function displayLockScreenContainer(){
-
-}
+function displayLockScreenContainer() {}
 
 function AddRemoveClassList(node, className, show) {
   if (show === false) {
