@@ -78,18 +78,16 @@ function lockScreenHandler(button) {
 }
 
 function idleScreenHandler(button) {
+  clearTimeout(switchToLockScreenTimer);
   switch (button.id) {
     case "left-select-button":
       hideIdleScreen();
       showMenu(false);
       break;
-    default:
+      default:
+        switchToLockScreenTimer = setTimeout(lockTimer, 3000);
       break;
   }
-
-  setTimeout(function(){
-    hideIdleScreen();
-  }, )
 }
 
 function appScreenHandler(button) {
@@ -116,6 +114,8 @@ function appScreenHandler(button) {
   }
 }
 
+var switchToLockScreenTimer ;
+
 function showIdleScreen() {
   displayWallPaper();
   displayLockScreen(false);
@@ -124,8 +124,16 @@ function showIdleScreen() {
   displayMenuText(false);
   displayDateTimeContainer(false);
   lockScreenTimeoutId = setInterval(setTime, 1000);
-  
+
+  switchToLockScreenTimer = setTimeout(lockTimer, 3000);
+
   screenName = "idleScreen";
+}
+
+function lockTimer(){
+  hideIdleScreen();
+  showLockScreen();
+
 }
 
 function hideIdleScreen() {
@@ -315,11 +323,13 @@ function displayBrandAnimation(show) {
 var lockScreenTimeoutId;
 
 function showLockScreen() {
+  displayUnlock(false);
   displayDateTimeContainer(false);
   displayWallPaper();
   displayNavbar(false);
   displayLockScreen(false);
   setTime();
+  isSelectkeyPressed = false;
   lockScreenTimeoutId = setInterval(setTime, 1000);
   screenName = "lockScreen";
 }
