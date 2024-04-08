@@ -86,6 +86,10 @@ function idleScreenHandler(button) {
     default:
       break;
   }
+
+  setTimeout(function(){
+    hideIdleScreen();
+  }, )
 }
 
 function appScreenHandler(button) {
@@ -119,6 +123,8 @@ function showIdleScreen() {
   displayDate();
   displayMenuText(false);
   displayDateTimeContainer(false);
+  lockScreenTimeoutId = setInterval(setTime, 1000);
+  
   screenName = "idleScreen";
 }
 
@@ -129,6 +135,7 @@ function hideIdleScreen() {
   displayDate(false);
   displayMenuText();
   displayDateTimeContainer();
+  clearInterval(lockScreenTimeoutId);
 }
 
 function selectButtonPressed() {
@@ -143,7 +150,6 @@ function starKeyPressed(button) {
 
   clearTimeout(clearGoBackId);
   hideUnlockMessage();
-
   hideLockScreen();
   showIdleScreen();
 }
@@ -293,7 +299,6 @@ function setInitialState() {
   if (deviceOn === "true") {
     showLockScreen();
     isDeviceOn = true;
-    screenName = "lockScreen";
   }
 }
 
