@@ -250,13 +250,12 @@
 }
 
 .apps-div{
-  /* background-color: #0fb00f; */
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   margin: 12px 12px;
   color: black;
-  gap: 12px;
+  gap: 4px;
 
 }
 
@@ -265,12 +264,19 @@
   align-items: center;
   justify-content: center;
   align-self: center;
-  padding: 4px;
   height: 36px;
-  width: 20%;
+  width: 36px;
   border-radius: 25px;
-  margin-left: 4px;
-  
+}
+
+.icon-container{
+  padding: 8px;
+  border: 2px solid transparent;
+}
+
+.selected{
+  border-color: white;
+  border-radius: 4px;
 }
 
 .call-log{

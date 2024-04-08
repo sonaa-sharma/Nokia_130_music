@@ -93,7 +93,6 @@ function idleScreenHandler(button) {
 function appScreenHandler(button) {
   switch (button.id) {
     case "left-select-button":
-      playMusicApp();
       break;
     case "right-select-button":
       goToBackScreen();
@@ -101,7 +100,6 @@ function appScreenHandler(button) {
     case "mid-button-inner":
       break;
     case "top-button":
-      changeDiv();
       break;
     case "left-button":
       break;
@@ -168,6 +166,8 @@ function showMenu() {
   displaySelectText(false);
   displayBackText(false);
   displayAppScreenContainer(false);
+  var firstApp = document.getElementById("calls");
+  AddRemoveClassList(firstApp, "selected");
   screenName = "appScreen";
 }
 
@@ -188,16 +188,6 @@ function hideMenuScreen() {
 function displayAppScreen(show) {
   var apps = document.getElementById("apps-div");
   AddRemoveClassList(apps, "hide", show);
-}
-
-function playMusicApp() {
-  var music = document.getElementById("music");
-  music.style.border = "2px solid white";
-}
-
-function changeDiv() {
-  var div = document.getElementById("calls");
-  div.style.border = "2px solid white";
 }
 
 function BackToLockScreen() {
