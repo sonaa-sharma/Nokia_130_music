@@ -27,7 +27,13 @@ function getTwoDigitNumber(number) {
 
   return twoDigitNumber;
 }
+
+// screen functions------
+
 var screenName = "turnedOff";
+var isSelectkeyPressed = false;
+var clearGoBackId;
+
 var keypadButton = document.getElementById("keypad-box");
 keypadButton.addEventListener("click", clickEventFunction);
 
@@ -40,6 +46,16 @@ function clickEventFunction(event) {
   }
 
   buttonClicked(button);
+}
+
+function buttonClicked(button) {
+  switch (screenName) {
+    case "lockScreen":
+      lockScreenHandler(button);
+      break;
+    case "idleScreen":
+      idleScreenHandler(button);
+  }
 }
 
 function lockScreenHandler(button) {
@@ -57,34 +73,43 @@ function lockScreenHandler(button) {
   }
 }
 
-function buttonClicked(button) {
-  switch (screenName) {
-    case "lockScreen":
-      lockScreenHandler(button);
+function idleScreenHandler(button) {
+  switch (button.id) {
+    case "left-select-button":
+      showApps(false);
+      break;
+   case "mid-button-inner":
+    showApps(false);
+      break;
+    default:
       break;
   }
 }
 
-var isSelectkeyPressed = false;
-var clearGoBackId;
+function showIdleScreen() {
+  displayWallPaper();
+  displayNavbar(false);
+  displayUnlockWithoutSpace();
+  displayDate();
+  displayMenuText(false);
+  screenName = "idleScreen";
+}
 
 function selectButtonPressed() {
   isSelectkeyPressed = true;
   showUnlockMessage();
 }
 
-function showUnlockMessage() {
-  displayUnlockMessage(false);
-  displayUnlock();
-  clearGoBackId = setTimeout(goBacktoLockScreen, 3000);
+function starKeyPressed(button) {
+  if (!isSelectkeyPressed) {
+    return;
+  }
+
+  hideLockScreen();
+  showIdleScreen();
 }
 
-function goBacktoLockScreen() {
-  displayUnlockMessage();
-  displayUnlock(false);
-
-  isSelectkeyPressed = false;
-}
+function appsScreen() {}
 
 function showApps(show) {
   var apps = document.getElementById("apps-div");
@@ -108,11 +133,6 @@ function AppsScreenRemove() {
   displayBackText();
 }
 
-function BackToLockScreen() {
-  displayDateTime(false);
-  displayUnlockWithoutSpace(false);
-}
-
 function playMusicApp() {
   var music = document.getElementById("music");
   music.style.border = "2px solid white";
@@ -123,32 +143,27 @@ function changeDiv() {
   div.style.border = "2px solid white";
 }
 
-function starKeyPressed(button) {
-  if (!isSelectkeyPressed) {
-    return;
-  }
-
-  hideLockScreen();
-  showIdleScreen();
+function BackToLockScreen() {
+  displayDateTime(false);
+  displayUnlockWithoutSpace(false);
 }
 
-function showIdleScreen(){
-
-  displayWallPaper();
-  displayNavbar(false);
-  displayUnlockWithoutSpace();
-  displayDate();
-  displayMenuText(false);
-  screenName = "idleScreen";
+function showUnlockMessage() {
+  displayUnlockMessage(false);
+  displayUnlock();
+  clearGoBackId = setTimeout(goBacktoLockScreen, 3000);
 }
 
-function appsScreen(){
+function goBacktoLockScreen() {
+  displayUnlockMessage();
+  displayUnlock(false);
 
+  isSelectkeyPressed = false;
 }
 
 function displayDate(show) {
   var date = document.getElementById("date");
-  AddRemoveClassList(date, "hide", show)
+  AddRemoveClassList(date, "hide", show);
 }
 
 function displayBackText(show) {
@@ -322,10 +337,10 @@ function turnOnlcd() {
 }
 
 function turnOfflcd() {
-  switch(screenName){
-    case 'lockScreen':
+  switch (screenName) {
+    case "lockScreen":
       hideLockScreen();
-    
+
     default:
       break;
   }

@@ -245,6 +245,7 @@
 
 
 .apps-div{
+  /* background-color: #0fb00f; */
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
