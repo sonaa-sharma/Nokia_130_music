@@ -27,51 +27,50 @@ function getTwoDigitNumber(number) {
 
   return twoDigitNumber;
 }
-
+var screenName = "turnedOff";
 var keypadButton = document.getElementById("keypad-box");
 keypadButton.addEventListener("click", clickEventFunction);
 
 function clickEventFunction(event) {
   var targetNode = event.target;
   var button = getButtonNode(targetNode);
-  if (!button) {
+
+  if (!button || !isDeviceOn) {
     return;
   }
+
   buttonClicked(button);
-  console.log(button.id);
 }
 
-function buttonClicked(button) {
+function lockScreenHandler(button) {
   switch (button.id) {
     case "left-select-button":
-      if (isScreenOn) {
-        showApps(false);
-      }
       selectButtonPressed(button);
       break;
     case "star-key":
       starKeyPressed(button);
-    case "mid-button-inner":
-      playMusicApp();
-    case "mid-outer-button":
-      // changeDiv();
+      break;
     default:
       clearTimeout(clearGoBackId);
       goBacktoLockScreen();
+      break;
+  }
+}
+
+function buttonClicked(button) {
+  switch (screenName) {
+    case "lockScreen":
+      lockScreenHandler(button);
+      break;
   }
 }
 
 var isSelectkeyPressed = false;
 var clearGoBackId;
-var isScreenOn = false;
 
-function selectButtonPressed(button) {
+function selectButtonPressed() {
   isSelectkeyPressed = true;
-
-  if (!isScreenOn) {
-    showUnlockMessage();
-    return;
-  }
+  showUnlockMessage();
 }
 
 function showUnlockMessage() {
@@ -110,7 +109,6 @@ function AppsScreenRemove() {
 }
 
 function BackToLockScreen() {
-  isScreenOn = false;
   displayDateTime(false);
   displayUnlockWithoutSpace(false);
 }
@@ -120,30 +118,37 @@ function playMusicApp() {
   music.style.border = "2px solid white";
 }
 
-function changeDiv(){
+function changeDiv() {
   var div = document.getElementById("calls");
   div.style.border = "2px solid white";
 }
 
 function starKeyPressed(button) {
-  if (isScreenOn) {
-    return;
-  }
   if (!isSelectkeyPressed) {
     return;
   }
-
   // displayDateTime();
-  changeColorDateTime();
-  displayMenuText(false);
-  displayUnlockWithoutSpace();
-
-  isScreenOn = true;
+  // displayUnlockMessage();
+  // displayUnlockWithoutSpace();
+  hideLockScreen();
+  showIdleScreen();
 }
 
-function changeColorDateTime(){
-  var date = document.getElementById("date-time-div");
-  date.style.backgroundColor = "grey";
+// function hideLockScreen
+
+function showIdleScreen(){
+
+  displayWallPaper();
+  displayNavbar(false);
+  displayDateTime(false);
+  displayDate(false);
+  displayMenuText(false);
+  screenName = "idleScreen";
+}
+
+function displayDate(show) {
+  var date = document.getElementById("date");
+  AddRemoveClassList(date, "hide", show)
 }
 
 function displayBackText(show) {
@@ -213,6 +218,7 @@ function setInitialState() {
   if (deviceOn === "true") {
     showLockScreen();
     isDeviceOn = true;
+    screenName = "lockScreen";
   }
 }
 
@@ -233,6 +239,7 @@ function showLockScreen() {
   displayLockScreen(false);
   setTime();
   lockScreenTimeoutId = setInterval(setTime, 1000);
+  screenName = "lockScreen";
 }
 
 function hideLockScreen() {
@@ -313,11 +320,14 @@ function turnOnlcd() {
 }
 
 function turnOfflcd() {
-  hideLockScreen();
+  switch(screenName){
+    case 'lockScreen':
+      hideLockScreen();
+    
+    default:
+      break;
+  }
   displayBlackScreen();
-  displayMenuText();
-  AppsScreenRemove();
-  BackToLockScreen();
 
   localStorage.setItem("deviceOn", false);
 }
