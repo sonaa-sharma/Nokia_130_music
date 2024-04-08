@@ -18,6 +18,16 @@ function setTime() {
   currentDay.innerHTML = getTwoDigitNumber(clockDay);
 }
 
+// var currentMenuIndex = [0,0];
+var currentMenuIndexX = 0
+var currentMenuIndexY = 0
+
+var  menuItemIds = [
+  ['calls','contact', 'alarm'],
+  ['fm', 'music', 'message'],
+  ['calendar', 'torch', 'setting'],
+]
+
 function getTwoDigitNumber(number) {
   var twoDigitNumber = number;
 
@@ -104,6 +114,16 @@ function appScreenHandler(button) {
     case "left-button":
       break;
     case "right-button":
+      var nextAppIndex = goRight(menuItemIds, currentMenuIndexX, currentMenuIndexY);
+      console.log(nextAppIndex);
+      var itemId = menuItemIds[nextAppIndex[0]][nextAppIndex[1]];
+      var nextApp = document.getElementById(itemId);
+      AddRemoveClassList(nextApp, "selected");
+      var currentId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
+      var currentApp = document.getElementById(currentId);
+      AddRemoveClassList(currentApp, "selected", false);
+      currentMenuIndexX =  nextAppIndex[0];
+      currentMenuIndexY = nextAppIndex[1];
       break;
     case "bottom-button":
       break;
@@ -166,10 +186,33 @@ function showMenu() {
   displaySelectText(false);
   displayBackText(false);
   displayAppScreenContainer(false);
-  var firstApp = document.getElementById("calls");
+  var itemId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
+  var firstApp = document.getElementById(itemId);
+
   AddRemoveClassList(firstApp, "selected");
   screenName = "appScreen";
 }
+
+//  
+
+
+function goRight(menuItemIds, x, y){
+  var nextIndexX = x;
+  var nextIndexY = y+1;
+
+  if(nextIndexY === menuItemIds[x].length){
+    nextIndexX++;
+    nextIndexY = 0;
+  }
+
+  if(nextIndexX === menuItemIds.length){
+    nextIndexX = 0;
+  }
+
+  return [nextIndexX,nextIndexY]
+
+}
+
 
 function goToBackScreen() {
   hideMenuScreen();
