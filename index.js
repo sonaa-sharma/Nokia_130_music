@@ -150,7 +150,6 @@ function appsScreen() {
 }
 
 function showMenu() {  
-  // manageAppsScreen();
   displayNavbar(false);
   displayAppScreen(false)
   displaySelectText(false);
@@ -159,23 +158,11 @@ function showMenu() {
   screenName = "appScreen";
 }
 
-function manageAppsScreen() {
-  displayMenuText();
-  displaySelectText(false);
-  displayBackText(false);
-  displayWallPaper(false);
-}
-
 function displayAppScreen(show){
   var apps = document.getElementById("apps-div");
   AddRemoveClassList(apps, "hide", show);
 }
 
-function AppsScreenRemove() {
-  showMenu();
-  displaySelectText();
-  displayBackText();
-}
 
 function playMusicApp() {
   var music = document.getElementById("music");
