@@ -110,24 +110,16 @@ function appScreenHandler(button) {
     case "mid-button-inner":
       break;
     case "top-button":
+      menuScrollingUp();
       break;
     case "left-button":
       menuScrollingLeft();
       break;
     case "right-button":
       menuScrollingRight();
-      // var nextAppIndex = goRight(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-      // console.log(nextAppIndex);
-      // var itemId = menuItemIds[nextAppIndex[0]][nextAppIndex[1]];
-      // var nextApp = document.getElementById(itemId);
-      // AddRemoveClassList(nextApp, "selected");
-      // var currentId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
-      // var currentApp = document.getElementById(currentId);
-      // AddRemoveClassList(currentApp, "selected", false);
-      // currentMenuIndexX =  nextAppIndex[0];
-      // currentMenuIndexY = nextAppIndex[1];
       break;
     case "bottom-button":
+      menuScrollingDown();
       break;
     default:
       break;
@@ -162,7 +154,7 @@ function menuScrollingLeft(){
 }
 
 function menuScrollingUp(){
-  var nextAppIndex = goLeft(menuItemIds, currentMenuIndexX, currentMenuIndexY);
+  var nextAppIndex = goUp(menuItemIds, currentMenuIndexX, currentMenuIndexY);
   var itemId = menuItemIds[nextAppIndex[0]][nextAppIndex[1]];
   var nextApp = document.getElementById(itemId);
   AddRemoveClassList(nextApp, "selected");
@@ -175,7 +167,7 @@ function menuScrollingUp(){
 }
 
 function menuScrollingDown(){
-  var nextAppIndex = goLeft(menuItemIds, currentMenuIndexX, currentMenuIndexY);
+  var nextAppIndex = goDown(menuItemIds, currentMenuIndexX, currentMenuIndexY);
   var itemId = menuItemIds[nextAppIndex[0]][nextAppIndex[1]];
   var nextApp = document.getElementById(itemId);
   AddRemoveClassList(nextApp, "selected");
@@ -209,8 +201,8 @@ function goLeft(menuItemIds, x, y){
   var backIndexY = y-1; 
   
   if(backIndexY<0){
-    backIndexX--;
     backIndexY = menuItemIds[x].length-1 ;
+    backIndexX--;
   }
 
   if(backIndexX<0){
@@ -222,40 +214,38 @@ function goLeft(menuItemIds, x, y){
 }
 
 function goUp(menuItemIds, x, y){
-  var nextIndexX = x;
-  var nextIndexY = y+1;
+  var backIndexX = x-1;
+  var backIndexY = y;
 
-  if(nextIndexY === menuItemIds[x].length){
-    nextIndexX++;
-    nextIndexY = 0;
+  if(backIndexX<0){
+    backIndexX = menuItemIds.length-1;
+    backIndexY--;
   }
-
-  if(nextIndexX === menuItemIds.length){
-    nextIndexX = 0;
+  
+  if(backIndexY<0){
+    backIndexY = menuItemIds[x].length-1 ;
   }
-
-  return [nextIndexX,nextIndexY]
+  
+  return [backIndexX,backIndexY]
 
 }
 
 function goDown(menuItemIds, x, y){
-  var nextIndexX = x;
-  var nextIndexY = y+1;
-
-  if(nextIndexY === menuItemIds[x].length){
-    nextIndexX++;
-    nextIndexY = 0;
-  }
+  var nextIndexX = x+1;
+  var nextIndexY = y;
 
   if(nextIndexX === menuItemIds.length){
     nextIndexX = 0;
+    nextIndexY++;
+  }
+  
+  if(nextIndexY === menuItemIds[x].length){
+    nextIndexY = 0;
   }
 
   return [nextIndexX,nextIndexY]
 
 }
-
-
 
 var switchToLockScreenTimer ;
 
