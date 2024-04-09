@@ -110,64 +110,27 @@ function appScreenHandler(button) {
     case "mid-button-inner":
       break;
     case "top-button":
-      menuScrollingUp();
+      var nextAppIndex = goUp(menuItemIds, currentMenuIndexX, currentMenuIndexY);
+      menuScrolling(nextAppIndex);
       break;
     case "left-button":
-      menuScrollingLeft();
+      var nextAppIndex = goLeft(menuItemIds, currentMenuIndexX, currentMenuIndexY);
+      menuScrolling(nextAppIndex);
       break;
     case "right-button":
-      menuScrollingRight();
+      var nextAppIndex = goRight(menuItemIds, currentMenuIndexX, currentMenuIndexY);
+      menuScrolling(nextAppIndex);
       break;
     case "bottom-button":
-      menuScrollingDown();
+      var nextAppIndex = goDown(menuItemIds, currentMenuIndexX, currentMenuIndexY);
+      menuScrolling(nextAppIndex);
       break;
     default:
       break;
   }
 }
 
-function menuScrollingRight(){
-  var nextAppIndex = goRight(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-  var itemId = menuItemIds[nextAppIndex[0]][nextAppIndex[1]];
-  var nextApp = document.getElementById(itemId);
-  AddRemoveClassList(nextApp, "selected");
-  var currentId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
-  var currentApp = document.getElementById(currentId);
-  AddRemoveClassList(currentApp, "selected", false);
-  currentMenuIndexX =  nextAppIndex[0];
-  currentMenuIndexY = nextAppIndex[1];
-
-}
-
-
-function menuScrollingLeft(){
-  var nextAppIndex = goLeft(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-  var itemId = menuItemIds[nextAppIndex[0]][nextAppIndex[1]];
-  var nextApp = document.getElementById(itemId);
-  AddRemoveClassList(nextApp, "selected");
-  var currentId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
-  var currentApp = document.getElementById(currentId);
-  AddRemoveClassList(currentApp, "selected", false);
-  currentMenuIndexX =  nextAppIndex[0];
-  currentMenuIndexY = nextAppIndex[1];
-
-}
-
-function menuScrollingUp(){
-  var nextAppIndex = goUp(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-  var itemId = menuItemIds[nextAppIndex[0]][nextAppIndex[1]];
-  var nextApp = document.getElementById(itemId);
-  AddRemoveClassList(nextApp, "selected");
-  var currentId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
-  var currentApp = document.getElementById(currentId);
-  AddRemoveClassList(currentApp, "selected", false);
-  currentMenuIndexX =  nextAppIndex[0];
-  currentMenuIndexY = nextAppIndex[1];
-
-}
-
-function menuScrollingDown(){
-  var nextAppIndex = goDown(menuItemIds, currentMenuIndexX, currentMenuIndexY);
+function menuScrolling(nextAppIndex){
   var itemId = menuItemIds[nextAppIndex[0]][nextAppIndex[1]];
   var nextApp = document.getElementById(itemId);
   AddRemoveClassList(nextApp, "selected");
