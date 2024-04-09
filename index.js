@@ -101,6 +101,8 @@ function idleScreenHandler(button) {
 }
 
 function appScreenHandler(button) {
+  var nextAppIndex;
+
   switch (button.id) {
     case "left-select-button":
       break;
@@ -110,35 +112,40 @@ function appScreenHandler(button) {
     case "mid-button-inner":
       break;
     case "top-button":
-      var nextAppIndex = goUp(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-      menuScrolling(nextAppIndex);
+      nextAppIndex = goUp(menuItemIds, currentMenuIndexX, currentMenuIndexY);
+
+      menuScrolling(nextAppIndex[0], nextAppIndex[1]);
       break;
     case "left-button":
-      var nextAppIndex = goLeft(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-      menuScrolling(nextAppIndex);
+      nextAppIndex = goLeft(menuItemIds, currentMenuIndexX, currentMenuIndexY);
+
+      menuScrolling(nextAppIndex[0], nextAppIndex[1]);
       break;
     case "right-button":
-      var nextAppIndex = goRight(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-      menuScrolling(nextAppIndex);
+      nextAppIndex = goRight(menuItemIds, currentMenuIndexX, currentMenuIndexY);
+
+      menuScrolling(nextAppIndex[0], nextAppIndex[1]);
       break;
     case "bottom-button":
-      var nextAppIndex = goDown(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-      menuScrolling(nextAppIndex);
+      nextAppIndex = goDown(menuItemIds, currentMenuIndexX, currentMenuIndexY);
+
+      menuScrolling(nextAppIndex[0], nextAppIndex[1]);
       break;
     default:
       break;
   }
 }
 
-function menuScrolling(nextAppIndex){
-  var itemId = menuItemIds[nextAppIndex[0]][nextAppIndex[1]];
+
+function menuScrolling(nextMenuIndexX, nextMenuIndexY){
+  var itemId = menuItemIds[nextMenuIndexX][nextMenuIndexY];
   var nextApp = document.getElementById(itemId);
   AddRemoveClassList(nextApp, "selected");
   var currentId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
   var currentApp = document.getElementById(currentId);
   AddRemoveClassList(currentApp, "selected", false);
-  currentMenuIndexX =  nextAppIndex[0];
-  currentMenuIndexY = nextAppIndex[1];
+  currentMenuIndexX =  nextMenuIndexX;
+  currentMenuIndexY = nextMenuIndexY;
 
 }
 
@@ -388,7 +395,7 @@ function getButtonNode(node) {
 
 var powerButton = document.getElementById("power-button");
 var timeoutId;
-var isDeviceOn = false;
+var isDeviceOn = true;
 var brandAnimation = document.getElementById("brand-animation");
 brandAnimation.addEventListener("ended", onBrandAnimationFinish);
 
