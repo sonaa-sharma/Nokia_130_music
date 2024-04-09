@@ -107,7 +107,12 @@ function appScreenHandler(button) {
     case "left-select-button":
       break;
     case "right-select-button":
+      var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
+      var currentApp = document.getElementById(currentAppId);
+      
+      AddRemoveClassList(currentApp, "selected", false);
       goToBackScreen();
+
       break;
     case "mid-button-inner":
       break;
@@ -271,10 +276,14 @@ function showMenu() {
   displaySelectText(false);
   displayBackText(false);
   displayAppScreenContainer(false);
+  currentMenuIndexX = 0;
+  currentMenuIndexY = 0;
   var itemId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
   var firstApp = document.getElementById(itemId);
 
+
   AddRemoveClassList(firstApp, "selected");
+
   screenName = "appScreen";
 }  
 
@@ -467,8 +476,6 @@ function displayBlackScreen(show) {
   var lcd = getLcd();
   AddRemoveClassList(lcd, "lcd-off", show);
 }
-
-function displayLockScreenContainer() {}
 
 function AddRemoveClassList(node, className, show) {
   if (show === false) {
