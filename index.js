@@ -220,7 +220,7 @@ function defaultCaseHandler(button){
       displayDefaultMessage();
       showIdleScreen();
       break;
-      
+
     default:
       break;
   }
@@ -451,7 +451,7 @@ function displayBackText(show) {
 }
 
 function displayMenuText(show) {
-  var menuText = document.getElementById("menu");
+  var menuText = document.getElementById("menu-screen-div");
   AddRemoveClassList(menuText, "hide", show);
 }
 
@@ -637,6 +637,7 @@ function turnOfflcd() {
       hideMenuScreen();
       break;
     default:
+      displayDefaultMessage();
       break;
   }
 
