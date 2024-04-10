@@ -77,8 +77,10 @@
                         <div id="lock-screen-div" class="lock-screen-container hide">
                             <div id="date-time-div">
                                 <div class="date-time center">
-                                    <div class="time" id="time"><span id="clock-hour"></span>:<span id="clock-min"></span></div>
-                                    <div class="date" id="date"><span id="day"></span>.<span id="month"></span>.<span id="year"></span></div>
+                                    <div class="time" id="time"><span id="clock-hour"></span>:<span
+                                            id="clock-min"></span></div>
+                                    <div class="date" id="date"><span id="day"></span>.<span id="month"></span>.<span
+                                            id="year"></span></div>
                                 </div>
                             </div>
                             <div class="hide" id="unlockMessage">
@@ -100,56 +102,69 @@
                         <div class="app-screen-div hide" id="app-screen-container">
                             <div class="apps-div hide" id="apps-div">
                                 <div class="icon-container" id="calls">
-                                    <div class="apps-container call-log" >
-                                    <img src="wallpaper\icon-157358_1280.png" alt="call-log" width="20px">
+                                    <div class="apps-container call-log">
+                                        <img src="wallpaper\icon-157358_1280.png" alt="call-log" width="20px">
+                                    </div>
                                 </div>
+                                <div class="icon-container" id="contact">
+                                    <div class="apps-container contacts">
+                                        <img src="wallpaper\rodentia-icons_contact-minus.png" alt="contacts"
+                                            width="44px">
+                                    </div>
                                 </div>
-                               <div class="icon-container" id="contact">
-                                <div class="apps-container contacts" >
-                                    <img src="wallpaper\rodentia-icons_contact-minus.png" alt="contacts" width="44px">
+                                <div class="icon-container" id="alarm">
+                                    <div class="apps-container alarm">
+                                        <img src="wallpaper\alarm_icon_jelly_bean.png" alt="alarm" width="40px">
+                                    </div>
                                 </div>
-                               </div>
-                               <div class="icon-container" id="alarm">
-                                <div class="apps-container alarm" >
-                                    <img src="wallpaper\alarm_icon_jelly_bean.png" alt="alarm" width="40px">
-                                </div>
-                               </div>
 
                                 <div class="icon-container" id="fm">
-                                    <div class="apps-container fm" >
-                                    <img src="wallpaper\radio.png" alt="fm" width="40px">
-                                </div>
+                                    <div class="apps-container fm">
+                                        <img src="wallpaper\radio.png" alt="fm" width="40px">
+                                    </div>
                                 </div>
                                 <div class="icon-container" id="music">
-                                    <div class="apps-container music" >
-                                    <img src="wallpaper\musical-note-1314942_1280.png" alt="music" width="28px">
-                                </div>
+                                    <div class="apps-container music">
+                                        <img src="wallpaper\musical-note-1314942_1280.png" alt="music" width="28px">
+                                    </div>
                                 </div>
                                 <div class="icon-container" id="message">
-                                    <div class="apps-container message" >
-                                    <img src="wallpaper\message-icon.png" alt="message" width="28px">
-                                </div>
+                                    <div class="apps-container message">
+                                        <img src="wallpaper\message-icon.png" alt="message" width="28px">
+                                    </div>
                                 </div>
                                 <div class="icon-container" id="calendar">
-                                    <div class="apps-container calendar" >
-                                    <img src="wallpaper\calendar (1).png" alt="calendar" width="44px">
-                                </div>
+                                    <div class="apps-container calendar">
+                                        <img src="wallpaper\calendar (1).png" alt="calendar" width="44px">
+                                    </div>
                                 </div>
                                 <div class="icon-container" id="torch">
-                                    <div class="apps-container torch" >
-                                    <img src="wallpaper\torch.png" alt="torch" width="32px">
-                                </div>
+                                    <div class="apps-container torch">
+                                        <img src="wallpaper\torch.png" alt="torch" width="32px">
+                                    </div>
                                 </div>
                                 <div class="icon-container" id="setting">
-                                    <div class="apps-container settings" >
-                                    <img src="wallpaper\gear-1807204_1920.png" alt="settings" width="44px">
-                                </div>
+                                    <div class="apps-container settings">
+                                        <img src="wallpaper\gear-1807204_1920.png" alt="settings" width="44px">
+                                    </div>
                                 </div>
                             </div>
                             <div id="bottom-navbar">
                                 <div class="bottom-navbar-text hide" id="select">Select</div>
                                 <div class="bottom-navbar-text hide" id="back">Back</div>
                             </div>
+                        </div>
+
+                        <!-- music-player -->
+
+                        <div class="music-player hide" id="music-container">
+                            <h1>Music Player</h1>
+                            <audio src="mixkit-rain-and-thunder-storm-2390.wav"></audio>
+                            <div id="bottom-navbar">
+                                <div class="bottom-navbar-text" id="select">Select</div>
+                                <div class="bottom-navbar-text" id="back">Back</div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -176,18 +191,18 @@
                             <div class="call-receive-icon"></div>
                         </div>
                     </div>
-                        <div class="outer-div">
-                            <div class="up-low up" id="top-button" data-name="buttons"></div>
-                            <div class="new-div">
-                                <div class="left-right left" id="left-button" data-name="buttons"></div>
-                                <div class="mid-function-button-inner" data-name="buttons" id="mid-button-inner">
-                                    <img class="play-pause-icon" src="Icons/music_play_pause_regular_icon_204710.svg"
-                                        alt="play-pause-icon">
-                                </div>
-                                <div class="left-right right" id="right-button" data-name="buttons"></div>
+                    <div class="outer-div">
+                        <div class="up-low up" id="top-button" data-name="buttons"></div>
+                        <div class="new-div">
+                            <div class="left-right left" id="left-button" data-name="buttons"></div>
+                            <div class="mid-function-button-inner" data-name="buttons" id="mid-button-inner">
+                                <img class="play-pause-icon" src="Icons/music_play_pause_regular_icon_204710.svg"
+                                    alt="play-pause-icon">
                             </div>
-                            <div class="up-low low" id="bottom-button" data-name="buttons"></div>
+                            <div class="left-right right" id="right-button" data-name="buttons"></div>
                         </div>
+                        <div class="up-low low" id="bottom-button" data-name="buttons"></div>
+                    </div>
                     <div class="function-button-column">
                         <div class="function-buttons" id="right-select-button" data-name="buttons">
                             <div class="vertical-line"></div>

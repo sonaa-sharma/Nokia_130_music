@@ -63,6 +63,11 @@ function buttonClicked(button) {
     case "appScreen":
       appScreenHandler(button);
       break;
+    case "musicPlayerScreen":
+      musicPlayerHandler(button);
+      break;
+    default:
+      break;
   }
 }
 
@@ -99,7 +104,15 @@ function appScreenHandler(button) {
 
   switch (button.id) {
     case "left-select-button":
+      hideMenuScreen();
+      showMusicPlayer();
       break;
+    case "power-button":
+        // hideMusicPlayer();
+        hideMenuScreen();
+        showIdleScreen();
+        break;
+
     case "right-select-button":
       var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
       var currentApp = document.getElementById(currentAppId);
@@ -109,6 +122,8 @@ function appScreenHandler(button) {
       break;
 
     case "mid-button-inner":
+      hideMenuScreen();
+      showMusicPlayer();
       break;
 
     case "top-button":
@@ -135,6 +150,24 @@ function appScreenHandler(button) {
       menuScrolling(nextAppIndex[0], nextAppIndex[1]);
       break;
 
+    default:
+      break;
+  }
+}
+
+function musicPlayerHandler(button){
+  switch (button.id) {
+    case "left-select-button":
+      break;
+    case "right-select-button":
+      hideMusicPlayer();
+      showMenu();
+      break;
+    case "power-button":
+      hideMusicPlayer();
+      showIdleScreen();
+      break;
+      
     default:
       break;
   }
@@ -263,8 +296,8 @@ function starKeyPressed(button) {
 }
 
 function showMenu() {
-  displayNavbar(false);
   displayAppScreen(false);
+  displayNavbar(false);
   displaySelectText(false);
   displayBackText(false);
   displayAppScreenContainer(false);
@@ -276,6 +309,25 @@ function showMenu() {
   AddRemoveClassList(firstApp, "selected");
 
   screenName = "appScreen";
+}
+
+function showMusicPlayer(){
+  displayMusicPlayerScreen(false);
+  displayNavbar(false);
+
+  screenName = "musicPlayerScreen";
+}
+
+
+function hideMusicPlayer(){
+  displayMusicPlayerScreen();
+  displayNavbar();
+
+}
+
+function displayMusicPlayerScreen(show){
+  var music = document.getElementById("music-container");
+  AddRemoveClassList(music, "hide", show);
 }
 
 function goToBackScreen() {
