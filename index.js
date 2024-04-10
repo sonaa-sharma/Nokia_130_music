@@ -103,10 +103,15 @@ function appScreenHandler(button) {
   var nextAppIndex;
 
   switch (button.id) {
+
     case "left-select-button":
       hideMenuScreen();
-      showMusicPlayer();
+      var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
+      console.log(currentAppId);
+      
+      findAppSelection(currentAppId);
       break;
+
     case "power-button":
         // hideMusicPlayer();
         hideMenuScreen();
@@ -123,7 +128,10 @@ function appScreenHandler(button) {
 
     case "mid-button-inner":
       hideMenuScreen();
-      showMusicPlayer();
+      var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
+      console.log(currentAppId);
+      
+      findAppSelection(currentAppId);
       break;
 
     case "top-button":
@@ -161,10 +169,14 @@ function musicPlayerHandler(button){
       break;
     case "right-select-button":
       hideMusicPlayer();
+      var musicPlayer = document.getElementById("music");
+      AddRemoveClassList(musicPlayer, 'selected', false);
       showMenu();
       break;
     case "power-button":
       hideMusicPlayer();
+      var musicPlayer = document.getElementById("music");
+      AddRemoveClassList(musicPlayer, 'selected', false);
       showIdleScreen();
       break;
       
@@ -172,6 +184,20 @@ function musicPlayerHandler(button){
       break;
   }
 }
+
+function findAppSelection(currentAppId){
+  switch(currentAppId){
+    case "music":
+      showMusicPlayer();
+      break;
+    
+    default :
+      break;
+
+  }
+
+} 
+
 
 function menuScrolling(nextMenuIndexX, nextMenuIndexY) {
   var itemId = menuItemIds[nextMenuIndexX][nextMenuIndexY];
@@ -312,6 +338,7 @@ function showMenu() {
 }
 
 function showMusicPlayer(){
+  console.log("sonam");
   displayMusicPlayerScreen(false);
   displayNavbar(false);
 
