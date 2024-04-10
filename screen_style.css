@@ -302,4 +302,21 @@
   width: 30%;
 }
 
+.music-player-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
 
+.music-player {
+  text-align: center;
+  background-color: crimson;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.audio{
+  max-width: 120px;
+}
