@@ -18,15 +18,14 @@ function setTime() {
   currentDay.innerHTML = getTwoDigitNumber(clockDay);
 }
 
-// var currentMenuIndex = [0,0];
-var currentMenuIndexX = 0
-var currentMenuIndexY = 0
+var currentMenuIndexX = 0;
+var currentMenuIndexY = 0;
 
-var  menuItemIds = [
-  ['calls','contact', 'alarm'],
-  ['fm', 'music', 'message'],
-  ['calendar', 'torch', 'setting'],
-]
+var menuItemIds = [
+  ["calls", "contact", "alarm"],
+  ["fm", "music", "message"],
+  ["calendar", "torch", "setting"],
+];
 
 function getTwoDigitNumber(number) {
   var twoDigitNumber = number;
@@ -38,14 +37,9 @@ function getTwoDigitNumber(number) {
   return twoDigitNumber;
 }
 
-// screen functions------
-
 var screenName = "turnedOff";
 var isSelectkeyPressed = false;
 var clearGoBackId;
-
-var keypadButton = document.getElementById("keypad-box");
-keypadButton.addEventListener("click", clickEventFunction);
 
 function clickEventFunction(event) {
   var targetNode = event.target;
@@ -94,8 +88,8 @@ function idleScreenHandler(button) {
       hideIdleScreen();
       showMenu(false);
       break;
-      default:
-        switchToLockScreenTimer = setTimeout(lockTimer, 3000);
+    default:
+      switchToLockScreenTimer = setTimeout(lockTimer, 3000);
       break;
   }
 }
@@ -109,120 +103,119 @@ function appScreenHandler(button) {
     case "right-select-button":
       var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
       var currentApp = document.getElementById(currentAppId);
-      
+
       AddRemoveClassList(currentApp, "selected", false);
       goToBackScreen();
-
       break;
+
     case "mid-button-inner":
       break;
+
     case "top-button":
       nextAppIndex = goUp(menuItemIds, currentMenuIndexX, currentMenuIndexY);
 
       menuScrolling(nextAppIndex[0], nextAppIndex[1]);
       break;
+
     case "left-button":
       nextAppIndex = goLeft(menuItemIds, currentMenuIndexX, currentMenuIndexY);
 
       menuScrolling(nextAppIndex[0], nextAppIndex[1]);
       break;
+
     case "right-button":
       nextAppIndex = goRight(menuItemIds, currentMenuIndexX, currentMenuIndexY);
 
       menuScrolling(nextAppIndex[0], nextAppIndex[1]);
       break;
+
     case "bottom-button":
       nextAppIndex = goDown(menuItemIds, currentMenuIndexX, currentMenuIndexY);
 
       menuScrolling(nextAppIndex[0], nextAppIndex[1]);
       break;
+
     default:
       break;
   }
 }
 
-
-function menuScrolling(nextMenuIndexX, nextMenuIndexY){
+function menuScrolling(nextMenuIndexX, nextMenuIndexY) {
   var itemId = menuItemIds[nextMenuIndexX][nextMenuIndexY];
   var nextApp = document.getElementById(itemId);
   AddRemoveClassList(nextApp, "selected");
   var currentId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
   var currentApp = document.getElementById(currentId);
   AddRemoveClassList(currentApp, "selected", false);
-  currentMenuIndexX =  nextMenuIndexX;
+  currentMenuIndexX = nextMenuIndexX;
   currentMenuIndexY = nextMenuIndexY;
-
 }
 
-function goRight(menuItemIds, x, y){
+function goRight(menuItemIds, x, y) {
   var nextIndexX = x;
-  var nextIndexY = y+1;
+  var nextIndexY = y + 1;
 
-  if(nextIndexY === menuItemIds[x].length){
+  if (nextIndexY === menuItemIds[x].length) {
     nextIndexX++;
     nextIndexY = 0;
   }
 
-  if(nextIndexX === menuItemIds.length){
+  if (nextIndexX === menuItemIds.length) {
     nextIndexX = 0;
   }
 
-  return [nextIndexX,nextIndexY]
-
+  return [nextIndexX, nextIndexY];
 }
 
-function goLeft(menuItemIds, x, y){
-  var backIndexX = x; 
-  var backIndexY = y-1; 
-  
-  if(backIndexY<0){
-    backIndexY = menuItemIds[x].length-1 ;
+function goLeft(menuItemIds, x, y) {
+  var backIndexX = x;
+  var backIndexY = y - 1;
+
+  if (backIndexY < 0) {
+    backIndexY = menuItemIds[x].length - 1;
     backIndexX--;
   }
 
-  if(backIndexX<0){
-    backIndexX = menuItemIds.length-1;
+  if (backIndexX < 0) {
+    backIndexX = menuItemIds.length - 1;
   }
-  
-  return [backIndexX,backIndexY]
 
+  return [backIndexX, backIndexY];
 }
 
-function goUp(menuItemIds, x, y){
-  var backIndexX = x-1;
+function goUp(menuItemIds, x, y) {
+  var backIndexX = x - 1;
   var backIndexY = y;
 
-  if(backIndexX<0){
-    backIndexX = menuItemIds.length-1;
+  if (backIndexX < 0) {
+    backIndexX = menuItemIds.length - 1;
     backIndexY--;
   }
-  
-  if(backIndexY<0){
-    backIndexY = menuItemIds[x].length-1 ;
-  }
-  
-  return [backIndexX,backIndexY]
 
+  if (backIndexY < 0) {
+    backIndexY = menuItemIds[x].length - 1;
+  }
+
+  return [backIndexX, backIndexY];
 }
 
-function goDown(menuItemIds, x, y){
-  var nextIndexX = x+1;
+function goDown(menuItemIds, x, y) {
+  var nextIndexX = x + 1;
   var nextIndexY = y;
 
-  if(nextIndexX === menuItemIds.length){
+  if (nextIndexX === menuItemIds.length) {
     nextIndexX = 0;
     nextIndexY++;
   }
-  
-  if(nextIndexY === menuItemIds[x].length){
+
+  if (nextIndexY === menuItemIds[x].length) {
     nextIndexY = 0;
   }
 
-  return [nextIndexX,nextIndexY]
-
+  return [nextIndexX, nextIndexY];
 }
 
-var switchToLockScreenTimer ;
+var switchToLockScreenTimer;
 
 function showIdleScreen() {
   displayWallPaper();
@@ -236,13 +229,12 @@ function showIdleScreen() {
   switchToLockScreenTimer = setTimeout(lockTimer, 3000);
 
   screenName = "idleScreen";
-}  
+}
 
-function lockTimer(){
+function lockTimer() {
   hideIdleScreen();
   showLockScreen();
-
-}  
+}
 
 function hideIdleScreen() {
   displayLockScreen();
@@ -252,23 +244,23 @@ function hideIdleScreen() {
   displayMenuText();
   displayDateTimeContainer();
   clearInterval(lockScreenTimeoutId);
-}  
+}
 
 function selectButtonPressed() {
   isSelectkeyPressed = true;
   showUnlockMessage();
-}  
+}
 
 function starKeyPressed(button) {
   if (!isSelectkeyPressed) {
     return;
-  }  
+  }
 
   clearTimeout(clearGoBackId);
   hideUnlockMessage();
   hideLockScreen();
   showIdleScreen();
-}  
+}
 
 function showMenu() {
   displayNavbar(false);
@@ -281,11 +273,10 @@ function showMenu() {
   var itemId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
   var firstApp = document.getElementById(itemId);
 
-
   AddRemoveClassList(firstApp, "selected");
 
   screenName = "appScreen";
-}  
+}
 
 function goToBackScreen() {
   hideMenuScreen();
@@ -402,13 +393,13 @@ function getButtonNode(node) {
 
 // power button usecases------------
 
-var powerButton = document.getElementById("power-button");
 var timeoutId;
-var isDeviceOn = true;
+var isDeviceOn = false;
 var brandAnimation = document.getElementById("brand-animation");
 brandAnimation.addEventListener("ended", onBrandAnimationFinish);
 
 function setInitialState() {
+  initialEvent();
   var deviceOn = localStorage.getItem("deviceOn");
   if (deviceOn === "true") {
     showLockScreen();
@@ -434,6 +425,8 @@ function showLockScreen() {
   displayWallPaper();
   displayNavbar(false);
   displayLockScreen(false);
+  displayDateTime(false);
+
   setTime();
   isSelectkeyPressed = false;
   lockScreenTimeoutId = setInterval(setTime, 1000);
@@ -508,6 +501,7 @@ function startPoweringOn(event) {
 function stopPoweringOn(event) {
   clearTimeout(timeoutId);
 }
+
 function getLcd() {
   return document.getElementById("lcd");
 }
@@ -521,20 +515,33 @@ function turnOfflcd() {
   switch (screenName) {
     case "lockScreen":
       hideLockScreen();
-
+      break;
+    case "idleScreen":
+      hideIdleScreen();
+    case "appScreen":
+      hideMenuScreen();
+      break;
     default:
       break;
   }
+
   displayBlackScreen();
 
   localStorage.setItem("deviceOn", false);
 }
 
-powerButton.addEventListener("mousedown", startPoweringOn);
-powerButton.addEventListener("mouseup", stopPoweringOn);
-powerButton.addEventListener("mouseleave", stopPoweringOn);
-powerButton.addEventListener("touchstart", startPoweringOn);
-powerButton.addEventListener("touchend", stopPoweringOn);
-powerButton.addEventListener("touchcancel", stopPoweringOn);
+function initialEvent(){
+  var keypadButton = document.getElementById("keypad-box");
+  keypadButton.addEventListener("click", clickEventFunction);
+
+  var powerButton = document.getElementById("power-button");
+  powerButton.addEventListener("mousedown", startPoweringOn);
+  powerButton.addEventListener("mouseup", stopPoweringOn);
+  powerButton.addEventListener("mouseleave", stopPoweringOn);
+  powerButton.addEventListener("touchstart", startPoweringOn);
+  powerButton.addEventListener("touchend", stopPoweringOn);
+  powerButton.addEventListener("touchcancel", stopPoweringOn);
+
+}
 
 setInitialState();
