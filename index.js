@@ -67,6 +67,7 @@ function buttonClicked(button) {
       musicPlayerHandler(button);
       break;
     default:
+      defaultCaseHandler(button)
       break;
   }
 }
@@ -190,14 +191,50 @@ function findAppSelection(currentAppId){
     case "music":
       showMusicPlayer();
       break;
-    
-    default :
+    case "":
+      break;
+      
+      default:
+        showDefaultMessage();
+        
       break;
 
   }
 
 } 
 
+function defaultCaseHandler(button){
+  switch(button.id){
+    case "right-select-button":
+      var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
+      var currentApp = document.getElementById(currentAppId);
+      AddRemoveClassList(currentApp, "selected", false);
+      displayDefaultMessage();
+      showMenu();
+      break;
+
+    case "power-button":
+      var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
+      var currentApp = document.getElementById(currentAppId);
+      AddRemoveClassList(currentApp, "selected", false);
+      displayDefaultMessage();
+      showIdleScreen();
+      break;
+      
+    default:
+      break;
+  }
+}
+
+function showDefaultMessage(){
+  displayDefaultMessage(false);
+
+  screenName = "messageScreen";
+}
+function displayDefaultMessage(show){
+  var music = document.getElementById("call-container");
+  AddRemoveClassList(music, "hide", show);
+}
 
 function menuScrolling(nextMenuIndexX, nextMenuIndexY) {
   var itemId = menuItemIds[nextMenuIndexX][nextMenuIndexY];
@@ -338,7 +375,6 @@ function showMenu() {
 }
 
 function showMusicPlayer(){
-  console.log("sonam");
   displayMusicPlayerScreen(false);
   displayNavbar(false);
 
