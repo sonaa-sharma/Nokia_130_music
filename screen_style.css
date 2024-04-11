@@ -232,7 +232,7 @@
   color: white;
 }
 
-#bottom-navbar{
+.bottom-navbar{
   display: flex;
   justify-content: space-between;
   font-weight: 700;

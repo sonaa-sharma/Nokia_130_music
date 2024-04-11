@@ -232,7 +232,7 @@ function showDefaultMessage(){
   screenName = "messageScreen";
 }
 function displayDefaultMessage(show){
-  var music = document.getElementById("call-container");
+  var music = document.getElementById("message-container");
   AddRemoveClassList(music, "hide", show);
 }
 
