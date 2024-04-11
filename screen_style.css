@@ -327,7 +327,7 @@
   text-align: center;
   height: 180px;
 }
-.exit{
+.backText{
   flex-direction: row-reverse;
   padding: 12px;
 }
