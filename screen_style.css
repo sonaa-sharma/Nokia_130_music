@@ -322,3 +322,12 @@
   height: 28px;
   max-width: 120px;
 }
+
+.message-div{
+  text-align: center;
+  height: 180px;
+}
+.exit{
+  flex-direction: row-reverse;
+  padding: 12px;
+}
