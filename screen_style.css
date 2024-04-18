@@ -252,6 +252,10 @@
   justify-content: space-between ;
 }
 
+.no-wall{
+  background-color: rgb(10, 10, 10);
+
+}
 .apps-div{
   display: flex;
   justify-content: center;
@@ -353,7 +357,7 @@
 } 
 
 .theme{
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   padding: 4px;
 
 }

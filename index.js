@@ -297,6 +297,38 @@ function themeDeselect(){
 
 }
 
+function themeSelectUpButton(){
+  
+  if(themeIndex<0){
+    themeIndex = themeList.length-1;
+  }
+  
+  currentThemeId = themeList[themeIndex];
+  console.log("theme-selected = " + currentThemeId);
+  var theme = document.getElementById(currentThemeId);
+  AddRemoveClassList(theme, "border-wall");
+  var backgroundWallapper = document.getElementById("setting-container");
+  AddRemoveClassList(backgroundWallapper, currentThemeId);
+  console.log( "themeindex = "+ themeIndex);
+}
+
+function themeDeselectUpButton(){
+  if(themeIndex<0){
+    themeIndex = themeList.length-1;
+  }
+
+  console.log("theme-index = " +themeIndex);
+
+  currentThemeId = themeList[themeIndex];
+  previousThemeId = currentThemeId;
+  console.log("theme-deselected = " + currentThemeId);
+  var theme = document.getElementById(currentThemeId);
+  AddRemoveClassList(theme, "border-wall", false);
+  var backgroundWallapper = document.getElementById("setting-container");
+  AddRemoveClassList(backgroundWallapper, currentThemeId, false);
+  
+  themeIndex--;
+}
 
 function settingsHandler(button){
   switch (button.id) {
@@ -305,13 +337,17 @@ function settingsHandler(button){
       var settings = document.getElementById("setting");
       AddRemoveClassList(settings, 'selected', false);
       
-      
       currentThemeId = themeList[themeIndex];
       var wallpaper = getLcd();
       AddRemoveClassList(wallpaper, previousThemeId, false);
       AddRemoveClassList(wallpaper, currentThemeId);
       showMenu();
       
+      break;
+
+    case "top-button":
+      themeDeselectUpButton();
+      themeSelectUpButton();
       break;
 
     case "bottom-button":
@@ -540,6 +576,8 @@ function starKeyPressed(button) {
   showIdleScreen();
 }
 
+
+
 function showMenu() {
   displayAppScreen(false);
   displayNavbar(false);
@@ -651,6 +689,7 @@ function displayUnlockWithoutSpace(show) {
 
 function displayAppScreenContainer(show) {
   var apps = document.getElementById("app-screen-container");
+  AddRemoveClassList(apps, "no-wall");
   AddRemoveClassList(apps, "hide", show);
 }
 
@@ -800,6 +839,10 @@ function turnOfflcd() {
     case "appScreen":
       hideMenuScreen();
       // break;
+    case "settingsScreen":
+      // hideWallpaper();
+      hideSettings();
+
     default:
       displayDefaultMessage();
       // break;
