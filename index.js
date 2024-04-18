@@ -246,6 +246,7 @@ function hideMusicPlayer(){
 function displayMusicPlayerScreen(show){
   var music = document.getElementById("music-player-container");
   AddRemoveClassList(music, "hide", show);
+  AddRemoveClassList(music, "no-wall");
 }
 
 // settings
