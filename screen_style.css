@@ -58,6 +58,9 @@
 .lcd-on {
   background-image: url('wallpaper/grass.jpg');
 }
+
+
+
 .lcd-white{
   background-color: white;
 }
@@ -331,4 +334,56 @@
 .backText{
   flex-direction: row-reverse;
   padding: 12px;
+}
+
+.setting-screen-div{
+  /* background-image: url('wallpaper/grass.jpg'); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+
+}
+
+.theme-container{
+  /* background-color: #0fb00f; */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+} 
+
+.theme{
+  border: 1px solid transparent;
+  padding: 4px;
+
+}
+
+.border-wall{
+  border-color: white;
+}
+
+.wallpaper-1{
+  background-color: #a15ba1;
+
+}
+
+.wallpaper-2{
+  background-color: #4d57c8;
+
+}
+
+.wallpaper-3{
+  background-color: #92c261;
+
+}
+
+.theme1 {
+  background-image: url('wallpaper/grass.jpg');
+}
+
+.theme2 {
+  background-image: url('wallpaper/wp1.jpg');
+}
+.theme3 {
+  background-image: url('wallpaper/wp2.jpg');
 }

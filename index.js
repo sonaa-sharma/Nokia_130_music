@@ -52,6 +52,8 @@ function clickEventFunction(event) {
   buttonClicked(button);
 }
 
+// button click function
+
 function buttonClicked(button) {
   switch (screenName) {
     case "lockScreen":
@@ -66,11 +68,18 @@ function buttonClicked(button) {
     case "musicPlayerScreen":
       musicPlayerHandler(button);
       break;
+    case "settingsScreen":
+      settingsHandler(button);
+      break;
     default:
       defaultCaseHandler(button)
       break;
   }
 }
+
+
+// all screen handlers
+
 
 function lockScreenHandler(button) {
   switch (button.id) {
@@ -114,7 +123,6 @@ function appScreenHandler(button) {
       break;
 
     case "power-button":
-        // hideMusicPlayer();
         hideMenuScreen();
         showIdleScreen();
         break;
@@ -164,11 +172,12 @@ function appScreenHandler(button) {
   }
 }
 
-// music player handler
+// music player 
 
 var audioPlayer = document.getElementById("audioPlayer");
 var playPause = document.getElementById("music-select");
 var flag = 0;
+
 function play() {
     playPause.innerHTML = "Pause";
     audioPlayer.play();
@@ -191,12 +200,24 @@ function musicPlayerHandler(button){
         play();
       }
       break;
+
+    case "mid-button-inner":
+      if(flag === 1){
+        pause();
+        flag = 0;
+      }
+      else{
+        play();
+      }
+      break;
+
     case "right-select-button":
       hideMusicPlayer();
       var musicPlayer = document.getElementById("music");
       AddRemoveClassList(musicPlayer, 'selected', false);
       showMenu();
       break;
+
     case "power-button":
       hideMusicPlayer();
       var musicPlayer = document.getElementById("music");
@@ -209,12 +230,150 @@ function musicPlayerHandler(button){
   }
 }
 
+function showMusicPlayer(){
+  displayMusicPlayerScreen(false);
+  displayNavbar(false);
+
+  screenName = "musicPlayerScreen";
+}
+
+function hideMusicPlayer(){
+  displayMusicPlayerScreen();
+  displayNavbar();
+
+}
+
+function displayMusicPlayerScreen(show){
+  var music = document.getElementById("music-player-container");
+  AddRemoveClassList(music, "hide", show);
+}
+
+// settings
+
+var themeList = [
+  "theme1",
+  "theme2",
+  "theme3"
+]
+
+var themeIndex = 0;
+var previousThemeId;
+var currentThemeId = themeList[themeIndex];
+var backgroundWallapper = document.getElementById("setting-container");
+
+AddRemoveClassList(backgroundWallapper, currentThemeId);
+
+function themeSelect(){
+  if(themeIndex === themeList.length){
+    themeIndex = 0;
+  }
+  
+  currentThemeId = themeList[themeIndex];
+  console.log("theme-selected = " + currentThemeId);
+  var theme = document.getElementById(currentThemeId);
+  AddRemoveClassList(theme, "border-wall");
+  var backgroundWallapper = document.getElementById("setting-container");
+  AddRemoveClassList(backgroundWallapper, currentThemeId);
+  console.log( "themeindex = "+ themeIndex);
+
+}
+
+function themeDeselect(){
+  if(themeIndex === themeList.length){
+    themeIndex = 0;
+  }
+
+  console.log("theme-index = " +themeIndex);
+
+  currentThemeId = themeList[themeIndex];
+  previousThemeId = currentThemeId;
+  console.log("theme-deselected = " + currentThemeId);
+  var theme = document.getElementById(currentThemeId);
+  AddRemoveClassList(theme, "border-wall", false);
+  var backgroundWallapper = document.getElementById("setting-container");
+  AddRemoveClassList(backgroundWallapper, currentThemeId, false);
+  
+  themeIndex++;
+
+}
+
+
+function settingsHandler(button){
+  switch (button.id) {
+    case "left-select-button":
+      hideSettings();
+      var settings = document.getElementById("setting");
+      AddRemoveClassList(settings, 'selected', false);
+      
+      
+      currentThemeId = themeList[themeIndex];
+      var wallpaper = getLcd();
+      AddRemoveClassList(wallpaper, previousThemeId, false);
+      AddRemoveClassList(wallpaper, currentThemeId);
+      showMenu();
+      
+      break;
+
+    case "bottom-button":
+      themeDeselect();
+      themeSelect();
+      break;
+
+    case "right-select-button":
+      // themeIndex = 0;
+      hideSettings();
+      var settings = document.getElementById("setting");
+      AddRemoveClassList(settings, 'selected', false);
+      showMenu();
+      break;
+
+    case "power-button":
+      hideSettings();
+      var settings = document.getElementById("setting");
+      AddRemoveClassList(settings, 'selected', false);
+      showIdleScreen();
+      break;
+      
+    default:
+      break;
+  }
+}
+
+function showSettings(){
+  displaySettingsScreen(false);
+  displayNavbar(false);
+
+  var themeId = themeList[themeIndex];
+  // console.log(themeId);
+  var firstTheme = document.getElementById(themeId);
+
+  AddRemoveClassList(firstTheme, "border-wall");
+
+  screenName = "settingsScreen";
+}
+
+
+function hideSettings(){
+  displaySettingsScreen();
+  displayNavbar();
+
+}
+
+function displaySettingsScreen(show){
+  var settings = document.getElementById("setting-container");
+  AddRemoveClassList(settings, "hide", show);
+}
+
+
+// app selection cases
+
 function findAppSelection(currentAppId){
   switch(currentAppId){
     case "music":
       showMusicPlayer();
       break;
-    case "":
+    case "setting":
+      showSettings();
       break;
       
       default:
@@ -223,6 +382,8 @@ function findAppSelection(currentAppId){
   }
 
 } 
+
+// default case
 
 function defaultCaseHandler(button){
   switch(button.id){
@@ -395,25 +556,6 @@ function showMenu() {
   screenName = "appScreen";
 }
 
-
-function showMusicPlayer(){
-  displayMusicPlayerScreen(false);
-  displayNavbar(false);
-
-  screenName = "musicPlayerScreen";
-}
-
-
-function hideMusicPlayer(){
-  displayMusicPlayerScreen();
-  displayNavbar();
-
-}
-
-function displayMusicPlayerScreen(show){
-  var music = document.getElementById("music-player-container");
-  AddRemoveClassList(music, "hide", show);
-}
 
 function goToBackScreen() {
   hideMenuScreen();
