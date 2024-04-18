@@ -321,7 +321,7 @@
   align-items: center;
   background-color: crimson;
   padding: 16px;
-  height: 60px;
+  height: 72px;
   border-radius: 8px;
 }
 
@@ -341,15 +341,22 @@
 }
 
 .setting-screen-div{
-  /* background-image: url('wallpaper/grass.jpg'); */
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
 
 }
 
+.select-wallpaper-text{
+  text-align: center;
+}
+
+.navbar-height{
+  margin-top: 28px;
+  height: 20px;
+}
+
 .theme-container{
-  /* background-color: #0fb00f; */
   display: flex;
   flex-direction: column;
   gap: 10px;
