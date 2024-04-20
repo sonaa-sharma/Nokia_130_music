@@ -51,15 +51,18 @@
   margin: -1px -1px
 }
 
-.lcd-off {
+.lcd-off-wallpaper {
   background-color: rgb(10, 10, 10);
 }
 
-.lcd-on {
+.lock-screen-wallpaper {
   background-image: url('wallpaper/grass.jpg');
 }
 
+.menu-screen-wallpaper {
+  background-color: rgb(10, 10, 10);
 
+}
 
 .lcd-white{
   background-color: white;
@@ -252,10 +255,6 @@
   justify-content: space-between ;
 }
 
-.no-wall{
-  background-color: rgb(10, 10, 10);
-
-}
 .apps-div{
   display: flex;
   justify-content: center;
