@@ -18,15 +18,6 @@ function setTime() {
   currentDay.innerHTML = getTwoDigitNumber(clockDay);
 }
 
-var currentMenuIndexX = 0;
-var currentMenuIndexY = 0;
-
-var menuItemIds = [
-  ["calls", "contact", "alarm"],
-  ["fm", "music", "message"],
-  ["calendar", "torch", "setting"],
-];
-
 function getTwoDigitNumber(number) {
   var twoDigitNumber = number;
 
@@ -37,22 +28,21 @@ function getTwoDigitNumber(number) {
   return twoDigitNumber;
 }
 
-var screenName = "turnedOff";
-var isSelectkeyPressed = false;
-var clearGoBackId;
 
 function clickEventFunction(event) {
   var targetNode = event.target;
   var button = getButtonNode(targetNode);
-
+  
   if (!button || !isDeviceOn) {
     return;
   }
-
+  
   buttonClicked(button);
 }
 
-// button click function----------->
+var screenName = "turnedOff";
+
+// button click events----------->
 
 function buttonClicked(button) {
   switch (screenName) {
@@ -81,8 +71,11 @@ function buttonClicked(button) {
 }
 
 
-// all screen handlers----------->
+// lock screen handlers----------->
 
+var isSelectkeyPressed = false;
+var lockScreenTimeoutId;
+var clearGoBackId;
 
 function lockScreenHandler(button) {
   switch (button.id) {
@@ -99,9 +92,130 @@ function lockScreenHandler(button) {
   }
 }
 
-function displayLockScreenWallpaper(){
-  var lockWall = document.getElementById("")
+function selectButtonPressed() {
+  isSelectkeyPressed = true;
+  showUnlockMessage();
 }
+
+function starKeyPressed(button) {
+  if (!isSelectkeyPressed) {
+    return;
+  }
+  
+  clearTimeout(clearGoBackId);
+  hideUnlockMessage();
+  hideLockScreen();
+  showIdleScreen();
+}
+
+var lockScreenWallpaperClassName = "theme1";
+
+function displayWallPaper(show) {
+  var lcd = getLcd();
+  AddRemoveClassList(lcd, lockScreenWallpaperClassName, show);
+}
+
+function displayLockScreen(show) {
+  var lockScreen = document.getElementById("lock-screen-div");
+  AddRemoveClassList(lockScreen, "hide", show);
+}
+
+function BackToLockScreen() {
+  displayDateTimeContainer(false);
+  displayUnlockWithoutSpace(false);
+}
+
+function showUnlockMessage() {
+  displayUnlockMessage(false);
+  displayUnlock();
+  clearGoBackId = setTimeout(goBacktoLockScreen, 4000);
+}
+
+function hideUnlockMessage() {
+  displayUnlockMessage();
+  displayUnlock();
+}
+
+function goBacktoLockScreen() {
+  displayUnlockMessage();
+  displayUnlock(false);
+
+  isSelectkeyPressed = false;
+}
+
+function displayDate(show) {
+  var date = document.getElementById("date");
+  AddRemoveClassList(date, "hide", show);
+}
+
+function displayTime(show) {
+  var time = document.getElementById("time");
+  AddRemoveClassList(time, "hide", show);
+}
+
+function displayBackText(show) {
+  var backText = document.getElementById("back");
+  AddRemoveClassList(backText, "hide", show);
+}
+
+
+function displaySelectText(show) {
+  var selectText = document.getElementById("select");
+  AddRemoveClassList(selectText, "hide", show);
+}
+
+function displayDateTime(show) {
+  displayDate(show);
+  displayTime(show);
+}
+
+function displayDateTimeContainer(show) {
+  var newScreen = document.getElementById("date-time-div");
+  AddRemoveClassList(newScreen, "hide", show);
+}
+
+function displayUnlockMessage(show) {
+  var message = document.getElementById("unlockMessage");
+  AddRemoveClassList(message, "hide", show);
+}
+
+function displayUnlock(show) {
+  var unlockText = document.getElementById("unlock");
+  AddRemoveClassList(unlockText, "hide-taking-space", show);
+}
+
+function displayUnlockWithoutSpace(show) {
+  var unlockText = document.getElementById("unlock");
+  AddRemoveClassList(unlockText, "hide", show);
+}
+
+
+function showLockScreen() {
+  displayUnlock(false);
+  displayDateTimeContainer(false);
+  displayWallPaper();
+  displayNavbar(false);
+  displayLockScreen(false);
+  displayDateTime(false);
+
+  setTime();
+  isSelectkeyPressed = false;
+  lockScreenTimeoutId = setInterval(setTime, 1000);
+  screenName = "lockScreen";
+}
+
+function hideLockScreen() {
+  displayWallPaper(false);
+  displayNavbar();
+  displayLockScreen();
+  displayDateTimeContainer();
+  clearInterval(lockScreenTimeoutId);
+}
+
+
+// Idle screen handlers----------->
+
+var switchToLockScreenTimer;
 
 function idleScreenHandler(button) {
   clearTimeout(switchToLockScreenTimer);
@@ -115,6 +229,51 @@ function idleScreenHandler(button) {
       break;
   }
 }
+
+function showIdleScreen() {
+  displayWallPaper();
+  displayLockScreen(false);
+  displayNavbar(false);
+  displayDate();
+  displayMenuText(false);
+  displayDateTimeContainer(false);
+  lockScreenTimeoutId = setInterval(setTime, 1000);
+
+  switchToLockScreenTimer = setTimeout(lockTimer, 3000);
+
+  screenName = "idleScreen";
+}
+
+function lockTimer() {
+  hideIdleScreen();
+  showLockScreen();
+}
+
+function hideIdleScreen() {
+  displayLockScreen();
+  displayWallPaper(false);
+  displayNavbar();
+  displayDate(false);
+  displayMenuText();
+  displayDateTimeContainer();
+  clearInterval(lockScreenTimeoutId);
+}
+
+function displayMenuText(show) {
+  var menuText = document.getElementById("menu-screen-div");
+  AddRemoveClassList(menuText, "hide", show);
+}
+
+// menu screen handlers------------->
+
+var menuItemIds = [
+  ["calls", "contact", "alarm"],
+  ["fm", "music", "message"],
+  ["calendar", "torch", "setting"],
+];
+
+var currentMenuIndexX = 0;
+var currentMenuIndexY = 0;
 
 function appScreenHandler(button) {
   var nextAppIndex;
@@ -130,18 +289,14 @@ function appScreenHandler(button) {
       break;
 
     case "power-button":
-        hideMenuScreen();
-        showIdleScreen();
-        break;
+      hideMenuScreen();
+      showIdleScreen();
+      break;
 
     case "right-select-button":
       var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
       var currentApp = document.getElementById(currentAppId);
-
       AddRemoveClassList(currentApp, "selected", false);
-      // displayWallPaper(false);
-      // AddRemoveClassList(backgroundWallpaper, currentThemeId);
-
       goToBackScreen();
       break;
 
@@ -149,31 +304,26 @@ function appScreenHandler(button) {
       hideMenuScreen();
       var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
       console.log(currentAppId);
-      
       findAppSelection(currentAppId);
       break;
 
     case "top-button":
       nextAppIndex = goUp(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-
       menuScrolling(nextAppIndex[0], nextAppIndex[1]);
       break;
 
     case "left-button":
       nextAppIndex = goLeft(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-
       menuScrolling(nextAppIndex[0], nextAppIndex[1]);
       break;
 
     case "right-button":
       nextAppIndex = goRight(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-
       menuScrolling(nextAppIndex[0], nextAppIndex[1]);
       break;
 
     case "bottom-button":
       nextAppIndex = goDown(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-
       menuScrolling(nextAppIndex[0], nextAppIndex[1]);
       break;
 
@@ -182,7 +332,80 @@ function appScreenHandler(button) {
   }
 }
 
-// app selected----------->
+function menuScrolling(nextMenuIndexX, nextMenuIndexY) {
+  var itemId = menuItemIds[nextMenuIndexX][nextMenuIndexY];
+  var nextApp = document.getElementById(itemId);
+  AddRemoveClassList(nextApp, "selected");
+  var currentId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
+  var currentApp = document.getElementById(currentId);
+  AddRemoveClassList(currentApp, "selected", false);
+  currentMenuIndexX = nextMenuIndexX;
+  currentMenuIndexY = nextMenuIndexY;
+}
+
+function goRight(menuItemIds, x, y) {
+  var nextIndexX = x;
+  var nextIndexY = y + 1;
+
+  if (nextIndexY === menuItemIds[x].length) {
+    nextIndexX++;
+    nextIndexY = 0;
+  }
+
+  if (nextIndexX === menuItemIds.length) {
+    nextIndexX = 0;
+  }
+
+  return [nextIndexX, nextIndexY];
+}
+
+function goLeft(menuItemIds, x, y) {
+  var backIndexX = x;
+  var backIndexY = y - 1;
+
+  if (backIndexY < 0) {
+    backIndexY = menuItemIds[x].length - 1;
+    backIndexX--;
+  }
+
+  if (backIndexX < 0) {
+    backIndexX = menuItemIds.length - 1;
+  }
+
+  return [backIndexX, backIndexY];
+}
+
+function goUp(menuItemIds, x, y) {
+  var backIndexX = x - 1;
+  var backIndexY = y;
+
+  if (backIndexX < 0) {
+    backIndexX = menuItemIds.length - 1;
+    backIndexY--;
+  }
+
+  if (backIndexY < 0) {
+    backIndexY = menuItemIds[x].length - 1;
+  }
+
+  return [backIndexX, backIndexY];
+}
+
+function goDown(menuItemIds, x, y) {
+  var nextIndexX = x + 1;
+  var nextIndexY = y;
+
+  if (nextIndexX === menuItemIds.length) {
+    nextIndexX = 0;
+    nextIndexY++;
+  }
+
+  if (nextIndexY === menuItemIds[x].length) {
+    nextIndexY = 0;
+  }
+
+  return [nextIndexX, nextIndexY];
+}
 
 function findAppSelection(currentAppId){
   switch(currentAppId){
@@ -200,8 +423,56 @@ function findAppSelection(currentAppId){
 
 } 
 
+function showMenu() {
+  displayAppScreen(false);
+  displayNavbar(false);
+  displaySelectText(false);
+  displayBackText(false);
+  displayAppScreenContainer(false);
+  displayMenuWallPaper();
+  currentMenuIndexX = 0;
+  currentMenuIndexY = 0;
+  var itemId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
+  var firstApp = document.getElementById(itemId);
 
-// music player-----------> 
+  AddRemoveClassList(firstApp, "selected");
+
+  screenName = "appScreen";
+}
+
+function hideMenuScreen() {
+  displayMenuWallPaper(false);
+  displayAppScreen(false);
+  displayNavbar();
+  displayAppScreen();
+  displaySelectText();
+  displayBackText();
+  displayAppScreenContainer();
+}
+
+
+function goToBackScreen() {
+  hideMenuScreen();
+  showIdleScreen();
+}
+
+function displayAppScreen(show) {
+  var apps = document.getElementById("apps-div");
+  AddRemoveClassList(apps, "hide", show);
+}
+
+function displayAppScreenContainer(show) {
+  var apps = document.getElementById("app-screen-container");
+  AddRemoveClassList(apps, "hide", show);
+}
+
+function displayMenuWallPaper(show) {
+  var lcd = getLcd();
+  AddRemoveClassList(lcd, "menu-screen-wallpaper", show);
+}
+
+
+// music player screen handlers-----------> 
 
 var audioPlayer = document.getElementById("audioPlayer");
 var playPause = document.getElementById("music-select");
@@ -279,7 +550,8 @@ function displayMusicPlayerScreen(show){
 }
 
 
-// settings---------------->
+
+// settings screen handlers---------------->
 
 function settingsHandler(button){
   switch (button.id) {
@@ -294,13 +566,9 @@ function settingsHandler(button){
     break;
 
   case "top-button":
-    // themeDeselectUpButton();
-    // themeSelectUpButton();
     break;
 
   case "bottom-button":
-    // themeDeselect();
-    // themeSelect();
     break;
 
   case "right-select-button":
@@ -350,7 +618,9 @@ function displaySettingWallpaper(show){
   AddRemoveClassList(screen, "setting-screen-wallpaper", show);
 }
 
-// wallpaper----------->
+
+
+// wallpaper screen handlers----------->
 
 var themeList = [
   "theme1",
@@ -463,6 +733,8 @@ function wallpaperHandler(button){
 
     case "power-button":
       hideWallpaper();
+      backgroundWallpaper = getLcd();
+      AddRemoveClassList(backgroundWallpaper, currentThemeId, false);
       showIdleScreen();
       break;
       
@@ -470,7 +742,6 @@ function wallpaperHandler(button){
       break;
   }
 }
-
 
 function showWallpaperScreen(){
   displayMenuText();
@@ -488,7 +759,6 @@ function showWallpaperScreen(){
   screenName = "wallpaperScreen";
 }
 
-
 function hideWallpaper(){
   displayWallpaperScreen();
   displayNavbar();
@@ -501,7 +771,7 @@ function displayWallpaperScreen(show){
 }
 
 
-// default case----------->
+// default case handler----------->
 
 function defaultCaseHandler(button){
   switch(button.id){
@@ -536,245 +806,9 @@ function displayDefaultMessage(show){
   AddRemoveClassList(music, "hide", show);
 }
 
-function menuScrolling(nextMenuIndexX, nextMenuIndexY) {
-  var itemId = menuItemIds[nextMenuIndexX][nextMenuIndexY];
-  var nextApp = document.getElementById(itemId);
-  AddRemoveClassList(nextApp, "selected");
-  var currentId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
-  var currentApp = document.getElementById(currentId);
-  AddRemoveClassList(currentApp, "selected", false);
-  currentMenuIndexX = nextMenuIndexX;
-  currentMenuIndexY = nextMenuIndexY;
-}
-
-function goRight(menuItemIds, x, y) {
-  var nextIndexX = x;
-  var nextIndexY = y + 1;
-
-  if (nextIndexY === menuItemIds[x].length) {
-    nextIndexX++;
-    nextIndexY = 0;
-  }
-
-  if (nextIndexX === menuItemIds.length) {
-    nextIndexX = 0;
-  }
-
-  return [nextIndexX, nextIndexY];
-}
-
-function goLeft(menuItemIds, x, y) {
-  var backIndexX = x;
-  var backIndexY = y - 1;
-
-  if (backIndexY < 0) {
-    backIndexY = menuItemIds[x].length - 1;
-    backIndexX--;
-  }
-
-  if (backIndexX < 0) {
-    backIndexX = menuItemIds.length - 1;
-  }
-
-  return [backIndexX, backIndexY];
-}
-
-function goUp(menuItemIds, x, y) {
-  var backIndexX = x - 1;
-  var backIndexY = y;
-
-  if (backIndexX < 0) {
-    backIndexX = menuItemIds.length - 1;
-    backIndexY--;
-  }
-
-  if (backIndexY < 0) {
-    backIndexY = menuItemIds[x].length - 1;
-  }
-
-  return [backIndexX, backIndexY];
-}
-
-function goDown(menuItemIds, x, y) {
-  var nextIndexX = x + 1;
-  var nextIndexY = y;
-
-  if (nextIndexX === menuItemIds.length) {
-    nextIndexX = 0;
-    nextIndexY++;
-  }
-
-  if (nextIndexY === menuItemIds[x].length) {
-    nextIndexY = 0;
-  }
-
-  return [nextIndexX, nextIndexY];
-}
-
-var switchToLockScreenTimer;
-
-function showIdleScreen() {
-  displayWallPaper();
-  displayLockScreen(false);
-  displayNavbar(false);
-  displayDate();
-  displayMenuText(false);
-  displayDateTimeContainer(false);
-  lockScreenTimeoutId = setInterval(setTime, 1000);
-
-  switchToLockScreenTimer = setTimeout(lockTimer, 3000);
-
-  screenName = "idleScreen";
-}
-
-function lockTimer() {
-  hideIdleScreen();
-  showLockScreen();
-}
-
-function hideIdleScreen() {
-  displayLockScreen();
-  displayWallPaper(false);
-  displayNavbar();
-  displayDate(false);
-  displayMenuText();
-  displayDateTimeContainer();
-  clearInterval(lockScreenTimeoutId);
-}
-
-function selectButtonPressed() {
-  isSelectkeyPressed = true;
-  showUnlockMessage();
-}
-
-function starKeyPressed(button) {
-  if (!isSelectkeyPressed) {
-    return;
-  }
-
-  clearTimeout(clearGoBackId);
-  hideUnlockMessage();
-  hideLockScreen();
-  showIdleScreen();
-}
 
 
-
-function showMenu() {
-  displayAppScreen(false);
-  displayNavbar(false);
-  displaySelectText(false);
-  displayBackText(false);
-  displayAppScreenContainer(false);
-  displayMenuWallPaper();
-  currentMenuIndexX = 0;
-  currentMenuIndexY = 0;
-  var itemId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
-  var firstApp = document.getElementById(itemId);
-
-  AddRemoveClassList(firstApp, "selected");
-
-  screenName = "appScreen";
-}
-
-
-function goToBackScreen() {
-  hideMenuScreen();
-  showIdleScreen();
-}
-
-function hideMenuScreen() {
-  displayMenuWallPaper(false);
-  displayAppScreen(false);
-  displayNavbar();
-  displayAppScreen();
-  displaySelectText();
-  displayBackText();
-  displayAppScreenContainer();
-}
-
-function displayAppScreen(show) {
-  var apps = document.getElementById("apps-div");
-  AddRemoveClassList(apps, "hide", show);
-}
-
-function BackToLockScreen() {
-  displayDateTimeContainer(false);
-  displayUnlockWithoutSpace(false);
-}
-
-function showUnlockMessage() {
-  displayUnlockMessage(false);
-  displayUnlock();
-  clearGoBackId = setTimeout(goBacktoLockScreen, 4000);
-}
-
-function hideUnlockMessage() {
-  displayUnlockMessage();
-  displayUnlock();
-}
-
-function goBacktoLockScreen() {
-  displayUnlockMessage();
-  displayUnlock(false);
-
-  isSelectkeyPressed = false;
-}
-
-function displayDate(show) {
-  var date = document.getElementById("date");
-  AddRemoveClassList(date, "hide", show);
-}
-
-function displayTime(show) {
-  var time = document.getElementById("time");
-  AddRemoveClassList(time, "hide", show);
-}
-
-function displayBackText(show) {
-  var backText = document.getElementById("back");
-  AddRemoveClassList(backText, "hide", show);
-}
-
-function displayMenuText(show) {
-  var menuText = document.getElementById("menu-screen-div");
-  AddRemoveClassList(menuText, "hide", show);
-}
-
-function displaySelectText(show) {
-  var selectText = document.getElementById("select");
-  AddRemoveClassList(selectText, "hide", show);
-}
-
-function displayDateTime(show) {
-  displayDate(show);
-  displayTime(show);
-}
-
-function displayDateTimeContainer(show) {
-  var newScreen = document.getElementById("date-time-div");
-  AddRemoveClassList(newScreen, "hide", show);
-}
-
-function displayUnlockMessage(show) {
-  var message = document.getElementById("unlockMessage");
-  AddRemoveClassList(message, "hide", show);
-}
-
-function displayUnlock(show) {
-  var unlockText = document.getElementById("unlock");
-  AddRemoveClassList(unlockText, "hide-taking-space", show);
-}
-
-function displayUnlockWithoutSpace(show) {
-  var unlockText = document.getElementById("unlock");
-  AddRemoveClassList(unlockText, "hide", show);
-}
-
-function displayAppScreenContainer(show) {
-  var apps = document.getElementById("app-screen-container");
-  AddRemoveClassList(apps, "hide", show);
-}
+// button node------------
 
 function getButtonNode(node) {
   var dataName = node.dataset.name;
@@ -792,7 +826,7 @@ function getButtonNode(node) {
   return node;
 }
 
-// power button usecases------------
+// phone on-off handlers------------
 
 var timeoutId;
 var isDeviceOn = false;
@@ -818,29 +852,6 @@ function displayBrandAnimation(show) {
   var animationContainer = document.getElementById("brand-animation-screen");
   AddRemoveClassList(animationContainer, "hide", show);
 }
-var lockScreenTimeoutId;
-
-function showLockScreen() {
-  displayUnlock(false);
-  displayDateTimeContainer(false);
-  displayWallPaper();
-  displayNavbar(false);
-  displayLockScreen(false);
-  displayDateTime(false);
-
-  setTime();
-  isSelectkeyPressed = false;
-  lockScreenTimeoutId = setInterval(setTime, 1000);
-  screenName = "lockScreen";
-}
-
-function hideLockScreen() {
-  displayWallPaper(false);
-  displayNavbar();
-  displayLockScreen();
-  displayDateTimeContainer();
-  clearInterval(lockScreenTimeoutId);
-}
 
 function getNavbar() {
   return document.getElementById("navbar");
@@ -849,23 +860,6 @@ function getNavbar() {
 function displayNavbar(show) {
   var navbar = getNavbar();
   AddRemoveClassList(navbar, "hide", show);
-}
-
-function displayLockScreen(show) {
-  var lockScreen = document.getElementById("lock-screen-div");
-  AddRemoveClassList(lockScreen, "hide", show);
-}
-
-function displayWallPaper(show) {
-  var lcd = getLcd();
-  AddRemoveClassList(lcd, lockScreenWallpaperClassName, show);
-}
-
-var lockScreenWallpaperClassName = "theme1";
-
-function displayMenuWallPaper(show) {
-  var lcd = getLcd();
-  AddRemoveClassList(lcd, "menu-screen-wallpaper", show);
 }
 
 function displayWhiteScreen(show) {
