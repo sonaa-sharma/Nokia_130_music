@@ -558,11 +558,8 @@ function settingsHandler(button){
 
   case "left-select-button":
     hideSettings();
+    deselectSetting();
     showWallpaperScreen();
-    displaySettingWallpaper(false);
-    var wallpaper = document.getElementById("setting");
-    AddRemoveClassList(wallpaper, 'selected', false);
-      
     break;
 
   case "top-button":
@@ -573,19 +570,14 @@ function settingsHandler(button){
 
   case "right-select-button":
     hideSettings();
-    displaySettingWallpaper(false);
+    deselectSetting();
     showMenu();
-    var wallpaper = document.getElementById("setting");
-    AddRemoveClassList(wallpaper, 'selected', false);
-      
     break;
 
   case "power-button":
     hideSettings();
+    deselectSetting();
     showIdleScreen();
-    var wallpaper = document.getElementById("setting");
-    AddRemoveClassList(wallpaper, 'selected', false);
-      
     break;
     
   default:
@@ -594,9 +586,13 @@ function settingsHandler(button){
   }
 }
 
+function deselectSetting(){
+  var wallpaper = document.getElementById("setting");
+  AddRemoveClassList(wallpaper, 'selected', false);
+}
+
 function showSettings(){
   displaySettingsScreen(false);
-  displaySettingWallpaper();
   displayNavbar(false);
 
   screenName = "settingsScreen";
@@ -611,11 +607,6 @@ function hideSettings(){
 function displaySettingsScreen(show){
   var setting = document.getElementById("setting-container");
   AddRemoveClassList(setting, "hide", show);
-}
-
-function displaySettingWallpaper(show){
-  var screen = getLcd();
-  AddRemoveClassList(screen, "setting-screen-wallpaper", show);
 }
 
 
@@ -707,11 +698,9 @@ function themeDeselectUpButton(){
 function wallpaperHandler(button){
   switch (button.id) {
     case "left-select-button":
-      hideWallpaper();
-      backgroundWallpaper = getLcd();
-      AddRemoveClassList(backgroundWallpaper, currentThemeId, false);
+      hideWallpaperScreen();
       lockScreenWallpaperClassName = currentThemeId;
-      showMenu();
+      showIdleScreen();
       break;
 
     case "top-button":
@@ -725,16 +714,14 @@ function wallpaperHandler(button){
       break;
 
     case "right-select-button":
-      hideWallpaper();
-      backgroundWallpaper = getLcd();
-      AddRemoveClassList(backgroundWallpaper, currentThemeId, false);
+      hideWallpaperScreen();
+      removeTheme();
       showSettings();
       break;
 
     case "power-button":
-      hideWallpaper();
-      backgroundWallpaper = getLcd();
-      AddRemoveClassList(backgroundWallpaper, currentThemeId, false);
+      hideWallpaperScreen();
+      removeTheme();
       showIdleScreen();
       break;
       
@@ -743,6 +730,10 @@ function wallpaperHandler(button){
   }
 }
 
+function removeTheme(){
+  backgroundWallpaper = getLcd();
+  AddRemoveClassList(backgroundWallpaper, currentThemeId, false);
+}
 function showWallpaperScreen(){
   displayMenuText();
   hideMenuScreen();
@@ -759,7 +750,7 @@ function showWallpaperScreen(){
   screenName = "wallpaperScreen";
 }
 
-function hideWallpaper(){
+function hideWallpaperScreen(){
   displayWallpaperScreen();
   displayNavbar();
 
@@ -924,7 +915,7 @@ function turnOfflcd() {
       hideMenuScreen();
       // break;
     case "wallpaperScreen":
-      hideWallpaper();
+      hideWallpaperScreen();
       // break;
     default:
       displayDefaultMessage();
