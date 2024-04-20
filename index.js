@@ -553,6 +553,15 @@ function displayMusicPlayerScreen(show){
 
 // settings screen handlers---------------->
 
+var settingList = [
+  "wallpaper-setting",
+  "screen-lock-setting",
+  "date-time-setting"
+]
+
+var settingOptionIndex = 0;
+var currentSettingOptionId = settingList[settingOptionIndex];
+
 function settingsHandler(button){
   switch (button.id) {
 
@@ -594,7 +603,7 @@ function deselectSetting(){
 function showSettings(){
   displaySettingsScreen(false);
   displayNavbar(false);
-
+  addSettingOptionsBorder();
   screenName = "settingsScreen";
 }
 
@@ -609,6 +618,15 @@ function displaySettingsScreen(show){
   AddRemoveClassList(setting, "hide", show);
 }
 
+function addSettingOptionsBorder(){
+  var option = document.getElementById(currentSettingOptionId);
+  AddRemoveClassList(option, "wallpaper-border");
+}
+
+function removeSettingOptionsBorder(){
+  var option = document.getElementById(currentSettingOptionId);
+  AddRemoveClassList(option, "wallpaper-border", false);
+}
 
 
 // wallpaper screen handlers----------->
@@ -624,77 +642,6 @@ var previousThemeId;
 var currentThemeId = themeList[themeIndex];
 var backgroundWallpaper = getLcd();
 
-
-function themeSelect(){
-  if(themeIndex === themeList.length){
-    themeIndex = 0;
-  }
-  
-  currentThemeId = themeList[themeIndex];
-  console.log("theme-selected = " + currentThemeId);
-  var theme = document.getElementById(currentThemeId);
-  AddRemoveClassList(theme, "border-wall");
-  AddRemoveClassList(backgroundWallpaper, currentThemeId);
-  console.log( "themeindex = "+ themeIndex);
-
-}
-
-function themeDeselect(){
-  if(themeIndex === themeList.length){
-    themeIndex = 0;
-  }
-
-  console.log("theme-index = " +themeIndex);
-
-  currentThemeId = themeList[themeIndex];
-  previousThemeId = currentThemeId;
-  console.log("theme-deselected = " + currentThemeId);
-  var theme = document.getElementById(currentThemeId);
-  AddRemoveClassList(theme, "border-wall", false);
-  backgroundWallpaper = getLcd();
-  AddRemoveClassList(backgroundWallpaper, currentThemeId, false);
-  
-  themeIndex++;
-
-}
-
-function themeSelectUpButton(){
-  
-  if(themeIndex<0){
-    themeIndex = themeList.length-1;
-  }
-  
-  currentThemeId = themeList[themeIndex];
-  console.log("theme-selected = " + currentThemeId);
-  var theme = document.getElementById(currentThemeId);
-  AddRemoveClassList(theme, "border-wall");
-  backgroundWallpaper = getLcd();
-  AddRemoveClassList(backgroundWallpaper, currentThemeId);
-  console.log( "themeindex = "+ themeIndex);
-}
-
-function themeDeselectUpButton(){
-  if(themeIndex<0){
-    themeIndex = themeList.length-1;
-  }
-
-  if(themeIndex === themeList.length){
-    themeIndex = 0;
-  }
-
-  console.log("theme-index = " +themeIndex);
-
-  currentThemeId = themeList[themeIndex];
-  previousThemeId = currentThemeId;
-  console.log("theme-deselected = " + currentThemeId);
-  var theme = document.getElementById(currentThemeId);
-  AddRemoveClassList(theme, "border-wall", false);
-  backgroundWallpaper = getLcd();
-  AddRemoveClassList(backgroundWallpaper, currentThemeId, false);
-  
-  themeIndex--;
-}
-
 function wallpaperHandler(button){
   switch (button.id) {
     case "left-select-button":
@@ -704,13 +651,13 @@ function wallpaperHandler(button){
       break;
 
     case "top-button":
-      themeDeselectUpButton();
-      themeSelectUpButton();
+      themeDeselectUp();
+      themeSelectUp();
       break;
 
     case "bottom-button":
-      themeDeselect();
-      themeSelect();
+      themeDeselectDown();
+      themeSelectDown();
       break;
 
     case "right-select-button":
@@ -730,24 +677,108 @@ function wallpaperHandler(button){
   }
 }
 
-function removeTheme(){
-  backgroundWallpaper = getLcd();
-  AddRemoveClassList(backgroundWallpaper, currentThemeId, false);
+function themeSelectUp(){
+  
+  if(themeIndex<0){
+    themeIndex = themeList.length-1;
+  }
+  
+  currentThemeId = themeList[themeIndex];
+  addWallpaperBorder();
+  addTheme();
+  
+
+  console.log("theme-selected = " + currentThemeId);
+  console.log("next-themeindex = "+ themeIndex);
+
 }
+
+
+function themeSelectDown(){
+  if(themeIndex === themeList.length){
+    themeIndex = 0;
+  }
+  
+  currentThemeId = themeList[themeIndex];
+  addWallpaperBorder();
+  addTheme();
+
+
+  console.log("theme-selected = " + currentThemeId);
+  console.log("next-themeindex = "+ themeIndex);
+
+}
+
+function themeDeselectUp(){
+  if(themeIndex<0){
+    themeIndex = themeList.length-1;
+  }
+
+  if(themeIndex === themeList.length){
+    themeIndex = 0;
+  }
+
+  currentThemeId = themeList[themeIndex];
+  previousThemeId = currentThemeId;
+  removeWallpaperBorder();
+  removeTheme();
+
+
+  console.log("theme-deselected = " + currentThemeId);
+  console.log("next-theme-index = " +themeIndex);
+
+  themeIndex--;
+
+}
+
+function themeDeselectDown(){
+  if(themeIndex === themeList.length){
+    themeIndex = 0;
+  }
+
+  currentThemeId = themeList[themeIndex];
+  previousThemeId = currentThemeId;
+  removeWallpaperBorder();
+  removeTheme();
+
+  
+  console.log("theme-index = " +themeIndex);
+  console.log("theme-deselected = " + currentThemeId);
+  
+  themeIndex++;
+
+}
+
 function showWallpaperScreen(){
   displayMenuText();
   hideMenuScreen();
   displayWallpaperScreen(false);
   displayNavbar(false);
-
-  var themeId = themeList[themeIndex];
-  var firstTheme = document.getElementById(themeId);
-
-  AddRemoveClassList(firstTheme, "border-wall");
-  backgroundWallpaper = getLcd();
-  AddRemoveClassList(backgroundWallpaper, currentThemeId);
+  addWallpaperBorder();
+  addTheme();
 
   screenName = "wallpaperScreen";
+
+}
+
+function removeTheme(){
+  backgroundWallpaper = getLcd();
+  AddRemoveClassList(backgroundWallpaper, currentThemeId, false);
+}
+
+function removeWallpaperBorder(){
+  var theme = document.getElementById(currentThemeId);
+  AddRemoveClassList(theme, "wallpaper-border", false);
+}
+
+function addWallpaperBorder(){
+  var theme = document.getElementById(currentThemeId);
+  AddRemoveClassList(theme, "wallpaper-border");
+}
+
+function addTheme(){
+  backgroundWallpaper = getLcd();
+  AddRemoveClassList(backgroundWallpaper, currentThemeId);
 }
 
 function hideWallpaperScreen(){
