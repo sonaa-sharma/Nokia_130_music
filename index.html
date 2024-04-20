@@ -92,8 +92,8 @@
                         <!-- menu screen -->
 
                         <div id="menu-screen-div" class="hide">
-                            <div class="bottom-navbar">
-                                <div class="bottom-navbar-text" id="menu">Menu</div>
+                            <div class="bottom-navbar navbar-height">
+                                <div id="menu">Menu</div>
                             </div>
                         </div>
 
@@ -149,9 +149,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="bottom-navbar">
-                                <div class="bottom-navbar-text" id="select">Select</div>
-                                <div class="bottom-navbar-text" id="back">Back</div>
+                            <div class="bottom-navbar navbar-height">
+                                <div id="select">Select</div>
+                                <div id="back">Back</div>
                             </div>
                         </div>
 
@@ -161,21 +161,22 @@
                             <div class="message-div">
                                 <h1>Features coming soon</h1>
                             </div>
-                            <div class="bottom-navbar backText">
+                            <div class="bottom-navbar backText bottom-navbar-color">
                                 <div>Back</div>
                             </div>
                         </div>
 
                         <div class="musicPlayer-screen-div hide" id="music-player-container">
                             <div class="music-player-div">
-                                <h2>Music Player</h2>
+                                <h2 class="bottom-navbar-color">Music Player</h2>
                                 <div class="music-player">
-                                    <audio id="audioPlayer" class="audio" src="MusicFolder\RADHA_RANI_LAGE_SIMPAL_KHAREL_NEW_SONG_RADHA_KRISHNA_BHAJAN_2023.mp3" controls></audio>
+                                    <div class="audio"></div>
+                                    <audio id="audioPlayer" class="audio" src="MusicFolder\RADHA_RANI_LAGE_SIMPAL_KHAREL_NEW_SONG_RADHA_KRISHNA_BHAJAN_2023.mp3"></audio>
                                 </div>
                             </div>
-                            <div class="bottom-navbar">
-                                <div class="bottom-navbar-text" id="music-select">Play</div>
-                                <div class="bottom-navbar-text">Back</div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div id="music-select">Play</div>
+                                <div>Back</div>
                             </div>
                         </div>
 
@@ -183,15 +184,42 @@
                             <div class="calendar-div">
                                 <h1>Features coming soon</h1>
                             </div>
-                            <div class="bottom-navbar navbar-height">
-                                <div class="bottom-navbar-text">Back</div>
+                            <div class="bottom-navbar">
+                                <div>Back</div>
                             </div>
                         </div>
 
+
                         <div class="setting-screen-div hide" id="setting-container">
-                            <div class="setting-div">
-                                <h3 class="select-wallpaper-text">Select Wallpaper</h3>
-                                <div class="settingOptions">
+                            <div class="wallpaper-div">
+                                <h3 class="select-wallpaper-text">Setting</h3>
+                                <div>
+                                    <div class="theme-container">
+                                        <div class="theme" id="wallpaper-setting">
+                                            Wallpaper Settings
+                                            <!-- <img class="wall" id="theme1" src="wallpaper\grass.jpg" alt="grass" height="40px"> -->
+                                        </div>
+                                        <div class="theme" id="screen-lock-setting">
+                                            Screen Lock 
+                                            <!-- <img class="wall" id="theme2" src="wallpaper\wp1.jpg" alt="dragon" height="40px"> -->
+                                        </div>
+                                        <div class="theme" id="date-time-setting">
+                                            Date &  Time
+                                            <!-- <img class="wall" id="theme3" src="wallpaper\wp2.jpg" alt="light" height="40px"> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div>Select</div>
+                                <div>Back</div>
+                            </div>
+                        </div>
+
+                        <div class="wallpaper-screen-div hide" id="wallpaper-container">
+                            <div class="wallpaper-div">
+                                <h3 class="select-wallpaper-text">Wallpaper</h3>
+                                <div>
                                     <div class="theme-container">
                                         <div class="theme" id="theme1">
                                             Grass
@@ -208,9 +236,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="bottom-navbar navbar-height">
-                                <div class="bottom-navbar-text">Select</div>
-                                <div class="bottom-navbar-text">Back</div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div>Select</div>
+                                <div>Back</div>
                             </div>
                         </div>
 

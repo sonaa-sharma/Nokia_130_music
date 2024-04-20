@@ -238,11 +238,6 @@
   color: white;
 }
 
-.bottom-navbar{
-  display: flex;
-  justify-content: space-between;
-  font-weight: 700;
-}
 
 .hide-taking-space{
   opacity: 0;
@@ -259,7 +254,6 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 12px 12px;
   color: black;
 }
 
@@ -304,74 +298,84 @@
 
 
 .music-player-div{
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-bottom: 16px;
 }
 
 .music-player {
+  height: 81px;
+  width: 120px;
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: crimson;
-  padding: 16px;
-  height: 76px;
   border-radius: 8px;
 }
 
 .audio{
   height: 28px;
-  max-width: 120px;
+  width: 40px;
+  background-color: white;
+
 }
 
 .message-div{
   text-align: center;
-  height: 180px;
+  height: 184.5px;
+  background-color: #72b00f;
 }
+
 
 .backText{
   flex-direction: row-reverse;
-  padding: 12px;
 }
 
 .setting-screen-div{
+  height: 224px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.setting-screen-wallpaper{
+  background-color: rgb(45, 114, 125);
+
+}
+.wallpaper-screen-div{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
-  /* background-color: rgba(0, 0, 0, 0.3); */
-
 
 }
 
 .select-wallpaper-text{
-  /* text-align: center; */
   margin: 0;
   padding: 8px 12px;
   background-color: rgba(109, 98, 98, 0.5);
 
 }
 
-.bottom-navbar-text{
-  /* padding: 8px 16px; */
-  /* background-color: rgba(109, 98, 98, 0.5); */
-  /* padding: 8px 16px; */
+.bottom-navbar{
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  padding: 8px 16px;
 
 }
 
-.navbar-height{
-  padding: 8px 16px;
-
+.bottom-navbar-color{
   background-color: rgba(109, 98, 98, 0.5);
-
 }
 
 .theme-container{
   display: flex;
   flex-direction: column;
-  /* gap: 10px; */
 
 } 
 
