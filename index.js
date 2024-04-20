@@ -371,6 +371,7 @@ function settingsHandler(button){
 
       var settings = document.getElementById("setting");
       AddRemoveClassList(settings, 'selected', false);
+      lockScreenWallpaperClassName = currentThemeId;
       
       // currentThemeId = themeList[themeIndex];
       // var wallpaper = getLcd();
@@ -798,8 +799,10 @@ function displayLockScreen(show) {
 
 function displayWallPaper(show) {
   var lcd = getLcd();
-  AddRemoveClassList(lcd, "lock-screen-wallpaper", show);
+  AddRemoveClassList(lcd, lockScreenWallpaperClassName, show);
 }
+
+var lockScreenWallpaperClassName = "theme1";
 
 function displayMenuWallPaper(show) {
   var lcd = getLcd();

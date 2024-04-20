@@ -302,11 +302,6 @@
 
 }
 
-.bottom-navbar-text{
-  margin-left: 24px;
-  margin-bottom: 8px;
-  width: 30%;
-}
 
 .music-player-div{
   display: flex;
@@ -340,51 +335,55 @@
 }
 
 .setting-screen-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
+  /* background-color: rgba(0, 0, 0, 0.3); */
+
 
 }
 
 .select-wallpaper-text{
-  text-align: center;
+  /* text-align: center; */
+  margin: 0;
+  padding: 8px 12px;
+  background-color: rgba(109, 98, 98, 0.5);
+
+}
+
+.bottom-navbar-text{
+  /* padding: 8px 16px; */
+  /* background-color: rgba(109, 98, 98, 0.5); */
+  /* padding: 8px 16px; */
+
 }
 
 .navbar-height{
-  margin-top: 28px;
-  height: 20px;
+  padding: 8px 16px;
+
+  background-color: rgba(109, 98, 98, 0.5);
+
 }
 
 .theme-container{
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  /* gap: 10px; */
 
 } 
 
 .theme{
+  background-color: rgba(0, 0, 0, 0.3);
   border: 2px solid transparent;
-  padding: 4px;
+  padding: 4px 8px;
 
 }
 
 .border-wall{
   border-color: white;
-}
-
-.wallpaper-1{
-  background-color: #a15ba1;
-
-}
-
-.wallpaper-2{
-  background-color: #4d57c8;
-
-}
-
-.wallpaper-3{
-  background-color: #92c261;
-
 }
 
 .theme1 {
