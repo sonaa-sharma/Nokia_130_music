@@ -128,7 +128,7 @@ function BackToLockScreen() {
 function showUnlockMessage() {
   displayUnlockMessage(false);
   displayUnlock();
-  clearGoBackId = setTimeout(goBacktoLockScreen, 4000);
+  clearGoBackId = setTimeout(goBacktoLockScreen, 3000);
 }
 
 function hideUnlockMessage() {
@@ -225,7 +225,7 @@ function idleScreenHandler(button) {
       showMenu(false);
       break;
     default:
-      switchToLockScreenTimer = setTimeout(lockTimer, 3000);
+      switchToLockScreenTimer = setTimeout(lockTimer, 5000);
       break;
   }
 }
@@ -239,7 +239,7 @@ function showIdleScreen() {
   displayDateTimeContainer(false);
   lockScreenTimeoutId = setInterval(setTime, 1000);
 
-  switchToLockScreenTimer = setTimeout(lockTimer, 3000);
+  switchToLockScreenTimer = setTimeout(lockTimer, 5000);
 
   screenName = "idleScreen";
 }
@@ -784,6 +784,7 @@ function addTheme(){
 function hideWallpaperScreen(){
   displayWallpaperScreen();
   displayNavbar();
+  removeTheme();
 
 }
 
@@ -939,18 +940,21 @@ function turnOfflcd() {
   switch (screenName) {
     case "lockScreen":
       hideLockScreen();
-      // break;
+      break;
     case "idleScreen":
       hideIdleScreen();
     case "appScreen":
       hideMenuScreen();
-      // break;
+      break;
+    case "settingsScreen":
+      hideSettings();
+      break;
     case "wallpaperScreen":
       hideWallpaperScreen();
-      // break;
+      break;
     default:
       displayDefaultMessage();
-      // break;
+      break;
   }
 
   displayBlackScreen();
