@@ -326,8 +326,8 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: rgb(10, 10, 10);
-  /* background-size: cover; */
-  /* background-image: url('wallpaper/grass.jpg'); */
+  background-size: cover;
+  background-image: none;
 }
 
 .wallpaper-screen-div{
