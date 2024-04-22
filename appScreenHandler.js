@@ -20,9 +20,7 @@ function appScreenHandler(button) {
     case "power-button":
 
     case "right-select-button":
-      var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
-      var currentApp = document.getElementById(currentAppId);
-      AddRemoveClassList(currentApp, "selected", false);
+      backButtonSelectCurrentApp();
       goToBackScreen();
       break;
 
@@ -155,8 +153,6 @@ function showMenu() {
   displayBackText(false);
   displayAppScreenContainer(false);
   displayIdleScreenWallPaper();
-  currentMenuIndexX = 0;
-  currentMenuIndexY = 0;
   var itemId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
   var firstApp = document.getElementById(itemId);
 

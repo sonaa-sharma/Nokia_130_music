@@ -3,17 +3,15 @@ function defaultCaseHandler(button){
       case "right-select-button":
         var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
         var currentApp = document.getElementById(currentAppId);
-        AddRemoveClassList(currentApp, "selected", false);
+        console.log(currentAppId);
         displayDefaultMessage();
         showMenu();
         break;
   
       case "power-button":
-        var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
-        var currentApp = document.getElementById(currentAppId);
-        AddRemoveClassList(currentApp, "selected", false);
+        backButtonSelectCurrentApp();
         displayDefaultMessage();
-        showIdleScreen();
+        showMenu();
         break;
   
       default:
