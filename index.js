@@ -231,7 +231,7 @@ function idleScreenHandler(button) {
 }
 
 function showIdleScreen() {
-  displayWallPaper();
+  displayIdleScreenWallPaper();
   displayLockScreen(false);
   displayNavbar(false);
   displayDate();
@@ -244,6 +244,13 @@ function showIdleScreen() {
   screenName = "idleScreen";
 }
 
+var homeScreenWallpaperClassName = "theme1";
+
+function displayIdleScreenWallPaper(show) {
+  var lcd = getLcd();
+  AddRemoveClassList(lcd, homeScreenWallpaperClassName, show);
+}
+
 function lockTimer() {
   hideIdleScreen();
   showLockScreen();
@@ -251,7 +258,7 @@ function lockTimer() {
 
 function hideIdleScreen() {
   displayLockScreen();
-  displayWallPaper(false);
+  displayIdleScreenWallPaper(false);
   displayNavbar();
   displayDate(false);
   displayMenuText();
@@ -562,7 +569,6 @@ var settingList = [
 
 var settingIndex = 0;
 var currentSettingId = settingList[settingIndex];
-console.log(currentSettingId);
 var previousSettingId;
 
 function settingsHandler(button){
@@ -571,7 +577,12 @@ function settingsHandler(button){
   case "left-select-button":
     hideSettings();
     deselectSetting();
-    showWallpaperScreen();
+    if(currentSettingId != "date-time-setting"){
+      showWallpaperScreen();
+    }
+    else{
+      showDefaultMessage();
+    }
     break;
 
   case "top-button":
@@ -722,8 +733,14 @@ function wallpaperHandler(button){
   switch (button.id) {
     case "left-select-button":
       hideWallpaperScreen();
-      lockScreenWallpaperClassName = currentThemeId;
-      showIdleScreen();
+      if(currentSettingId === "lock-screen-setting"){
+        lockScreenWallpaperClassName = currentThemeId;
+        showLockScreen();
+      }
+      else if(currentSettingId === "home-screen-setting"){
+        homeScreenWallpaperClassName = currentThemeId;
+        showIdleScreen();
+      }
       break;
 
     case "top-button":
