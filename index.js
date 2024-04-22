@@ -75,6 +75,16 @@ function showBrandAnimation() {
   displayWhiteScreen();
   displayBrandAnimation(false);
   brandAnimation.play();
+  const videoDuration = brandAnimation.duration*1000;
+  setTimeout(onBrandAnimationFinish, videoDuration);
+}
+
+function onBrandAnimationFinish() {
+  displayBrandAnimation();
+  displayWhiteScreen(false);
+  showLockScreen();
+  localStorage.setItem("deviceOn", true);
+  isDeviceOn = true;
 }
 
 function displayBrandAnimation(show) {
@@ -107,14 +117,6 @@ function AddRemoveClassList(node, className, show) {
   } else {
     node.classList.add(className);
   }
-}
-
-function onBrandAnimationFinish() {
-  displayBrandAnimation();
-  displayWhiteScreen(false);
-  showLockScreen();
-  localStorage.setItem("deviceOn", true);
-  isDeviceOn = true;
 }
 
 function handlePowerOn() {
@@ -176,9 +178,9 @@ function getBrandAnimationNode() {
 function initializeEvent() {
   var keypadButton = document.getElementById("keypad-box");
   var powerButton = document.getElementById("power-button");
-  var brandAnimation = getBrandAnimationNode();
+  // var brandAnimation = getBrandAnimationNode();
 
-  brandAnimation.addEventListener("ended", onBrandAnimationFinish);
+  // brandAnimation.addEventListener("ended", onBrandAnimationFinish);
   keypadButton.addEventListener("click", clickEventFunction);
   powerButton.addEventListener("mousedown", startPoweringOn);
   powerButton.addEventListener("mouseup", stopPoweringOn);
