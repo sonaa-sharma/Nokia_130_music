@@ -47,6 +47,7 @@ function hideIdleScreen() {
   displayMenuText();
   displayDateTimeContainer();
   clearInterval(lockScreenTimeoutId);
+  clearTimeout(switchToLockScreenTimer);
 }
 
 function displayMenuText(show) {

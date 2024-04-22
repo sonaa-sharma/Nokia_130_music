@@ -60,8 +60,10 @@ function getButtonNode(node) {
 // phone on-off handlers------------
 
 function setInitialState() {
-  initialEvent();
+  initializeEvent();
+
   var deviceOn = localStorage.getItem("deviceOn");
+
   if (deviceOn === "true") {
     showLockScreen();
     isDeviceOn = true;
@@ -167,11 +169,11 @@ function turnOfflcd() {
   localStorage.setItem("deviceOn", false);
 }
 
-function getBrandAnimationNode(){
+function getBrandAnimationNode() {
   return document.getElementById("brand-animation");
 }
 
-function initialEvent() {
+function initializeEvent() {
   var keypadButton = document.getElementById("keypad-box");
   var powerButton = document.getElementById("power-button");
   var brandAnimation = getBrandAnimationNode();
