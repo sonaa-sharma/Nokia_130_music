@@ -112,15 +112,16 @@ function onBrandAnimationFinish() {
   displayWhiteScreen(false);
   showLockScreen();
   localStorage.setItem("deviceOn", true);
+  isDeviceOn = true;
 }
 
 function handlePowerOn() {
   if (isDeviceOn) {
     turnOfflcd();
+    isDeviceOn = false;
   } else {
     turnOnlcd();
   }
-  isDeviceOn = !isDeviceOn;
 }
 
 function startPoweringOn(event) {
