@@ -553,14 +553,17 @@ function displayMusicPlayerScreen(show){
 
 // settings screen handlers---------------->
 
+
 var settingList = [
-  "wallpaper-setting",
-  "screen-lock-setting",
+  "lock-screen-setting",
+  "home-screen-setting",
   "date-time-setting"
 ]
 
-var settingOptionIndex = 0;
-var currentSettingOptionId = settingList[settingOptionIndex];
+var settingIndex = 0;
+var currentSettingId = settingList[settingIndex];
+console.log(currentSettingId);
+var previousSettingId;
 
 function settingsHandler(button){
   switch (button.id) {
@@ -572,9 +575,13 @@ function settingsHandler(button){
     break;
 
   case "top-button":
+    settingDeselectUp();
+    settingSelectUp();
     break;
 
   case "bottom-button":
+    settingDeselectDown();
+    settingSelectDown();
     break;
 
   case "right-select-button":
@@ -619,14 +626,83 @@ function displaySettingsScreen(show){
 }
 
 function addSettingOptionsBorder(){
-  var option = document.getElementById(currentSettingOptionId);
+  var option = document.getElementById(currentSettingId);
   AddRemoveClassList(option, "wallpaper-border");
 }
 
 function removeSettingOptionsBorder(){
-  var option = document.getElementById(currentSettingOptionId);
+  var option = document.getElementById(currentSettingId);
   AddRemoveClassList(option, "wallpaper-border", false);
 }
+
+function settingSelectUp(){
+  
+  if(settingIndex<0){
+    settingIndex = settingList.length-1;
+  }
+  
+  currentSettingId = settingList[settingIndex];
+  addSettingOptionsBorder();
+  
+
+  console.log("setting-selected = " + currentSettingId);
+  console.log("next-setting-index = " + settingIndex);
+
+}
+
+
+function settingSelectDown(){
+  if(settingIndex === settingList.length){
+    settingIndex = 0;
+  }
+  
+  currentSettingId = settingList[settingIndex];
+  addSettingOptionsBorder();
+
+
+  console.log("setting-selected = " + currentSettingId);
+  console.log("next-setting-index = " + settingIndex);
+
+}
+
+function settingDeselectUp(){
+  if(settingIndex<0){
+    settingIndex = settingList.length-1;
+  }
+
+  if(settingIndex === settingList.length){
+    settingIndex = 0;
+  }
+
+  currentSettingId = settingList[settingIndex];
+  previousSettingId = currentSettingId;
+  removeSettingOptionsBorder();
+
+
+  console.log("setting-deselected = " + currentSettingId);
+  console.log("next-setting-index = " + settingIndex);
+
+  settingIndex--;
+
+}
+
+function settingDeselectDown(){
+  if(settingIndex === settingList.length){
+    settingIndex = 0;
+  }
+
+  currentSettingId = settingList[settingIndex];
+  previousSettingId = currentSettingId;
+  removeSettingOptionsBorder();
+
+  
+  console.log("setting-index = " + settingIndex);
+  console.log("setting-deselected = " + currentSettingId);
+  
+  settingIndex++;
+
+}
+
 
 
 // wallpaper screen handlers----------->
