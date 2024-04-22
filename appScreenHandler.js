@@ -18,9 +18,6 @@ function appScreenHandler(button) {
       break;
 
     case "power-button":
-      hideMenuScreen();
-      showIdleScreen();
-      break;
 
     case "right-select-button":
       var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
