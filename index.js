@@ -436,7 +436,7 @@ function showMenu() {
   displaySelectText(false);
   displayBackText(false);
   displayAppScreenContainer(false);
-  displayMenuWallPaper();
+  displayIdleScreenWallPaper();
   currentMenuIndexX = 0;
   currentMenuIndexY = 0;
   var itemId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
@@ -448,7 +448,7 @@ function showMenu() {
 }
 
 function hideMenuScreen() {
-  displayMenuWallPaper(false);
+  displayIdleScreenWallPaper(false);
   displayAppScreen(false);
   displayNavbar();
   displayAppScreen();
@@ -471,11 +471,6 @@ function displayAppScreen(show) {
 function displayAppScreenContainer(show) {
   var apps = document.getElementById("app-screen-container");
   AddRemoveClassList(apps, "hide", show);
-}
-
-function displayMenuWallPaper(show) {
-  var lcd = getLcd();
-  AddRemoveClassList(lcd, "menu-screen-wallpaper", show);
 }
 
 
@@ -619,6 +614,7 @@ function deselectSetting(){
 }
 
 function showSettings(){
+  displayIdleScreenWallPaper();
   displaySettingsScreen(false);
   displayNavbar(false);
   addSettingOptionsBorder();
@@ -627,6 +623,7 @@ function showSettings(){
 
 function hideSettings(){
   displaySettingsScreen();
+  displayIdleScreenWallPaper(false);
   displayNavbar();
 
 }
