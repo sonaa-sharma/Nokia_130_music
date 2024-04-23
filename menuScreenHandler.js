@@ -51,10 +51,12 @@ function appScreenHandler(button) {
 function menuScrolling(nextMenuIndexX, nextMenuIndexY) {
   var itemId = menuItemIds[nextMenuIndexX][nextMenuIndexY];
   var nextApp = document.getElementById(itemId);
-  AddRemoveClassList(nextApp, "selected");
   var currentId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
   var currentApp = document.getElementById(currentId);
+
+  AddRemoveClassList(nextApp, "selected", true);
   AddRemoveClassList(currentApp, "selected", false);
+  
   currentMenuIndexX = nextMenuIndexX;
   currentMenuIndexY = nextMenuIndexY;
 }
@@ -148,24 +150,23 @@ function resetSelectedApp(resetAppPosition) {
 }
 
 function showMenu(resetAppPosition) {
-  displayAppScreen(false);
-  displayNavbar(false);
-  displaySelectText(false);
-  displayBackText(false);
-  displayAppScreenContainer(false);
-  displayIdleScreenWallPaper();
+  mountAppScreen(true);
+  mountNavbar(true);
+  mountSelectText(true);
+  mountBackText(true);
+  mountAppScreenContainer(true);
+  mountIdleScreenWallPaper(true);
   resetSelectedApp(resetAppPosition);
   screenName = "appScreen";
 }
 
 function hideMenuScreen() {
-  displayIdleScreenWallPaper(false);
-  displayAppScreen(false);
-  displayNavbar();
-  displayAppScreen();
-  displaySelectText();
-  displayBackText();
-  displayAppScreenContainer();
+  mountIdleScreenWallPaper(false);
+  mountAppScreen(false);
+  mountNavbar(false);
+  mountSelectText(false);
+  mountBackText(false);
+  mountAppScreenContainer(false);
 }
 
 function goToBackScreen() {
@@ -173,14 +174,24 @@ function goToBackScreen() {
   showIdleScreen();
 }
 
-function displayAppScreen(show) {
-  var apps = document.getElementById("apps-div");
-  AddRemoveClassList(apps, "hide", show);
+function mountSelectText(show) {
+  var selectText = document.getElementById("select");
+  AddRemoveClassList(selectText, "hide", !show);
 }
 
-function displayAppScreenContainer(show) {
+function mountBackText(show) {
+  var backText = document.getElementById("back");
+  AddRemoveClassList(backText, "hide", !show);
+}
+
+function mountAppScreen(show) {
+  var apps = document.getElementById("apps-div");
+  AddRemoveClassList(apps, "hide", !show);
+}
+
+function mountAppScreenContainer(show) {
   var apps = document.getElementById("app-screen-container");
-  AddRemoveClassList(apps, "hide", show);
+  AddRemoveClassList(apps, "hide", !show);
 }
 
 function highlightApp(showHide, highlightAppIndexX, highlightAppIndexY) {

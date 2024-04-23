@@ -230,6 +230,12 @@
   opacity: 0;
 }
 
+.idle-screen{
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 .app-screen-div{
   height: 100%;
   display: flex;

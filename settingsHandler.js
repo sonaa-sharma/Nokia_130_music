@@ -1,141 +1,121 @@
-
 var settingList = [
-    "lock-screen-setting",
-    "home-screen-setting",
-    "date-time-setting"
-  ]
-  
-  var settingIndex = 0;
-  var currentSettingId = settingList[settingIndex];
-  var previousSettingId;
-  
-  function settingsHandler(button){
-    switch (button.id) {
-  
+  "lock-screen-setting",
+  "home-screen-setting",
+  "date-time-setting",
+];
+
+var settingIndex = 0;
+var currentSettingId = settingList[settingIndex];
+var previousSettingId;
+
+function settingsHandler(button) {
+  switch (button.id) {
     case "left-select-button":
       hideSettings();
-      deselectSetting();
-      if(currentSettingId != "date-time-setting"){
+      deselectSettingBorder();
+      if (currentSettingId != "date-time-setting") {
         showWallpaperScreen();
-      }
-      else{
+      } else {
         showDefaultMessage();
       }
       break;
-  
+
     case "top-button":
       settingDeselectUp();
       settingSelectUp();
       break;
-  
+
     case "bottom-button":
       settingDeselectDown();
       settingSelectDown();
       break;
-  
+
     case "right-select-button":
       hideSettings();
-      deselectSetting();
+      deselectSettingBorder();
       showMenu();
       break;
-  
+
     case "power-button":
       hideSettings();
-      deselectSetting();
+      deselectSettingBorder();
       showIdleScreen();
       break;
-      
+
     default:
       break;
-  
-    }
   }
-  
-  function deselectSetting(){
-    var wallpaper = document.getElementById("setting");
-    AddRemoveClassList(wallpaper, 'selected', false);
-  }
-  
-  function showSettings(){
-    displayIdleScreenWallPaper();
-    displaySettingsScreen(false);
-    displayNavbar(false);
-    addSettingOptionsBorder();
-    screenName = "settingsScreen";
-  }
-  
-  function hideSettings(){
-    displaySettingsScreen();
-    displayIdleScreenWallPaper(false);
-    displayNavbar();
-  }
-  
-  function displaySettingsScreen(show){
-    var setting = document.getElementById("setting-container");
-    AddRemoveClassList(setting, "hide", show);
-  }
-  
-  function addSettingOptionsBorder(){
-    var option = document.getElementById(currentSettingId);
-    AddRemoveClassList(option, "wallpaper-border");
-  }
-  
-  function removeSettingOptionsBorder(){
-    var option = document.getElementById(currentSettingId);
-    AddRemoveClassList(option, "wallpaper-border", false);
-  }
-  
-  function settingSelectUp(){
-    
-    if(settingIndex<0){
-      settingIndex = settingList.length-1;
-    }
-    
-    currentSettingId = settingList[settingIndex];
-    addSettingOptionsBorder();
-    
-
 }
-  
-  
-  function settingSelectDown(){
-    if(settingIndex === settingList.length){
-      settingIndex = 0;
-    }
-    
-    currentSettingId = settingList[settingIndex];
-    addSettingOptionsBorder();
-  
+
+function deselectSettingBorder() {
+  var wallpaper = document.getElementById("setting");
+  AddRemoveClassList(wallpaper, "selected", false);
+}
+
+function showSettings() {
+  mountIdleScreenWallPaper(true);
+  mountSettingsScreen(true);
+  mountNavbar(true);
+  addSettingOptionsBorder();
+  screenName = "settingsScreen";
+}
+
+function hideSettings() {
+  mountSettingsScreen(false);
+  mountIdleScreenWallPaper(false);
+  mountNavbar(false);
+}
+
+function mountSettingsScreen(show) {
+  var setting = document.getElementById("setting-container");
+  AddRemoveClassList(setting, "hide", !show);
+}
+
+function addSettingOptionsBorder() {
+  var option = document.getElementById(currentSettingId);
+  AddRemoveClassList(option, "wallpaper-border");
+}
+
+function removeSettingOptionsBorder() {
+  var option = document.getElementById(currentSettingId);
+  AddRemoveClassList(option, "wallpaper-border", false);
+}
+
+function settingSelectUp() {
+  if (settingIndex < 0) {
+    settingIndex = settingList.length - 1;
   }
-  
-  function settingDeselectUp(){
-    if(settingIndex<0){
-      settingIndex = settingList.length-1;
-    }
-  
-    if(settingIndex === settingList.length){
-      settingIndex = 0;
-    }
-  
-    currentSettingId = settingList[settingIndex];
-    previousSettingId = currentSettingId;
-    removeSettingOptionsBorder();
-    
-    settingIndex--;
-  
+  currentSettingId = settingList[settingIndex];
+  addSettingOptionsBorder();
+}
+
+function settingSelectDown() {
+  if (settingIndex === settingList.length) {
+    settingIndex = 0;
   }
-  
-  function settingDeselectDown(){
-    if(settingIndex === settingList.length){
-      settingIndex = 0;
-    }
-  
-    currentSettingId = settingList[settingIndex];
-    previousSettingId = currentSettingId;
-    removeSettingOptionsBorder();
-    
-    settingIndex++;
-  
+  currentSettingId = settingList[settingIndex];
+  addSettingOptionsBorder();
+}
+
+function settingDeselectUp() {
+  if (settingIndex < 0) {
+    settingIndex = settingList.length - 1;
   }
-  
-  
+  if (settingIndex === settingList.length) {
+    settingIndex = 0;
+  }
+  currentSettingId = settingList[settingIndex];
+  previousSettingId = currentSettingId;
+  removeSettingOptionsBorder();
+  settingIndex--;
+}
+
+function settingDeselectDown() {
+  if (settingIndex === settingList.length) {
+    settingIndex = 0;
+  }
+  currentSettingId = settingList[settingIndex];
+  previousSettingId = currentSettingId;
+  removeSettingOptionsBorder();
+  settingIndex++;
+}

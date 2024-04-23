@@ -38,15 +38,20 @@ function musicPlayerHandler(button){
 
     case "right-select-button":
       hideMusicPlayer();
-      var musicPlayer = document.getElementById("music");
-      AddRemoveClassList(musicPlayer, 'selected', false);
+      removeBorder();
+
+      // var musicPlayer = document.getElementById("music");
+      // AddRemoveClassList(musicPlayer, 'selected', false);
+
       showMenu();
       break;
 
     case "power-button":
       hideMusicPlayer();
-      var musicPlayer = document.getElementById("music");
-      AddRemoveClassList(musicPlayer, 'selected', false);
+      removeBorder();
+
+      // var musicPlayer = document.getElementById("music");
+      // AddRemoveClassList(musicPlayer, 'selected', false);
       showIdleScreen();
       break;
       
@@ -55,16 +60,21 @@ function musicPlayerHandler(button){
   }
 }
 
+function removeBorder(){
+  var musicPlayer = document.getElementById("music");
+  AddRemoveClassList(musicPlayer, 'selected', false);
+}
+
 function showMusicPlayer(){
   displayMusicPlayerScreen(false);
-  displayNavbar(false);
+  mountNavbar(true);
 
   screenName = "musicPlayerScreen";
 }
 
 function hideMusicPlayer(){
   displayMusicPlayerScreen();
-  displayNavbar();
+  mountNavbar(false);
 
 }
 

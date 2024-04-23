@@ -72,51 +72,34 @@ function setInitialState() {
 
 function showBrandAnimation() {
   var brandAnimation = getBrandAnimationNode();
-  displayWhiteScreen();
-  displayBrandAnimation(false);
+  mountWhiteScreen(true);
+  mountBrandAnimation(true);
   brandAnimation.play();
   const videoDuration = brandAnimation.duration*1000;
   setTimeout(onBrandAnimationFinish, videoDuration);
 }
 
 function onBrandAnimationFinish() {
-  displayBrandAnimation();
-  displayWhiteScreen(false);
+  mountBrandAnimation(false);
+  mountWhiteScreen(false);
   showLockScreen();
   localStorage.setItem("deviceOn", true);
   isDeviceOn = true;
 }
 
-function displayBrandAnimation(show) {
+function mountBrandAnimation(show) {
   var animationContainer = document.getElementById("brand-animation-screen");
-  AddRemoveClassList(animationContainer, "hide", show);
+  AddRemoveClassList(animationContainer, "hide", !show);
 }
 
-function getNavbar() {
-  return document.getElementById("navbar");
-}
-
-function displayNavbar(show) {
-  var navbar = getNavbar();
-  AddRemoveClassList(navbar, "hide", show);
-}
-
-function displayWhiteScreen(show) {
+function mountWhiteScreen(show) {
   var lcd = getLcd();
   AddRemoveClassList(lcd, "lcd-white", show);
 }
 
-function displayBlackScreen(show) {
+function mountBlackScreen(show) {
   var lcd = getLcd();
   AddRemoveClassList(lcd, "lcd-off-wallpaper", show);
-}
-
-function AddRemoveClassList(node, className, show) {
-  if (show === false) {
-    node.classList.remove(className);
-  } else {
-    node.classList.add(className);
-  }
 }
 
 function handlePowerOn() {
@@ -141,7 +124,7 @@ function getLcd() {
 }
 
 function turnOnlcd() {
-  displayBlackScreen(false);
+  mountBlackScreen(false);
   showBrandAnimation();
 }
 
@@ -162,11 +145,11 @@ function turnOfflcd() {
       hideWallpaperScreen();
       break;
     default:
-      displayDefaultMessage();
+      mountDefaultMessage(false);
       break;
   }
 
-  displayBlackScreen();
+  mountBlackScreen(true);
 
   localStorage.setItem("deviceOn", false);
 }
@@ -178,9 +161,6 @@ function getBrandAnimationNode() {
 function initializeEvent() {
   var keypadButton = document.getElementById("keypad-box");
   var powerButton = document.getElementById("power-button");
-  // var brandAnimation = getBrandAnimationNode();
-
-  // brandAnimation.addEventListener("ended", onBrandAnimationFinish);
   keypadButton.addEventListener("click", clickEventFunction);
   powerButton.addEventListener("mousedown", startPoweringOn);
   powerButton.addEventListener("mouseup", stopPoweringOn);

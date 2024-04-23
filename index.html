@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="common.css">
     <script type="text/javascript" await src="lockScreenHandler.js"></script>
     <script type="text/javascript" await src="idleScreenHandler.js"></script>
-    <script type="text/javascript" await src="appScreenHandler.js"></script>
+    <script type="text/javascript" await src="menuScreenHandler.js"></script>
     <script type="text/javascript" await src="musicPlayerHandler.js"></script>
     <script type="text/javascript" await src="settingsHandler.js"></script>
     <script type="text/javascript" await src="wallpaperHandler.js"></script>
@@ -99,9 +99,9 @@
 
                         <!-- menu screen -->
 
-                        <div id="menu-screen-div" class="hide">
+                        <div id="menu-screen-div" class="hide idle-screen">
                             <div class="bottom-navbar navbar-height">
-                                <div id="menu">Menu</div>
+                                <div id="menu" class="menu-text">Menu</div>
                             </div>
                         </div>
 
@@ -157,7 +157,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="bottom-navbar navbar-height bottom-navbar-color">
+                            <div class="bottom-navbar bottom-navbar-color">
                                 <div id="select">Select</div>
                                 <div id="back">Back</div>
                             </div>

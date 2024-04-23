@@ -66,92 +66,81 @@ function starKeyPressed(button) {
 
 var lockScreenWallpaperClassName = "theme1";
 
-function displayWallPaper(show) {
+function mountLockScreenWallPaper(show) {
   var lcd = getLcd();
   AddRemoveClassList(lcd, lockScreenWallpaperClassName, show);
 }
 
-function displayLockScreen(show) {
+function mountLockScreen(show) {
   var lockScreen = document.getElementById("lock-screen-div");
-  AddRemoveClassList(lockScreen, "hide", show);
+  AddRemoveClassList(lockScreen, "hide", !show);
 }
 
 function BackToLockScreen() {
-  displayDateTimeContainer(false);
-  displayUnlockWithoutSpace(false);
+  mountDateTimeContainer(true);
+  mountUnlockWithoutSpace(false);
 }
 
 function showUnlockMessage() {
-  displayUnlockMessage(false);
-  displayUnlock();
+  mountUnlockMessage(true);
+  mountUnlockText(false);
   clearGoBackId = setTimeout(goBacktoLockScreen, 3000);
 }
 
 function hideUnlockMessage() {
-  displayUnlockMessage();
-  displayUnlock();
+  mountUnlockMessage(false);
+  mountUnlockText(true);
 }
 
 function goBacktoLockScreen() {
-  displayUnlockMessage();
-  displayUnlock(false);
+  mountUnlockMessage(false);
+  mountUnlockText(true);
 
   isSelectkeyPressed = false;
 }
 
-function displayDate(show) {
+function mountDate(show) {
   var date = document.getElementById("date");
-  AddRemoveClassList(date, "hide", show);
+  AddRemoveClassList(date, "hide", !show);
 }
 
-function displayTime(show) {
+function mountTime(show) {
   var time = document.getElementById("time");
-  AddRemoveClassList(time, "hide", show);
+  AddRemoveClassList(time, "hide", !show);
 }
 
-function displayBackText(show) {
-  var backText = document.getElementById("back");
-  AddRemoveClassList(backText, "hide", show);
+function mountDateTime(show) {
+  mountDate(show);
+  mountTime(show);
 }
 
-function displaySelectText(show) {
-  var selectText = document.getElementById("select");
-  AddRemoveClassList(selectText, "hide", show);
-}
-
-function displayDateTime(show) {
-  displayDate(show);
-  displayTime(show);
-}
-
-function displayDateTimeContainer(show) {
+function mountDateTimeContainer(show) {
   var newScreen = document.getElementById("date-time-div");
-  AddRemoveClassList(newScreen, "hide", show);
+  AddRemoveClassList(newScreen, "hide", !show);
 }
 
-function displayUnlockMessage(show) {
+function mountUnlockMessage(show) {
   var message = document.getElementById("unlockMessage");
-  AddRemoveClassList(message, "hide", show);
+  AddRemoveClassList(message, "hide", !show);
 }
 
-function displayUnlock(show) {
+function mountUnlockText(show) {
   var unlockText = document.getElementById("unlock");
-  AddRemoveClassList(unlockText, "hide-taking-space", show);
+  AddRemoveClassList(unlockText, "hide-taking-space", !show);
 }
 
-function displayUnlockWithoutSpace(show) {
+function mountUnlockWithoutSpace(show) {
   var unlockText = document.getElementById("unlock");
-  AddRemoveClassList(unlockText, "hide", show);
+  AddRemoveClassList(unlockText, "hide", !show);
 }
 
 function showLockScreen() {
-  displayUnlock(false);
-  displayDateTimeContainer(false);
-  displayWallPaper();
-  displayNavbar(false);
-  displayLockScreen(false);
-  displayDateTime(false);
-
+  mountLockScreenWallPaper(true);
+  mountUnlockText(true);
+  mountDateTimeContainer(true);
+  mountNavbar(true);
+  mountLockScreen(true);
+  mountDateTime(true);
   setTime();
   isSelectkeyPressed = false;
   lockScreenTimeoutId = setInterval(setTime, 1000);
@@ -159,9 +148,9 @@ function showLockScreen() {
 }
 
 function hideLockScreen() {
-  displayWallPaper(false);
-  displayNavbar();
-  displayLockScreen();
-  displayDateTimeContainer();
+  mountLockScreenWallPaper(false);
+  mountNavbar(false);
+  mountLockScreen(false);
+  mountDateTimeContainer(false);
   clearInterval(lockScreenTimeoutId);
 }

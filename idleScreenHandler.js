@@ -14,43 +14,41 @@ function idleScreenHandler(button) {
 }
 
 function showIdleScreen() {
-  displayIdleScreenWallPaper();
-  displayLockScreen(false);
-  displayNavbar(false);
-  displayDate();
-  displayMenuText(false);
-  displayDateTimeContainer(false);
+  mountIdleScreenWallPaper(true);
+  mountNavbar(true);
+  mountMenuText(true);
+  showDateTimeDiv();
   lockScreenTimeoutId = setInterval(setTime, 1000);
-
   switchToLockScreenTimer = setTimeout(lockTimer, 5000);
 
   screenName = "idleScreen";
 }
 
-var homeScreenWallpaperClassName = "theme1";
-
-function displayIdleScreenWallPaper(show) {
-  var lcd = getLcd();
-  AddRemoveClassList(lcd, homeScreenWallpaperClassName, show);
-}
 
 function lockTimer() {
   hideIdleScreen();
   showLockScreen();
 }
 
+function showDateTimeDiv(){
+  mountLockScreen(true);
+  mountDateTimeContainer(true);
+  mountDate(false);
+  mountUnlockText(false);
+}
+
 function hideIdleScreen() {
-  displayLockScreen();
-  displayIdleScreenWallPaper(false);
-  displayNavbar();
-  displayDate(false);
-  displayMenuText();
-  displayDateTimeContainer();
+  mountLockScreen();
+  mountIdleScreenWallPaper(false);
+  mountNavbar(false);
+  mountDate(false);
+  mountMenuText(false);
+  mountDateTimeContainer(false);
   clearInterval(lockScreenTimeoutId);
   clearTimeout(switchToLockScreenTimer);
 }
 
-function displayMenuText(show) {
+function mountMenuText(show) {
   var menuText = document.getElementById("menu-screen-div");
-  AddRemoveClassList(menuText, "hide", show);
+  AddRemoveClassList(menuText, "hide", !show);
 }

@@ -95,14 +95,20 @@ function themeDeselectDown() {
 }
 
 function showWallpaperScreen() {
-  displayMenuText();
+  mountMenuText(true);
   hideMenuScreen();
-  displayWallpaperScreen(false);
-  displayNavbar(false);
+  mountWallpaperScreen(true);
+  mountNavbar(true);
   addWallpaperBorder();
   addTheme();
 
   screenName = "wallpaperScreen";
+}
+
+function hideWallpaperScreen() {
+  mountWallpaperScreen(false);
+  mountNavbar(false);
+  removeTheme();
 }
 
 function removeTheme() {
@@ -125,13 +131,8 @@ function addTheme() {
   AddRemoveClassList(backgroundWallpaper, currentThemeId);
 }
 
-function hideWallpaperScreen() {
-  displayWallpaperScreen();
-  displayNavbar();
-  removeTheme();
-}
 
-function displayWallpaperScreen(show) {
+function mountWallpaperScreen(show) {
   var wallpaper = document.getElementById("wallpaper-container");
-  AddRemoveClassList(wallpaper, "hide", show);
+  AddRemoveClassList(wallpaper, "hide", !show);
 }

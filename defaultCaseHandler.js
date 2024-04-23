@@ -1,12 +1,12 @@
 function defaultCaseHandler(button){
     switch(button.id){
       case "right-select-button":
-        displayDefaultMessage();
+        mountDefaultMessage(false);
         showMenu(false);
         break;
   
       case "power-button":
-        displayDefaultMessage();
+        mountDefaultMessage(false);
         showMenu(true);
         break;
   
@@ -16,13 +16,13 @@ function defaultCaseHandler(button){
   }
   
   function showDefaultMessage(){
-    displayDefaultMessage(false);
-  
+    mountDefaultMessage(true);
     screenName = "messageScreen";
   }
-  function displayDefaultMessage(show){
+
+  function mountDefaultMessage(show){
     var music = document.getElementById("message-container");
-    AddRemoveClassList(music, "hide", show);
+    AddRemoveClassList(music, "hide", !show);
   }
   
   
