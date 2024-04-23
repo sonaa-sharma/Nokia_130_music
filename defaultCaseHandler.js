@@ -1,17 +1,13 @@
 function defaultCaseHandler(button){
     switch(button.id){
       case "right-select-button":
-        var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
-        var currentApp = document.getElementById(currentAppId);
-        console.log(currentAppId);
         displayDefaultMessage();
-        showMenu();
+        showMenu(false);
         break;
   
       case "power-button":
-        backButtonSelectCurrentApp();
         displayDefaultMessage();
-        showMenu();
+        showMenu(true);
         break;
   
       default:

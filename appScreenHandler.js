@@ -20,15 +20,7 @@ function appScreenHandler(button) {
     case "power-button":
 
     case "right-select-button":
-      backButtonSelectCurrentApp();
       goToBackScreen();
-      break;
-
-    case "mid-button-inner":
-      hideMenuScreen();
-      var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
-      console.log(currentAppId);
-      findAppSelection(currentAppId);
       break;
 
     case "top-button":
@@ -146,18 +138,23 @@ function findAppSelection(currentAppId) {
   }
 }
 
-function showMenu() {
+function resetSelectedApp(resetAppPosition) {
+  if (resetAppPosition) {
+    highlightApp(false, currentMenuIndexX, currentMenuIndexY);
+    currentMenuIndexX = 0;
+    currentMenuIndexY = 0;
+  }
+  highlightApp(true, currentMenuIndexX, currentMenuIndexY);
+}
+
+function showMenu(resetAppPosition) {
   displayAppScreen(false);
   displayNavbar(false);
   displaySelectText(false);
   displayBackText(false);
   displayAppScreenContainer(false);
   displayIdleScreenWallPaper();
-  var itemId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
-  var firstApp = document.getElementById(itemId);
-
-  AddRemoveClassList(firstApp, "selected");
-
+  resetSelectedApp(resetAppPosition);
   screenName = "appScreen";
 }
 
@@ -184,4 +181,10 @@ function displayAppScreen(show) {
 function displayAppScreenContainer(show) {
   var apps = document.getElementById("app-screen-container");
   AddRemoveClassList(apps, "hide", show);
+}
+
+function highlightApp(showHide, highlightAppIndexX, highlightAppIndexY) {
+  var highlightAppId = menuItemIds[highlightAppIndexX][highlightAppIndexY];
+  var highlightNode = document.getElementById(highlightAppId);
+  AddRemoveClassList(highlightNode, "selected", showHide);
 }

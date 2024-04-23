@@ -40,7 +40,6 @@ var settingList = [
       break;
   
     case "power-button":
-      backButtonSelectCurrentApp();
       hideSettings();
       deselectSetting();
       showIdleScreen();
@@ -69,7 +68,6 @@ var settingList = [
     displaySettingsScreen();
     displayIdleScreenWallPaper(false);
     displayNavbar();
-  
   }
   
   function displaySettingsScreen(show){

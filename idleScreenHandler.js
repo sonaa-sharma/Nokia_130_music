@@ -5,7 +5,7 @@ function idleScreenHandler(button) {
   switch (button.id) {
     case "left-select-button":
       hideIdleScreen();
-      showMenu(false);
+      showMenu(true);
       break;
     default:
       switchToLockScreenTimer = setTimeout(lockTimer, 5000);
