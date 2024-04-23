@@ -40,6 +40,7 @@ var settingList = [
       break;
   
     case "power-button":
+      backButtonSelectCurrentApp();
       hideSettings();
       deselectSetting();
       showIdleScreen();
