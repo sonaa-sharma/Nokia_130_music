@@ -7,6 +7,10 @@ function idleScreenHandler(button) {
       hideIdleScreen();
       showMenu(true);
       break;
+    case "mid-button-inner":
+      hideIdleScreen();
+      showMusicPlayer();
+      break;
     default:
       switchToLockScreenTimer = setTimeout(lockTimer, 5000);
       break;

@@ -270,8 +270,20 @@
   border-radius: 4px;
 }
 
-.call-log{
+.gallery{
   background-color: #0fb00f;
+}
+
+.snake-game{
+  background-color: #4048dc;
+}
+
+.video{
+  background-color: #eda034;
+}
+
+.about{
+background-color: blueviolet;
 }
 
 .music{
@@ -279,14 +291,17 @@
 
 }
 
-.message{
-  background-color: #4048dc;
+.calculator{
+  background-color: chartreuse;
+}
+
+.calendar{
+
 }
 
 .torch{
   background-color: white;
   rotate: 45deg;
-
 }
 
 .music-player-div{
@@ -309,14 +324,12 @@
 .audio{
   height: 28px;
   max-width: 120px;
-
 }
 
 .message-div{
   text-align: center;
   height: 184.5px;
 }
-
 
 .backText{
   flex-direction: row-reverse;

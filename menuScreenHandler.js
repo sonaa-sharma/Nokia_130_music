@@ -1,6 +1,6 @@
 var menuItemIds = [
-  ["calls", "contact", "alarm"],
-  ["fm", "music", "message"],
+  ["gallery", "snake-game", "video"],
+  ["about", "music", "calculator"],
   ["calendar", "torch", "setting"],
 ];
 
