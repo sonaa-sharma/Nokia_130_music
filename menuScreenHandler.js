@@ -127,6 +127,9 @@ function goDown(menuItemIds, x, y) {
 
 function findAppSelection(currentAppId) {
   switch (currentAppId) {
+    case "gallery":
+      showGallery();
+      break;
     case "music":
       showMusicPlayer();
       break;

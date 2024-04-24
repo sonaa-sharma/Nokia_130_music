@@ -10,10 +10,10 @@ function wallpaperHandler(button) {
       hideWallpaperScreen();
       if (currentSettingId === "lock-screen-setting") {
         lockScreenWallpaperClassName = currentThemeId;
-        showLockScreen();
+        showSettings();
       } else if (currentSettingId === "home-screen-setting") {
         homeScreenWallpaperClassName = currentThemeId;
-        showIdleScreen();
+        showSettings();
       }
       break;
 

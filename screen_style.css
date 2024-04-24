@@ -280,8 +280,26 @@
   rotate: 45deg;
 }
 
-.music-player-div{
+.gallery-screen-div{
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.gallery-div{
+  text-align: center;
+}
+
+.musicPlayer-screen-div{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+}
+
+.music-player-div{
   display: flex;
   flex-direction: column;
   align-items: center;
