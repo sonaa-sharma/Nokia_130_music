@@ -135,7 +135,7 @@ function findAppSelection(currentAppId) {
       break;
 
     default:
-      showDefaultMessage();
+      showDefaultScreen();
       break;
   }
 }

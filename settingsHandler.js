@@ -15,7 +15,7 @@ function settingsHandler(button) {
       if (currentSettingId != "date-time-setting") {
         showWallpaperScreen(true);
       } else {
-        showDefaultMessage();
+        showDefaultScreen();
       }
       break;
 

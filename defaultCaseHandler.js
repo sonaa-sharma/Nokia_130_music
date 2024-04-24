@@ -1,12 +1,12 @@
 function defaultCaseHandler(button) {
   switch (button.id) {
     case "right-select-button":
-      mountDefaultMessage(false);
+      hideDefaultScreen();
       showMenu(false);
       break;
 
     case "power-button":
-      mountDefaultMessage(false);
+      hideDefaultScreen();
       showMenu(true);
       break;
 
@@ -15,10 +15,15 @@ function defaultCaseHandler(button) {
   }
 }
 
-function showDefaultMessage() {
+function showDefaultScreen() {
   mountIdleScreenWallPaper(true);
   mountDefaultMessage(true);
   screenName = "messageScreen";
+}
+
+function hideDefaultScreen() {
+  mountIdleScreenWallPaper(false);
+  mountDefaultMessage(false);
 }
 
 function mountDefaultMessage(show) {

@@ -138,14 +138,19 @@ function turnOfflcd() {
     case "appScreen":
       hideMenuScreen();
       break;
+    case "musicPlayerScreen":
+      hideMusicPlayer();
+      break;
     case "settingsScreen":
       hideSettings();
       break;
     case "wallpaperScreen":
       hideWallpaperScreen();
       break;
+    case "messageScreen":
+      hideDefaultScreen();
+      break;
     default:
-      mountDefaultMessage(false);
       break;
   }
 
