@@ -49,7 +49,6 @@ function showSettings(resetBoxPosition) {
   mountIdleScreenWallPaper(true);
   mountSettingsScreen(true);
   mountNavbar(true);
-  addSettingOptionsBorder();
   resetBoxSelection(resetBoxPosition);
 
   screenName = "settingsScreen";
