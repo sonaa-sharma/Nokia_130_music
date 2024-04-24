@@ -48,7 +48,6 @@ function themeSelectUp() {
   }
 
   currentThemeId = themeList[themeIndex];
-  console.log("themeselected " + currentThemeId);
   addWallpaperBorder();
   addTheme();
 }
@@ -59,7 +58,6 @@ function themeSelectDown() {
   }
 
   currentThemeId = themeList[themeIndex];
-  console.log("themeselected " + currentThemeId);
   addWallpaperBorder();
   addTheme();
 }
@@ -75,7 +73,6 @@ function themeDeselectUp() {
 
   currentThemeId = themeList[themeIndex];
   previousThemeId = currentThemeId;
-  console.log("themedeselected " + currentThemeId);
   removeWallpaperBorder();
   removeTheme();
 
@@ -89,7 +86,6 @@ function themeDeselectDown() {
 
   currentThemeId = themeList[themeIndex];
   previousThemeId = currentThemeId;
-  console.log("themedeselected " + currentThemeId);
   removeWallpaperBorder();
   removeTheme();
 
