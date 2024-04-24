@@ -55,7 +55,6 @@ function showMusicPlayer() {
   mountMusicPlayerScreen(true);
   mountNavbar(true);
   mountIdleScreenWallPaper(true);
-  play();
 
   screenName = "musicPlayerScreen";
 }
