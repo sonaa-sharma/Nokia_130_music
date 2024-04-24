@@ -21,7 +21,9 @@ function showIdleScreen() {
   mountIdleScreenWallPaper(true);
   mountNavbar(true);
   mountIdleScreen(true);
-  lockScreenTimeoutId = setInterval(setTime, 1000);
+  mountTime1(true);
+  setTime1();
+  IdleScreenTimeoutId = setInterval(setTime1, 1000);
   switchToLockScreenTimer = setTimeout(lockTimer, 5000);
 
   screenName = "idleScreen";
@@ -33,18 +35,11 @@ function lockTimer() {
   showLockScreen();
 }
 
-function showDateTimeDiv(){
-  mountLockScreen(true);
-  mountDateTimeContainer(true);
-  mountDate(false);
-  mountUnlockText(false);
-}
-
 function hideIdleScreen() {
   mountIdleScreen(false);
   mountIdleScreenWallPaper(false);
   mountNavbar(false);
-  clearInterval(lockScreenTimeoutId);
+  clearInterval(IdleScreenTimeoutId);
   clearTimeout(switchToLockScreenTimer);
 }
 
@@ -52,3 +47,19 @@ function mountIdleScreen(show) {
   var menuText = document.getElementById("menu-screen-div");
   AddRemoveClassList(menuText, "hide", !show);
 }
+
+function setTime1() {
+  var time = new Date();
+  var hour = time.getHours();
+  var minutes = time.getMinutes();
+  var clockHour = document.getElementById("clock-hour1");
+  var clockMin = document.getElementById("clock-min1");
+  
+  clockHour.innerHTML = getTwoDigitNumber(hour);
+  clockMin.innerHTML = getTwoDigitNumber(minutes);
+  }
+
+  function mountTime1(show) {
+    var time = document.getElementById("time1");
+    AddRemoveClassList(time, "hide", !show);
+  }

@@ -212,19 +212,14 @@
   flex-direction: column;
   gap: 8px;
   padding: 20px;
+  color: white;
 }
 
-.time {
+.time, .time1{
   font-size: 48px;
-  color: white;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
-
-.date {
-  color: white;
-}
-
 
 .hide-taking-space{
   opacity: 0;
@@ -395,8 +390,6 @@
 .theme3 {
   background-image: url('wallpaper/wp2.jpg');
 }
-
-
 
 .lcd-off-wallpaper {
   background-color: rgb(10, 10, 10);
