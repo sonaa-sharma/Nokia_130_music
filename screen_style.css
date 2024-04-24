@@ -233,7 +233,8 @@
 .idle-screen{
   height: 100%;
   display: flex;
-  flex-direction: column-reverse;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .app-screen-div{
