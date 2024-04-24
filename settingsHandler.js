@@ -12,9 +12,8 @@ function settingsHandler(button) {
   switch (button.id) {
     case "left-select-button":
       hideSettings();
-      deselectSettingBorder();
       if (currentSettingId != "date-time-setting") {
-        showWallpaperScreen();
+        showWallpaperScreen(true);
       } else {
         showDefaultMessage();
       }
@@ -32,13 +31,11 @@ function settingsHandler(button) {
 
     case "right-select-button":
       hideSettings();
-      deselectSettingBorder();
-      showMenu();
+      showMenu(false);
       break;
 
     case "power-button":
       hideSettings();
-      deselectSettingBorder();
       showIdleScreen();
       break;
 
@@ -47,17 +44,25 @@ function settingsHandler(button) {
   }
 }
 
-function deselectSettingBorder() {
-  var wallpaper = document.getElementById("setting");
-  AddRemoveClassList(wallpaper, "selected", false);
-}
 
-function showSettings() {
+function showSettings(resetBoxPosition) {
   mountIdleScreenWallPaper(true);
   mountSettingsScreen(true);
   mountNavbar(true);
   addSettingOptionsBorder();
+  resetBoxSelection(resetBoxPosition);
+
   screenName = "settingsScreen";
+}
+
+function resetBoxSelection(resetBoxPosition) {
+  if (resetBoxPosition) {
+    removeSettingOptionsBorder();
+    settingIndex = 0;
+    currentSettingId = settingList[settingIndex];
+
+  }
+  addSettingOptionsBorder();
 }
 
 function hideSettings() {
@@ -73,7 +78,7 @@ function mountSettingsScreen(show) {
 
 function addSettingOptionsBorder() {
   var option = document.getElementById(currentSettingId);
-  AddRemoveClassList(option, "wallpaper-border");
+  AddRemoveClassList(option, "wallpaper-border", true);
 }
 
 function removeSettingOptionsBorder() {
@@ -119,3 +124,4 @@ function settingDeselectDown() {
   removeSettingOptionsBorder();
   settingIndex++;
 }
+

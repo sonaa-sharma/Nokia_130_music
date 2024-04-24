@@ -131,7 +131,7 @@ function findAppSelection(currentAppId) {
       showMusicPlayer();
       break;
     case "setting":
-      showSettings();
+      showSettings(true);
       break;
 
     default:
@@ -147,6 +147,12 @@ function resetSelectedApp(resetAppPosition) {
     currentMenuIndexY = 0;
   }
   highlightApp(true, currentMenuIndexX, currentMenuIndexY);
+}
+
+function highlightApp(showHide, highlightAppIndexX, highlightAppIndexY) {
+  var highlightAppId = menuItemIds[highlightAppIndexX][highlightAppIndexY];
+  var highlightNode = document.getElementById(highlightAppId);
+  AddRemoveClassList(highlightNode, "selected", showHide);
 }
 
 function showMenu(resetAppPosition) {
@@ -194,8 +200,4 @@ function mountAppScreenContainer(show) {
   AddRemoveClassList(apps, "hide", !show);
 }
 
-function highlightApp(showHide, highlightAppIndexX, highlightAppIndexY) {
-  var highlightAppId = menuItemIds[highlightAppIndexX][highlightAppIndexY];
-  var highlightNode = document.getElementById(highlightAppId);
-  AddRemoveClassList(highlightNode, "selected", showHide);
-}
+

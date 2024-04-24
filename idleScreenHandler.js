@@ -16,8 +16,9 @@ function idleScreenHandler(button) {
 function showIdleScreen() {
   mountIdleScreenWallPaper(true);
   mountNavbar(true);
-  mountMenuText(true);
-  showDateTimeDiv();
+  mountIdleScreen(true);
+  // mountDate(true);
+  // showDateTimeDiv();
   lockScreenTimeoutId = setInterval(setTime, 1000);
   switchToLockScreenTimer = setTimeout(lockTimer, 5000);
 
@@ -38,17 +39,17 @@ function showDateTimeDiv(){
 }
 
 function hideIdleScreen() {
-  mountLockScreen();
+  mountIdleScreen(false);
   mountIdleScreenWallPaper(false);
   mountNavbar(false);
-  mountDate(false);
-  mountMenuText(false);
-  mountDateTimeContainer(false);
+  // mountLockScreen(false);
+  // mountDate(false);
+  // mountDateTimeContainer(false);
   clearInterval(lockScreenTimeoutId);
   clearTimeout(switchToLockScreenTimer);
 }
 
-function mountMenuText(show) {
+function mountIdleScreen(show) {
   var menuText = document.getElementById("menu-screen-div");
   AddRemoveClassList(menuText, "hide", !show);
 }
