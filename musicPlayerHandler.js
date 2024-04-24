@@ -1,17 +1,20 @@
-var audioPlayer = document.getElementById("audioPlayer");
-var playPause = document.getElementById("music-select");
 var flag = 0;
 
 function play() {
+  var audioPlayer = document.getElementById("audioPlayerId");
+  var playPause = document.getElementById("play-pause-text");
   playPause.innerHTML = "Pause";
   audioPlayer.play();
   flag = 1;
 }
 
 function pause() {
+  var audioPlayer = document.getElementById("audioPlayerId");
+  var playPause = document.getElementById("play-pause-text");
   audioPlayer.pause();
   playPause.innerHTML = "Play";
 }
+
 
 function musicPlayerHandler(button) {
   switch (button.id) {
@@ -52,6 +55,7 @@ function showMusicPlayer() {
   mountMusicPlayerScreen(true);
   mountNavbar(true);
   mountIdleScreenWallPaper(true);
+  play();
 
   screenName = "musicPlayerScreen";
 }
