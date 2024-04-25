@@ -6,11 +6,12 @@ function setTime() {
   var time = new Date();
   var hour = time.getHours();
   var minutes = time.getMinutes();
-  var clockHour = document.getElementById("clock-hour");
-  var clockMin = document.getElementById("clock-min");
   var clockYear = time.getFullYear();
   var clockMonth = time.getMonth() + 1;
   var clockDay = time.getDate();
+  
+  var clockHour = document.getElementById("clock-hour");
+  var clockMin = document.getElementById("clock-min");
   var currentYear = document.getElementById("year");
   var currentMonth = document.getElementById("month");
   var currentDay = document.getElementById("day");

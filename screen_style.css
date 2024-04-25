@@ -215,7 +215,7 @@
   color: white;
 }
 
-.time, .time1{
+.time{
   font-size: 48px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
@@ -362,7 +362,6 @@
 .theme-container{
   display: flex;
   flex-direction: column;
-
 } 
 
 .unlock-text{
@@ -373,7 +372,6 @@
   background-color: rgba(5, 5, 5, 0.3);
   border: 2px solid transparent;
   padding: 4px 8px;
-
 }
 
 .wallpaper-border{
