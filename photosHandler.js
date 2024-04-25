@@ -1,12 +1,12 @@
 function galleryScreenHandler(button) {
   switch (button.id) {
     case "power-button":
-      hideGallery();
+      hideGallery()
       showIdleScreen(true);
       break;
     case "right-select-button":
       hideGallery();
-      showPhotos(false);
+      mountPhotosScreen(true);
     default:
       break;
   }

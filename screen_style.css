@@ -294,6 +294,7 @@
 
 .photos-div {
   overflow: hidden;
+  height: 100%;
   /* overflow-x: hidden; */
   flex-wrap: wrap;
   background-color: #000000;
