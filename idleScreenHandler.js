@@ -21,34 +21,33 @@ function showIdleScreen() {
   mountIdleScreenWallPaper(true);
   mountNavbar(true);
   mountIdleScreen(true);
-  lockScreenTimeoutId = setInterval(setTime, 1000);
+  mountTime1(true);
+  setTime("clock-hour1", "clock-min1");
+  IdleScreenTimeoutId = setInterval(setTime, 1000, "clock-hour1", "clock-min1");
   switchToLockScreenTimer = setTimeout(lockTimer, 5000);
 
   screenName = "idleScreen";
 }
-
 
 function lockTimer() {
   hideIdleScreen();
   showLockScreen();
 }
 
-function showDateTimeDiv(){
-  mountLockScreen(true);
-  mountDateTimeContainer(true);
-  mountDate(false);
-  mountUnlockText(false);
-}
-
 function hideIdleScreen() {
   mountIdleScreen(false);
   mountIdleScreenWallPaper(false);
   mountNavbar(false);
-  clearInterval(lockScreenTimeoutId);
+  clearInterval(IdleScreenTimeoutId);
   clearTimeout(switchToLockScreenTimer);
 }
 
 function mountIdleScreen(show) {
   var menuText = document.getElementById("menu-screen-div");
   AddRemoveClassList(menuText, "hide", !show);
+}
+
+function mountTime1(show) {
+  var time = document.getElementById("time1");
+  AddRemoveClassList(time, "hide", !show);
 }

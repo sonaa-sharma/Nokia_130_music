@@ -212,19 +212,14 @@
   flex-direction: column;
   gap: 8px;
   padding: 20px;
+  color: white;
 }
 
-.time {
+.time{
   font-size: 48px;
-  color: white;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
-
-.date {
-  color: white;
-}
-
 
 .hide-taking-space{
   opacity: 0;
@@ -233,7 +228,8 @@
 .idle-screen{
   height: 100%;
   display: flex;
-  flex-direction: column-reverse;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 .app-screen-div{
@@ -366,7 +362,6 @@
 .theme-container{
   display: flex;
   flex-direction: column;
-
 } 
 
 .unlock-text{
@@ -377,7 +372,6 @@
   background-color: rgba(5, 5, 5, 0.3);
   border: 2px solid transparent;
   padding: 4px 8px;
-
 }
 
 .wallpaper-border{
@@ -394,8 +388,6 @@
 .theme3 {
   background-image: url('wallpaper/wp2.jpg');
 }
-
-
 
 .lcd-off-wallpaper {
   background-color: rgb(10, 10, 10);

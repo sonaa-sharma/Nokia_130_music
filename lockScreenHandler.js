@@ -2,36 +2,26 @@ var isSelectkeyPressed = false;
 var lockScreenTimeoutId;
 var clearGoBackId;
 
-function setTime() {
+function setDate() {
   var time = new Date();
-  var hour = time.getHours();
-  var minutes = time.getMinutes();
-  var clockHour = document.getElementById("clock-hour");
-  var clockMin = document.getElementById("clock-min");
+
   var clockYear = time.getFullYear();
   var clockMonth = time.getMonth() + 1;
   var clockDay = time.getDate();
+  
   var currentYear = document.getElementById("year");
   var currentMonth = document.getElementById("month");
   var currentDay = document.getElementById("day");
 
-  clockHour.innerHTML = getTwoDigitNumber(hour);
-  clockMin.innerHTML = getTwoDigitNumber(minutes);
   currentYear.innerHTML = getTwoDigitNumber(clockYear);
   currentMonth.innerHTML = getTwoDigitNumber(clockMonth);
   currentDay.innerHTML = getTwoDigitNumber(clockDay);
 }
 
-function getTwoDigitNumber(number) {
-    var twoDigitNumber = number;
-  
-    if (number < 10) {
-      twoDigitNumber = "0" + number;
-    }
-  
-    return twoDigitNumber;
-  }
-  
+function setDateTime(){
+  setDate();
+  setTime("clock-hour", "clock-min");
+}  
 
 function lockScreenHandler(button) {
   switch (button.id) {
@@ -141,9 +131,9 @@ function showLockScreen() {
   mountNavbar(true);
   mountLockScreen(true);
   mountDateTime(true);
-  setTime();
+  setDateTime();
   isSelectkeyPressed = false;
-  lockScreenTimeoutId = setInterval(setTime, 1000);
+  lockScreenTimeoutId = setInterval(setDateTime, 1000);
   screenName = "lockScreen";
 }
 
