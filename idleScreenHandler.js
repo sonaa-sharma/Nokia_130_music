@@ -22,13 +22,12 @@ function showIdleScreen() {
   mountNavbar(true);
   mountIdleScreen(true);
   mountTime1(true);
-  setTime1();
-  IdleScreenTimeoutId = setInterval(setTime1, 1000);
+  setTime("clock-hour1", "clock-min1");
+  IdleScreenTimeoutId = setInterval(setTime, 1000, "clock-hour1", "clock-min1");
   switchToLockScreenTimer = setTimeout(lockTimer, 5000);
 
   screenName = "idleScreen";
 }
-
 
 function lockTimer() {
   hideIdleScreen();
@@ -48,18 +47,7 @@ function mountIdleScreen(show) {
   AddRemoveClassList(menuText, "hide", !show);
 }
 
-function setTime1() {
-  var time = new Date();
-  var hour = time.getHours();
-  var minutes = time.getMinutes();
-  var clockHour = document.getElementById("clock-hour1");
-  var clockMin = document.getElementById("clock-min1");
-  
-  clockHour.innerHTML = getTwoDigitNumber(hour);
-  clockMin.innerHTML = getTwoDigitNumber(minutes);
-  }
-
-  function mountTime1(show) {
-    var time = document.getElementById("time1");
-    AddRemoveClassList(time, "hide", !show);
-  }
+function mountTime1(show) {
+  var time = document.getElementById("time1");
+  AddRemoveClassList(time, "hide", !show);
+}
