@@ -1,33 +1,27 @@
-function galleryScreenHandler(button) {
+function photosScreenHandler(button) {
   switch (button.id) {
     case "power-button":
-      hideGallery()
+      hidePhoto()
       showIdleScreen(true);
       break;
     case "right-select-button":
-      hideGallery();
-      mountPhotosScreen(true);
+      hidePhoto();
+      mountGalleryScreen(true);
     default:
       break;
   }
 }
 
-function showGallery() {
-  mountGalleryScreen(true);
-  mountIdleScreenWallPaper(true);
-  mountNavbar(true);
-
-
-  screenName = "galleryScreen";
+function showPhoto() {
+  mountPhotoScreen(true);
+  screenName = "photosScreen";
 }
 
-function hideGallery() {
-  mountGalleryScreen(false);
-  mountIdleScreenWallPaper(false);
-  mountNavbar(false);
+function hidePhoto() {
+  mountPhotoScreen(false);
 }
 
-function mountGalleryScreen(show) {
-  var menuText = document.getElementById("gallery-screen");
-  AddRemoveClassList(menuText, "hide", !show);
+function mountPhotoScreen(show) {
+  var photoNode = document.getElementById("photos-screen");
+  AddRemoveClassList(photoNode, "hide", !show);
 }

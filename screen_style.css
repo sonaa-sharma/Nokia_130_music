@@ -277,27 +277,16 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: #dc8d8d;
 }
+
 
 .gallery-div {
-  text-align: center;
-}
-
-
-.photos-screen-div {
-  display: flex;
-  flex-direction: column;
   height: 100%;
-  background-color: rgb(50, 50, 50);
-  justify-content: space-between;
-}
-
-.photos-div {
   overflow: hidden;
-  height: 100%;
   /* overflow-x: hidden; */
   flex-wrap: wrap;
-  background-color: #000000;
+  text-align: center;
 }
 
 .picture-container {
@@ -312,6 +301,19 @@
   width: 56px;
   height: 78px;
   border: 2px solid transparent;
+}
+
+.photos-screen-div {
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: blueviolet;
+}
+
+.photo-div {
+  text-align: center;
 }
 
 .musicPlayer-screen-div {

@@ -144,6 +144,8 @@ function turnOfflcd() {
     case "appScreen":
       hideMenuScreen();
       break;
+    case "galleryScreen":
+      mountGalleryScreen(false);
     case "photosScreen":
       hidePhotos();
       break;

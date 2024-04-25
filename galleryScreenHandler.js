@@ -1,39 +1,39 @@
-function photosScreenHandler(button) {
+function galleryScreenHandler(button) {
   switch (button.id) {
     case "left-select-button":
-      mountPhotosScreen(false)
-      showGallery();
+      mountGalleryScreen(false)
+      showPhoto();
       break;
     case "power-button":
-      mountPhotosScreen(false)
-      showGallery();
+      mountGalleryScreen(false)
+      showIdleScreen();
       break;
     case "right-select-button":
-      mountPhotosScreen(false)
+      mountGalleryScreen(false)
       showMenu();
     default:
       break;
   }
 }
 
-function mountPhotosScreen(show) {
+function mountGalleryScreen(show) {
   if (show) {
-    mountPhotos();
+    mountGallery();
   } else {
-    unmountPhotos();
+    unmountGallery();
   }
 }
 
-function mountPhotos() {
-  var photosNode = document.getElementById("photos-screen");
+function mountGallery() {
+  var galleryNode = document.getElementById("gallery-screen");
   var imagesNode = createImagesNode();
-  photosNode.insertBefore(imagesNode, photosNode.firstChild);
-  AddRemoveClassList(photosNode, "hide", false);
-  screenName = "photosScreen";
+  galleryNode.insertBefore(imagesNode, galleryNode.firstChild);
+  AddRemoveClassList(galleryNode, "hide", false);
+  screenName = "galleryScreen";
 }
 
-function unmountPhotos() {
-  var galleryNode = document.getElementById("photos-screen");
+function unmountGallery() {
+  var galleryNode = document.getElementById("gallery-screen");
   var imagesNode = getImagesNode();
   galleryNode.removeChild(imagesNode);
   AddRemoveClassList(galleryNode, "hide", true);
@@ -52,7 +52,7 @@ function getImagesNode() {
 
 function createContainerNode() {
   var containerNode = document.createElement("div");
-  containerNode.classList.add("photos-div");
+  containerNode.classList.add("gallery-div");
   containerNode.innerText = "new div";
   return containerNode;
 }
