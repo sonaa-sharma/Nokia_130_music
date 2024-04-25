@@ -29,6 +29,9 @@ function buttonClicked(button) {
     case "galleryScreen":
       galleryScreenHandler(button);
       break;
+    case "photosScreen":
+      photosScreenHandler(button);
+      break;
     case "musicPlayerScreen":
       musicPlayerHandler(button);
       break;
@@ -141,8 +144,8 @@ function turnOfflcd() {
     case "appScreen":
       hideMenuScreen();
       break;
-    case "galleryScreen":
-      hideGallery();
+    case "photosScreen":
+      hidePhotos();
       break;
     case "musicPlayerScreen":
       hideMusicPlayer();

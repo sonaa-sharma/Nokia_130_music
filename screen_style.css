@@ -26,8 +26,9 @@
   padding: 0 8px;
 }
 
-#unlockMessage{
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+#unlockMessage {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
   font-size: 12px;
   align-self: center;
 }
@@ -40,18 +41,18 @@
   flex-direction: column;
 }
 
-.brand-animation-container{
+.brand-animation-container {
   height: 136px;
   overflow: hidden;
 }
 
-#brand-animation{
+#brand-animation {
   height: 139px;
   border: none;
-  margin: -1px -1px
+  margin: -1px -1px;
 }
 
-.lcd-white{
+.lcd-white {
   background-color: white;
 }
 
@@ -71,10 +72,10 @@
   gap: 3px;
 }
 
-.navbar-contents{
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
+.navbar-contents {
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
 }
 .signal {
   display: flex;
@@ -103,16 +104,16 @@
   height: 12px;
 }
 
-.sim-card{
-    color: black;
-    display: flex;
-    font-size: 12px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+.sim-card {
+  color: black;
+  display: flex;
+  font-size: 12px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
-.sim-cornor{
-    display: block;
-
+.sim-cornor {
+  display: block;
 }
 
 .corner-triangle {
@@ -124,81 +125,77 @@
   border-right: 3px solid white;
 }
 
-.left-rectangle{
-    height: 8px;
-    width: 4.8px;
-    background-color: white;
-    border-bottom-left-radius: 2px;
+.left-rectangle {
+  height: 8px;
+  width: 4.8px;
+  background-color: white;
+  border-bottom-left-radius: 2px;
 }
 
-.right-rectangle{
-    height: 13px;
-    width: 10px;
-    background-color: white;
-    padding: 0 3px;
-    font-size: 11px;
-    border-top-right-radius: 2px;
-    border-bottom-right-radius: 2px;
-
+.right-rectangle {
+  height: 13px;
+  width: 10px;
+  background-color: white;
+  padding: 0 3px;
+  font-size: 11px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
 }
 
-.screen-lock-icon{
-    gap: 8px;
-    rotate: 45 degree;
-    transform: rotate(45deg);
+.screen-lock-icon {
+  gap: 8px;
+  rotate: 45 degree;
+  transform: rotate(45deg);
 }
 
-.icon-top{
-    width: 8px;
-    height: 4px;
-    background-color: white;
-    border-radius: 1px;
+.icon-top {
+  width: 8px;
+  height: 4px;
+  background-color: white;
+  border-radius: 1px;
 }
 
-.icon-top-inner{
-    width: 4px;
-    height: 2px;
-    background-color: black;
+.icon-top-inner {
+  width: 4px;
+  height: 2px;
+  background-color: black;
 }
 
-.icon-mid{
-    width: 4.3px;
-    height: 4px;
-    background-color: white;
-    border-radius: 0px 0px 1px 1px;
-    margin-left: 1.5px;
-
+.icon-mid {
+  width: 4.3px;
+  height: 4px;
+  background-color: white;
+  border-radius: 0px 0px 1px 1px;
+  margin-left: 1.5px;
 }
 
-.icon-bottom{
-    width: 2px;
-    height: 4px;
-    background-color: white;
-    border-radius: 0px 0px 2px 2px;
-    margin-left: 2.5px;
-
+.icon-bottom {
+  width: 2px;
+  height: 4px;
+  background-color: white;
+  border-radius: 0px 0px 2px 2px;
+  margin-left: 2.5px;
 }
 
-.battery-left{
-    width: 2px;
-    height: 6px ;
-    background-color: white;
-    border-radius: .5px 0px 0px .5px;
+.battery-left {
+  width: 2px;
+  height: 6px;
+  background-color: white;
+  border-radius: 0.5px 0px 0px 0.5px;
 }
 
-.battery-outer-body{
-    height: 11px;
-    background-color: white;
-    border-radius: 2px;
-    padding: 2px;
-
+.battery-outer-body {
+  height: 11px;
+  background-color: white;
+  border-radius: 2px;
+  padding: 2px;
 }
 
-.battery-inner-body{
-    width: 14px;
-    height: 8px;
-    background-color: white;
-    border: 2px solid black;
+.battery-inner-body {
+  width: 14px;
+  height: 8px;
+  background-color: white;
+  border: 2px solid black;
 }
 
 .lock-screen-container {
@@ -221,32 +218,32 @@
     "Lucida Sans", Arial, sans-serif;
 }
 
-.hide-taking-space{
+.hide-taking-space {
   opacity: 0;
 }
 
-.idle-screen{
+.idle-screen {
   height: 100%;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 }
 
-.app-screen-div{
+.app-screen-div {
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between ;
+  justify-content: space-between;
 }
 
-.apps-div{
+.apps-div {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   color: black;
 }
 
-.apps-container{
+.apps-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -256,46 +253,74 @@
   border-radius: 25px;
 }
 
-.icon-container{
+.icon-container {
   padding: 8px;
   border: 2px solid transparent;
 }
 
-.selected{
+.selected {
   border-color: white;
   border-radius: 4px;
 }
 
-.music{
+.music {
   background-color: rgb(242, 57, 88);
-
 }
 
-.torch{
+.torch {
   background-color: white;
   rotate: 45deg;
 }
 
-.gallery-screen-div{
+.gallery-screen-div {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.gallery-div{
+.gallery-div {
   text-align: center;
 }
 
-.musicPlayer-screen-div{
+
+.photos-screen-div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: rgb(50, 50, 50);
+  justify-content: space-between;
+}
+
+.photos-div {
+  overflow: hidden;
+  /* overflow-x: hidden; */
+  flex-wrap: wrap;
+  background-color: #000000;
+}
+
+.picture-container {
+  /* height: 40px; */
+  /* width: 40px; */
+  background-size: cover;
+  padding: 2px;
+  /* background-color: brown; */
+}
+
+.pic{
+  width: 56px;
+  height: 78px;
+  border: 2px solid transparent;
+}
+
+.musicPlayer-screen-div {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
 }
 
-.music-player-div{
+.music-player-div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -311,28 +336,28 @@
   border-radius: 8px;
 }
 
-.audio{
+.audio {
   height: 28px;
   max-width: 120px;
 }
 
-.message-div{
+.message-div {
   text-align: center;
   height: 184.5px;
 }
 
-.backText{
+.backText {
   flex-direction: row-reverse;
 }
 
-.setting-screen-div{
+.setting-screen-div {
   height: 224px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.wallpaper-screen-div{
+.wallpaper-screen-div {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -341,25 +366,24 @@
   height: 100%;
 }
 
-.select-wallpaper-text{
+.select-wallpaper-text {
   margin: 0;
   padding: 8px 12px;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.bottom-navbar{
+.bottom-navbar {
   display: flex;
   justify-content: space-between;
   font-weight: 700;
   padding: 8px 16px;
-
 }
 
-.bottom-navbar-color{
+.bottom-navbar-color {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.theme-container{
+.theme-container {
   display: flex;
   flex-direction: column;
 } 
@@ -368,28 +392,27 @@
   padding: 4px 8px;
 }
 
-.theme{
+.theme {
   background-color: rgba(5, 5, 5, 0.3);
   border: 2px solid transparent;
   padding: 4px 8px;
 }
 
-.wallpaper-border{
+.wallpaper-border {
   border-color: white;
 }
 
 .theme1 {
-  background-image: url('wallpaper/grass.jpg');
+  background-image: url("wallpaper/grass.jpg");
 }
 
 .theme2 {
-  background-image: url('wallpaper/wp1.jpg');
+  background-image: url("wallpaper/wp1.jpg");
 }
 .theme3 {
-  background-image: url('wallpaper/wp2.jpg');
+  background-image: url("wallpaper/wp2.jpg");
 }
 
 .lcd-off-wallpaper {
   background-color: rgb(10, 10, 10);
 }
-

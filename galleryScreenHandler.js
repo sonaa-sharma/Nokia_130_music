@@ -1,36 +1,39 @@
-function galleryScreenHandler(button) {
-  switch (button.id) {
-    case "left-select-button":
-      hideGallery();
-      showMenu(false);
-      break;
-    case "power-button":
-      hideGallery();
-      showMenu(true);
-      break;
-    case "right-select-button":
-      hideGallery();
-      showMenu(false);
-    default:
-      break;
+function photosScreenHandler(button) {
+    switch (button.id) {
+      case "left-select-button":
+        hidePhotos();
+        showGallery();
+        break;
+      case "power-button":
+        hidePhotos();
+        showGallery();
+        break;
+      case "right-select-button":
+        hidePhotos();
+        showMenu();
+      default:
+        break;
+    }
   }
-}
-
-function showGallery() {
-  mountGalleryScreen(true);
-  mountIdleScreenWallPaper(true);
-  mountNavbar(true);
-
-  screenName = "galleryScreen";
-}
-
-function hideGallery() {
-  mountGalleryScreen(false);
-  mountIdleScreenWallPaper(false);
-  mountNavbar(false);
-}
-
-function mountGalleryScreen(show) {
-  var menuText = document.getElementById("gallery-screen");
-  AddRemoveClassList(menuText, "hide", !show);
-}
+  
+  function showPhotos() {
+    mountPhotosScreen(true);
+    
+    // mountIdleScreenWallPaper(true);
+    // mountNavbar(true);
+  
+  
+    screenName = "photosScreen";
+  }
+  
+  function hidePhotos() {
+    mountPhotosScreen(false);
+    // mountIdleScreenWallPaper(false);
+    // mountNavbar(false);
+  }
+  
+  function mountPhotosScreen(show) {
+    var menuText = document.getElementById("photos-screen");
+    AddRemoveClassList(menuText, "hide", !show);
+  }
+  
