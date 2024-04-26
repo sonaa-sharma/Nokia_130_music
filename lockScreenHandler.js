@@ -4,7 +4,6 @@ var clearGoBackId;
 
 function setDate() {
   var time = new Date();
-
   var clockYear = time.getFullYear();
   var clockMonth = time.getMonth() + 1;
   var clockDay = time.getDate();
