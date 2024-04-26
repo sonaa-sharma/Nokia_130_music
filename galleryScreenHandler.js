@@ -29,6 +29,10 @@ function mountGallery() {
   var imagesNode = createImagesNode();
   galleryNode.insertBefore(imagesNode, galleryNode.firstChild);
   AddRemoveClassList(galleryNode, "hide", false);
+  for(i=0; i<10; i++){
+    var imageContainerBox = createImageContainerBox();
+    imagesNode.appendChild(imageContainerBox);
+  }
   screenName = "galleryScreen";
 }
 
@@ -37,6 +41,23 @@ function unmountGallery() {
   var imagesNode = getImagesNode();
   galleryNode.removeChild(imagesNode);
   AddRemoveClassList(galleryNode, "hide", true);
+  idName = 1;
+}
+function abc(){
+  var imageContainerBox = createImageContainerBox();
+  galleryNode.insertBefore(imageContainerBox, galleryNode.firstChild);
+}
+
+var idName = 1;
+
+function createImageContainerBox(){
+    var containerNode = document.createElement("div");
+    containerNode.classList.add("picture-container", "center");
+    // containerNode.innerText = "image-box";
+    containerNode.id = "image-box" + idName;
+    containerNode.style.backgroundImage = 'url("https://images.pexels.com/photos/919278/pexels-photo-919278.jpeg?auto=compress&cs=tinysrgb&w=400")';
+    idName++;
+    return containerNode;
 }
 
 var imagesNode;
@@ -53,6 +74,8 @@ function getImagesNode() {
 function createContainerNode() {
   var containerNode = document.createElement("div");
   containerNode.classList.add("gallery-div");
-  containerNode.innerText = "new div";
+  // containerNode.innerText = "gallery";
   return containerNode;
 }
+
+
