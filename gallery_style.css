@@ -11,14 +11,15 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    overflow: hidden;
     background-color: rgb(10,10,10);
   }
 
   .gallery-div {
+    height: 100%;
     width: 199px;
     display: flex;
     flex-wrap: wrap;
-    overflow: hidden;
   }
   
   .picture-container {

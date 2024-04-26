@@ -21,6 +21,9 @@ function showIdleScreen() {
   mountIdleScreenWallPaper(true);
   mountNavbar(true);
   mountIdleScreen(true);
+  mountTime1(true);
+  setTime("clock-hour1", "clock-min1");
+  IdleScreenTimeoutId = setInterval(setTime, 1000, "clock-hour1", "clock-min1");
   switchToLockScreenTimer = setTimeout(lockTimer, 5000);
 
   screenName = "idleScreen";
