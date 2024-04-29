@@ -1,11 +1,18 @@
 var menuItemIds = [
-  ["gallery", "snake-game", "video"],
-  ["about", "music", "calculator"],
-  ["calendar", "torch", "setting"],
+  "gallery",
+  "snake-game",
+  "video",
+  "about",
+  "music",
+  "calculator",
+  "calendar",
+  "torch",
+  "setting",
 ];
 
-var currentMenuIndexX = 0;
-var currentMenuIndexY = 0;
+var WIDTH_LENGTH = 3;
+
+var currentMenuIndex = 0;
 
 function appScreenHandler(button) {
   var nextAppIndex;
@@ -13,7 +20,7 @@ function appScreenHandler(button) {
   switch (button.id) {
     case "left-select-button":
       hideMenuScreen();
-      var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
+      var currentAppId = menuItemIds[currentMenuIndex];
       findAppSelection(currentAppId);
       break;
 
@@ -24,23 +31,29 @@ function appScreenHandler(button) {
       break;
 
     case "top-button":
-      nextAppIndex = goUp(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-      menuScrolling(nextAppIndex[0], nextAppIndex[1]);
+      nextAppIndex = goUp(menuItemIds, currentMenuIndex);
+      console.log(currentMenuIndex, nextAppIndex);
+      itemsScrolling(menuItemIds, nextAppIndex, 'selected');
       break;
 
     case "left-button":
-      nextAppIndex = goLeft(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-      menuScrolling(nextAppIndex[0], nextAppIndex[1]);
+      nextAppIndex = goLeft(menuItemIds, currentMenuIndex);
+      console.log(currentMenuIndex, nextAppIndex);
+      itemsScrolling(menuItemIds, nextAppIndex, 'selected');
+
       break;
 
     case "right-button":
-      nextAppIndex = goRight(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-      menuScrolling(nextAppIndex[0], nextAppIndex[1]);
+      nextAppIndex = goRight(menuItemIds, currentMenuIndex);
+      console.log(currentMenuIndex, nextAppIndex);
+      itemsScrolling(menuItemIds, nextAppIndex, 'selected');
+
       break;
 
     case "bottom-button":
-      nextAppIndex = goDown(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-      menuScrolling(nextAppIndex[0], nextAppIndex[1]);
+      nextAppIndex = goDown(menuItemIds.length, currentMenuIndex, WIDTH_LENGTH);
+      itemsScrolling(menuItemIds, nextAppIndex, 'selected');
+
       break;
 
     default:
@@ -48,81 +61,81 @@ function appScreenHandler(button) {
   }
 }
 
-function menuScrolling(nextMenuIndexX, nextMenuIndexY) {
-  var itemId = menuItemIds[nextMenuIndexX][nextMenuIndexY];
+function itemsScrolling(menuItemIds, nextMenuIndex, selectedClassName) {
+  var itemId = menuItemIds[nextMenuIndex];
   var nextApp = document.getElementById(itemId);
-  var currentId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
+  var currentId = menuItemIds[currentMenuIndex];
   var currentApp = document.getElementById(currentId);
 
-  AddRemoveClassList(nextApp, "selected", true);
-  AddRemoveClassList(currentApp, "selected", false);
-  
-  currentMenuIndexX = nextMenuIndexX;
-  currentMenuIndexY = nextMenuIndexY;
+  AddRemoveClassList(currentApp, selectedClassName, false);
+  AddRemoveClassList(nextApp, selectedClassName, true);
+  currentApp.scrollIntoView({ behavior: "smooth", inline: "center", block: 'center' });
+
+  currentMenuIndex = nextMenuIndex;
 }
 
-function goRight(menuItemIds, x, y) {
-  var nextIndexX = x;
-  var nextIndexY = y + 1;
+function goRight(menuItemIds, x) {
+  var nextIndex = x + 1;
 
-  if (nextIndexY === menuItemIds[x].length) {
-    nextIndexX++;
-    nextIndexY = 0;
+  if (nextIndex === menuItemIds.length) {
+    nextIndex = 0;
   }
 
-  if (nextIndexX === menuItemIds.length) {
-    nextIndexX = 0;
-  }
-
-  return [nextIndexX, nextIndexY];
+  return nextIndex;
 }
 
-function goLeft(menuItemIds, x, y) {
-  var backIndexX = x;
-  var backIndexY = y - 1;
+function goLeft(menuItemIds, x) {
+  var nextIndex = x - 1;
 
-  if (backIndexY < 0) {
-    backIndexY = menuItemIds[x].length - 1;
-    backIndexX--;
+  if (nextIndex < 0) {
+    nextIndex = menuItemIds.length - 1;
   }
 
-  if (backIndexX < 0) {
-    backIndexX = menuItemIds.length - 1;
-  }
-
-  return [backIndexX, backIndexY];
+  return nextIndex;
 }
 
-function goUp(menuItemIds, x, y) {
-  var backIndexX = x - 1;
-  var backIndexY = y;
+function goUp(menuItemIds, x) {
+  var nextIndex = x - 3;
 
-  if (backIndexX < 0) {
-    backIndexX = menuItemIds.length - 1;
-    backIndexY--;
+  if (nextIndex < 0) {
+    nextIndex = menuItemIds.length - 1;
   }
 
-  if (backIndexY < 0) {
-    backIndexY = menuItemIds[x].length - 1;
-  }
-
-  return [backIndexX, backIndexY];
+  return nextIndex;
 }
 
-function goDown(menuItemIds, x, y) {
-  var nextIndexX = x + 1;
-  var nextIndexY = y;
+function goDown(menuItemsLength, currentPosition, widthSize) {
+  var nextPosition = currentPosition + widthSize;
 
-  if (nextIndexX === menuItemIds.length) {
-    nextIndexX = 0;
-    nextIndexY++;
+  if (nextPosition < menuItemsLength) {
+    return nextPosition;
   }
 
-  if (nextIndexY === menuItemIds[x].length) {
-    nextIndexY = 0;
+  var gridSize = getGridSize(menuItemsLength, widthSize, currentPosition);
+
+  if (currentPosition === gridSize - 1) {
+    return 0;
   }
 
-  return [nextIndexX, nextIndexY];
+  nextPosition = nextPosition - gridSize + 1;
+
+  if (nextPosition >= menuItemsLength) {
+    return 0;
+  }
+
+  return nextPosition;
+}
+
+function getGridSize(menuItemsLength, widthSize, currentPosition) {
+  var lines = Math.ceil(menuItemsLength / widthSize);
+  var gridSize = lines * widthSize;
+  var smallerGridSize = gridSize - widthSize;
+
+  if (currentPosition < smallerGridSize) {
+    return smallerGridSize;
+  }
+
+  return gridSize;
 }
 
 function findAppSelection(currentAppId) {
@@ -153,15 +166,14 @@ function findAppSelection(currentAppId) {
 
 function resetSelectedApp(resetAppPosition) {
   if (resetAppPosition) {
-    highlightApp(false, currentMenuIndexX, currentMenuIndexY);
-    currentMenuIndexX = 0;
-    currentMenuIndexY = 0;
+    highlightApp(false, currentMenuIndex);
+    currentMenuIndex = 0;
   }
-  highlightApp(true, currentMenuIndexX, currentMenuIndexY);
+  highlightApp(true, currentMenuIndex);
 }
 
-function highlightApp(showHide, highlightAppIndexX, highlightAppIndexY) {
-  var highlightAppId = menuItemIds[highlightAppIndexX][highlightAppIndexY];
+function highlightApp(showHide, highlightAppIndex) {
+  var highlightAppId = menuItemIds[highlightAppIndex];
   var highlightNode = document.getElementById(highlightAppId);
   AddRemoveClassList(highlightNode, "selected", showHide);
 }
@@ -210,5 +222,3 @@ function mountAppScreenContainer(show) {
   var apps = document.getElementById("app-screen-container");
   AddRemoveClassList(apps, "hide", !show);
 }
-
-

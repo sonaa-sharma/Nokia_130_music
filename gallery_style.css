@@ -33,6 +33,10 @@
     border: 2px solid transparent;
   }
 
+  .pic-selected {
+    border-color: white;
+  }
+
   .photos-screen-div {
     text-align: center;
     height: 100%;
