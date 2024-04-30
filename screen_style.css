@@ -238,7 +238,7 @@
 
 .apps-div {
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   flex-wrap: wrap;
   color: black;
 }
@@ -259,7 +259,7 @@
 }
 
 .selected {
-  border-radius: 20px;
+  border-radius: 8px;
   border-color: white;
 }
 
