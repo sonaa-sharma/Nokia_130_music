@@ -35,10 +35,12 @@ var imageIds = [
 ];
 
 // var currentMenuIndex = 0;
+var WIDTH_LENGTH_IMAGE = 3;
+var RE_SET = false;
 
 function galleryScreenHandler(button) {
   var nextImageIndex;
-
+  var imagesLength = imageSources.length;
   switch (button.id) {
     case "left-select-button":
       mountGalleryScreen(false);
@@ -56,27 +58,31 @@ function galleryScreenHandler(button) {
       break;
 
     case "top-button":
-      nextImageIndex = goUp(imageIds, currentMenuIndex);
+      nextImageIndex = goUp(imagesLength, currentMenuIndex, WIDTH_LENGTH_IMAGE, RE_SET);
+      console.log(currentMenuIndex);
 
-      itemsScrolling(imageIds, nextImageIndex);
+      itemsScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
     case "left-button":
-      nextImageIndex = goLeft(imageIds, currentMenuIndex);
+      nextImageIndex = goLeft(imagesLength, currentMenuIndex, RE_SET);
+      console.log(currentMenuIndex);
 
-      itemsScrolling(imageIds, nextImageIndex);
+      itemsScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
     case "right-button":
-      nextImageIndex = goRight(imageIds, currentMenuIndex);
+      nextImageIndex = goRight(imagesLength, currentMenuIndex, RE_SET);
+      console.log(currentMenuIndex);
 
-      itemsScrolling(imageIds, nextImageIndex);
+      itemsScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
     case "bottom-button":
-      nextImageIndex = goDown(imageIds.length, currentMenuIndex, WIDTH_LENGTH);
-
-      itemsScrolling(imageIds, nextImageIndex);
+      nextImageIndex = goDown(imagesLength, currentMenuIndex, WIDTH_LENGTH_IMAGE, RE_SET);
+      console.log(currentMenuIndex);
+      
+      itemsScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
     default:
@@ -97,6 +103,11 @@ function mountGallery() {
   var imagesNode = createImagesNode(imageSources);
   var imagesContainer = document.getElementById("images-container");
   imagesContainer.appendChild(imagesNode);
+  var currentMenuIndex = 0;
+
+  var id = imageIds[currentMenuIndex];
+  firstImage = document.getElementById(id);
+  AddRemoveClassList(firstImage, "pic-selected", true);
 
   AddRemoveClassList(galleryNode, "hide", false);
   screenName = "galleryScreen";
@@ -108,6 +119,8 @@ function unmountGallery() {
 
   var imagesContainerNode = getImagesNode();
   imagesContainer.removeChild(imagesContainerNode);
+
+  currentMenuIndex = 0;
 
   AddRemoveClassList(galleryNode, "hide", true);
 }
@@ -124,7 +137,6 @@ function createImagesNode(imageSources) {
   for (i = 0; i < imageSources.length; i++) {
     var id = "image-box" + i;
     var imageContainerBox = createImageContainer(id, imageSources[i]);
-    console.log(imageContainerBox.id);
     imagesNode.appendChild(imageContainerBox);
   }
   return imagesNode;

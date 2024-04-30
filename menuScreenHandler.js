@@ -16,12 +16,14 @@ var currentMenuIndex = 0;
 
 function appScreenHandler(button) {
   var nextAppIndex;
+  var menuItemsLength = menuItemIds.length;
+  var RESET = true;
 
   switch (button.id) {
     case "left-select-button":
       hideMenuScreen();
       var currentAppId = menuItemIds[currentMenuIndex];
-      findAppSelection(currentAppId);
+      openApp(currentAppId);
       break;
 
     case "power-button":
@@ -31,27 +33,24 @@ function appScreenHandler(button) {
       break;
 
     case "top-button":
-      nextAppIndex = goUp(menuItemIds, currentMenuIndex);
-      console.log(currentMenuIndex, nextAppIndex);
-      itemsScrolling(menuItemIds, nextAppIndex, 'selected');
+      nextAppIndex = goUp(menuItemsLength, currentMenuIndex, WIDTH_LENGTH, RESET);
+      itemsScrolling(menuItemIds, nextAppIndex, "selected");
       break;
 
     case "left-button":
-      nextAppIndex = goLeft(menuItemIds, currentMenuIndex);
-      console.log(currentMenuIndex, nextAppIndex);
-      itemsScrolling(menuItemIds, nextAppIndex, 'selected');
+      nextAppIndex = goLeft(menuItemsLength, currentMenuIndex, RESET);
+      itemsScrolling(menuItemIds, nextAppIndex, "selected");
 
       break;
 
     case "right-button":
-      nextAppIndex = goRight(menuItemIds, currentMenuIndex);
-      console.log(currentMenuIndex, nextAppIndex);
-      itemsScrolling(menuItemIds, nextAppIndex, 'selected');
+      nextAppIndex = goRight(menuItemsLength, currentMenuIndex, RESET);
+      itemsScrolling(menuItemIds, nextAppIndex, "selected");
 
       break;
 
     case "bottom-button":
-      nextAppIndex = goDown(menuItemIds.length, currentMenuIndex, WIDTH_LENGTH);
+      nextAppIndex = goDown(menuItemsLength, currentMenuIndex, WIDTH_LENGTH, RESET);
       itemsScrolling(menuItemIds, nextAppIndex, 'selected');
 
       break;
@@ -69,43 +68,69 @@ function itemsScrolling(menuItemIds, nextMenuIndex, selectedClassName) {
 
   AddRemoveClassList(currentApp, selectedClassName, false);
   AddRemoveClassList(nextApp, selectedClassName, true);
-  currentApp.scrollIntoView({ behavior: "smooth", inline: "center", block: 'center' });
+  currentApp.scrollIntoView({
+    behavior: "smooth",
+    inline: "center",
+    block: "center",
+  });
 
   currentMenuIndex = nextMenuIndex;
 }
 
-function goRight(menuItemIds, x) {
-  var nextIndex = x + 1;
+function goRight(menuItemsLength, currentPosition, rotation_allowed) {
+  var nextPosition = currentPosition + 1;
 
-  if (nextIndex === menuItemIds.length) {
-    nextIndex = 0;
+  if (nextPosition === menuItemsLength && rotation_allowed === true) {
+    nextPosition = 0;
   }
 
-  return nextIndex;
-}
-
-function goLeft(menuItemIds, x) {
-  var nextIndex = x - 1;
-
-  if (nextIndex < 0) {
-    nextIndex = menuItemIds.length - 1;
+  if (nextPosition === menuItemsLength && rotation_allowed === false) {
+    return currentPosition;
   }
 
-  return nextIndex;
+  return nextPosition;
 }
 
-function goUp(menuItemIds, x) {
-  var nextIndex = x - 3;
+function goLeft(menuItemsLength, currentPosition, rotation_allowed) {
+  var nextPosition = currentPosition - 1;
 
-  if (nextIndex < 0) {
-    nextIndex = menuItemIds.length - 1;
+  if (nextPosition < 0 && rotation_allowed === true) {
+    nextPosition = menuItemsLength - 1;
   }
 
-  return nextIndex;
+  if (nextPosition < 0 && rotation_allowed === false) {
+    return currentPosition;
+  }
+
+  return nextPosition;
 }
 
-function goDown(menuItemsLength, currentPosition, widthSize) {
+function goUp(menuItemsLength, currentPosition, widthSize, rotation_allowed) {
+  var nextPosition = currentPosition - widthSize;
+
+  if (currentPosition === 0 && rotation_allowed === true) {
+    nextPosition = menuItemsLength - 1;
+    return nextPosition;
+  }
+
+  if (nextPosition < 0 && rotation_allowed === false) {
+    return currentPosition;
+  }
+
+  if (nextPosition < 0) {
+    nextPosition = nextPosition + menuItemsLength - 1;
+    return nextPosition;
+  }
+
+  return nextPosition;
+}
+
+function goDown(menuItemsLength, currentPosition, widthSize, rotation_allowed) {
   var nextPosition = currentPosition + widthSize;
+
+  if (nextPosition >= menuItemsLength && rotation_allowed === false) {
+    return currentPosition;
+  }
 
   if (nextPosition < menuItemsLength) {
     return nextPosition;
@@ -113,13 +138,14 @@ function goDown(menuItemsLength, currentPosition, widthSize) {
 
   var gridSize = getGridSize(menuItemsLength, widthSize, currentPosition);
 
-  if (currentPosition === gridSize - 1) {
+
+  if (currentPosition === gridSize - 1 && rotation_allowed === true) {
     return 0;
   }
 
   nextPosition = nextPosition - gridSize + 1;
 
-  if (nextPosition >= menuItemsLength) {
+  if (nextPosition >= menuItemsLength && rotation_allowed === true) {
     return 0;
   }
 
@@ -138,26 +164,18 @@ function getGridSize(menuItemsLength, widthSize, currentPosition) {
   return gridSize;
 }
 
-function findAppSelection(currentAppId) {
+function openApp(currentAppId) {
   switch (currentAppId) {
     case "gallery":
       mountGalleryScreen(true);
       break;
-    case "about":
-      showAboutScreen();
-      break;
     case "music":
       showMusicPlayer();
-      break;
-    case "calculator":
-      mountCalculator();
       break;
     case "setting":
       showSettings(true);
       break;
-    case "torch":
-      showTorchScreen();
-      break;
+
     default:
       showDefaultScreen();
       break;
