@@ -34,7 +34,6 @@ var imageIds = [
   "image-box14",
 ];
 
-// var currentMenuIndex = 0;
 var WIDTH_LENGTH_IMAGE = 3;
 var RE_SET = false;
 
