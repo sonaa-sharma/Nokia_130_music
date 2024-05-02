@@ -31,7 +31,7 @@ function settingsHandler(button) {
 
     case "right-select-button":
       hideSettings();
-      showMenu(false);
+      mountMenuScreen(true);
       break;
 
     case "power-button":

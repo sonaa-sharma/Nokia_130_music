@@ -35,7 +35,7 @@ function galleryScreenHandler(button) {
 
     case "right-select-button":
       mountGalleryScreen(false);
-      showMenu();
+      mountMenuScreen(true);
       break;
 
     case "top-button":
@@ -71,7 +71,7 @@ function mountGalleryScreen(show) {
   }
 }
 
-function mountGallery() {
+ function mountGallery() {
   var galleryNode = document.getElementById("gallery-screen");
   var imagesNode = createImagesNode(imageSources);
   var imagesContainer = document.getElementById("images-container");
@@ -106,8 +106,8 @@ function createImagesNode(imageSources) {
   for (i = 0; i < imageSources.length; i++) {
     var id = "image-box" + i;
     imageIds[i] = id;
-    var imageContainerBox = createImageContainer(id, imageSources[i]);
-    imagesNode.appendChild(imageContainerBox);
+    var imageContainer = createImageContainer(id, imageSources[i]);
+    imagesNode.appendChild(imageContainer);
   }
   return imagesNode;
 }

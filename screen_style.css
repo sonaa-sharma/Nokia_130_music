@@ -229,39 +229,6 @@
   flex-direction: column;
 }
 
-.app-screen-div {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.apps-div {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  color: black;
-}
-
-.apps-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-  height: 36px;
-  width: 36px;
-  border-radius: 25px;
-}
-
-.icon-container {
-  padding: 8px;
-  border: 2px solid transparent;
-}
-
-.selected {
-  border-radius: 8px;
-  border-color: white;
-}
 
 .music {
   background-color: rgb(242, 57, 88);

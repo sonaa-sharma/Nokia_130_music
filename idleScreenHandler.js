@@ -5,7 +5,7 @@ function idleScreenHandler(button) {
   switch (button.id) {
     case "left-select-button":
       hideIdleScreen();
-      showMenu(true);
+      mountMenuScreen(true);
       break;
     case "mid-button-inner":
       hideIdleScreen();
@@ -43,7 +43,7 @@ function hideIdleScreen() {
 }
 
 function mountIdleScreen(show) {
-  var menuText = document.getElementById("menu-screen-div");
+  var menuText = document.getElementById("idle-screen-div");
   AddRemoveClassList(menuText, "hide", !show);
 }
 

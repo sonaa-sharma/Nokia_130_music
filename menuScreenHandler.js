@@ -1,35 +1,38 @@
-var menuItemIds = [
-  "gallery",
-  "snake-game",
-  "video",
-  "about",
-  "music",
-  "calculator",
-  "calendar",
-  "torch",
-  "setting",
+
+var menuIconSources = [
+  "Icons/picture.png",
+  "Icons/icons8-snake-48.png",
+  "Icons/icons8-video-player-48.png",
+  "Icons/icons8-about (1).svg",
+  "wallpaper/musical-note-1314942_1280.png",
+  "Icons/icons8-math-48.png",
+  "wallpaper/calendar (1).png",
+  "wallpaper/torch.png",
+  "wallpaper/gear-1807204_1920.png",
 ];
 
 var WIDTH_LENGTH = 3;
-
 var currentMenuIndex = 0;
+var RESET = true;
+var menuItemIds = [];
 
 function appScreenHandler(button) {
   var nextAppIndex;
   var menuItemsLength = menuItemIds.length;
-  var RESET = true;
+  var currentAppId = menuItemIds[currentMenuIndex];
 
   switch (button.id) {
     case "left-select-button":
-      hideMenuScreen();
-      var currentAppId = menuItemIds[currentMenuIndex];
+      mountMenuScreen(false);
+      console.log(currentAppId);
       openApp(currentAppId);
       break;
 
     case "power-button":
 
     case "right-select-button":
-      goToBackScreen();
+      mountMenuScreen(false);
+      showIdleScreen();
       break;
 
     case "top-button":
@@ -52,6 +55,8 @@ function appScreenHandler(button) {
     case "bottom-button":
       nextAppIndex = goDown(menuItemsLength, currentMenuIndex, WIDTH_LENGTH, RESET);
       itemsScrolling(menuItemIds, nextAppIndex, 'selected');
+      var currentAppId = menuItemIds[currentMenuIndex];
+      console.log(currentAppId);
 
       break;
 
@@ -60,141 +65,16 @@ function appScreenHandler(button) {
   }
 }
 
-function itemsScrolling(menuItemIds, nextMenuIndex, selectedClassName) {
-  var itemId = menuItemIds[nextMenuIndex];
-  var nextApp = document.getElementById(itemId);
-  var currentId = menuItemIds[currentMenuIndex];
-  var currentApp = document.getElementById(currentId);
-
-  AddRemoveClassList(currentApp, selectedClassName, false);
-  AddRemoveClassList(nextApp, selectedClassName, true);
-  currentApp.scrollIntoView({
-    behavior: "smooth",
-    inline: "center",
-    block: "center",
-  });
-
-  currentMenuIndex = nextMenuIndex;
-}
-
-function goRight(menuItemsLength, currentPosition, rotation_allowed) {
-  var nextPosition = currentPosition + 1;
-
-  if (nextPosition === menuItemsLength && rotation_allowed === true) {
-    nextPosition = 0;
-  }
-
-  if (nextPosition === menuItemsLength && rotation_allowed === false) {
-    return currentPosition;
-  }
-
-  return nextPosition;
-}
-
-function goLeft(menuItemsLength, currentPosition, rotation_allowed) {
-  var nextPosition = currentPosition - 1;
-
-  if (nextPosition < 0 && rotation_allowed === true) {
-    nextPosition = menuItemsLength - 1;
-  }
-
-  if (nextPosition < 0 && rotation_allowed === false) {
-    return currentPosition;
-  }
-
-  return nextPosition;
-}
-
-function goUp(menuItemsLength, currentPosition, widthSize, rotation_allowed) {
-  var nextPosition = currentPosition - widthSize;
-
-  if (nextPosition < 0 && rotation_allowed === false) {
-    return currentPosition;
-  }
-
-  if(menuItemsLength === 1){
-    return 0;
-  }
-
-  var gridSize1 = getGridSize1(menuItemsLength, widthSize);
-
-  if (nextPosition < 0 && gridSize1 > menuItemsLength) {
-    nextPosition = nextPosition + gridSize1 - 1;
-    if (nextPosition >= menuItemsLength) {
-      return nextPosition - widthSize;
-    }
-    if(nextPosition<0){
-      nextPosition = nextPosition + gridSize1 - 1;
-      return nextPosition;
-    }
-  }
-
-  if (nextPosition < 0 && gridSize1 === menuItemsLength) {
-    nextPosition = nextPosition + gridSize1 - 1;
-
-  }
-
-  if (currentPosition === 0 && rotation_allowed === true && gridSize1 === menuItemsLength) {
-    nextPosition = menuItemsLength - 1;
-
-    return nextPosition;
-  }
-
-  return nextPosition;
-}
-
-function goDown(menuItemsLength, currentPosition, widthSize, rotation_allowed) {
-  var nextPosition = currentPosition + widthSize;
-
-  if (nextPosition >= menuItemsLength && rotation_allowed === false) {
-    return currentPosition;
-  }
-
-  if (nextPosition < menuItemsLength) {
-    return nextPosition;
-  }
-
-  var gridSize = getGridSize(menuItemsLength, widthSize, currentPosition);
-
-  if (currentPosition === gridSize - 1 && rotation_allowed === true) {
-    return 0;
-  }
-
-  nextPosition = nextPosition - gridSize + 1;
-
-  if (nextPosition >= menuItemsLength && rotation_allowed === true) {
-    return 0;
-  }
-
-  return nextPosition;
-}
-
-function getGridSize(menuItemsLength, widthSize, currentPosition) {
-  var lines = Math.ceil(menuItemsLength / widthSize);
-  var gridSize = lines * widthSize;
-  var smallerGridSize = gridSize - widthSize;
-
-  if (currentPosition < smallerGridSize) {
-    return smallerGridSize;
-  }
-
-  return gridSize;
-}
-
-function getGridSize1(menuItemsLength, widthSize) {
-  var lines = Math.ceil(menuItemsLength / widthSize);
-  var gridSize1 = lines * widthSize;
-  return gridSize1;
-}
 function openApp(currentAppId) {
+  console.log(currentAppId);
   switch (currentAppId) {
-    case "gallery":
+    case "app-no-0":
       mountGalleryScreen(true);
       break;
-    case "music":
+    case "app-no-4":
       showMusicPlayer();
       break;
-    case "setting":
+    case "app-no-8":
       showSettings(true);
       break;
 
@@ -202,6 +82,96 @@ function openApp(currentAppId) {
       showDefaultScreen();
       break;
   }
+}
+
+function mountMenuScreen(show) {
+  if (show) {
+    mountMenu();
+  } else {
+    unmountMenu();
+  }
+}
+
+ function mountMenu() {
+  var menuScreenNode = document.getElementById("menu-screen-container");
+  var menuItemsNode = createMenuItemsNode(menuIconSources);
+  var menuContainerNode = document.getElementById("menu-containerId");
+  menuContainerNode.appendChild(menuItemsNode);
+  var currentMenuIndex = 0;
+
+  var iconId = menuItemIds[currentMenuIndex];
+  firstAppIcon = document.getElementById(iconId);
+  AddRemoveClassList(firstAppIcon, "selected", true);
+  mountNavbar(true);
+  mountIdleScreenWallPaper(true);
+  AddRemoveClassList(menuScreenNode, "hide", false);
+  
+  screenName = "appScreen";
+}
+
+function unmountMenu() {
+  var menuScreenNode = document.getElementById("menu-screen-container");
+  var menuContainer = document.getElementById("menu-containerId");
+  var menuContainerNode = getMenuContainerNode();
+  menuContainer.removeChild(menuContainerNode);
+  currentMenuIndex = 0;
+  mountNavbar(false);
+  mountIdleScreenWallPaper(false);
+  AddRemoveClassList(menuScreenNode, "hide", true);
+}
+
+var iconsNode;
+
+function getMenuContainerNode() {
+  return iconsNode;
+}
+
+function createMenuItemsNode(menuIconSources) {
+  iconsNode = createMenuItemsContainerNode();
+  for (i = 0; i < menuIconSources.length; i++) {
+    var IconId = "app-no-" + i;
+    var id = "appIcon-" + i;
+    menuItemIds[i] = IconId;
+    var appContainer = createAppContainer(id, menuIconSources[i]);
+    appContainer.id = IconId;
+    iconsNode.appendChild(appContainer);
+  }
+  return iconsNode;
+}
+
+
+function createMenuItemsContainerNode() {
+  var menuContainerNode = document.createElement("div");
+  menuContainerNode.classList.add("menuItems-container");
+  return menuContainerNode;
+}
+
+function createAppContainer(id, src) {
+  var appContainerNode = document.createElement("div");
+  appContainerNode.classList.add("app-container");
+  var iconContainer = createIconContainer(id, src);
+  appContainerNode.appendChild(iconContainer);
+  return appContainerNode;
+}
+
+function createIconContainer(id, src) {
+  var iconContainerNode = document.createElement("div");
+  iconContainerNode.classList.add("icon-container");
+  var icon = createIconNode(id, src);
+  iconContainerNode.appendChild(icon);
+  return iconContainerNode;
+}
+
+
+function createIconNode(id, src) {
+  var iconNode = document.createElement("img");
+  iconNode.classList.add("iconClass");
+  iconNode.src = src;
+  iconNode.id = id;
+  // iconNode.alt = "pic";
+  // iconNode.width = 40;
+
+  return iconNode;
 }
 
 function resetSelectedApp(resetAppPosition) {
@@ -218,47 +188,47 @@ function highlightApp(showHide, highlightAppIndex) {
   AddRemoveClassList(highlightNode, "selected", showHide);
 }
 
-function showMenu(resetAppPosition) {
-  mountAppScreen(true);
-  mountNavbar(true);
-  mountSelectText(true);
-  mountBackText(true);
-  mountAppScreenContainer(true);
-  mountIdleScreenWallPaper(true);
-  resetSelectedApp(resetAppPosition);
-  screenName = "appScreen";
-}
+// function showMenu(resetAppPosition) {
+//   mountMenuScreen(true);
+//   mountNavbar(true);
+//   mountSelectText(true);
+//   mountBackText(true);
+//   mountMenuScreenContainer(true);
+//   mountIdleScreenWallPaper(true);
+//   resetSelectedApp(resetAppPosition);
+//   screenName = "appScreen";
+// }
 
-function hideMenuScreen() {
-  mountIdleScreenWallPaper(false);
-  mountAppScreen(false);
-  mountNavbar(false);
-  mountSelectText(false);
-  mountBackText(false);
-  mountAppScreenContainer(false);
-}
+// function hideMenuScreen() {
+//   mountIdleScreenWallPaper(false);
+//   mountMenuScreen(false);
+//   mountNavbar(false);
+//   mountSelectText(false);
+//   mountBackText(false);
+//   mountMenuScreenContainer(false);
+// }
 
-function goToBackScreen() {
-  hideMenuScreen();
-  showIdleScreen();
-}
+// function goToBackScreen() {
+//   hideMenuScreen();
+//   showIdleScreen();
+// }
 
-function mountSelectText(show) {
-  var selectText = document.getElementById("select");
-  AddRemoveClassList(selectText, "hide", !show);
-}
+// function mountSelectText(show) {
+//   var selectText = document.getElementById("select");
+//   AddRemoveClassList(selectText, "hide", !show);
+// }
 
-function mountBackText(show) {
-  var backText = document.getElementById("back");
-  AddRemoveClassList(backText, "hide", !show);
-}
+// function mountBackText(show) {
+//   var backText = document.getElementById("back");
+//   AddRemoveClassList(backText, "hide", !show);
+// }
 
-function mountAppScreen(show) {
-  var apps = document.getElementById("apps-div");
-  AddRemoveClassList(apps, "hide", !show);
-}
+// // function mountMenuScreen(show) {
+// //   var apps = document.getElementById("menuItems-containerId");
+// //   AddRemoveClassList(apps, "hide", !show);
+// // }
 
-function mountAppScreenContainer(show) {
-  var apps = document.getElementById("app-screen-container");
-  AddRemoveClassList(apps, "hide", !show);
-}
+// function mountMenuScreenContainer(show) {
+//   var apps = document.getElementById("menu-screen-container");
+//   AddRemoveClassList(apps, "hide", !show);
+// }
