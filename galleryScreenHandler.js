@@ -16,24 +16,6 @@ var imageSources = [
   "https://images.pexels.com/photos/533080/pexels-photo-533080.jpeg?auto=compress&cs=tinysrgb&w=400",
 ];
 
-var imageIds = [
-  "image-box0",
-  "image-box1",
-  "image-box2",
-  "image-box3",
-  "image-box4",
-  "image-box5",
-  "image-box6",
-  "image-box7",
-  "image-box8",
-  "image-box9",
-  "image-box10",
-  "image-box11",
-  "image-box12",
-  "image-box13",
-  "image-box14",
-];
-
 var WIDTH_LENGTH_IMAGE = 3;
 var RE_SET = false;
 
@@ -58,29 +40,21 @@ function galleryScreenHandler(button) {
 
     case "top-button":
       nextImageIndex = goUp(imagesLength, currentMenuIndex, WIDTH_LENGTH_IMAGE, RE_SET);
-      console.log(currentMenuIndex);
-
       itemsScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
     case "left-button":
       nextImageIndex = goLeft(imagesLength, currentMenuIndex, RE_SET);
-      console.log(currentMenuIndex);
-
       itemsScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
     case "right-button":
       nextImageIndex = goRight(imagesLength, currentMenuIndex, RE_SET);
-      console.log(currentMenuIndex);
-
       itemsScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
     case "bottom-button":
       nextImageIndex = goDown(imagesLength, currentMenuIndex, WIDTH_LENGTH_IMAGE, RE_SET);
-      console.log(currentMenuIndex);
-      
       itemsScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
@@ -107,7 +81,6 @@ function mountGallery() {
   var id = imageIds[currentMenuIndex];
   firstImage = document.getElementById(id);
   AddRemoveClassList(firstImage, "pic-selected", true);
-
   AddRemoveClassList(galleryNode, "hide", false);
   screenName = "galleryScreen";
 }
@@ -115,16 +88,14 @@ function mountGallery() {
 function unmountGallery() {
   var galleryNode = document.getElementById("gallery-screen");
   var imagesContainer = document.getElementById("images-container");
-
   var imagesContainerNode = getImagesNode();
   imagesContainer.removeChild(imagesContainerNode);
-
   currentMenuIndex = 0;
-
   AddRemoveClassList(galleryNode, "hide", true);
 }
 
 var imagesNode;
+var imageIds = [];
 
 function getImagesNode() {
   return imagesNode;
@@ -132,9 +103,9 @@ function getImagesNode() {
 
 function createImagesNode(imageSources) {
   imagesNode = createContainerNode();
-
   for (i = 0; i < imageSources.length; i++) {
     var id = "image-box" + i;
+    imageIds[i] = id;
     var imageContainerBox = createImageContainer(id, imageSources[i]);
     imagesNode.appendChild(imageContainerBox);
   }
