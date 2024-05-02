@@ -229,16 +229,6 @@
   flex-direction: column;
 }
 
-
-.music {
-  background-color: rgb(242, 57, 88);
-}
-
-.torch {
-  background-color: white;
-  rotate: 45deg;
-}
-
 .musicPlayer-screen-div {
   height: 100%;
   display: flex;

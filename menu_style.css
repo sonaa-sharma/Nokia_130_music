@@ -19,14 +19,32 @@
   
   .icon-container {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    /* background-color: white; */
   }
   
   .iconClass{
-    height:  40px;
+    width: 40px;
   }
   
   .selected {
     border-radius: 8px;
     border-color: white;
+  }
+  
+  .music {
+    background-color: rgb(242, 57, 88);
+  }
+  
+  .music-icon{
+    width: 28px;
+  }
+  .torch {
+    background-color: white;
+    rotate: 45deg;
   }
   

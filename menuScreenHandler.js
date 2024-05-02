@@ -157,6 +157,12 @@ function createAppContainer(id, src) {
 function createIconContainer(id, src) {
   var iconContainerNode = document.createElement("div");
   iconContainerNode.classList.add("icon-container");
+  if(id === "appIcon-4"){
+    iconContainerNode.classList.add("music");
+  }
+  if(id === "appIcon-7"){
+    iconContainerNode.classList.add("torch");
+  }
   var icon = createIconNode(id, src);
   iconContainerNode.appendChild(icon);
   return iconContainerNode;
@@ -166,10 +172,11 @@ function createIconContainer(id, src) {
 function createIconNode(id, src) {
   var iconNode = document.createElement("img");
   iconNode.classList.add("iconClass");
+  if(id === "appIcon-4" || id === "appIcon-7"){
+    iconNode.classList.add("music-icon");
+  }
   iconNode.src = src;
   iconNode.id = id;
-  // iconNode.alt = "pic";
-  // iconNode.width = 40;
 
   return iconNode;
 }
