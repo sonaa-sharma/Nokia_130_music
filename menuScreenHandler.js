@@ -181,61 +181,17 @@ function createIconNode(id, src) {
   return iconNode;
 }
 
-function resetSelectedApp(resetAppPosition) {
-  if (resetAppPosition) {
-    highlightApp(false, currentMenuIndex);
-    currentMenuIndex = 0;
-  }
-  highlightApp(true, currentMenuIndex);
-}
-
-function highlightApp(showHide, highlightAppIndex) {
-  var highlightAppId = menuItemIds[highlightAppIndex];
-  var highlightNode = document.getElementById(highlightAppId);
-  AddRemoveClassList(highlightNode, "selected", showHide);
-}
-
-// function showMenu(resetAppPosition) {
-//   mountMenuScreen(true);
-//   mountNavbar(true);
-//   mountSelectText(true);
-//   mountBackText(true);
-//   mountMenuScreenContainer(true);
-//   mountIdleScreenWallPaper(true);
-//   resetSelectedApp(resetAppPosition);
-//   screenName = "appScreen";
+// function resetSelectedApp(resetAppPosition) {
+//   if (resetAppPosition) {
+//     highlightApp(false, currentMenuIndex);
+//     currentMenuIndex = 0;
+//   }
+//   highlightApp(true, currentMenuIndex);
 // }
 
-// function hideMenuScreen() {
-//   mountIdleScreenWallPaper(false);
-//   mountMenuScreen(false);
-//   mountNavbar(false);
-//   mountSelectText(false);
-//   mountBackText(false);
-//   mountMenuScreenContainer(false);
+// function highlightApp(showHide, highlightAppIndex) {
+//   var highlightAppId = menuItemIds[highlightAppIndex];
+//   var highlightNode = document.getElementById(highlightAppId);
+//   AddRemoveClassList(highlightNode, "selected", showHide);
 // }
 
-// function goToBackScreen() {
-//   hideMenuScreen();
-//   showIdleScreen();
-// }
-
-// function mountSelectText(show) {
-//   var selectText = document.getElementById("select");
-//   AddRemoveClassList(selectText, "hide", !show);
-// }
-
-// function mountBackText(show) {
-//   var backText = document.getElementById("back");
-//   AddRemoveClassList(backText, "hide", !show);
-// }
-
-// // function mountMenuScreen(show) {
-// //   var apps = document.getElementById("menuItems-containerId");
-// //   AddRemoveClassList(apps, "hide", !show);
-// // }
-
-// function mountMenuScreenContainer(show) {
-//   var apps = document.getElementById("menu-screen-container");
-//   AddRemoveClassList(apps, "hide", !show);
-// }
