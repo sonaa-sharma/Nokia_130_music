@@ -153,7 +153,7 @@ function turnOfflcd() {
       hideMenuScreen();
       break;
     case "galleryScreen":
-      mountGalleryScreen(false);
+      mountGalleryScreen(true, false);
       break;
     case "aboutScreen":
       hideAboutScreen();

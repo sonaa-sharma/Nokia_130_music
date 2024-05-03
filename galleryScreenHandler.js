@@ -22,19 +22,22 @@ var RE_SET = false;
 function galleryScreenHandler(button) {
   var nextImageIndex;
   var imagesLength = imageSources.length;
+  // var currentImageId = imageIds[currentMenuIndex];
+
   switch (button.id) {
     case "left-select-button":
-      mountGalleryScreen(false);
-      showPhoto();
+      mountGalleryScreen(false, false);
+      console.log(currentMenuIndex);
+      showPhoto(imageSources, currentMenuIndex);
       break;
 
     case "power-button":
-      mountGalleryScreen(false);
+      mountGalleryScreen(true, false);
       showIdleScreen();
       break;
 
     case "right-select-button":
-      mountGalleryScreen(false);
+      mountGalleryScreen(true, false);
       mountMenuScreen(true);
       break;
 
@@ -63,12 +66,14 @@ function galleryScreenHandler(button) {
   }
 }
 
-function mountGalleryScreen(show) {
+function mountGalleryScreen(reset, show) {
   if (show) {
     mountGallery();
-  } else {
-    unmountGallery();
   }
+  else{
+    unmountGallery(reset);
+  }
+  
 }
 
  function mountGallery() {
@@ -85,12 +90,14 @@ function mountGalleryScreen(show) {
   screenName = "galleryScreen";
 }
 
-function unmountGallery() {
+function unmountGallery(reset) {
   var galleryNode = document.getElementById("gallery-screen");
   var imagesContainer = document.getElementById("images-container");
   var imagesContainerNode = getImagesNode();
   imagesContainer.removeChild(imagesContainerNode);
-  currentMenuIndex = 0;
+  if(reset === true){
+    currentMenuIndex = 0;
+  }
   AddRemoveClassList(galleryNode, "hide", true);
 }
 

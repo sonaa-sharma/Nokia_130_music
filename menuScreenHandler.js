@@ -69,7 +69,7 @@ function openApp(currentAppId) {
   console.log(currentAppId);
   switch (currentAppId) {
     case "app-no-0":
-      mountGalleryScreen(true);
+      mountGalleryScreen(true, true);
       break;
     case "app-no-4":
       showMusicPlayer();
