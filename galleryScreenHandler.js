@@ -10,17 +10,17 @@ function galleryScreenHandler(button) {
 
   switch (button.id) {
     case "left-select-button":
-      mountGalleryScreen(false, false);
+      mountGalleryScreen(false);
       showPhoto(imageSources, currentImageIndex);
       break;
 
     case "power-button":
-      mountGalleryScreen(true, false);
+      mountGalleryScreen(false);
       showIdleScreen();
       break;
 
     case "right-select-button":
-      mountGalleryScreen(true, false);
+      mountGalleryScreen(false);
       mountMenuScreen(true);
       break;
 
@@ -59,11 +59,11 @@ function galleryScreenHandler(button) {
   }
 }
 
-function mountGalleryScreen(reset, show) {
+function mountGalleryScreen(show, currentImageIndex) {
   if (show) {
-    mountGallery();
-  } else {
-    unmountGallery(reset);
+    mountGallery(currentImageIndex);
+  } else{
+    unmountGallery();
   }
 }
 

@@ -9,7 +9,7 @@ function photosScreenHandler(button) {
       break;
     case "right-select-button":
       hidePhoto();
-      mountGalleryScreen(false, true);
+      mountGalleryScreen(true, _currentPhotoIndex);
       break;
     case "bottom-button":
     case "right-button":
