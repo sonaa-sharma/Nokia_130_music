@@ -9,7 +9,12 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+  }
+
+  .menu-container{
+    margin-left: 12px;
+    display: flex;
+    justify-content: left;
   }
   
   .app-container {
@@ -27,6 +32,12 @@
     /* background-color: white; */
   }
   
+  .music-player-icon-container{
+    width: 36px;
+    height: 36px;
+    background-color: rgb(242, 57, 88);
+  }
+  
   .iconClass{
     width: 40px;
   }
@@ -36,15 +47,21 @@
     border-color: white;
   }
   
-  .music {
-    background-color: rgb(242, 57, 88);
+  .music-player-icon{
+    width: 24px;
   }
-  
-  .music-icon{
-    width: 28px;
+
+  .calendar-icon{
+    width: 36px;
   }
-  .torch {
+
+  .torch-icon-container {
+    width: 36px;
+    height: 36px;
     background-color: white;
-    rotate: 45deg;
   }
   
+  .torch-icon{
+    rotate: 45deg;
+    width: 24px;
+  }

@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="screen_style.css">
     <link rel="stylesheet" href="menu_style.css">
     <link rel="stylesheet" href="gallery_style.css">
+    <link rel="stylesheet" href="snake_game_style.css">
+    <link rel="stylesheet" href="videoPlayer_style.css">
+    <link rel="stylesheet" href="musicPlayer_style.css">
+    <link rel="stylesheet" href="calculator_style.css">
+    <link rel="stylesheet" href="calendar_style.css">
     <link rel="stylesheet" href="keypad_style.css">
     <link rel="stylesheet" href="common.css">
     <script type="text/javascript" await src="lockScreenHandler.js"></script>
@@ -16,6 +21,9 @@
     <script type="text/javascript" await src="menuScreenHandler.js"></script>
     <script type="text/javascript" await src="galleryScreenHandler.js"></script>
     <script type="text/javascript" await src="photosHandler.js"></script>
+    <script type="text/javascript" await src="snakeGameHandler.js"></script>
+    <script type="text/javascript" await src="videoPlayerHandler.js"></script>
+    <script type="text/javascript" await src="calculatorHandler.js"></script>
     <script type="text/javascript" await src="musicPlayerHandler.js"></script>
     <script type="text/javascript" await src="settingsHandler.js"></script>
     <script type="text/javascript" await src="wallpaperHandler.js"></script>
@@ -105,7 +113,8 @@
 
                         <div id="idle-screen-div" class="hide idle-screen">
                             <div class="date-time center">
-                                <div class="time" id="time1"><span id="clock-hour1"></span>:<span id="clock-min1"></span>
+                                <div class="time" id="time1"><span id="clock-hour1"></span>:<span
+                                        id="clock-min1"></span>
                                 </div>
                             </div>
                             <div class="bottom-navbar">
@@ -150,6 +159,39 @@
                             </div> -->
                         </div>
 
+                        <div class="snake-game-screen-div hide" id="snake-game-container">
+                            <div class="snake-game-div">
+                                <h1>Features coming soon</h1>
+                            </div>
+                            <div class="bottom-navbar">
+                                <div>Select</div>
+                                <div>Back</div>
+                            </div>
+                        </div>
+
+                        <div class="videoPlayer-screen-div hide" id="video-player-container">
+                            <div class="video-player-div">
+                                <h2>Video Player</h2>
+                                <div class="video-player">
+                                    <video id="videoPlayerId" class="video" src="https://youtu.be/7PIji8OubXU"
+                                        controls autoplay></video>
+                                </div>
+                            </div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div id="play-pause-text">Play</div>
+                                <div>Back</div>
+                            </div>
+                        </div>
+
+                        <div class="about-screen-div hide" id="about-container">
+                            <div class="about"></div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div>Select</div>
+                                <div>Back</div>
+                            </div>
+                        </div>
+
+
                         <div class="musicPlayer-screen-div hide" id="music-player-container">
                             <div class="music-player-div">
                                 <h2>Music Player</h2>
@@ -165,11 +207,23 @@
                             </div>
                         </div>
 
+
                         <div class="calendar hide" id="calendar-screen">
                             <div class="calendar-div">
                                 <h1>Features coming soon</h1>
                             </div>
                             <div class="bottom-navbar">
+                                <div>Select</div>
+                                <div>Back</div>
+                            </div>
+                        </div>
+
+                        <div class="calculator-screen-div hide" id="calculator-screen-container">
+                            <div class="calculator-div">
+                                <h1>Features coming soon</h1>
+                            </div>
+                            <div class="bottom-navbar">
+                                <div>Select</div>
                                 <div>Back</div>
                             </div>
                         </div>
@@ -182,15 +236,12 @@
                                     <div class="theme-container">
                                         <div class="theme" id="lock-screen-setting">
                                             Lock Screen Wallpaper
-                                            <!-- <img class="wall" id="theme1" src="wallpaper\grass.jpg" alt="grass" height="40px"> -->
                                         </div>
                                         <div class="theme" id="home-screen-setting">
                                             Home Screen Wallpaper
-                                            <!-- <img class="wall" id="theme2" src="wallpaper\wp1.jpg" alt="dragon" height="40px"> -->
                                         </div>
                                         <div class="theme" id="date-time-setting">
                                             Date & Time Setting
-                                            <!-- <img class="wall" id="theme3" src="wallpaper\wp2.jpg" alt="light" height="40px"> -->
                                         </div>
                                     </div>
                                 </div>
@@ -208,15 +259,12 @@
                                     <div class="theme-container">
                                         <div class="theme" id="theme1">
                                             Grass
-                                            <!-- <img class="wall" id="theme1" src="wallpaper\grass.jpg" alt="grass" height="40px"> -->
                                         </div>
                                         <div class="theme" id="theme2">
                                             Dragon-Fly
-                                            <!-- <img class="wall" id="theme2" src="wallpaper\wp1.jpg" alt="dragon" height="40px"> -->
                                         </div>
                                         <div class="theme" id="theme3">
                                             Light-bubbles
-                                            <!-- <img class="wall" id="theme3" src="wallpaper\wp2.jpg" alt="light" height="40px"> -->
                                         </div>
                                     </div>
                                 </div>

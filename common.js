@@ -48,7 +48,7 @@ function setTime(hourId, minId) {
 function itemsScrolling(menuItemIds, nextMenuIndex, selectedClassName) {
   var itemId = menuItemIds[nextMenuIndex];
   var nextApp = document.getElementById(itemId);
-  var currentId = menuItemIds[currentMenuIndex];
+  var currentId = menuItemIds[currentMenuIndex].id;
   var currentApp = document.getElementById(currentId);
 
   AddRemoveClassList(currentApp, selectedClassName, false);

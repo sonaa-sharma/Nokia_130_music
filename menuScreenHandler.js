@@ -1,25 +1,23 @@
-
-var menuIconSources = [
-  "Icons/picture.png",
-  "Icons/icons8-snake-48.png",
-  "Icons/icons8-video-player-48.png",
-  "Icons/icons8-about (1).svg",
-  "wallpaper/musical-note-1314942_1280.png",
-  "Icons/icons8-math-48.png",
-  "wallpaper/calendar (1).png",
-  "wallpaper/torch.png",
-  "wallpaper/gear-1807204_1920.png",
-];
+var menuItems =[
+  {class:'gallery-item', id: 'gallery', src: 'Icons/picture.png', label: 'gallery', iconContainerClass: 'gallery-icon-container', iconClass: 'gallery-icon'},
+  {class:'snake-game-item', id: 'snake-game', src: 'Icons/icons8-snake-48.png', label: 'snake-game', iconContainerClass: 'snake-game-icon-container', iconClass: 'snake-game-icon'},
+  {class:'video-player-item', id: 'video-player', src: 'Icons/icons8-video-player-48.png', label: 'video-player', iconContainerClass: 'video-player-icon-container', iconClass: 'video-player-icon'},
+  {class:'about-item', id: 'about', src: 'Icons/icons8-about (1).svg', label: 'about', iconContainerClass: 'about-icon-container', iconClass: 'about-icon'},
+  {class:'music-player-item', id: 'music-player', src: 'wallpaper/musical-note-1314942_1280.png', label: 'music-player', iconContainerClass: 'music-player-icon-container', iconClass: 'music-player-icon'},
+  {class:'calculator-item', id: 'calculator', src: 'Icons/icons8-math-48.png', label: 'calculator', iconContainerClass: 'calculator-icon-container', iconClass: 'calculator-icon'},
+  {class:'calendar-item', id: 'calendar', src: 'wallpaper/calendar (1).png', label: 'calendar', iconContainerClass: 'calendar-icon-container', iconClass: 'calendar-icon'},
+  {class:'torch-item', id: 'torch', src: 'wallpaper/torch.png', label: 'torch', iconContainerClass: 'torch-icon-container', iconClass: 'torch-icon'},
+  {class:'setting-item', id: 'setting', src: 'wallpaper/gear-1807204_1920.png', label: 'setting', iconContainerClass: 'setting-icon-container', iconClass: 'setting-icon'},
+]
 
 var WIDTH_LENGTH = 3;
 var currentMenuIndex = 0;
 var RESET = true;
-var menuItemIds = [];
 
 function appScreenHandler(button) {
   var nextAppIndex;
-  var menuItemsLength = menuItemIds.length;
-  var currentAppId = menuItemIds[currentMenuIndex];
+  var menuItemsLength = menuItems.length;
+  var currentAppId = menuItems[currentMenuIndex].id;
 
   switch (button.id) {
     case "left-select-button":
@@ -37,25 +35,25 @@ function appScreenHandler(button) {
 
     case "top-button":
       nextAppIndex = goUp(menuItemsLength, currentMenuIndex, WIDTH_LENGTH, RESET);
-      itemsScrolling(menuItemIds, nextAppIndex, "selected");
+      menuScrolling(menuItems, nextAppIndex, "selected");
       break;
 
     case "left-button":
       nextAppIndex = goLeft(menuItemsLength, currentMenuIndex, RESET);
-      itemsScrolling(menuItemIds, nextAppIndex, "selected");
+      menuScrolling(menuItems, nextAppIndex, "selected");
 
       break;
 
     case "right-button":
       nextAppIndex = goRight(menuItemsLength, currentMenuIndex, RESET);
-      itemsScrolling(menuItemIds, nextAppIndex, "selected");
+      menuScrolling(menuItems, nextAppIndex, "selected");
 
       break;
 
     case "bottom-button":
       nextAppIndex = goDown(menuItemsLength, currentMenuIndex, WIDTH_LENGTH, RESET);
-      itemsScrolling(menuItemIds, nextAppIndex, 'selected');
-      var currentAppId = menuItemIds[currentMenuIndex];
+      menuScrolling(menuItems, nextAppIndex, 'selected');
+      var currentAppId = menuItems[currentMenuIndex];
       console.log(currentAppId);
 
       break;
@@ -68,7 +66,7 @@ function appScreenHandler(button) {
 function openApp(currentAppId) {
   console.log(currentAppId);
   switch (currentAppId) {
-    case "app-no-0":
+    case "gallery":
       mountGalleryScreen(true, true);
       break;
     case "app-no-4":
@@ -94,12 +92,12 @@ function mountMenuScreen(show) {
 
  function mountMenu() {
   var menuScreenNode = document.getElementById("menu-screen-container");
-  var menuItemsNode = createMenuItemsNode(menuIconSources);
+  var menuItemsNode = createMenuItemsNode(menuItems);
   var menuContainerNode = document.getElementById("menu-containerId");
   menuContainerNode.appendChild(menuItemsNode);
   var currentMenuIndex = 0;
 
-  var iconId = menuItemIds[currentMenuIndex];
+  var iconId = menuItems[currentMenuIndex].id ;
   firstAppIcon = document.getElementById(iconId);
   AddRemoveClassList(firstAppIcon, "selected", true);
   mountNavbar(true);
@@ -120,23 +118,20 @@ function unmountMenu() {
   AddRemoveClassList(menuScreenNode, "hide", true);
 }
 
-var iconsNode;
+var menuItemsContainerNode;
 
 function getMenuContainerNode() {
-  return iconsNode;
+  return menuItemsContainerNode;
 }
 
-function createMenuItemsNode(menuIconSources) {
-  iconsNode = createMenuItemsContainerNode();
-  for (i = 0; i < menuIconSources.length; i++) {
-    var IconId = "app-no-" + i;
-    var id = "appIcon-" + i;
-    menuItemIds[i] = IconId;
-    var appContainer = createAppContainer(id, menuIconSources[i]);
-    appContainer.id = IconId;
-    iconsNode.appendChild(appContainer);
+function createMenuItemsNode(menuItems) {
+  menuItemsContainerNode = createMenuItemsContainerNode();
+  for (var menuItem of menuItems) {
+    var appContainer = createMenuItem(menuItem);
+
+    menuItemsContainerNode.appendChild(appContainer);
   }
-  return iconsNode;
+  return menuItemsContainerNode;
 }
 
 
@@ -146,37 +141,33 @@ function createMenuItemsContainerNode() {
   return menuContainerNode;
 }
 
-function createAppContainer(id, src) {
+function createMenuItem(menuItem) {
   var appContainerNode = document.createElement("div");
   appContainerNode.classList.add("app-container");
-  var iconContainer = createIconContainer(id, src);
+  var iconContainer = createIconContainer(menuItem);
   appContainerNode.appendChild(iconContainer);
+
+  appContainerNode.id = menuItem.id;
+  
   return appContainerNode;
 }
 
-function createIconContainer(id, src) {
+function createIconContainer(menuItem) {
   var iconContainerNode = document.createElement("div");
-  iconContainerNode.classList.add("icon-container");
-  if(id === "appIcon-4"){
-    iconContainerNode.classList.add("music");
-  }
-  if(id === "appIcon-7"){
-    iconContainerNode.classList.add("torch");
-  }
-  var icon = createIconNode(id, src);
+  iconContainerNode.classList.add("icon-container", menuItem.iconContainerClass);
+  
+  var icon = createIconNode(menuItem);
   iconContainerNode.appendChild(icon);
   return iconContainerNode;
 }
 
 
-function createIconNode(id, src) {
+function createIconNode(menuItem) {
   var iconNode = document.createElement("img");
-  iconNode.classList.add("iconClass");
-  if(id === "appIcon-4" || id === "appIcon-7"){
-    iconNode.classList.add("music-icon");
-  }
-  iconNode.src = src;
-  iconNode.id = id;
+
+  iconNode.classList.add("iconClass", menuItem.iconClass);
+  
+  iconNode.src = menuItem.src;
 
   return iconNode;
 }
@@ -190,8 +181,28 @@ function createIconNode(id, src) {
 // }
 
 // function highlightApp(showHide, highlightAppIndex) {
-//   var highlightAppId = menuItemIds[highlightAppIndex];
+//   var highlightAppId = menuItems[highlightAppIndex];
 //   var highlightNode = document.getElementById(highlightAppId);
 //   AddRemoveClassList(highlightNode, "selected", showHide);
 // }
 
+function menuScrolling(menuItemIds, nextMenuIndex, selectedClassName) {
+  var itemId = menuItemIds[nextMenuIndex].id;
+  console.log(itemId);
+  var nextApp = document.getElementById(itemId);
+  var currentId = menuItemIds[currentMenuIndex].id;
+  console.log(itemId);
+  var currentApp = document.getElementById(currentId);
+
+  AddRemoveClassList(currentApp, selectedClassName, false);
+  AddRemoveClassList(nextApp, selectedClassName, true);
+  currentApp.scrollIntoView({
+    behavior: "smooth",
+    inline: "center",
+    block: "center",
+  });
+
+  currentMenuIndex = nextMenuIndex;
+  console.log(currentMenuIndex);
+
+}

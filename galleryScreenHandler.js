@@ -43,22 +43,22 @@ function galleryScreenHandler(button) {
 
     case "top-button":
       nextImageIndex = goUp(imagesLength, currentMenuIndex, WIDTH_LENGTH_IMAGE, RE_SET);
-      itemsScrolling(imageIds, nextImageIndex, "pic-selected");
+      imageScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
     case "left-button":
       nextImageIndex = goLeft(imagesLength, currentMenuIndex, RE_SET);
-      itemsScrolling(imageIds, nextImageIndex, "pic-selected");
+      imageScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
     case "right-button":
       nextImageIndex = goRight(imagesLength, currentMenuIndex, RE_SET);
-      itemsScrolling(imageIds, nextImageIndex, "pic-selected");
+      imageScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
     case "bottom-button":
       nextImageIndex = goDown(imagesLength, currentMenuIndex, WIDTH_LENGTH_IMAGE, RE_SET);
-      itemsScrolling(imageIds, nextImageIndex, "pic-selected");
+      imageScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
     default:
@@ -141,3 +141,23 @@ function createImageNode(id, src) {
 
   return imageNode;
 }
+
+function imageScrolling(menuItemIds, nextMenuIndex, selectedClassName) {
+  var itemId = menuItemIds[nextMenuIndex];
+  var nextApp = document.getElementById(itemId);
+  var currentId = menuItemIds[currentMenuIndex];
+  var currentApp = document.getElementById(currentId);
+
+  AddRemoveClassList(currentApp, selectedClassName, false);
+  AddRemoveClassList(nextApp, selectedClassName, true);
+  currentApp.scrollIntoView({
+    behavior: "smooth",
+    inline: "center",
+    block: "center",
+  });
+
+  currentMenuIndex = nextMenuIndex;
+  console.log(currentMenuIndex);
+
+}
+
