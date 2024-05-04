@@ -67,8 +67,8 @@ function mountGalleryScreen(reset, show) {
   }
 }
 
-function getInitialConfig() {
-  return {
+function getInitialConfig(currentImageIndex) {
+  var initialConfig = {
     imageSources: [
       "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=400",
       "https://images.pexels.com/photos/919278/pexels-photo-919278.jpeg?auto=compress&cs=tinysrgb&w=400",
@@ -90,10 +90,16 @@ function getInitialConfig() {
     allowRotation: false,
     currentImageIndex: 0,
   };
+
+  if(currentImageIndex){
+    initialConfig.currentImageIndex = currentImageIndex;
+  }
+
+  return initialConfig;
 }
 
-function mountGallery() {
-  galleryScreenConfig = getInitialConfig();
+function mountGallery(currentImageIndex) {
+  galleryScreenConfig = getInitialConfig(currentImageIndex);
 
   var galleryNode = document.getElementById("gallery-screen");
   var imagesNode = createImagesNode(galleryScreenConfig.imageSources);
