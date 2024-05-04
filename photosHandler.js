@@ -7,6 +7,9 @@ function photosScreenHandler(button) {
       hidePhoto();
       showIdleScreen(true);
       break;
+    case "left-select-button":
+      
+      break;
     case "right-select-button":
       hidePhoto();
       mountGalleryScreen(true, _currentPhotoIndex);
@@ -48,6 +51,9 @@ function createImage(photoSources, currentPhotoIndex) {
   photo.classList.add("image-width");
   photo.id = "image";
   photo.src = photoSources[currentPhotoIndex];
+  photo.innerHTML = "Options";
+  var optionBar = createBottomNavbar();
+  photo.appendChild(optionBar);
   return photo;
 }
 
@@ -79,4 +85,11 @@ function previousImage(photoSources, currentPhotoIndex) {
   }
   showPhoto(photoSources, currentPhotoIndex);
   console.log(currentPhotoIndex);
+}
+
+function createBottomNavbar(){
+  var opitonBox = document.createElement("div");
+  opitonBox.classList.add("bottom-navbar-options");
+  opitonBox.style.backgroundColor = "pink";
+  return opitonBox;
 }

@@ -69,10 +69,10 @@ function openApp(currentAppId) {
     case "gallery":
       mountGalleryScreen(true);
       break;
-    case "app-no-4":
+    case "music-player":
       showMusicPlayer();
       break;
-    case "app-no-8":
+    case "setting":
       showSettings(true);
       break;
 
