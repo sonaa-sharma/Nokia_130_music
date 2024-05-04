@@ -18,17 +18,17 @@ var imageSources = [
 
 var WIDTH_LENGTH_IMAGE = 3;
 var RE_SET = false;
+var currentImageIndex = 0;
 
 function galleryScreenHandler(button) {
   var nextImageIndex;
   var imagesLength = imageSources.length;
-  // var currentImageId = imageIds[currentMenuIndex];
 
   switch (button.id) {
     case "left-select-button":
       mountGalleryScreen(false, false);
-      console.log(currentMenuIndex);
-      showPhoto(imageSources, currentMenuIndex);
+      console.log(currentImageIndex);
+      showPhoto(imageSources, currentImageIndex);
       break;
 
     case "power-button":
@@ -42,22 +42,22 @@ function galleryScreenHandler(button) {
       break;
 
     case "top-button":
-      nextImageIndex = goUp(imagesLength, currentMenuIndex, WIDTH_LENGTH_IMAGE, RE_SET);
+      nextImageIndex = goUp(imagesLength, currentImageIndex, WIDTH_LENGTH_IMAGE, RE_SET);
       imageScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
     case "left-button":
-      nextImageIndex = goLeft(imagesLength, currentMenuIndex, RE_SET);
+      nextImageIndex = goLeft(imagesLength, currentImageIndex, RE_SET);
       imageScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
     case "right-button":
-      nextImageIndex = goRight(imagesLength, currentMenuIndex, RE_SET);
+      nextImageIndex = goRight(imagesLength, currentImageIndex, RE_SET);
       imageScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
     case "bottom-button":
-      nextImageIndex = goDown(imagesLength, currentMenuIndex, WIDTH_LENGTH_IMAGE, RE_SET);
+      nextImageIndex = goDown(imagesLength, currentImageIndex, WIDTH_LENGTH_IMAGE, RE_SET);
       imageScrolling(imageIds, nextImageIndex, "pic-selected");
       break;
 
@@ -81,9 +81,9 @@ function mountGalleryScreen(reset, show) {
   var imagesNode = createImagesNode(imageSources);
   var imagesContainer = document.getElementById("images-container");
   imagesContainer.appendChild(imagesNode);
-  var currentMenuIndex = 0;
+  var currentImageIndex = 0;
 
-  var id = imageIds[currentMenuIndex];
+  var id = imageIds[currentImageIndex];
   firstImage = document.getElementById(id);
   AddRemoveClassList(firstImage, "pic-selected", true);
   AddRemoveClassList(galleryNode, "hide", false);
@@ -96,7 +96,7 @@ function unmountGallery(reset) {
   var imagesContainerNode = getImagesNode();
   imagesContainer.removeChild(imagesContainerNode);
   if(reset === true){
-    currentMenuIndex = 0;
+    currentImageIndex = 0;
   }
   AddRemoveClassList(galleryNode, "hide", true);
 }
@@ -145,7 +145,7 @@ function createImageNode(id, src) {
 function imageScrolling(menuItemIds, nextMenuIndex, selectedClassName) {
   var itemId = menuItemIds[nextMenuIndex];
   var nextApp = document.getElementById(itemId);
-  var currentId = menuItemIds[currentMenuIndex];
+  var currentId = menuItemIds[currentImageIndex];
   var currentApp = document.getElementById(currentId);
 
   AddRemoveClassList(currentApp, selectedClassName, false);
@@ -156,8 +156,8 @@ function imageScrolling(menuItemIds, nextMenuIndex, selectedClassName) {
     block: "center",
   });
 
-  currentMenuIndex = nextMenuIndex;
-  console.log(currentMenuIndex);
+  currentImageIndex = nextMenuIndex;
+  console.log(currentImageIndex);
 
 }
 
