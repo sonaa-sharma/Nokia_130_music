@@ -1,3 +1,6 @@
+var _photoSources;
+var _currentPhotoIndex;
+
 function photosScreenHandler(button) {
   switch (button.id) {
     case "power-button":
@@ -8,11 +11,13 @@ function photosScreenHandler(button) {
       hidePhoto();
       mountGalleryScreen(false, true);
       break;
+    case "bottom-button":
     case "right-button":
-      nextImage();
+      nextImage(_photoSources, _currentPhotoIndex);
       break;
     case "left-button":
-      previousImage();
+    case "top-button":
+      previousImage(_photoSources, _currentPhotoIndex);
       break;
     default:
       break;
@@ -20,6 +25,8 @@ function photosScreenHandler(button) {
 }
 
 function showPhoto(photoSources, currentPhotoIndex) {
+  _photoSources = photoSources;
+  _currentPhotoIndex = currentPhotoIndex;
   var photoScreen = document.getElementById("photos-screen");
   var photoNode = createImage(photoSources, currentPhotoIndex);
   photoScreen.appendChild(photoNode);
@@ -54,22 +61,22 @@ function mountPhotoScreen(show) {
   AddRemoveClassList(photoNode, "hide", !show);
 }
 
-function nextImage() {
+function nextImage(photoSources, currentPhotoIndex) {
   hidePhoto();
-  currentImageIndex++;
-  if(currentImageIndex === imageSources.length){
-    currentImageIndex = 0;
+  currentPhotoIndex++;
+  if(currentPhotoIndex === photoSources.length){
+    currentPhotoIndex = 0;
   }
-  showPhoto(imageSources, currentImageIndex);
-  console.log(currentImageIndex);
+  showPhoto(photoSources, currentPhotoIndex);
+  console.log(currentPhotoIndex);
 }
 
-function previousImage() {
+function previousImage(photoSources, currentPhotoIndex) {
   hidePhoto();
-  currentImageIndex--;
-  if(currentImageIndex < 0){
-    currentImageIndex = imageSources.length-1;
+  currentPhotoIndex--;
+  if(currentPhotoIndex < 0){
+    currentPhotoIndex = photoSources.length-1;
   }
-  showPhoto(imageSources, currentImageIndex);
-  console.log(currentImageIndex);
+  showPhoto(photoSources, currentPhotoIndex);
+  console.log(currentPhotoIndex);
 }
