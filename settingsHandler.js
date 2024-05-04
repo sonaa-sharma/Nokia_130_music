@@ -12,10 +12,14 @@ function settingsHandler(button) {
   switch (button.id) {
     case "left-select-button":
       hideSettings();
-      if (currentSettingId != "date-time-setting") {
-        showWallpaperScreen(true);
-      } else {
-        showDefaultScreen();
+      switch(currentSettingId){
+        case "lock-screen-setting":
+        case "home-screen-setting":
+          showWallpaperScreen(true);
+          break;
+        default:
+          showDefaultScreen(); 
+          break;
       }
       break;
 
