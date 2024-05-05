@@ -34,6 +34,8 @@ function buttonClicked(button) {
       break;
     case "aboutScreen":
       aboutScreenHandler(button);
+    case "setPhotoOptionsScreen":
+      setPhotoOptionsHandler(button);
       break;
     case "musicPlayerScreen":
       musicPlayerHandler(button);

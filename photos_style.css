@@ -5,7 +5,8 @@
 
 .background-photo{
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   background-size: cover;
+  justify-content: space-between;
   height: 100%;
 }

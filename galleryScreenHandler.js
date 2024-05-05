@@ -7,11 +7,12 @@ function galleryScreenHandler(button) {
   var imagePerRow = galleryScreenConfig.imagePerRow;
   var allowRotation = galleryScreenConfig.allowRotation;
   var imageSources = galleryScreenConfig.imageSources;
-
+  var showOptions = true;
+  
   switch (button.id) {
     case "left-select-button":
       mountGalleryScreen(false);
-      showPhoto(imageSources, currentImageIndex);
+      showPhoto(imageSources, currentImageIndex, showOptions);
       break;
 
     case "power-button":
