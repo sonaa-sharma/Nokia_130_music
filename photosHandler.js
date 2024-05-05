@@ -31,8 +31,8 @@ function showPhoto(photoSources, currentPhotoIndex) {
   _photoSources = photoSources;
   _currentPhotoIndex = currentPhotoIndex;
   var photoScreen = document.getElementById("photos-screen");
-  var photoNode = createImage(photoSources, currentPhotoIndex);
-  photoScreen.appendChild(photoNode);
+  var photoBackgroundNode = createPhotoBackground(photoSources, currentPhotoIndex);
+  photoScreen.appendChild(photoBackgroundNode);
   mountPhotoScreen(true);
   screenName = "photosScreen";
 }
@@ -40,27 +40,80 @@ function showPhoto(photoSources, currentPhotoIndex) {
 function hidePhoto() {
   mountPhotoScreen(false);
   var photoScreen = document.getElementById("photos-screen");
-  var photoNode = document.getElementById("image");
-  photoScreen.removeChild(photoNode);
+  var photoBackgroundNode = document.getElementById("image_background");
+  photoScreen.removeChild(photoBackgroundNode);
 }
 
-var photo;
 
+function createPhotoBackground(photoSources, currentPhotoIndex){
+  var screen = document.createElement("div");
+  screen.classList.add("background-photo");
+  screen.id = "image_background";
+  var photoNode = createImage(photoSources, currentPhotoIndex);
+  screen.style.backgroundImage = "url('" + photoNode.src + "')";
+  var bottomBar = createBottomNavbar();
+  screen.appendChild(bottomBar);
+  return screen;
+}
 function createImage(photoSources, currentPhotoIndex) {
   var photo = document.createElement("img");
-  photo.classList.add("image-width");
-  photo.id = "image";
   photo.src = photoSources[currentPhotoIndex];
-  photo.innerHTML = "Options";
-  var optionBar = createBottomNavbar();
-  photo.appendChild(optionBar);
   return photo;
 }
 
-function getPhoto() {
-  console.log(photo);
-  return photo;
+function createBottomNavbar(){
+  var optionsContainer = document.createElement("div");
+  optionsContainer.classList.add("bottom-navbar");
+  optionsContainer.classList.add("bottom-navbar-color");
+  optionsContainer.classList.add("bottom-navbar-container");
+
+  var opitonSelect = document.createElement("div");
+  var opitonBack = document.createElement("div");
+  opitonSelect.innerHTML = "Options";
+  opitonBack.innerHTML = "Back";
+
+  optionsContainer.appendChild(opitonSelect);
+  optionsContainer.appendChild(opitonBack);
+
+  return optionsContainer;
 }
+
+function createOptions(){
+  var optionsContainer = document.createElement("div");
+  optionsContainer.classList.add("bottom-navbar");
+  optionsContainer.classList.add("bottom-navbar-color");
+  optionsContainer.classList.add("bottom-navbar-container");
+
+  var opitonSelect = document.createElement("div");
+  var opitonBack = document.createElement("div");
+  opitonSelect.innerHTML = "Options";
+  opitonBack.innerHTML = "Back";
+
+  optionsContainer.appendChild(opitonSelect);
+  optionsContainer.appendChild(opitonBack);
+
+  return optionsContainer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function mountPhotoScreen(show) {
   var photoNode = document.getElementById("photos-screen");
@@ -87,9 +140,3 @@ function previousImage(photoSources, currentPhotoIndex) {
   console.log(currentPhotoIndex);
 }
 
-function createBottomNavbar(){
-  var opitonBox = document.createElement("div");
-  opitonBox.classList.add("bottom-navbar-options");
-  opitonBox.style.backgroundColor = "pink";
-  return opitonBox;
-}

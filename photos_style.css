@@ -2,7 +2,10 @@
   height: 100%;
   background-color: blueviolet;
 }
-.image-width {
+
+.background-photo{
+  display: flex;
+  flex-direction: column-reverse;
+  background-size: cover;
   height: 100%;
-  width: 100%;
 }
