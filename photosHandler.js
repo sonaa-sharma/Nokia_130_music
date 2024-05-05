@@ -1,6 +1,6 @@
 var _photoSources;
 var _currentPhotoIndex;
-var _showOptions;
+var _showPhotoOptions;
 
 function photosScreenHandler(button) {
   switch (button.id) {
@@ -10,7 +10,7 @@ function photosScreenHandler(button) {
       break;
     case "left-select-button":
       hidePhoto();
-      showPhoto(_photoSources, _currentPhotoIndex, !_showOptions);
+      showPhoto(_photoSources, _currentPhotoIndex, !_showPhotoOptions);
       break;
     case "right-select-button":
       hidePhoto();
@@ -18,19 +18,19 @@ function photosScreenHandler(button) {
       break;
     case "bottom-button":
     case "right-button":
-      nextImage(_photoSources, _currentPhotoIndex, _showOptions);
+      nextImage(_photoSources, _currentPhotoIndex, _showPhotoOptions);
       break;
     case "left-button":
     case "top-button":
-      previousImage(_photoSources, _currentPhotoIndex, _showOptions);
+      previousImage(_photoSources, _currentPhotoIndex, _showPhotoOptions);
       break;
     default:
       break;
   }
 }
 
-function showPhoto(photoSources, currentPhotoIndex, showOptions) {
-  if(showOptions === false){
+function showPhoto(photoSources, currentPhotoIndex, showPhotoOptions) {
+  if(showPhotoOptions === false){
     screenName = "setPhotoOptionsScreen";
   }
   else{
@@ -39,9 +39,10 @@ function showPhoto(photoSources, currentPhotoIndex, showOptions) {
 
   _photoSources = photoSources;
   _currentPhotoIndex = currentPhotoIndex;
-  _showOptions = showOptions;
+  _showPhotoOptions = showPhotoOptions;
+
   var photoScreen = document.getElementById("photos-screen");
-  var photoBackgroundNode = createPhotoBackground(photoSources, currentPhotoIndex, showOptions);
+  var photoBackgroundNode = createPhotoBackground(photoSources, currentPhotoIndex, showPhotoOptions);
   photoScreen.appendChild(photoBackgroundNode);
   mountPhotoScreen(true);
 }
@@ -54,14 +55,14 @@ function hidePhoto() {
 }
 
 
-function createPhotoBackground(photoSources, currentPhotoIndex, showOptions){
+function createPhotoBackground(photoSources, currentPhotoIndex, showPhotoOptions){
   var screen = document.createElement("div");
   screen.classList.add("background-photo");
   screen.id = "image_background";
   var photoNode = createImage(photoSources, currentPhotoIndex);
   screen.style.backgroundImage = "url('" + photoNode.src + "')";
   var setAsOptions = createOptionsContainer();
-  if(showOptions){
+  if(showPhotoOptions){
     AddRemoveClassList(setAsOptions, "hide-taking-space", true);
   }
   var bottomBar = createBottomNavbar();
@@ -163,23 +164,23 @@ function mountPhotoScreen(show) {
   AddRemoveClassList(photoNode, "hide", !show);
 }
 
-function nextImage(photoSources, currentPhotoIndex, showOptions) {
+function nextImage(photoSources, currentPhotoIndex, showPhotoOptions) {
   hidePhoto();
   currentPhotoIndex++;
   if(currentPhotoIndex === photoSources.length){
     currentPhotoIndex = 0;
   }
-  showPhoto(photoSources, currentPhotoIndex, showOptions);
+  showPhoto(photoSources, currentPhotoIndex, showPhotoOptions);
   console.log(currentPhotoIndex);
 }
 
-function previousImage(photoSources, currentPhotoIndex, showOptions) {
+function previousImage(photoSources, currentPhotoIndex, showPhotoOptions) {
   hidePhoto();
   currentPhotoIndex--;
   if(currentPhotoIndex < 0){
     currentPhotoIndex = photoSources.length-1;
   }
-  showPhoto(photoSources, currentPhotoIndex, showOptions);
+  showPhoto(photoSources, currentPhotoIndex, showPhotoOptions);
   console.log(currentPhotoIndex);
 }
 

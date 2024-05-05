@@ -6,11 +6,11 @@ function setPhotoOptionsHandler(button) {
       break;
     case "left-select-button":
       hidePhoto();
-      showPhoto(_photoSources, _currentPhotoIndex, _showOptions);
+      showPhoto(_photoSources, _currentPhotoIndex, _showPhotoOptions);
       break;
     case "right-select-button":
       hidePhoto();
-      showPhoto(_photoSources, _currentPhotoIndex, !_showOptions);
+      showPhoto(_photoSources, _currentPhotoIndex, !_showPhotoOptions);
       break;
     case "bottom-button":
     case "right-button":
