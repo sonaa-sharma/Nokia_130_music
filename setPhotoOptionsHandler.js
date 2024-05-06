@@ -1,10 +1,7 @@
-var selectOptionId = [
-  "set-as-lock",
-  "set-as-home",
-];
+var selectOptionList = ["set-as-lock", "set-as-home"];
 
-index = 0;
-currentOptionId = selectOptionId[index];
+var currentOptionIndex = 0;
+var currentOptionId = selectOptionList[currentOptionIndex];
 console.log(currentOptionId);
 
 function setPhotoOptionsHandler(button) {
@@ -21,49 +18,27 @@ function setPhotoOptionsHandler(button) {
       hidePhoto();
       showPhoto(_photoSources, _currentPhotoIndex, !_showPhotoOptions);
       break;
-    case "bottom-button":
-console.log(currentOptionId);
-
-      removeBorder();
-console.log(currentOptionId);
-
-      setBorder();
-      break;
     case "top-button":
-console.log(currentOptionId);
-
-      removeBorder();
-console.log(currentOptionId);
-      
-      setBorder();
+      var nextOptionIndex = goUpButton(selectOptionList, currentOptionIndex);
+      setPhotoOptionsBorder(selectOptionList, nextOptionIndex);
+      break;
+    case "bottom-button":
+      var nextOptionIndex = goDownButton(selectOptionList, currentOptionIndex);
+      setPhotoOptionsBorder(selectOptionList, nextOptionIndex);
       break;
     default:
       break;
   }
 }
 
-function selectUpOption(){
-  if(index < 0){
-    index = selectOptionId.length-1
-  }
-  index--;
-  return index;
-}
+function setPhotoOptionsBorder(selectOptionList, nextOptionIndex) {
+  var currentOptionId = selectOptionList[currentOptionIndex];
+  var nextOptionId = selectOptionList[nextOptionIndex];
+  var currentBox = document.getElementById(currentOptionId);
+  var nextBox = document.getElementById(nextOptionId);
 
-function selectDownOption(){
-  if(index === selectOptionId.length){
-    index = 0
-  }
-  index++;
-  return index;
-}
+  AddRemoveClassList(currentBox, "wallpaper-border", false);
+  AddRemoveClassList(nextBox, "wallpaper-border", true);
 
-function setBorder() {
-  var option = document.getElementById(currentOptionId);
-  AddRemoveClassList(option, "wallpaper-border", true);
-}
-
-function removeBorder() {
-  var option = document.getElementById(currentOptionId);
-  AddRemoveClassList(option, "wallpaper-border", false);
+  currentOptionIndex = nextOptionIndex;
 }

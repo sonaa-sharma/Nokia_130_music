@@ -94,9 +94,9 @@ function openApp(currentAppId) {
   menuContainerNode.appendChild(menuItemsNode);
 
   resetSelectedApp(resetAppPosition);
-  var iconId = menuItems[currentMenuIndex].id ;
-  firstAppIcon = document.getElementById(iconId);
-  AddRemoveClassList(firstAppIcon, "selected", true);
+  // var iconId = menuItems[currentMenuIndex].id ;
+  // firstAppIcon = document.getElementById(iconId);
+  // AddRemoveClassList(firstAppIcon, "selected", true);
 
   mountNavbar(true);
   mountIdleScreenWallPaper(true);

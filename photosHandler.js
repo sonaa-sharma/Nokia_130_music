@@ -131,6 +131,7 @@ function createSetAsTextOptions(){
   text1.id = "set-as-lock";
   text1.innerHTML = "Set As Home Screen";
   text1.classList.add("theme");
+  text1.classList.add("wallpaper-border");
 
   var text2 = document.createElement("div");
   text2.id = "set-as-home";

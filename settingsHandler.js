@@ -25,13 +25,13 @@ currentSettingId = settingList[currentSettingIndex];
       break;
 
     case "top-button":
-      var nextSettingIndex = settingGoUp(settingList, currentSettingIndex);
-      setBorder(settingList, nextSettingIndex);
+      var nextSettingIndex = goUpButton(settingList, currentSettingIndex);
+      setSettingOptionsBorder(settingList, nextSettingIndex);
       break;
 
     case "bottom-button":
-      var nextSettingIndex = settingGoDown(settingList, currentSettingIndex);
-      setBorder(settingList, nextSettingIndex);
+      var nextSettingIndex = goDownButton(settingList, currentSettingIndex);
+      setSettingOptionsBorder(settingList, nextSettingIndex);
       break;
 
     case "right-select-button":
@@ -61,7 +61,7 @@ function showSettings(resetBoxPosition) {
 function resetBoxSelection(resetBoxPosition, settingList) {
   if (resetBoxPosition) {
     var nextSettingIndex = 0
-    setBorder(settingList, nextSettingIndex);
+    setSettingOptionsBorder(settingList, nextSettingIndex);
   }
 }
 
@@ -76,7 +76,7 @@ function mountSettingsScreen(show) {
   AddRemoveClassList(setting, "hide", !show);
 }
 
-function setBorder(settingList, nextSettingIndex) {
+function setSettingOptionsBorder(settingList, nextSettingIndex) {
   var currentSettingId = settingList[currentSettingIndex];
   var nextSettingId = settingList[nextSettingIndex];
   var currentBox = document.getElementById(currentSettingId);
@@ -89,22 +89,20 @@ function setBorder(settingList, nextSettingIndex) {
 }
 
 
-function settingGoUp(settingList, currentIndex) {
+function goUpButton(settingList, currentIndex) {
   nextIndex = currentIndex - 1;
   if (nextIndex < 0) {
     nextIndex = settingList.length - 1;
     return nextIndex;
   }
-  console.log(nextIndex);
   return nextIndex;
 }
 
-function settingGoDown(settingList, currentIndex) {
+function goDownButton(settingList, currentIndex) {
   nextIndex = currentIndex + 1;
   if (nextIndex === settingList.length) {
     nextIndex = 0;
     return nextIndex;
   }
-  console.log(nextIndex);
   return nextIndex;
 }
