@@ -15,14 +15,13 @@ var currentMenuIndex = 0;
 var RESET = true;
 
 function appScreenHandler(button) {
-  var nextAppIndex;
+  var nextMenuIndex;
   var menuItemsLength = menuItems.length;
   var currentAppId = menuItems[currentMenuIndex].id;
 
   switch (button.id) {
     case "left-select-button":
       mountMenuScreen(false);
-      console.log(currentAppId);
       openApp(currentAppId);
       break;
 
@@ -34,27 +33,26 @@ function appScreenHandler(button) {
       break;
 
     case "top-button":
-      nextAppIndex = goUp(menuItemsLength, currentMenuIndex, WIDTH_LENGTH, RESET);
-      menuScrolling(menuItems, nextAppIndex, "selected");
+      nextMenuIndex = goUp(menuItemsLength, currentMenuIndex, WIDTH_LENGTH, RESET);
+      menuScrolling(menuItems, nextMenuIndex, "selected");
       break;
 
     case "left-button":
-      nextAppIndex = goLeft(menuItemsLength, currentMenuIndex, RESET);
-      menuScrolling(menuItems, nextAppIndex, "selected");
+      nextMenuIndex = goLeft(menuItemsLength, currentMenuIndex, RESET);
+      menuScrolling(menuItems, nextMenuIndex, "selected");
 
       break;
 
     case "right-button":
-      nextAppIndex = goRight(menuItemsLength, currentMenuIndex, RESET);
-      menuScrolling(menuItems, nextAppIndex, "selected");
+      nextMenuIndex = goRight(menuItemsLength, currentMenuIndex, RESET);
+      menuScrolling(menuItems, nextMenuIndex, "selected");
 
       break;
 
     case "bottom-button":
-      nextAppIndex = goDown(menuItemsLength, currentMenuIndex, WIDTH_LENGTH, RESET);
-      menuScrolling(menuItems, nextAppIndex, 'selected');
+      nextMenuIndex = goDown(menuItemsLength, currentMenuIndex, WIDTH_LENGTH, RESET);
+      menuScrolling(menuItems, nextMenuIndex, 'selected');
       var currentAppId = menuItems[currentMenuIndex];
-      console.log(currentAppId);
 
       break;
 
@@ -64,7 +62,6 @@ function appScreenHandler(button) {
 }
 
 function openApp(currentAppId) {
-  console.log(currentAppId);
   switch (currentAppId) {
     case "gallery":
       mountGalleryScreen(true);
@@ -188,10 +185,8 @@ function createIconNode(menuItem) {
 
 function menuScrolling(menuItemIds, nextMenuIndex, selectedClassName) {
   var itemId = menuItemIds[nextMenuIndex].id;
-  console.log(itemId);
   var nextApp = document.getElementById(itemId);
   var currentId = menuItemIds[currentMenuIndex].id;
-  console.log(itemId);
   var currentApp = document.getElementById(currentId);
 
   AddRemoveClassList(currentApp, selectedClassName, false);
@@ -203,6 +198,5 @@ function menuScrolling(menuItemIds, nextMenuIndex, selectedClassName) {
   });
 
   currentMenuIndex = nextMenuIndex;
-  console.log(currentMenuIndex);
 
 }

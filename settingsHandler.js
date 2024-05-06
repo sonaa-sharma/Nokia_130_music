@@ -4,11 +4,12 @@ var settingList = [
   "date-time-setting",
 ];
 
-var settingIndex = 0;
-var currentSettingId = settingList[settingIndex];
-var previousSettingId;
+var currentSettingIndex = 0;
+var currentSettingId = settingList[currentSettingIndex];
 
 function settingsHandler(button) {
+currentSettingId = settingList[currentSettingIndex];
+
   switch (button.id) {
     case "left-select-button":
       hideSettings();
@@ -24,13 +25,13 @@ function settingsHandler(button) {
       break;
 
     case "top-button":
-      settingDeselectUp();
-      settingSelectUp();
+      var nextSettingIndex = settingGoUp(settingList, currentSettingIndex);
+      setBorder(settingList, nextSettingIndex);
       break;
 
     case "bottom-button":
-      settingDeselectDown();
-      settingSelectDown();
+      var nextSettingIndex = settingGoDown(settingList, currentSettingIndex);
+      setBorder(settingList, nextSettingIndex);
       break;
 
     case "right-select-button":
@@ -54,18 +55,14 @@ function showSettings(resetBoxPosition) {
   mountSettingsScreen(true);
   mountNavbar(true);
   resetBoxSelection(resetBoxPosition);
-
   screenName = "settingsScreen";
 }
 
 function resetBoxSelection(resetBoxPosition) {
   if (resetBoxPosition) {
-    removeSettingOptionsBorder();
-    settingIndex = 0;
-    currentSettingId = settingList[settingIndex];
-
+    var nextSettingIndex = 0
+    setBorder(settingList, nextSettingIndex);
   }
-  addSettingOptionsBorder();
 }
 
 function hideSettings() {
@@ -79,52 +76,35 @@ function mountSettingsScreen(show) {
   AddRemoveClassList(setting, "hide", !show);
 }
 
-function addSettingOptionsBorder() {
-  var option = document.getElementById(currentSettingId);
-  AddRemoveClassList(option, "wallpaper-border", true);
+function setBorder(settingList, nextSettingIndex) {
+  var currentSettingId = settingList[currentSettingIndex];
+  var nextSettingId = settingList[nextSettingIndex];
+  var currentBox = document.getElementById(currentSettingId);
+  var nextBox = document.getElementById(nextSettingId);
+
+  AddRemoveClassList(currentBox, "wallpaper-border", false);
+  AddRemoveClassList(nextBox, "wallpaper-border", true);
+
+  currentSettingIndex = nextSettingIndex;
 }
 
-function removeSettingOptionsBorder() {
-  var option = document.getElementById(currentSettingId);
-  AddRemoveClassList(option, "wallpaper-border", false);
-}
 
-function settingSelectUp() {
-  if (settingIndex < 0) {
-    settingIndex = settingList.length - 1;
+function settingGoUp(settingList, currentIndex) {
+  nextIndex = currentIndex - 1;
+  if (nextIndex < 0) {
+    nextIndex = settingList.length - 1;
+    return nextIndex;
   }
-  currentSettingId = settingList[settingIndex];
-  addSettingOptionsBorder();
+  console.log(nextIndex);
+  return nextIndex;
 }
 
-function settingSelectDown() {
-  if (settingIndex === settingList.length) {
-    settingIndex = 0;
+function settingGoDown(settingList, currentIndex) {
+  nextIndex = currentIndex + 1;
+  if (nextIndex === settingList.length) {
+    nextIndex = 0;
+    return nextIndex;
   }
-  currentSettingId = settingList[settingIndex];
-  addSettingOptionsBorder();
+  console.log(nextIndex);
+  return nextIndex;
 }
-
-function settingDeselectUp() {
-  if (settingIndex < 0) {
-    settingIndex = settingList.length - 1;
-  }
-  if (settingIndex === settingList.length) {
-    settingIndex = 0;
-  }
-  currentSettingId = settingList[settingIndex];
-  previousSettingId = currentSettingId;
-  removeSettingOptionsBorder();
-  settingIndex--;
-}
-
-function settingDeselectDown() {
-  if (settingIndex === settingList.length) {
-    settingIndex = 0;
-  }
-  currentSettingId = settingList[settingIndex];
-  previousSettingId = currentSettingId;
-  removeSettingOptionsBorder();
-  settingIndex++;
-}
-
