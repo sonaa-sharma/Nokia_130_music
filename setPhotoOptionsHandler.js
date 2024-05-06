@@ -5,14 +5,25 @@ var currentOptionId = selectOptionList[currentOptionIndex];
 console.log(currentOptionId);
 
 function setPhotoOptionsHandler(button) {
+  var currentOptionId = selectOptionList[currentOptionIndex];
+
   switch (button.id) {
     case "power-button":
       hidePhoto();
       mountGalleryScreen(true, _currentPhotoIndex);
       break;
     case "left-select-button":
-      hidePhoto();
-      showPhoto(_photoSources, _currentPhotoIndex, _showPhotoOptions);
+      switch (currentOptionId) {
+        case "set-as-lock":
+          setImageWallpaper();
+          hidePhoto();
+          showLockScreen();
+          break;
+        case "set-as-home":
+          break;
+        default:
+          break;
+      }
       break;
     case "right-select-button":
       hidePhoto();
@@ -28,7 +39,7 @@ function setPhotoOptionsHandler(button) {
       break;
     default:
       break;
-  }
+ }
 }
 
 function setPhotoOptionsBorder(selectOptionList, nextOptionIndex) {
@@ -41,4 +52,12 @@ function setPhotoOptionsBorder(selectOptionList, nextOptionIndex) {
   AddRemoveClassList(nextBox, "wallpaper-border", true);
 
   currentOptionIndex = nextOptionIndex;
+}
+
+
+function setImageWallpaper(){
+  var imageNode = _photoSources[_currentPhotoIndex];
+  var lcd = getLcd();
+  console.log(imageNode);
+  lcd.style.backgroundImage = "url('" + imageNode + "')";
 }

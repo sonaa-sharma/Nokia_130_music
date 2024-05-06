@@ -143,23 +143,6 @@ function createSetAsTextOptions(){
   return setAsOptionContainer;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function mountPhotoScreen(show) {
   var photoNode = document.getElementById("photos-screen");
   AddRemoveClassList(photoNode, "hide", !show);
