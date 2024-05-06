@@ -38,7 +38,7 @@ function musicPlayerHandler(button) {
 
     case "right-select-button":
       hideMusicPlayer();
-      mountMenuScreen(true);
+      mountMenu(false);
       break;
 
     case "power-button":

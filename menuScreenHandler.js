@@ -21,14 +21,14 @@ function appScreenHandler(button) {
 
   switch (button.id) {
     case "left-select-button":
-      mountMenuScreen(false);
+      unmountMenu();
       openApp(currentAppId);
       break;
 
     case "power-button":
 
     case "right-select-button":
-      mountMenuScreen(false);
+      unmountMenu();
       showIdleScreen();
       break;
 
@@ -79,24 +79,25 @@ function openApp(currentAppId) {
   }
 }
 
-function mountMenuScreen(show) {
-  if (show) {
-    mountMenu();
-  } else {
-    unmountMenu();
-  }
-}
+// function mountMenuScreen(show) {
+//   if (show) {
+//     mountMenu(resetAppPosition);
+//   } else {
+//     unmountMenu();
+//   }
+// }
 
- function mountMenu() {
+ function mountMenu(resetAppPosition) {
   var menuScreenNode = document.getElementById("menu-screen-container");
   var menuItemsNode = createMenuItemsNode(menuItems);
   var menuContainerNode = document.getElementById("menu-containerId");
   menuContainerNode.appendChild(menuItemsNode);
-  var currentMenuIndex = 0;
 
+  resetSelectedApp(resetAppPosition);
   var iconId = menuItems[currentMenuIndex].id ;
   firstAppIcon = document.getElementById(iconId);
   AddRemoveClassList(firstAppIcon, "selected", true);
+
   mountNavbar(true);
   mountIdleScreenWallPaper(true);
   AddRemoveClassList(menuScreenNode, "hide", false);
@@ -109,7 +110,6 @@ function unmountMenu() {
   var menuContainer = document.getElementById("menu-containerId");
   var menuContainerNode = getMenuContainerNode();
   menuContainer.removeChild(menuContainerNode);
-  currentMenuIndex = 0;
   mountNavbar(false);
   mountIdleScreenWallPaper(false);
   AddRemoveClassList(menuScreenNode, "hide", true);
@@ -169,19 +169,19 @@ function createIconNode(menuItem) {
   return iconNode;
 }
 
-// function resetSelectedApp(resetAppPosition) {
-//   if (resetAppPosition) {
-//     highlightApp(false, currentMenuIndex);
-//     currentMenuIndex = 0;
-//   }
-//   highlightApp(true, currentMenuIndex);
-// }
+function resetSelectedApp(resetAppPosition) {
+  if (resetAppPosition) {
+    highlightApp(false, currentMenuIndex);
+    currentMenuIndex = 0;
+  }
+  highlightApp(true, currentMenuIndex);
+}
 
-// function highlightApp(showHide, highlightAppIndex) {
-//   var highlightAppId = menuItems[highlightAppIndex];
-//   var highlightNode = document.getElementById(highlightAppId);
-//   AddRemoveClassList(highlightNode, "selected", showHide);
-// }
+function highlightApp(showHide, highlightAppIndex) {
+  var highlightAppId = menuItems[highlightAppIndex].id;
+  var highlightNode = document.getElementById(highlightAppId);
+  AddRemoveClassList(highlightNode, "selected", showHide);
+}
 
 function menuScrolling(menuItemIds, nextMenuIndex, selectedClassName) {
   var itemId = menuItemIds[nextMenuIndex].id;

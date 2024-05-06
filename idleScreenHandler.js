@@ -5,7 +5,7 @@ function idleScreenHandler(button) {
   switch (button.id) {
     case "left-select-button":
       hideIdleScreen();
-      mountMenuScreen(true);
+      mountMenu(true);
       break;
     case "mid-button-inner":
       hideIdleScreen();

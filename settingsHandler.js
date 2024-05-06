@@ -36,7 +36,7 @@ currentSettingId = settingList[currentSettingIndex];
 
     case "right-select-button":
       hideSettings();
-      mountMenuScreen(true);
+      mountMenu(false);
       break;
 
     case "power-button":
@@ -54,11 +54,11 @@ function showSettings(resetBoxPosition) {
   mountIdleScreenWallPaper(true);
   mountSettingsScreen(true);
   mountNavbar(true);
-  resetBoxSelection(resetBoxPosition);
+  resetBoxSelection(resetBoxPosition, settingList);
   screenName = "settingsScreen";
 }
 
-function resetBoxSelection(resetBoxPosition) {
+function resetBoxSelection(resetBoxPosition, settingList) {
   if (resetBoxPosition) {
     var nextSettingIndex = 0
     setBorder(settingList, nextSettingIndex);

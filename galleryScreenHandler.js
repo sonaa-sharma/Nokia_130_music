@@ -22,7 +22,7 @@ function galleryScreenHandler(button) {
 
     case "right-select-button":
       mountGalleryScreen(false);
-      mountMenuScreen(true);
+      mountMenu(true);
       break;
 
     case "top-button":
