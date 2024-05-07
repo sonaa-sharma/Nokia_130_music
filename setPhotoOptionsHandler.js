@@ -1,4 +1,4 @@
-var selectOptionList = ["set-as-lock", "set-as-home"];
+var selectOptionList = ["set-as-home", "set-as-lock"];
 
 var currentOptionIndex = 0;
 var currentOptionId = selectOptionList[currentOptionIndex];
@@ -14,12 +14,12 @@ function setPhotoOptionsHandler(button) {
       break;
     case "left-select-button":
       switch (currentOptionId) {
-        case "set-as-lock":
+        case "set-as-home":
           setImageWallpaper();
           hidePhoto();
-          showLockScreen();
+          mountMenu();
           break;
-        case "set-as-home":
+        case "set-as-lock":
           break;
         default:
           break;
@@ -39,7 +39,7 @@ function setPhotoOptionsHandler(button) {
       break;
     default:
       break;
- }
+  }
 }
 
 function setPhotoOptionsBorder(selectOptionList, nextOptionIndex) {
@@ -54,10 +54,9 @@ function setPhotoOptionsBorder(selectOptionList, nextOptionIndex) {
   currentOptionIndex = nextOptionIndex;
 }
 
-
-function setImageWallpaper(){
+function setImageWallpaper() {
   var imageNode = _photoSources[_currentPhotoIndex];
   var lcd = getLcd();
-  console.log(imageNode);
   lcd.style.backgroundImage = "url('" + imageNode + "')";
 }
+

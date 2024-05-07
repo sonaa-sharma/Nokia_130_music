@@ -128,13 +128,13 @@ function createSetAsTextOptions(){
   setAsOptionContainer.classList.add("theme-container");
 
   var text1 = document.createElement("div");
-  text1.id = "set-as-lock";
+  text1.id = "set-as-home";
   text1.innerHTML = "Set As Home Screen";
   text1.classList.add("theme");
   text1.classList.add("wallpaper-border");
 
   var text2 = document.createElement("div");
-  text2.id = "set-as-home";
+  text2.id = "set-as-lock";
   text2.innerHTML = "Set As Lock Screen";
   text2.classList.add("theme");
 
