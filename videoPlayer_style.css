@@ -1,28 +1,69 @@
 .videoPlayer-screen-div {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: 100%;
+  background-color: rgb(17, 18, 18);
+
+}
+
+.video-control-bar-container{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0px 12px;
 }
 
 .video-player-div {
-  height: 206px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(17, 18, 18);
+  justify-content: space-between;
+  padding: 0px 0px 12px;
+
 }
 
-.video-player {
-  /* height: 240px; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.video-player-container{
+  height: 100%;
+  /* display: flex; */
+  /* background-color: aliceblue; */
 }
 
 .video {
-    /* height: 206px; */
   width: 100%;
 }
+
+.video-description{
+  padding: 4px;
+  text-align: center;
+}
+.progress-bar{
+  width: 100%;
+  height: 4px;
+  border-radius: 8px;
+  /* padding: 4px; */
+}
+
+.controls-container{
+  display: flex;
+  gap: 16px;
+  /* padding: 8px; */
+}
+
+.image-width{
+  width: 28px;
+}
+
+.play-pause-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  border-radius: 50%;
+  background-color: rgb(246, 244, 246);
+}
+
+.rotate-180{
+  rotate: 180deg;
+}
+

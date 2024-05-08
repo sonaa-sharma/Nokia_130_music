@@ -2,7 +2,6 @@ var selectOptionList = ["set-as-home", "set-as-lock"];
 
 var currentOptionIndex = 0;
 var currentOptionId = selectOptionList[currentOptionIndex];
-console.log(currentOptionId);
 
 function setPhotoOptionsHandler(button) {
   var currentOptionId = selectOptionList[currentOptionIndex];

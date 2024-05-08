@@ -2,28 +2,28 @@ var videoflag = 0;
 
 function playVideo() {
   var videoPlayer = document.getElementById("videoPlayerId");
-  var playPause = document.getElementById("play-pause-option");
+  var playPause = document.getElementById("play-pause-id");
+  playPause.src = "Icons/pause-play.png"
   videoPlayer.play();
-  playPause.innerHTML = "Pause";
   videoflag = 1;
 }
 
 function pauseVideo() {
   var videoPlayer = document.getElementById("videoPlayerId");
-  var playPause = document.getElementById("play-pause-option");
+  var playPause = document.getElementById("play-pause-id");
   videoPlayer.pause();
-  playPause.innerHTML = "Play";
+  playPause.src = "Icons/play (1).png"
 }
 
 function videoPlayerHandler(button) {
   switch (button.id) {
     case "left-select-button":
-      if (videoflag === 1) {
-        pauseVideo();
-        videoflag = 0;
-      } else {
-        playVideo();
-      }
+      // if (videoflag === 1) {
+      //   pauseVideo();
+      //   videoflag = 0;
+      // } else {
+      //   playVideo();
+      // }
       break;
 
     case "mid-button-inner":
@@ -53,7 +53,7 @@ function videoPlayerHandler(button) {
 function showVideoPlayer() {
   mountVideoPlayerScreen(true);
 //   mountNavbar(true);
-  mountIdleScreenWallPaper(true);
+  // mountIdleScreenWallPaper(true);
 
   screenName = "videoPlayerScreen";
 }

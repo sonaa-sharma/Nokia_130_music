@@ -1,6 +1,6 @@
 var flag = 0;
 
-function play() {
+function playMusic() {
   var audioPlayer = document.getElementById("audioPlayerId");
   var playPause = document.getElementById("play-pause-text");
   playPause.innerHTML = "Pause";
@@ -8,7 +8,7 @@ function play() {
   flag = 1;
 }
 
-function pause() {
+function pauseMusic() {
   var audioPlayer = document.getElementById("audioPlayerId");
   var playPause = document.getElementById("play-pause-text");
   audioPlayer.pause();
@@ -20,19 +20,19 @@ function musicPlayerHandler(button) {
   switch (button.id) {
     case "left-select-button":
       if (flag === 1) {
-        pause();
+        pauseMusic();
         flag = 0;
       } else {
-        play();
+        playMusic();
       }
       break;
 
     case "mid-button-inner":
       if (flag === 1) {
-        pause();
+        pauseMusic();
         flag = 0;
       } else {
-        play();
+        playMusic();
       }
       break;
 

@@ -16,6 +16,7 @@ function clickEventFunction(event) {
 // button click events----------->
 
 function buttonClicked(button) {
+  // console.log(screenName);
   switch (screenName) {
     case "lockScreen":
       lockScreenHandler(button);
@@ -39,6 +40,7 @@ function buttonClicked(button) {
       break;
     case "videoPlayerScreen":
       videoPlayerHandler(button);
+      break;
     case "musicPlayerScreen":
       musicPlayerHandler(button);
       break;
