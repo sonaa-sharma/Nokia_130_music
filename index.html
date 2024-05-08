@@ -170,34 +170,33 @@
                             <div class="video-player-div">
                                 <div class="video-player-container center">
                                     <div class="video-player">
-                                        <video id="videoPlayerId" class="video"
-                                            src="https://videos.pexels.com/video-files/2616637/2616637-sd_640_360_30fps.mp4"></video>
+                                        <video id="videoId" class="video"
+                                            src="videoFolder\butterfly1.mp4"></video>
                                     </div>
                                 </div>
-                                <div id="video-des" class="video-description">Video 1</div>
+                                <div id="video-des" class="video-description">Nature-Butterfly</div>
                                 <div class="video-control-bar-container">
                                     <div class="progress-bar-container center">
-                                        <input type="range" disabled value="0" class="progress-bar">
-                                        <!-- <div class="progress-bar"></div> -->
+                                        <input type="range" disabled value="0" class="progress-bar" min="0" max="100" id="progress-bar-id">
                                     </div>
                                     <div class="controls-container center">
-                                        <div class="play-pause-container">
-                                            <img class="image-width rotate-180" id="previous-vidio"
+                                        <div class="play-pause-container" id="previous-video">
+                                            <img class="image-width rotate-180"
                                                 src="Icons\pause-play-button.png" alt="pre">
                                         </div>
                                         <div id="play-pause-option" class="play-pause-container">
-                                            <img class="image-width" id="play-pause-id" src="Icons\play (1).png"
+                                            <img class="image-width pause-icon" id="play-pause-id" src="Icons\play (1).png"
                                                 alt="play/pause">
                                         </div>
-                                        <div class="play-pause-container">
-                                            <img class="image-width" id="next-vidio" src="Icons\pause-play-button.png"
+                                        <div class="play-pause-container" id="next-video">
+                                            <img class="image-width" src="Icons\pause-play-button.png"
                                                 alt="next">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="bottom-navbar bottom-navbar-color">
-                                <div id="full-screen">Full Screen</div>
+                                <div id="full-screen"></div>
                                 <div>Back</div>
                             </div>
                         </div>

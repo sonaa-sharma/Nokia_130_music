@@ -4,7 +4,6 @@
   justify-content: space-evenly;
   height: 100%;
   background-color: rgb(17, 18, 18);
-
 }
 
 .video-control-bar-container{
@@ -37,10 +36,17 @@
   padding: 4px;
   text-align: center;
 }
+
+.progress-bar::-webkit-progress-value {
+  transition: width 1s ease;
+  color: blue;
+  background-color: red;
+}
 .progress-bar{
   width: 100%;
   height: 4px;
   border-radius: 8px;
+  transition: all 1s ease; 
   /* padding: 4px; */
 }
 
@@ -67,3 +73,6 @@
   rotate: 180deg;
 }
 
+.pause-icon{
+  width: 32px;
+}
