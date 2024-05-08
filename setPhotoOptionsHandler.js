@@ -60,3 +60,7 @@ function setImageWallpaper() {
   lcd.style.backgroundImage = "url('" + imageNode + "')";
 }
 
+function removeWallpaper(){
+  var lcd = getLcd();
+  lcd.style.backgroundImage = "none";
+}

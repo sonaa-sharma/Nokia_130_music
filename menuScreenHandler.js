@@ -66,6 +66,10 @@ function openApp(currentAppId) {
     case "gallery":
       mountGalleryScreen(true);
       break;
+    case "video-player":
+      showVideoPlayer();
+      break;
+  
     case "music-player":
       showMusicPlayer();
       break;

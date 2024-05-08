@@ -1,3 +1,28 @@
-.videoPlayer-screen-div{
-    background-color: blueviolet;
+.videoPlayer-screen-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.video-player-div {
+  height: 206px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(17, 18, 18);
+}
+
+.video-player {
+  /* height: 240px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.video {
+    /* height: 206px; */
+  width: 100%;
 }

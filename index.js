@@ -37,6 +37,8 @@ function buttonClicked(button) {
     case "setPhotoOptionsScreen":
       setPhotoOptionsHandler(button);
       break;
+    case "videoPlayerScreen":
+      videoPlayerHandler(button);
     case "musicPlayerScreen":
       musicPlayerHandler(button);
       break;

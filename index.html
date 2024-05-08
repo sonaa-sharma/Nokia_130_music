@@ -168,14 +168,36 @@
 
                         <div class="videoPlayer-screen-div hide" id="video-player-container">
                             <div class="video-player-div">
-                                <h2>Video Player</h2>
-                                <div class="video-player">
-                                    <video id="videoPlayerId" class="video" src="https://youtu.be/7PIji8OubXU"
-                                        controls autoplay></video>
+                                <div class="video-player-container center">
+                                    <div class="video-player">
+                                        <video id="videoPlayerId" class="video"
+                                            src="https://videos.pexels.com/video-files/2616637/2616637-sd_640_360_30fps.mp4"></video>
+                                    </div>
+                                </div>
+                                <div id="video-des" class="video-description">Video 1</div>
+                                <div class="video-control-bar-container">
+                                    <div class="progress-bar-container center">
+                                        <input type="range" disabled value="0" class="progress-bar">
+                                        <!-- <div class="progress-bar"></div> -->
+                                    </div>
+                                    <div class="controls-container center">
+                                        <div class="play-pause-container">
+                                            <img class="image-width rotate-180" id="previous-vidio"
+                                                src="Icons\pause-play-button.png" alt="pre">
+                                        </div>
+                                        <div id="play-pause-option" class="play-pause-container">
+                                            <img class="image-width" id="play-pause-id" src="Icons\play (1).png"
+                                                alt="play/pause">
+                                        </div>
+                                        <div class="play-pause-container">
+                                            <img class="image-width" id="next-vidio" src="Icons\pause-play-button.png"
+                                                alt="next">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="bottom-navbar bottom-navbar-color">
-                                <div id="play-pause-text">Play</div>
+                                <div id="full-screen">Full Screen</div>
                                 <div>Back</div>
                             </div>
                         </div>
@@ -194,8 +216,7 @@
                                 <h2>Music Player</h2>
                                 <div class="music-player">
                                     <audio id="audioPlayerId" class="audio"
-                                        src="MusicFolder\RADHA_RANI_LAGE_SIMPAL_KHAREL_NEW_SONG_RADHA_KRISHNA_BHAJAN_2023.mp3"
-                                        controls></audio>
+                                        src="MusicFolder\RADHA_RANI_LAGE_SIMPAL_KHAREL_NEW_SONG_RADHA_KRISHNA_BHAJAN_2023.mp3"></audio>
                                 </div>
                             </div>
                             <div class="bottom-navbar bottom-navbar-color">

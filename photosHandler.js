@@ -155,7 +155,6 @@ function nextImage(photoSources, currentPhotoIndex, showPhotoOptions) {
     currentPhotoIndex = 0;
   }
   showPhoto(photoSources, currentPhotoIndex, showPhotoOptions);
-  console.log(currentPhotoIndex);
 }
 
 function previousImage(photoSources, currentPhotoIndex, showPhotoOptions) {
@@ -165,6 +164,5 @@ function previousImage(photoSources, currentPhotoIndex, showPhotoOptions) {
     currentPhotoIndex = photoSources.length-1;
   }
   showPhoto(photoSources, currentPhotoIndex, showPhotoOptions);
-  console.log(currentPhotoIndex);
 }
 
