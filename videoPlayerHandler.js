@@ -31,6 +31,8 @@ function pauseVideo() {
   videoPlayer.pause();
   clearInterval(videoTimeoutId);
   playPause.src = "Icons/play (1).png";
+  videoflag = 0;
+
 }
 
 function videoPlayerHandler(button) {
@@ -42,7 +44,7 @@ function videoPlayerHandler(button) {
     case "mid-button-inner":
       if (videoflag === 1) {
         pauseVideo();
-        videoflag = 0;
+        // videoflag = 0;
       } else {
         playVideo();
       // showNextVideo();
@@ -74,12 +76,12 @@ function videoPlayerHandler(button) {
 }
 
 function showNextVideo(){
-  var playPause = document.getElementById("play-pause-id");
-  playPause.src = "Icons/play (1).png";
+  // var playPause = document.getElementById("play-pause-id");
+  // playPause.src = "Icons/play (1).png";
   clearInterval(videoTimeoutId);
   var barNode = document.getElementById("progress-bar-id");
   barNode.value = 0;
-  videoflag = 0;
+  // videoflag = 0;
 
   showSelection("right-button");
 
@@ -93,6 +95,8 @@ function showNextVideo(){
   var videoNode = videoArray[videoIndex];
   var videoBoxId = document.getElementById("videoId");
   videoBoxId.src = videoNode;
+  playVideo();
+
   console.log(videoNode);
 }
 
@@ -102,7 +106,7 @@ function showPreviousVideo(){
   clearInterval(videoTimeoutId);
   var barNode = document.getElementById("progress-bar-id");
   barNode.value = 0;
-  videoflag = 0;
+  // videoflag = 0;
 
   showSelection("left-button");
 
@@ -116,6 +120,8 @@ function showPreviousVideo(){
   var videoNode = videoArray[videoIndex];
   var videoBoxId = document.getElementById("videoId");
   videoBoxId.src = videoNode;
+  playVideo();
+
   console.log(videoIndex);
   console.log(videoNode);
 }
