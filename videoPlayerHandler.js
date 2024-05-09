@@ -3,13 +3,20 @@ var videoTimeoutId;
 var videoIndex = 0;
 
 var videoArray = [
-  "videoFolder/butterfly1.mp4",
-  "videoFolder/butterfly-flowers.mp4", 
-  "videoFolder/butterfly.mp4", 
-  "videoFolder/flowers.mp4",
-  "videoFolder/roses.mp4",
-  "videoFolder/squirrel.mp4",
+  "videoFolder/video6187948439217639655.mp4",
+  "videoFolder/video6187948439217639654.mp4",
+  "videoFolder/video6187948439217639649.mp4",
+  "videoFolder/video6187948439217639642.mp4",
+  "videoFolder/beautiful_forest_video_4K_ULTRA_HD_forest_video_clip_forest_view.mp4", 
 ];
+
+var videoDescription = [
+  "Krishna Flute",
+  "Butterfly",
+  "Nature Rain",
+  "Bird Chirping",
+  "Water Fall",
+]
 
 function playVideo() {
   var videoPlayer = document.getElementById("videoId");
@@ -22,7 +29,7 @@ function playVideo() {
 }
 
 function onVideoEnd() {
-  pauseVideo();
+  playNextVideo();
 }
 
 function pauseVideo() {
@@ -47,7 +54,7 @@ function videoPlayerHandler(button) {
         // videoflag = 0;
       } else {
         playVideo();
-      // showNextVideo();
+      // playNextVideo();
 
       }
       break;
@@ -63,11 +70,11 @@ function videoPlayerHandler(button) {
       break;
 
     case "right-button":
-      showNextVideo();
+      playNextVideo();
       break;
 
     case "left-button":
-      showPreviousVideo();
+      playPreviousVideo();
       break;
 
     default:
@@ -75,17 +82,35 @@ function videoPlayerHandler(button) {
   }
 }
 
-function showNextVideo(){
-  // var playPause = document.getElementById("play-pause-id");
-  // playPause.src = "Icons/play (1).png";
-  clearInterval(videoTimeoutId);
+function showVideoPlayer() {
+  mountVideoPlayerScreen(true);
   var barNode = document.getElementById("progress-bar-id");
   barNode.value = 0;
-  // videoflag = 0;
+  videoflag = 0;
+  videoIndex = 0;
+  var videoNode = videoArray[videoIndex];
+  var videoBoxId = document.getElementById("videoId");
+  videoBoxId.src = videoNode;
+  var playPause = document.getElementById("play-pause-id");
+  playPause.src = "Icons/play (1).png";
+  var videoDes = document.getElementById("video-des");
+  videoDes.innerHTML = videoDescription[videoIndex];
 
+  screenName = "videoPlayerScreen";
+}
+
+function hideVideoPlayer() {
+  mountVideoPlayerScreen(false);
+  mountIdleScreenWallPaper(false);
+  clearInterval(videoTimeoutId);
+}
+
+function playNextVideo(){
+  clearInterval(videoTimeoutId);
   showSelection("right-button");
 
-  console.log(videoIndex);
+  var barNode = document.getElementById("progress-bar-id");
+  barNode.value = 0;
 
   videoIndex++;
 
@@ -95,22 +120,18 @@ function showNextVideo(){
   var videoNode = videoArray[videoIndex];
   var videoBoxId = document.getElementById("videoId");
   videoBoxId.src = videoNode;
-  playVideo();
+  var videoDes = document.getElementById("video-des");
+  videoDes.innerHTML = videoDescription[videoIndex];
 
-  console.log(videoNode);
+  playVideo();
 }
 
-function showPreviousVideo(){
-  var playPause = document.getElementById("play-pause-id");
-  playPause.src = "Icons/play (1).png";
+function playPreviousVideo(){
   clearInterval(videoTimeoutId);
-  var barNode = document.getElementById("progress-bar-id");
-  barNode.value = 0;
-  // videoflag = 0;
-
   showSelection("left-button");
 
-  console.log(videoIndex);
+  var barNode = document.getElementById("progress-bar-id");
+  barNode.value = 0;
 
   videoIndex--;
 
@@ -121,9 +142,6 @@ function showPreviousVideo(){
   var videoBoxId = document.getElementById("videoId");
   videoBoxId.src = videoNode;
   playVideo();
-
-  console.log(videoIndex);
-  console.log(videoNode);
 }
 
 function showSelection(idName) {
@@ -160,25 +178,6 @@ function hideBorderForwardButton() {
   var backwardButton = document.getElementById("next-video");
   backwardButton.style.border = "1px solid ";
 
-}
-
-function showVideoPlayer() {
-  mountVideoPlayerScreen(true);
-  screenName = "videoPlayerScreen";
-  var barNode = document.getElementById("progress-bar-id");
-  barNode.value = 0;
-  videoIndex = 0;
-  videoflag = 0;
-  var videoNode = videoArray[videoIndex];
-  var videoBoxId = document.getElementById("videoId");
-  videoBoxId.src = videoNode;
-  var playPause = document.getElementById("play-pause-id");
-  playPause.src = "Icons/play (1).png";
-}
-
-function hideVideoPlayer() {
-  mountVideoPlayerScreen(false);
-  mountIdleScreenWallPaper(false);
 }
 
 function mountVideoPlayerScreen(show) {

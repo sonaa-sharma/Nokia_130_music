@@ -1,3 +1,11 @@
+var musicArray = [
+  "MusicFolder/krishna_flute_meditation_music_beautiful_song_instrumentalMP3_160K.mp3",
+  "MusicFolder/beautiful_forest_video_4K_ULTRA_HD_forest_video_clip_forest_view.mp3",
+  "MusicFolder/Musim Hujan(MP3_160K).mp3",
+  "MusicFolder/The Splendor of Butterflies_ Nature_s Living Art(MP3_160K).mp3",
+  "",
+]
+
 var flag = 0;
 
 function playMusic() {
