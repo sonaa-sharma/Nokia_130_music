@@ -3,11 +3,11 @@ var videoTimeoutId;
 var videoIndex = 0;
 
 var videoArray = [
-  "videoFolder/video6187948439217639655.mp4",
-  "videoFolder/video6187948439217639654.mp4",
-  "videoFolder/video6187948439217639649.mp4",
-  "videoFolder/video6187948439217639642.mp4",
-  "videoFolder/beautiful_forest_video_4K_ULTRA_HD_forest_video_clip_forest_view.mp4", 
+  "videoFolder/krishnaFlute.mp4",
+  "videoFolder/butterflyFlying.mp4",
+  "videoFolder/rain-nature.mp4",
+  "videoFolder/birds-chirping.mp4",
+  "videoFolder/waterFall.mp4",
 ];
 
 var videoDescription = [
@@ -38,6 +38,10 @@ function pauseVideo() {
   videoPlayer.pause();
   clearInterval(videoTimeoutId);
   playPause.src = "Icons/play (1).png";
+  var buttonClick = document.getElementById("play-pause-option");
+  buttonClick.addEventListener("mousedown", showBorderPauseButton);
+  buttonClick.addEventListener("mouseup", hideBorderPauseButton);
+  
   videoflag = 0;
 
 }
@@ -51,11 +55,8 @@ function videoPlayerHandler(button) {
     case "mid-button-inner":
       if (videoflag === 1) {
         pauseVideo();
-        // videoflag = 0;
       } else {
         playVideo();
-      // playNextVideo();
-
       }
       break;
 
@@ -88,11 +89,14 @@ function showVideoPlayer() {
   barNode.value = 0;
   videoflag = 0;
   videoIndex = 0;
+
   var videoNode = videoArray[videoIndex];
   var videoBoxId = document.getElementById("videoId");
   videoBoxId.src = videoNode;
+
   var playPause = document.getElementById("play-pause-id");
   playPause.src = "Icons/play (1).png";
+
   var videoDes = document.getElementById("video-des");
   videoDes.innerHTML = videoDescription[videoIndex];
 
@@ -102,6 +106,7 @@ function showVideoPlayer() {
 function hideVideoPlayer() {
   mountVideoPlayerScreen(false);
   mountIdleScreenWallPaper(false);
+  pauseVideo();
   clearInterval(videoTimeoutId);
 }
 
@@ -141,6 +146,9 @@ function playPreviousVideo(){
   var videoNode = videoArray[videoIndex];
   var videoBoxId = document.getElementById("videoId");
   videoBoxId.src = videoNode;
+  var videoDes = document.getElementById("video-des");
+  videoDes.innerHTML = videoDescription[videoIndex];
+
   playVideo();
 }
 
@@ -159,26 +167,33 @@ function showSelection(idName) {
 function showBorderBackwardButton() {
   var backwardButton = document.getElementById("previous-video");
   backwardButton.style.border = "1px solid white";
-
 }
 
 function hideBorderBackwardButton() {
   var backwardButton = document.getElementById("previous-video");
   backwardButton.style.border = "1px solid ";
-
 }
 
 function showBorderForwardButton() {
   var backwardButton = document.getElementById("next-video");
   backwardButton.style.border = "1px solid white";
-
 }
 
 function hideBorderForwardButton() {
   var backwardButton = document.getElementById("next-video");
   backwardButton.style.border = "1px solid ";
-
 }
+
+function showBorderPauseButton() {
+  var backwardButton = document.getElementById("play-pause-option");
+  backwardButton.style.border = "1px solid pink";
+}
+
+function hideBorderPauseButton() {
+  var backwardButton = document.getElementById("play-pause-option");
+  backwardButton.style.border = "1px solid blue";
+}
+
 
 function mountVideoPlayerScreen(show) {
   var video = document.getElementById("video-player-container");
