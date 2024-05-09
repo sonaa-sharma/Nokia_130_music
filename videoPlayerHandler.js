@@ -3,11 +3,11 @@ var videoTimeoutId;
 var videoIndex = 0;
 
 var videoArray = [
+  "videoFolder/butterfly1.mp4",
   "videoFolder/butterfly-flowers.mp4", 
   "videoFolder/butterfly.mp4", 
   "videoFolder/flowers.mp4",
   "videoFolder/roses.mp4",
-  "videoFolder/butterfly1.mp4",
   "videoFolder/squirrel.mp4",
 ];
 
@@ -83,6 +83,10 @@ function showNextVideo(){
 
   showSelection("right-button");
 
+  console.log(videoIndex);
+
+  videoIndex++;
+
   if(videoIndex === videoArray.length){
     videoIndex = 0;
   }
@@ -90,7 +94,6 @@ function showNextVideo(){
   var videoBoxId = document.getElementById("videoId");
   videoBoxId.src = videoNode;
   console.log(videoNode);
-  videoIndex++;
 }
 
 function showPreviousVideo(){
@@ -103,6 +106,10 @@ function showPreviousVideo(){
 
   showSelection("left-button");
 
+  console.log(videoIndex);
+
+  videoIndex--;
+
   if(videoIndex < 0){
     videoIndex = videoArray.length-1;
   }
@@ -111,41 +118,39 @@ function showPreviousVideo(){
   videoBoxId.src = videoNode;
   console.log(videoIndex);
   console.log(videoNode);
-  videoIndex--;
 }
 
-function showSelection(idName){
-  if(idName === "left-button"){
+function showSelection(idName) {
+  if (idName === "left-button") {
     var buttonClick = document.getElementById(idName);
     buttonClick.addEventListener("mousedown", showBorderBackwardButton);
     buttonClick.addEventListener("mouseup", hideBorderBackwardButton);
-  }
-  else{
+  } else {
     var buttonClick = document.getElementById(idName);
     buttonClick.addEventListener("mousedown", showBorderForwardButton);
     buttonClick.addEventListener("mouseup", hideBorderForwardButton);
   }
 }
 
-function showBorderBackwardButton(){
+function showBorderBackwardButton() {
   var backwardButton = document.getElementById("previous-video");
   backwardButton.style.border = "1px solid white";
 
 }
 
-function hideBorderBackwardButton(){
+function hideBorderBackwardButton() {
   var backwardButton = document.getElementById("previous-video");
   backwardButton.style.border = "1px solid ";
 
 }
 
-function showBorderForwardButton(){
+function showBorderForwardButton() {
   var backwardButton = document.getElementById("next-video");
   backwardButton.style.border = "1px solid white";
 
 }
 
-function hideBorderForwardButton(){
+function hideBorderForwardButton() {
   var backwardButton = document.getElementById("next-video");
   backwardButton.style.border = "1px solid ";
 
@@ -154,11 +159,15 @@ function hideBorderForwardButton(){
 function showVideoPlayer() {
   mountVideoPlayerScreen(true);
   screenName = "videoPlayerScreen";
+  var barNode = document.getElementById("progress-bar-id");
+  barNode.value = 0;
   videoIndex = 0;
-  var videoNode = "videoFolder/butterfly1.mp4";
+  videoflag = 0;
+  var videoNode = videoArray[videoIndex];
   var videoBoxId = document.getElementById("videoId");
   videoBoxId.src = videoNode;
-
+  var playPause = document.getElementById("play-pause-id");
+  playPause.src = "Icons/play (1).png";
 }
 
 function hideVideoPlayer() {
