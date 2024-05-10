@@ -16,14 +16,18 @@ var videoDescription = [
   "Nature Rain",
   "Bird Chirping",
   "Water Fall",
-]
+];
 
 function playVideo() {
   var videoPlayer = document.getElementById("videoId");
   var playPause = document.getElementById("play-pause-id");
   playPause.src = "Icons/pause-play.png";
   videoPlayer.play();
-  videoTimeoutId = setInterval(moveProgressBar, 500);
+  videoTimeoutId = setInterval(function () {
+    moveProgressBar();
+    videoCurrentPlayDuration();
+  }, 33);
+
   videoPlayer.addEventListener("ended", onVideoEnd);
   videoflag = 1;
 }
@@ -41,15 +45,13 @@ function pauseVideo() {
   var buttonClick = document.getElementById("play-pause-option");
   buttonClick.addEventListener("mousedown", showBorderPauseButton);
   buttonClick.addEventListener("mouseup", hideBorderPauseButton);
-  
-  videoflag = 0;
 
+  videoflag = 0;
 }
 
 function videoPlayerHandler(button) {
   switch (button.id) {
     case "left-select-button":
-    
       break;
 
     case "mid-button-inner":
@@ -90,9 +92,18 @@ function showVideoPlayer() {
   videoflag = 0;
   videoIndex = 0;
 
+  
+  var minCurrentTimeNode = document.getElementById("current-time-min");
+  var secCurrentTimeNode = document.getElementById("current-time-sec");
+  minCurrentTimeNode.innerHTML = "00";
+  secCurrentTimeNode.innerHTML = "00";
+
+  videoTotalDuration();
+  
   var videoNode = videoArray[videoIndex];
   var videoBoxId = document.getElementById("videoId");
   videoBoxId.src = videoNode;
+
 
   var playPause = document.getElementById("play-pause-id");
   playPause.src = "Icons/play (1).png";
@@ -110,28 +121,35 @@ function hideVideoPlayer() {
   clearInterval(videoTimeoutId);
 }
 
-function playNextVideo(){
+function playNextVideo() {
   clearInterval(videoTimeoutId);
   showSelection("right-button");
 
   var barNode = document.getElementById("progress-bar-id");
   barNode.value = 0;
-
+  
   videoIndex++;
-
-  if(videoIndex === videoArray.length){
+  
+  if (videoIndex === videoArray.length) {
     videoIndex = 0;
   }
+  videoTotalDuration();
+
   var videoNode = videoArray[videoIndex];
   var videoBoxId = document.getElementById("videoId");
   videoBoxId.src = videoNode;
+
+  console.log(videoBoxId);
+  console.log(videoBoxId.src);
+
+
   var videoDes = document.getElementById("video-des");
   videoDes.innerHTML = videoDescription[videoIndex];
 
   playVideo();
 }
 
-function playPreviousVideo(){
+function playPreviousVideo() {
   clearInterval(videoTimeoutId);
   showSelection("left-button");
 
@@ -140,14 +158,18 @@ function playPreviousVideo(){
 
   videoIndex--;
 
-  if(videoIndex < 0){
-    videoIndex = videoArray.length-1;
+  if (videoIndex < 0) {
+    videoIndex = videoArray.length - 1;
   }
+
+  videoTotalDuration();
+
   var videoNode = videoArray[videoIndex];
   var videoBoxId = document.getElementById("videoId");
   videoBoxId.src = videoNode;
   var videoDes = document.getElementById("video-des");
   videoDes.innerHTML = videoDescription[videoIndex];
+
 
   playVideo();
 }
@@ -194,7 +216,6 @@ function hideBorderPauseButton() {
   backwardButton.style.border = "1px solid blue";
 }
 
-
 function mountVideoPlayerScreen(show) {
   var video = document.getElementById("video-player-container");
   AddRemoveClassList(video, "hide", !show);
@@ -214,6 +235,50 @@ function moveProgressBar() {
   barNode.value = per;
 }
 
-function printTimer() {
-  console.log(getVideoPlayedPercentage());
+function videoCurrentPlayDuration() {
+  var videoNode = document.getElementById("videoId");
+  var currentTime = videoNode.currentTime;
+  currentTime = Math.ceil(currentTime);
+  showMinSecFormatCurrentTime(currentTime);
+}
+
+function videoTotalDuration() {
+  var videoNode = document.getElementById("videoId");
+  console.log(videoNode);
+  var totalTime = videoNode.duration;
+  totalTime = Math.ceil(totalTime);
+  console.log("total-time = ",  totalTime);
+  showMinSecFormatTotalTime(totalTime);
+}
+
+function showMinSecFormatTotalTime(totalTime) {
+  var minTotalTimeNode = document.getElementById("total-time-min");
+  var secTotalTimeNode = document.getElementById("total-time-sec");
+  var totalTimeValue = totalTime;
+
+  if (totalTime < 60) {
+    minTotalTimeNode.innerHTML = "00";
+    secTotalTimeNode.innerHTML = getTwoDigitNumber(totalTime);
+  } else {
+    totalDurationInMin = Math.floor(totalTimeValue / 60);
+    totalDurationInSec = totalTime % 60;
+    minTotalTimeNode.innerHTML = getTwoDigitNumber(totalDurationInMin);
+    secTotalTimeNode.innerHTML = getTwoDigitNumber(totalDurationInSec);
+  }
+}
+
+function showMinSecFormatCurrentTime(currentTime) {
+  var minCurrentTimeNode = document.getElementById("current-time-min");
+  var secCurrentTimeNode = document.getElementById("current-time-sec");
+  var currentTimeValue = currentTime;
+
+  if (currentTime < 60) {
+    minCurrentTimeNode.innerHTML = "00";
+    secCurrentTimeNode.innerHTML = getTwoDigitNumber(currentTime);
+  } else {
+    currentPlayInMin = Math.floor(currentTimeValue / 60);
+    currentPlayInSec = currentTime % 60;
+    minCurrentTimeNode.innerHTML = getTwoDigitNumber(currentPlayInMin);
+    secCurrentTimeNode.innerHTML = getTwoDigitNumber(currentPlayInSec);
+  }
 }
