@@ -146,27 +146,34 @@ function playNextVideo() {
 function playPreviousVideo() {
   clearInterval(videoTimeoutId);
   showSelection("left-button");
-
-  var barNode = document.getElementById("progress-bar-id");
-  barNode.value = 0;
-
-  videoIndex--;
-
-  if (videoIndex < 0) {
-    videoIndex = videoArray.length - 1;
-  }
-
   videoTotalDuration();
+  getPreviousIndex();
+  updateVideoInfo();
+  playVideo();
+}
 
+function updateVideoInfo(){
   var videoNode = videoArray[videoIndex];
   var videoBoxId = document.getElementById("videoId");
   videoBoxId.src = videoNode;
   var videoDes = document.getElementById("video-des");
   videoDes.innerHTML = videoDescription[videoIndex];
-
-  playVideo();
 }
 
+function getPreviousIndex(){
+  videoIndex--;
+
+  if (videoIndex < 0) {
+    videoIndex = videoArray.length - 1;
+    // return  videoIndex;
+  }
+  // return videoIndex;
+}
+
+function backToInitialState(){
+  var barNode = document.getElementById("progress-bar-id");
+  barNode.value = 0;
+}
 function showSelection(idName) {
   if (idName === "left-button") {
     var buttonClick = document.getElementById(idName);
