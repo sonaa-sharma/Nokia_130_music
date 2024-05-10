@@ -45,8 +45,8 @@ function pauseVideo() {
   var buttonClick = document.getElementById("play-pause-option");
   buttonClick.addEventListener("mousedown", showBorderPauseButton);
   buttonClick.addEventListener("mouseup", hideBorderPauseButton);
-
   videoflag = 0;
+
 }
 
 function videoPlayerHandler(button) {
@@ -92,18 +92,16 @@ function showVideoPlayer() {
   videoflag = 0;
   videoIndex = 0;
 
-  
   var minCurrentTimeNode = document.getElementById("current-time-min");
   var secCurrentTimeNode = document.getElementById("current-time-sec");
   minCurrentTimeNode.innerHTML = "00";
   secCurrentTimeNode.innerHTML = "00";
 
   videoTotalDuration();
-  
+
   var videoNode = videoArray[videoIndex];
   var videoBoxId = document.getElementById("videoId");
   videoBoxId.src = videoNode;
-
 
   var playPause = document.getElementById("play-pause-id");
   playPause.src = "Icons/play (1).png";
@@ -127,9 +125,9 @@ function playNextVideo() {
 
   var barNode = document.getElementById("progress-bar-id");
   barNode.value = 0;
-  
+
   videoIndex++;
-  
+
   if (videoIndex === videoArray.length) {
     videoIndex = 0;
   }
@@ -138,10 +136,6 @@ function playNextVideo() {
   var videoNode = videoArray[videoIndex];
   var videoBoxId = document.getElementById("videoId");
   videoBoxId.src = videoNode;
-
-  console.log(videoBoxId);
-  console.log(videoBoxId.src);
-
 
   var videoDes = document.getElementById("video-des");
   videoDes.innerHTML = videoDescription[videoIndex];
@@ -170,7 +164,6 @@ function playPreviousVideo() {
   var videoDes = document.getElementById("video-des");
   videoDes.innerHTML = videoDescription[videoIndex];
 
-
   playVideo();
 }
 
@@ -179,7 +172,7 @@ function showSelection(idName) {
     var buttonClick = document.getElementById(idName);
     buttonClick.addEventListener("mousedown", showBorderBackwardButton);
     buttonClick.addEventListener("mouseup", hideBorderBackwardButton);
-  } else {
+  } else if (idName === "right-button") {
     var buttonClick = document.getElementById(idName);
     buttonClick.addEventListener("mousedown", showBorderForwardButton);
     buttonClick.addEventListener("mouseup", hideBorderForwardButton);
@@ -206,18 +199,8 @@ function hideBorderForwardButton() {
   backwardButton.style.border = "1px solid ";
 }
 
-function showBorderPauseButton() {
-  var backwardButton = document.getElementById("play-pause-option");
-  backwardButton.style.border = "1px solid pink";
-}
-
-function hideBorderPauseButton() {
-  var backwardButton = document.getElementById("play-pause-option");
-  backwardButton.style.border = "1px solid blue";
-}
-
 function mountVideoPlayerScreen(show) {
-  var video = document.getElementById("video-player-container");
+  var video = document.getElementById("video-player-containerId");
   AddRemoveClassList(video, "hide", !show);
 }
 
@@ -244,10 +227,8 @@ function videoCurrentPlayDuration() {
 
 function videoTotalDuration() {
   var videoNode = document.getElementById("videoId");
-  console.log(videoNode);
   var totalTime = videoNode.duration;
   totalTime = Math.ceil(totalTime);
-  console.log("total-time = ",  totalTime);
   showMinSecFormatTotalTime(totalTime);
 }
 
