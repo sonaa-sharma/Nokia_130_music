@@ -136,7 +136,9 @@ function findAppSelection(currentAppId) {
     case "setting":
       showSettings(true);
       break;
-
+    case "torch":
+      showTorchScreen();
+      break;
     default:
       showDefaultScreen();
       break;
