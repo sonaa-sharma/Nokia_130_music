@@ -20,14 +20,12 @@ var videoDescription = [
 
 function playVideo() {
   var videoPlayer = document.getElementById("videoId");
-  var playPause = document.getElementById("play-pause-id");
-  playPause.src = "Icons/pause-play.png";
   videoPlayer.play();
+  showPlayIcon("play-pause-id");
   videoTimeoutId = setInterval(function () {
-    moveProgressBar();
-    videoCurrentPlayDuration();
+    moveProgressBar(videoPlayer, "progress-bar-id");
+    videoCurrentPlayDuration(videoPlayer);
   }, 33);
-
   videoPlayer.addEventListener("ended", onVideoEnd);
   videoflag = 1;
 }
@@ -38,15 +36,10 @@ function onVideoEnd() {
 
 function pauseVideo() {
   var videoPlayer = document.getElementById("videoId");
-  var playPause = document.getElementById("play-pause-id");
   videoPlayer.pause();
+  showPauseIcon("play-pause-id");
   clearInterval(videoTimeoutId);
-  playPause.src = "Icons/play (1).png";
-  var buttonClick = document.getElementById("play-pause-option");
-  buttonClick.addEventListener("mousedown", showBorderPauseButton);
-  buttonClick.addEventListener("mouseup", hideBorderPauseButton);
   videoflag = 0;
-
 }
 
 function videoPlayerHandler(button) {
@@ -86,70 +79,50 @@ function videoPlayerHandler(button) {
 }
 
 function showVideoPlayer() {
-  mountVideoPlayerScreen(true);
-  var barNode = document.getElementById("progress-bar-id");
-  barNode.value = 0;
-  videoflag = 0;
   videoIndex = 0;
-
-  var minCurrentTimeNode = document.getElementById("current-time-min");
-  var secCurrentTimeNode = document.getElementById("current-time-sec");
-  minCurrentTimeNode.innerHTML = "00";
-  secCurrentTimeNode.innerHTML = "00";
-
+  videoflag = 0;
+  mountVideoPlayerScreen(true);
+  showPauseIcon("play-pause-id");
+  setCurrentTimeAtZero("current-time-min", "current-time-sec");
+  setProgressBarAtZero("progress-bar-id");
   videoTotalDuration();
-
-  var videoNode = videoArray[videoIndex];
-  var videoBoxId = document.getElementById("videoId");
-  videoBoxId.src = videoNode;
-
-  var playPause = document.getElementById("play-pause-id");
-  playPause.src = "Icons/play (1).png";
-
-  var videoDes = document.getElementById("video-des");
-  videoDes.innerHTML = videoDescription[videoIndex];
-
+  updateVideoInfo();
+  
   screenName = "videoPlayerScreen";
 }
 
 function hideVideoPlayer() {
   mountVideoPlayerScreen(false);
-  mountIdleScreenWallPaper(false);
   pauseVideo();
   clearInterval(videoTimeoutId);
 }
 
 function playNextVideo() {
   clearInterval(videoTimeoutId);
-  showSelection("right-button");
-
-  var barNode = document.getElementById("progress-bar-id");
-  barNode.value = 0;
-
-  videoIndex++;
-
-  if (videoIndex === videoArray.length) {
-    videoIndex = 0;
-  }
+  showSelection("right-button", "next-video");
+  videoIndex = goRight(videoArray.length, videoIndex, true);
   videoTotalDuration();
-
-  var videoNode = videoArray[videoIndex];
-  var videoBoxId = document.getElementById("videoId");
-  videoBoxId.src = videoNode;
-
-  var videoDes = document.getElementById("video-des");
-  videoDes.innerHTML = videoDescription[videoIndex];
-
+  updateVideoInfo();
   playVideo();
 }
 
 function playPreviousVideo() {
   clearInterval(videoTimeoutId);
-  showSelection("left-button");
+  showSelection("left-button", "previous-video");
   videoTotalDuration();
-  getPreviousIndex();
+  videoIndex = goLeft(videoArray.length, videoIndex, true);
   updateVideoInfo();
   playVideo();
+}
+
+function showPauseIcon(playNodeId){
+  var playPause = document.getElementById(playNodeId);
+  playPause.src = "Icons/pause-icon.png";
+}
+
+function showPlayIcon(pauseNodeId){
+  var playPause = document.getElementById(pauseNodeId);
+  playPause.src = "Icons/play-icon.png";
 }
 
 function updateVideoInfo(){
@@ -160,49 +133,33 @@ function updateVideoInfo(){
   videoDes.innerHTML = videoDescription[videoIndex];
 }
 
-function getPreviousIndex(){
-  videoIndex--;
-
-  if (videoIndex < 0) {
-    videoIndex = videoArray.length - 1;
-    // return  videoIndex;
-  }
-  // return videoIndex;
-}
-
-function backToInitialState(){
-  var barNode = document.getElementById("progress-bar-id");
+function setProgressBarAtZero(progressBarId){
+  var barNode = document.getElementById(progressBarId);
   barNode.value = 0;
 }
-function showSelection(idName) {
-  if (idName === "left-button") {
-    var buttonClick = document.getElementById(idName);
-    buttonClick.addEventListener("mousedown", showBorderBackwardButton);
-    buttonClick.addEventListener("mouseup", hideBorderBackwardButton);
-  } else if (idName === "right-button") {
-    var buttonClick = document.getElementById(idName);
-    buttonClick.addEventListener("mousedown", showBorderForwardButton);
-    buttonClick.addEventListener("mouseup", hideBorderForwardButton);
-  }
+
+function setCurrentTimeAtZero(timeInMin, timeInSec){
+  var minCurrentTimeNode = document.getElementById(timeInMin);
+  var secCurrentTimeNode = document.getElementById(timeInSec);
+  minCurrentTimeNode.innerHTML = "00";
+  secCurrentTimeNode.innerHTML = "00";
 }
 
-function showBorderBackwardButton() {
-  var backwardButton = document.getElementById("previous-video");
+function showSelection(buttonId, elementId) {
+  console.log(buttonId);
+  console.log(elementId);
+    var buttonClick = document.getElementById(buttonId);
+    buttonClick.addEventListener("mousedown",function(){ showBorder(elementId)});
+    buttonClick.addEventListener("mouseup",function(){ removeBorder(elementId)});
+}
+
+function showBorder(elementId) {
+  var backwardButton = document.getElementById(elementId);
   backwardButton.style.border = "1px solid white";
 }
 
-function hideBorderBackwardButton() {
-  var backwardButton = document.getElementById("previous-video");
-  backwardButton.style.border = "1px solid ";
-}
-
-function showBorderForwardButton() {
-  var backwardButton = document.getElementById("next-video");
-  backwardButton.style.border = "1px solid white";
-}
-
-function hideBorderForwardButton() {
-  var backwardButton = document.getElementById("next-video");
+function removeBorder(elementId) {
+  var backwardButton = document.getElementById(elementId);
   backwardButton.style.border = "1px solid ";
 }
 
@@ -211,17 +168,16 @@ function mountVideoPlayerScreen(show) {
   AddRemoveClassList(video, "hide", !show);
 }
 
-function getVideoPlayedPercentage() {
-  var videoNode = document.getElementById("videoId");
-  var totalTime = videoNode.duration;
-  var currentTime = videoNode.currentTime;
+function getVideoPlayedPercentage(currentVideoNode) {
+  var totalTime = currentVideoNode.duration;
+  var currentTime = currentVideoNode.currentTime;
   var percentage = (currentTime / totalTime) * 100;
   return Math.ceil(percentage);
 }
 
-function moveProgressBar() {
-  var per = getVideoPlayedPercentage();
-  var barNode = document.getElementById("progress-bar-id");
+function moveProgressBar(currentVideoNode, progressBarId) {
+  var per = getVideoPlayedPercentage(currentVideoNode);
+  var barNode = document.getElementById(progressBarId);
   barNode.value = per;
 }
 
@@ -229,19 +185,19 @@ function videoCurrentPlayDuration() {
   var videoNode = document.getElementById("videoId");
   var currentTime = videoNode.currentTime;
   currentTime = Math.ceil(currentTime);
-  showMinSecFormatCurrentTime(currentTime);
+  showMinSecFormatCurrentTime(currentTime, "current-time-min", "current-time-sec");
 }
 
 function videoTotalDuration() {
   var videoNode = document.getElementById("videoId");
   var totalTime = videoNode.duration;
   totalTime = Math.ceil(totalTime);
-  showMinSecFormatTotalTime(totalTime);
+  showMinSecFormatTotalTime(totalTime, "total-time-min", "total-time-sec");
 }
 
-function showMinSecFormatTotalTime(totalTime) {
-  var minTotalTimeNode = document.getElementById("total-time-min");
-  var secTotalTimeNode = document.getElementById("total-time-sec");
+function showMinSecFormatTotalTime(totalTime, totalMin, totalSec) {
+  var minTotalTimeNode = document.getElementById(totalMin);
+  var secTotalTimeNode = document.getElementById(totalSec);
   var totalTimeValue = totalTime;
 
   if (totalTime < 60) {
@@ -255,9 +211,9 @@ function showMinSecFormatTotalTime(totalTime) {
   }
 }
 
-function showMinSecFormatCurrentTime(currentTime) {
-  var minCurrentTimeNode = document.getElementById("current-time-min");
-  var secCurrentTimeNode = document.getElementById("current-time-sec");
+function showMinSecFormatCurrentTime(currentTime, currentMin, currentSec) {
+  var minCurrentTimeNode = document.getElementById(currentMin);
+  var secCurrentTimeNode = document.getElementById(currentSec);
   var currentTimeValue = currentTime;
 
   if (currentTime < 60) {

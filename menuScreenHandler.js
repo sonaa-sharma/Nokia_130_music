@@ -83,14 +83,6 @@ function openApp(currentAppId) {
   }
 }
 
-// function mountMenuScreen(show) {
-//   if (show) {
-//     mountMenu(resetAppPosition);
-//   } else {
-//     unmountMenu();
-//   }
-// }
-
  function mountMenu(resetAppPosition) {
   var menuScreenNode = document.getElementById("menu-screen-container");
   var menuItemsNode = createMenuItemsNode(menuItems);

@@ -187,7 +187,7 @@
                                                 src="Icons\pause-play-button.png" alt="pre">
                                         </div>
                                         <div class="play-pause-container" id="play-pause-option">
-                                            <img class="image-width pause-icon" id="play-pause-id" src="Icons\play (1).png"
+                                            <img class="image-width pause-icon" id="play-pause-id" src="Icons\pause-icon.png"
                                                 alt="play/pause">
                                         </div>
                                         <div class="play-pause-container" id="next-video">
@@ -212,18 +212,47 @@
                         </div>
 
 
-                        <div class="musicPlayer-screen-div hide" id="music-player-container">
-                            <div class="music-player-div">
-                                <h2>Music Player</h2>
-                                <div class="music-player">
-                                    <audio id="audioPlayerId" class="audio"
-                                        src="MusicFolder\RADHA_RANI_LAGE_SIMPAL_KHAREL_NEW_SONG_RADHA_KRISHNA_BHAJAN_2023.mp3"></audio>
+                        <div class="musicPlayer-screen-div hide" id="music-player-containerId">
+                            <div class="audio-player-div">
+                                <div class="audio-player-container center">
+                                    <div class="audio-cover-photo-container">
+                                        <img id="music-cover-photo" class="audio-cover-photo" src="Icons\radha-rani-song.jpg" alt="radharani-cover">
+                                    </div>
+                                    <div class="audio-holder">
+                                        <audio id="audioId" class="audio"
+                                            src="MusicFolder\RADHA_RANI_LAGE_SIMPAL_KHAREL_NEW_SONG_RADHA_KRISHNA_BHAJAN_2023.mp3"></audio>
+                                    </div>
+                                </div>
+                                <div id="audio-des" class="audio-description">
+                                    <h4 id="song-nameId">Radha Rani Lage</h4>
+                                    <p id="singer-nameId">...Simple Kharel</p>
+                                </div>
+                                <div class="video-control-bar-container">
+                                    <div class="progress-bar-container center">
+                                        <div class="timer-div"><span id="audio-current-time-min">00</span>:<span id="audio-current-time-sec">00</span></div>
+                                        <input type="range" disabled value="0" class="progress-bar" min="0" max="100" id="progress-bar-audioId">
+                                        <div class="timer-div"><span id="audio-total-time-min">00</span>:<span id="audio-total-time-sec">00</span></div>
+                                    </div>
+                                    <div class="controls-container center">
+                                        <div class="play-pause-container" id="previous-audio">
+                                            <img class="image-width rotate-180"
+                                                src="Icons\pause-play-button.png" alt="pre">
+                                        </div>
+                                        <div class="play-pause-container" id="play-pause-optionId">
+                                            <img class="image-width pause-icon" id="play-pause-audioId" src="Icons\pause-icon.png"
+                                                alt="play/pause">
+                                        </div>
+                                        <div class="play-pause-container" id="next-audio">
+                                            <img class="image-width" src="Icons\pause-play-button.png"
+                                                alt="next">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="bottom-navbar bottom-navbar-color">
-                                <div id="play-pause-text">Play</div>
+                                <div></div>
                                 <div>Back</div>
-                            </div>
+                            </div>   
                         </div>
 
 
