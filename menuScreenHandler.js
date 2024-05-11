@@ -130,6 +130,9 @@ function findAppSelection(currentAppId) {
     case "gallery":
       mountGalleryScreen(true);
       break;
+    case "about":
+      showAboutScreen();
+      break;
     case "music":
       showMusicPlayer();
       break;
