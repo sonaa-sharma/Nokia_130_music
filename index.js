@@ -40,6 +40,8 @@ function buttonClicked(button) {
       break;
     case "torchScreen":
       torchScreenHandler(button);
+    case "calculatorScreen":
+      calculatorHandler(button);
       break;
     case "settingsScreen":
       settingsHandler(button);
@@ -164,6 +166,8 @@ function turnOfflcd() {
       break;
     case "torchScreen":
       hideTorchScreen();
+    case "calculatorScreen":
+      hideCalculator();
       break;
     case "settingsScreen":
       hideSettings();
