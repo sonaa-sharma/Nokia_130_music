@@ -40,17 +40,17 @@ function mountTorchScreen(show) {
 }
 
 function turnOnTorch(){
-  var screen = document.getElementById("text-content")
-  AddRemoveClassList(screen, "hide", true);
   var torchScreen = document.getElementById("torch-screen-containerId");
   torchScreen.style.backgroundColor = "white";
+  var text = document.getElementById("text-content");
+  text.innerHTML = "Turn off";
   torchFlag = 1;
 }
 
 function turnOffTorch() {
-  var screen = document.getElementById("text-content")
-  AddRemoveClassList(screen, "hide", false);
   var torchScreen = document.getElementById("torch-screen-containerId");
   torchScreen.style.backgroundColor = "rgb(22, 21, 21)";
+  var text = document.getElementById("text-content");
+  text.innerHTML = "Turn on";
   torchFlag = 0;
 }
