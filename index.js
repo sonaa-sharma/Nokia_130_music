@@ -10,6 +10,7 @@ function clickEventFunction(event) {
     return;
   }
 
+  console.log(button);
   buttonClicked(button);
 }
 
