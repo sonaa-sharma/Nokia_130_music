@@ -47,6 +47,8 @@ function buttonClicked(button) {
       break;
     case "torchScreen":
       torchScreenHandler(button);
+    case "calendarScreen":
+      calendarHandler(button);
       break;
     case "calculatorScreen":
       calculatorHandler(button);

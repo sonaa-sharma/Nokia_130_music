@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 
@@ -472,4 +473,567 @@
     </div>
 </body>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nokia 130 Music</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="screen_style.css">
+    <link rel="stylesheet" href="gallery_style.css">
+<<<<<<< HEAD
+    <link rel="stylesheet" href="torch_style.css">
+    <link rel="stylesheet" href="about_style.css">
+=======
+    <link rel="stylesheet" href="calendar_style.css">
+>>>>>>> e6d7d2b (calendar added)
+    <link rel="stylesheet" href="keypad_style.css">
+    <link rel="stylesheet" href="common.css">
+    <script type="text/javascript" await src="lockScreenHandler.js"></script>
+    <script type="text/javascript" await src="idleScreenHandler.js"></script>
+    <script type="text/javascript" await src="menuScreenHandler.js"></script>
+    <script type="text/javascript" await src="galleryScreenHandler.js"></script>
+    <script type="text/javascript" await src="photosHandler.js"></script>
+    <script type="text/javascript" await src="aboutScreenHandler.js"></script>
+    <script type="text/javascript" await src="musicPlayerHandler.js"></script>
+    <script type="text/javascript" await src="torchScreenHandler.js"></script>
+    <script type="text/javascript" await src="calendarHandler.js"></script>
+    <script type="text/javascript" await src="settingsHandler.js"></script>
+    <script type="text/javascript" await src="wallpaperHandler.js"></script>
+    <script type="text/javascript" await src="defaultCaseHandler.js"></script>
+    <script type="text/javascript" await src="common.js"></script>
+    <script type="text/javascript" async src="index.js"></script>
+</head>
+
+<body>
+    <div class="mobile-body">
+        <div class="mobile-container">
+            <div class="mobile-display-container">
+                <div class="speaker-container center">
+                    <div class="speaker"></div>
+                </div>
+                <div class="LCD-container">
+                    <div id="lcd">
+                        <div class="center screen-height hide" id="brand-animation-screen">
+                            <div class="brand-animation-container">
+                                <video id="brand-animation" src="Icons\NokiaConnectingPeople.mp4"></video>
+                            </div>
+                        </div>
+                        <div class="navbar hide" id="navbar">
+                            <div class="navbar-contents center">
+                                <div class="signal">
+                                    <div class="tower tower-1"></div>
+                                    <div class="tower tower-2"></div>
+                                    <div class="tower tower-3"></div>
+                                    <div class="tower tower-4"></div>
+                                    <div class="tower tower-5"></div>
+                                </div>
+                                <div class="sim-card">
+                                    <div>
+                                        <div class="corner-triangle"></div>
+                                        <div class="left-rectangle"></div>
+                                    </div>
+                                    <div class="right-rectangle">1</div>
+                                </div>
+                                <div class="signal">
+                                    <div class="tower tower-1"></div>
+                                    <div class="tower tower-2"></div>
+                                    <div class="tower tower-3"></div>
+                                    <div class="tower tower-4"></div>
+                                    <div class="tower tower-5"></div>
+                                </div>
+                                <div class="sim-card">
+                                    <div>
+                                        <div class="corner-triangle"></div>
+                                        <div class="left-rectangle "></div>
+                                    </div>
+                                    <div class="right-rectangle">2</div>
+                                </div>
+                                <div class="screen-lock-icon">
+                                    <div class="icon-top center">
+                                        <div class="icon-top-inner"></div>
+                                    </div>
+                                    <div class="icon-mid"></div>
+                                    <div class="icon-bottom"></div>
+                                </div>
+                            </div>
+                            <div class="center">
+                                <div class="battery-left"></div>
+                                <div class="battery-outer-body">
+                                    <div class="battery-inner-body"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- lock screen -->
+
+                        <div id="lock-screen-div" class="lock-screen-container hide">
+                            <div id="date-time-div">
+                                <div class="date-time center">
+                                    <div class="time" id="time"><span id="clock-hour"></span>:<span
+                                            id="clock-min"></span></div>
+                                    <div class="date" id="date"><span id="day"></span>.<span id="month"></span>.<span
+                                            id="year"></span></div>
+                                </div>
+                            </div>
+                            <div class="hide" id="unlockMessage">
+                                Press * key to unlock device
+                            </div>
+                            <div id="unlock" class="unlock-text">Unlock</div>
+                        </div>
+
+                        <!-- menu screen -->
+
+                        <div id="menu-screen-div" class="hide idle-screen">
+                            <div class="date-time center">
+                                <div class="time" id="time1"><span id="clock-hour1"></span>:<span
+                                        id="clock-min1"></span>
+                                </div>
+                            </div>
+                            <div class="bottom-navbar">
+                                <div>Menu</div>
+                            </div>
+                        </div>
+
+                        <!-- apps screen  -->
+
+                        <div class="app-screen-div hide" id="app-screen-container">
+                            <div class="apps-div hide" id="apps-div">
+                                <div class="icon-container" id="gallery">
+                                    <div class="apps-container">
+                                        <img src="Icons\picture.png" alt="photos" width="40px">
+                                    </div>
+                                </div>
+                                <div class="icon-container" id="snake-game">
+                                    <div class="apps-container">
+                                        <img src="Icons\icons8-snake-48.png" alt="snakeGame" width="40px">
+                                    </div>
+                                </div>
+                                <div class="icon-container" id="video">
+                                    <div class="apps-container">
+                                        <img src="Icons\icons8-video-player-48.png" alt="video" width="40px">
+                                    </div>
+                                </div>
+
+                                <div class="icon-container" id="about">
+                                    <div class="apps-container">
+                                        <img src="Icons\icons8-about (1).svg" alt="about" width="40px">
+                                    </div>
+                                </div>
+                                <div class="icon-container" id="music">
+                                    <div class="apps-container music">
+                                        <img src="wallpaper\musical-note-1314942_1280.png" alt="music" width="24px">
+                                    </div>
+                                </div>
+                                <div class="icon-container" id="calculator">
+                                    <div class="apps-container">
+                                        <img src="Icons\icons8-math-48.png" alt="calculator" width="40px">
+                                    </div>
+                                </div>
+                                <div class="icon-container" id="calendar">
+                                    <div class="apps-container">
+
+                                        <img src="wallpaper\calendar (1).png" alt="calendar" width="36px">
+                                    </div>
+                                </div>
+                                <div class="icon-container" id="torch">
+                                    <div class="apps-container torch">
+                                        <img src="wallpaper\torch.png" alt="torch" width="24px">
+                                    </div>
+                                </div>
+                                <div class="icon-container" id="setting">
+                                    <div class="apps-container settings">
+                                        <img src="wallpaper\gear-1807204_1920.png" alt="settings" width="40px">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div id="select">Select</div>
+                                <div id="back">Back</div>
+                            </div>
+                        </div>
+
+                        <!-- play app screen -->
+
+                        <div class="defaultMessage-screen-div hide" id="message-container">
+                            <div class="message-div">
+                                <h1>Features coming soon</h1>
+                            </div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div>Select</div>
+                                <div>Back</div>
+                            </div>
+                        </div>
+
+                        <div class="gallery-screen-div hide" id="gallery-screen">
+                            <div class="imagesContainerDiv" id="images-container"></div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div>Select</div>
+                                <div>Back</div>
+                            </div>
+                        </div>
+
+                        <div class="photos-screen-div hide" id="photos-screen">
+                            photo
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div></div>
+                                <div>Back</div>
+                            </div>
+                        </div>
+
+                        <div class="about-screen-div hide" id="about-screen-id">
+                            <div class="about-div">
+                                <h4>Creator: Sonam Sharma</h4>
+                                <hr>
+                                <p class="creator">
+                                    "As the creator of this innovative mobile phone, I bring a passion for
+                                    technology and a dedication to user experience. As a developing software developer
+                                    with months of experience in creating web applications using HTML, CSS, and
+                                    JavaScript, I embarked on the journey of crafting this mobile phone, leveraging my
+                                    expertise to design a device that seamlessly integrates various functionalities to
+                                    enhance the user experience.
+                                    I have crafted this device that combines
+                                    functionality with creativity, providing users with a unique and enjoyable mobile
+                                    experience."
+                                </p>
+                                <h4>About the Phone:</h4>
+                                <p class="info">
+                                    This mobile phone is more than just a communication device; it's a versatile tool
+                                    designed to enhance everyday life. Built using HTML, CSS, and JavaScript, this
+                                    device offers a range of applications that cater to various needs and interests.
+                                </p>
+                                <hr>
+
+                                <h5>
+                                    App Details:
+                                </h5>
+                                <p class="app-details">
+                                    Gallery: Browse through your photos and videos effortlessly with the intuitive
+                                    gallery app. Whether you're reminiscing about past memories or capturing new ones,
+                                    this app makes it easy to access and manage your media files.
+                                </p>
+                                <hr>
+                                <p>
+                                    Snake Game: Relive the nostalgia of classic gaming with the snake game app. Test
+                                    your reflexes and strategy as you maneuver the snake to collect food and avoid
+                                    obstacles, providing hours of entertainment.
+                                    <hr>
+                                    Video Player: Watch videos in stunning clarity with the integrated video player.
+                                    <hr>
+
+                                    Music Player: Enjoy your favorite tunes on the go with the built-in music player.
+                                    <hr>
+
+                                    Torch: Illuminate your surroundings with the torch app.
+                                    <hr>
+
+                                    Calendar: Stay organized and on schedule with the calendar app.
+                                    <hr>
+
+                                    Calculator: Perform calculations quickly and accurately with the calculator app.
+                                    <hr>
+
+                                    Settings: Customize your mobile experience with the settings app. From adjusting
+                                    of your device.
+                                    <hr>
+
+                                    Each app is designed with user convenience and functionality in mind, offering a
+                                    seamless experience that enhances productivity and entertainment on the go.
+
+                                </p>
+                            </div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div></div>
+                                <div>Back</div>
+                            </div>
+                        </div>
+
+                        <div class="musicPlayer-screen-div hide" id="music-player-container">
+                            <div class="music-player-div">
+                                <h2>Music Player</h2>
+                                <div class="music-player">
+                                    <audio id="audioPlayerId" class="audio"
+                                        src="MusicFolder\RADHA_RANI_LAGE_SIMPAL_KHAREL_NEW_SONG_RADHA_KRISHNA_BHAJAN_2023.mp3"
+                                        controls></audio>
+                                </div>
+                            </div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div id="play-pause-text">Play</div>
+                                <div>Back</div>
+                            </div>
+                        </div>
+
+                        <div class="calendar-screen-container hide" id="calendar-screen-id">
+                            <div class="calendar-body-container">
+                                <div class="calendar-navbar" id="calendar-navbarId">
+                                    <div>May<span class="month-class" id="monthId"></span> <span id="yearId"></span>
+                                    </div>
+                                </div>
+                                <div class="calendar-body">
+                                    <div class="week-days">
+                                        Mon Tue Wed Thu Fri Sat Sun
+                                    </div>
+                                    <div class="calendar-date-container">
+                                        <div class="calendar-date"></div>
+                                        <div class="calendar-date"></div>
+                                        <div class="calendar-date">1</div>
+                                        <div class="calendar-date">2</div>
+                                        <div class="calendar-date">3</div>
+                                        <div class="calendar-date">4</div>
+                                        <div class="calendar-date">5</div>
+                                    </div>
+                                    <div class="calendar-date-container">
+                                        <div class="calendar-date">6</div>
+                                        <div class="calendar-date">7</div>
+                                        <div class="calendar-date">8</div>
+                                        <div class="calendar-date">9</div>
+                                        <div class="calendar-date">10</div>
+                                        <div class="calendar-date">11</div>
+                                        <div class="calendar-date">12</div>
+                                    </div>
+                                    <div class="calendar-date-container">
+                                        <div class="calendar-date">13</div>
+                                        <div class="calendar-date today-date">14</div>
+                                        <div class="calendar-date">15</div>
+                                        <div class="calendar-date">16</div>
+                                        <div class="calendar-date">17</div>
+                                        <div class="calendar-date">18</div>
+                                        <div class="calendar-date">19</div>
+                                    </div>
+                                    <div class="calendar-date-container">
+                                        <div class="calendar-date">20</div>
+                                        <div class="calendar-date">21</div>
+                                        <div class="calendar-date">22</div>
+                                        <div class="calendar-date">23</div>
+                                        <div class="calendar-date">24</div>
+                                        <div class="calendar-date">25</div>
+                                        <div class="calendar-date">26</div>
+                                    </div>
+                                    <div class="calendar-date-container">
+                                        <div class="calendar-date">27</div>
+                                        <div class="calendar-date">28</div>
+                                        <div class="calendar-date">29</div>
+                                        <div class="calendar-date">30</div>
+                                        <div class="calendar-date">31</div>
+                                        <div class="calendar-date"></div>
+                                        <div class="calendar-date"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div></div>
+                                <div>Back</div>
+                            </div>
+                        </div>
+
+                        <div class="torch-screen-div hide" id="torch-screen-containerId">
+                            <div class="text-content-div">
+                                <img class="torch-icon-style" src="wallpaper\torch.png" alt="torch" width="24px">
+                                <h4 id="text-content">Turn on </h4>
+                            </div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div></div>
+                                <div>Back</div>
+                            </div>
+                        </div>
+
+                        <div class="setting-screen-div hide" id="setting-container">
+                            <div class="wallpaper-div">
+                                <h3 class="select-wallpaper-text">Setting</h3>
+                                <div>
+                                    <div class="theme-container">
+                                        <div class="theme" id="lock-screen-setting">
+                                            Lock Screen Wallpaper
+                                        </div>
+                                        <div class="theme" id="home-screen-setting">
+                                            Home Screen Wallpaper
+                                        </div>
+                                        <div class="theme" id="date-time-setting">
+                                            Date & Time Setting
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div>Select</div>
+                                <div>Back</div>
+                            </div>
+                        </div>
+
+                        <div class="wallpaper-screen-div hide" id="wallpaper-container">
+                            <div class="wallpaper-div">
+                                <h3 class="select-wallpaper-text">Wallpaper</h3>
+                                <div>
+                                    <div class="theme-container">
+                                        <div class="theme" id="theme1">
+                                            Grass
+                                        </div>
+                                        <div class="theme" id="theme2">
+                                            Dragon-Fly
+                                        </div>
+                                        <div class="theme" id="theme3">
+                                            Light-bubbles
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div>Select</div>
+                                <div>Back</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="brand-logo center">
+                    <svg class="nokia-icon" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 122.88 20.71">
+
+                        <title>nokia</title>
+                        <path class="cls-1"
+                            d="M5.92,20.46H0V.33H10.23L22,15.36V.33h5.92V20.46h-10L5.92,5.18V20.46ZM56.2,14.23c0,2.8-.5,3.77-1.32,4.69-1.25,1.38-3.08,1.79-6.6,1.79H38.18c-3.52,0-5.35-.41-6.6-1.79-.82-.92-1.31-1.89-1.31-4.69V6.48c0-2.8.49-3.76,1.31-4.69C32.83.41,34.66,0,38.18,0h10.1c3.52,0,5.35.41,6.6,1.79.82.93,1.32,1.89,1.32,4.69v7.75ZM48,15.61c1.35,0,1.82-.08,2.15-.37s.43-.63.43-1.81V7.29c0-1.19-.13-1.54-.43-1.82S49.39,5.1,48,5.1H38.43c-1.35,0-1.83.08-2.15.37s-.44.63-.44,1.82v6.14c0,1.18.13,1.53.44,1.81s.8.37,2.15.37ZM64.8.33V20.46H58.61V.33Zm10.44,0H83.4l-11,9.42L84.81,20.46H76.08L64.8,10,75.24.33ZM86,.33h6.19V20.46H86V.33Zm29.76,20.13L113.88,17h-12l-1.8,3.5H93.28l11-20.12h7.68l11,20.13Zm-11.65-7.88h7.69L107.91,5.3l-3.85,7.28Z" />
+                    </svg>
+                </div>
+
+            </div>
+            <div class="keypad-container" id="keypad-box" data-name="keypad-container">
+                <div class="function-key-container">
+                    <div class="function-button-column">
+                        <div class="function-buttons" id="left-select-button" data-name="buttons">
+                            <div class="vertical-line"></div>
+                        </div>
+                        <div class="function-buttons" id="lower-select-button" data-name="buttons">
+                            <div class="call-receive-icon"></div>
+                        </div>
+                    </div>
+                    <div class="outer-div">
+                        <div class="up-low up" id="top-button" data-name="buttons"></div>
+                        <div class="new-div">
+                            <div class="left-right left" id="left-button" data-name="buttons"></div>
+                            <div class="mid-function-button-inner" data-name="buttons" id="mid-button-inner">
+                                <img class="play-pause-icon" src="Icons/music_play_pause_regular_icon_204710.svg"
+                                    alt="play-pause-icon">
+                            </div>
+                            <div class="left-right right" id="right-button" data-name="buttons"></div>
+                        </div>
+                        <div class="up-low low" id="bottom-button" data-name="buttons"></div>
+                    </div>
+                    <div class="function-button-column">
+                        <div class="function-buttons" id="right-select-button" data-name="buttons">
+                            <div class="vertical-line"></div>
+                        </div>
+                        <div class="function-buttons" id="power-button" data-name="buttons">
+                            <div class="call-receive-icon mb-4">
+                                <div class="circle center">
+                                    <div class="horizontal-line"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="number-keys-container">
+                    <div class="key-button-row">
+                        <div class="keys two-char-space" data-name="buttons"> 1
+                            <svg class="icon voice-mail-icon keys-alphabet" id="Layer_1" data-name="Layer 1"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 50.99">
+                                <title>voicemail</title>
+                                <path
+                                    d="M25.49,0A25.49,25.49,0,0,1,45.68,41.06H77.2a25.49,25.49,0,1,1,22.17,9.85,4.94,4.94,0,0,1-.87.08h-73a25.5,25.5,0,0,1,0-51ZM108.4,14.48a15.57,15.57,0,1,0,4.56,11,15.56,15.56,0,0,0-4.56-11Zm-71.9,0a15.57,15.57,0,1,0,4.56,11,15.54,15.54,0,0,0-4.56-11Z" />
+                            </svg>
+                        </div>
+                        <div class="keys" data-name="buttons"> 2 <span class="keys-alphabet"> abc </span> </div>
+                        <div class="keys" data-name="buttons"> <span class="keys-alphabet"> def </span> 3 </div>
+                    </div>
+
+                    <div class="key-button-row">
+                        <div class="keys" data-name="buttons"> 4 <span class="keys-alphabet"> ghi </span> </div>
+                        <div class="keys" data-name="buttons">
+                            <div class="pop-up"></div>
+                            <div class="gap-8 center"><span>5</span> <span class="keys-alphabet"> jkl </span></div>
+                            <div class="pop-up"></div>
+                        </div>
+                        <div class="keys" data-name="buttons"> <span class="keys-alphabet"> mno </span> 6 </div>
+                    </div>
+
+                    <div class="key-button-row">
+                        <div class="keys" data-name="buttons"> 7 <span class="keys-alphabet"> pqrs </span> </div>
+                        <div class="keys" data-name="buttons"> 8 <span class="keys-alphabet"> tuv </span> </div>
+                        <div class="keys" data-name="buttons"> <span class="keys-alphabet"> wxyz </span> 9 </div>
+                    </div>
+
+                    <div class="key-button-row">
+                        <div class="keys" id="star-key" data-name="buttons">
+                            <svg class="asterisk" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="m12 4 .005 7.993m0 0 7.603-2.465m-7.603 2.465 4.697 6.48m-4.697-6.48-4.707 6.48m4.707-6.48L4.392 9.528" />
+                            </svg>
+                            <span class="keys-alphabet"> + </span>
+                        </div>
+                        <div class="keys two-char-space" data-name="buttons"> 0
+                            <svg class="icon spacebar-icon" viewBox="0 0 24 24" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                                <title>ic_fluent_spacebar_24_regular</title>
+                                <desc>Created with Sketch.</desc>
+                                <g id="🔍-Product-Icons">
+                                    <g id="ic_fluent_spacebar_24_regular">
+                                        <path
+                                            d="M20.5,11 L20.5,13 C20.5,13.1380712 20.3880712,13.25 20.25,13.25 L3.75,13.25 C3.61192881,13.25 3.5,13.1380712 3.5,13 L3.5,11 C3.5,10.5857864 3.16421356,10.25 2.75,10.25 C2.33578644,10.25 2,10.5857864 2,11 C2,11.4444444 2,12.1111111 2,13 C2,13.9664983 2.78350169,14.75 3.75,14.75 L20.25,14.75 C21.2164983,14.75 22,13.9664983 22,13 L22,11 C22,10.5857864 21.6642136,10.25 21.25,10.25 C20.8357864,10.25 20.5,10.5857864 20.5,11 Z"
+                                            id="🎨-Color">
+
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="keys gap-4" data-name="buttons">
+
+                            <svg class="shift-icon icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <title>keyboard-shift</title>
+                                <g id="Layer_2" data-name="Layer 2">
+                                    <g id="Q3_icons" data-name="Q3 icons">
+                                        <path
+                                            d="M24,6.8,39.2,22H33V42H15V22H8.8L24,6.8M24,2a2,2,0,0,0-1.4.6l-20,20A2,2,0,0,0,4,26h7V44a2,2,0,0,0,2,2H35a2,2,0,0,0,2-2V26h7a2,2,0,0,0,1.4-3.4l-20-20A2,2,0,0,0,24,2Z" />
+                                    </g>
+                                </g>
+                            </svg>
+
+                            <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                            <svg class="no-music icon" width="80px" height="80px" viewBox="0 0 64 64"
+                                xmlns="http://www.w3.org/2000/svg">
+
+                                <title>no-music</title>
+
+                                <g id="no-music">
+
+
+                                    <ellipse cx="20" cy="51.5" rx="10" ry="7" />
+
+                                    <path d="M28,51V8s12.853,6.43,8.927,13.215"
+                                        style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:6px" />
+
+                                    <line x1="5.518" y1="12.518" x2="51.481" y2="53.481"
+                                        style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px" />
+
+                                </g>
+
+                            </svg>
+                            #
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+
+>>>>>>> 42336b3 (calendar added)
 </html>
