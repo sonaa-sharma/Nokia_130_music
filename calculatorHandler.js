@@ -1,9 +1,17 @@
+var calculatorHandlerConfig = {}
+
+function getInitialConfig(){
+  var 
+}
+
 function calculatorHandler(button) {
   switch (button.id) {
     case "left-select-button":
       break;
 
     case "mid-button-inner":
+      showEqualOperatorSign();
+      calculateResult();
       break;
 
     case "right-select-button":
@@ -17,50 +25,50 @@ function calculatorHandler(button) {
       break;
 
     case "top-button":
-      showOperator("+");
+      highlightOperator("add-signId");
       break;
 
     case "left-button":
-      showOperator("×");
+      highlightOperator("mul-signId");
       break;
 
     case "right-button":
-      showOperator("÷");
+      highlightOperator("div-signId");
       break;
 
     case "bottom-button":
-      showOperator("−");
+      highlightOperator("sub-signId");
       break;
 
     case "0":
-      showNumbers(0);
+      showInput(0);
       break;
     case "1":
-      showNumbers(1);
+      showInput(1);
       break;
     case "2":
-      showNumbers(2);
+      showInput(2);
       break;
     case "3":
-      showNumbers(3);
+      showInput(3);
       break;
     case "4":
-      showNumbers(4);
+      showInput(4);
       break;
     case "5":
-      showNumbers(5);
+      showInput(5);
       break;
     case "6":
-      showNumbers(6);
+      showInput(6);
       break;
     case "7":
-      showNumbers(7);
+      showInput(7);
       break;
     case "8":
-      showNumbers(8);
+      showInput(8);
       break;
     case "9":
-      showNumbers(9);
+      showInput(9);
       break;
 
     default:
@@ -78,7 +86,7 @@ function showCalculator() {
 function hideCalculator() {
   mountCalculatorScreen(false);
   mountNavbar(false);
-  clearNumbers();
+  clearInput();
 }
 
 function mountCalculatorScreen(show) {
@@ -86,17 +94,34 @@ function mountCalculatorScreen(show) {
   AddRemoveClassList(calculator, "hide", !show);
 }
 
-function showNumbers(no) {
-  var box = document.getElementById("calculation-box-id");
-  box.innerHTML += no;
+var firstParam = 0;
+
+function getFirstParam(input){
+  firstParam = firstParam * 10 + input;
+
+  return firstParam;
 }
 
-function clearNumbers() {
-  var box = document.getElementById("calculation-box-id");
+function showInput(input) {
+  var number = getFirstParam(input);
+
+  box = document.getElementById("first-inputId");
+  if (number > 9999999999) {
+    return;
+  }
+
+  box.innerHTML = number;
+}
+
+function clearInput() {
+  var box = document.getElementById("first-inputId");
   box.innerHTML = "";
 }
 
-function showOperator(operatorSign) {
-  var box = document.getElementById("calculation-box-id");
-  box.innerHTML = operatorSign;
+function highlightOperator(operatorSignId) {
+  clearInput();
+  var box = document.getElementById(operatorSignId);
+  box.style.backgroundColor = "orange";
 }
+
+function calculateResult() {}

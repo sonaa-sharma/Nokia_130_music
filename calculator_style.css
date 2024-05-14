@@ -14,21 +14,11 @@
   background-color: rgb(48, 32, 63);
 }
 
-.operators-container-body{
+.operators-container-body {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.calculation-box-container {
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px;
-  box-shadow: 0px 0px 4px rgb(110, 206, 241);
-  background-color: rgb(91, 210, 223);
 }
 
 .operators-container {
@@ -39,7 +29,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* box-shadow: 0px 0px 8px; */
   background-color: rgb(79, 89, 139);
 }
 
@@ -63,9 +52,22 @@
   align-items: center;
 }
 
-.equals-text{
+.equals-text {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.calculation-box-container {
+  height: 50%;
+  display: flex;
+  justify-content: right;
+  align-items: last baseline;
+  padding: 12px;
+  gap: 8px;
+  font-size: 20px;
+  text-align: right;
+  box-shadow: 0px 0px 4px rgb(110, 206, 241);
+  background-color: rgb(91, 210, 223);
 }
