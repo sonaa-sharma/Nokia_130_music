@@ -137,7 +137,7 @@ function findAppSelection(currentAppId) {
       showMusicPlayer();
       break;
     case "calculator":
-      showCalculator();
+      mountCalculator();
       break;
     case "setting":
       showSettings(true);
