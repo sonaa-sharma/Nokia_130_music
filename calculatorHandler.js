@@ -184,7 +184,6 @@ function updateValueAfterSelectingOperator(){
 
 function selectOperator(operator) {
   var currentOperator = calculatorHandlerConfig.selectedOperator;
-console.log(currentOperator);
   if (currentOperator) {
     var currentId = calculatorHandlerConfig.operatorIds[currentOperator];
     updateValueAfterSelectingOperator();
@@ -221,8 +220,6 @@ function calculateResult() {
       break;
   }
 
-  console.log(firstParam);
-  console.log(secondParam);
   calculatorHandlerConfig.firstParam = result;
   updateParamInDocument(result);
 }
