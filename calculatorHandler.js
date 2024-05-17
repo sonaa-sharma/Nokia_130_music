@@ -23,42 +23,31 @@ function getInitialCalculatorConfig() {
 }
 
 function calculatorHandler(button) {
-  var ids = calculatorHandlerConfig.operatorIds;
   switch (button.id) {
     case "left-select-button":
       calculateResult();
       resetValuesToInitial();
       break;
-
-    case "mid-button-inner":
-      break;
-
     case "right-select-button":
       unmountCalculator();
       showMenu();
       break;
-
     case "power-button":
       unmountCalculator();
       showIdleScreen();
       break;
-
     case "top-button":
       selectOperator(operators.add);
       break;
-
     case "left-button":
       selectOperator(operators.multiply);
       break;
-
     case "right-button":
       selectOperator(operators.divide);
       break;
-
     case "bottom-button":
       selectOperator(operators.subtract);
       break;
-
     case "0":
       updateParam(0);
       break;
@@ -89,7 +78,6 @@ function calculatorHandler(button) {
     case "9":
       updateParam(9);
       break;
-
     default:
       break;
   }
@@ -107,7 +95,7 @@ function unmountCalculator() {
   mountCalculatorScreen(false);
   mountNavbar(false);
   var operator = calculatorHandlerConfig.selectedOperator;
-  if(operator){
+  if (operator) {
     var operatorId = calculatorHandlerConfig.operatorIds[operator];
     removeHighlightedOperator(operatorId);
   }
@@ -177,7 +165,7 @@ function removeHighlightedOperator(operatorSignId) {
   AddRemoveClassList(box, "highlight-operator-box", false);
 }
 
-function updateValueAfterSelectingOperator(){
+function updateValueAfterSelectingOperator() {
   calculateResult();
   calculatorHandlerConfig.secondParam = 0;
 }
@@ -197,7 +185,7 @@ function selectOperator(operator) {
 
 function calculateResult() {
   var selectOperator = calculatorHandlerConfig.selectedOperator;
-  if(!selectOperator){
+  if (!selectOperator) {
     return;
   }
   var firstParam = calculatorHandlerConfig.firstParam;
@@ -224,8 +212,7 @@ function calculateResult() {
   updateParamInDocument(result);
 }
 
-
-function resetValuesToInitial(){
+function resetValuesToInitial() {
   calculatorHandlerConfig.secondParam = 0;
   calculatorHandlerConfig.selectedOperator = null;
 }
