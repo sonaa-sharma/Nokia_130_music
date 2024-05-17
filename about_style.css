@@ -1,26 +1,26 @@
-.about-screen-div{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: rgb(83, 82, 82);
+.about-screen-div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(83, 82, 82);
 }
 
-.about-div{
-    height: 100%;
-    padding: 0px 8px;
-    overflow-y: scroll;
-    background-color: rgb(10, 10, 10);
+.about-div {
+  height: 100%;
+  padding: 0px 8px;
+  overflow-y: scroll;
+  background-color: rgb(10, 10, 10);
 }
 
-.creator{
-background-color: rgb(90, 67, 112);
+.creator {
+  background-color: rgb(90, 67, 112);
 }
 
-.info{
-background-color: cadetblue;
+.info {
+  background-color: cadetblue;
 }
 
-.app-details{
-background-color: rgb(170, 152, 70);
+.app-details {
+  background-color: rgb(170, 152, 70);
 }
