@@ -39,7 +39,7 @@ function mountTorchScreen(show) {
   AddRemoveClassList(torchScreen, "hide", !show);
 }
 
-function turnOnTorch(){
+function turnOnTorch() {
   var torchScreen = document.getElementById("torch-screen-containerId");
   AddRemoveClassList(torchScreen, "torch-background", false);
   AddRemoveClassList(torchScreen, "white-background", true);
