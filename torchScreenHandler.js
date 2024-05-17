@@ -41,7 +41,8 @@ function mountTorchScreen(show) {
 
 function turnOnTorch(){
   var torchScreen = document.getElementById("torch-screen-containerId");
-  torchScreen.style.backgroundColor = "white";
+  AddRemoveClassList(torchScreen, "torch-background", false);
+  AddRemoveClassList(torchScreen, "white-background", true);
   var text = document.getElementById("text-content");
   text.innerHTML = "Turn off";
   torchFlag = 1;
@@ -49,7 +50,8 @@ function turnOnTorch(){
 
 function turnOffTorch() {
   var torchScreen = document.getElementById("torch-screen-containerId");
-  torchScreen.style.backgroundColor = "rgb(22, 21, 21)";
+  AddRemoveClassList(torchScreen, "white-background", false);
+  AddRemoveClassList(torchScreen, "torch-background", true);
   var text = document.getElementById("text-content");
   text.innerHTML = "Turn on";
   torchFlag = 0;
