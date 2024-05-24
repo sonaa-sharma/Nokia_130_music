@@ -25,8 +25,7 @@ function getInitialCalculatorConfig() {
 function calculatorHandler(button) {
   switch (button.id) {
     case "left-select-button":
-      calculateResult();
-      resetValuesToInitial();
+      showResult();
       break;
     case "right-select-button":
       unmountCalculator();
@@ -97,7 +96,7 @@ function unmountCalculator() {
   var operator = calculatorHandlerConfig.selectedOperator;
   if (operator) {
     var operatorId = calculatorHandlerConfig.operatorIds[operator];
-    removeHighlightedOperator(operatorId);
+    highlightOperator(operatorId, false);
   }
   calculatorHandlerConfig = null;
 }
@@ -111,7 +110,7 @@ function updateParam(number) {
   var currentOperator = calculatorHandlerConfig.selectedOperator;
   if (currentOperator) {
     var currentId = calculatorHandlerConfig.operatorIds[currentOperator];
-    removeHighlightedOperator(currentId);
+    highlightOperator(currentId, false);
     updateAndShowSecondParam(number);
     return;
   }
@@ -155,14 +154,9 @@ function addDigitToNumber(digit, number) {
   return number * 10 + digit;
 }
 
-function highlightOperator(operatorSignId) {
+function highlightOperator(operatorSignId, show) {
   var box = document.getElementById(operatorSignId);
-  AddRemoveClassList(box, "highlight-operator-box", true);
-}
-
-function removeHighlightedOperator(operatorSignId) {
-  var box = document.getElementById(operatorSignId);
-  AddRemoveClassList(box, "highlight-operator-box", false);
+  AddRemoveClassList(box, "highlight-operator-box", show);
 }
 
 function updateValueAfterSelectingOperator() {
@@ -175,12 +169,12 @@ function selectOperator(operator) {
   if (currentOperator) {
     var currentId = calculatorHandlerConfig.operatorIds[currentOperator];
     updateValueAfterSelectingOperator();
-    removeHighlightedOperator(currentId);
+    highlightOperator(currentId, false);
   }
 
   var nextId = calculatorHandlerConfig.operatorIds[operator];
   calculatorHandlerConfig.selectedOperator = operator;
-  highlightOperator(nextId);
+  highlightOperator(nextId, true);
 }
 
 function calculateResult() {
@@ -209,10 +203,16 @@ function calculateResult() {
   }
 
   calculatorHandlerConfig.firstParam = result;
-  updateParamInDocument(result);
+  return result;
 }
 
 function resetValuesToInitial() {
   calculatorHandlerConfig.secondParam = 0;
   calculatorHandlerConfig.selectedOperator = null;
+}
+
+function showResult(){
+  var result = calculateResult();
+  updateParamInDocument(result);
+  resetValuesToInitial();
 }
