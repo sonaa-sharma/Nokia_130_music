@@ -35,6 +35,9 @@ function buttonClicked(button) {
     case "musicPlayerScreen":
       musicPlayerHandler(button);
       break;
+    case "torchScreen":
+      torchScreenHandler(button);
+      break;
     case "settingsScreen":
       settingsHandler(button);
       break;
@@ -151,6 +154,9 @@ function turnOfflcd() {
       break;
     case "musicPlayerScreen":
       hideMusicPlayer();
+      break;
+    case "torchScreen":
+      hideTorchScreen();
       break;
     case "settingsScreen":
       hideSettings();
