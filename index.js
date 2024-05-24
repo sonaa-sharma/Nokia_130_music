@@ -35,6 +35,7 @@ function buttonClicked(button) {
       break;
     case "aboutScreen":
       aboutScreenHandler(button);
+      break;
     case "setPhotoOptionsScreen":
       setPhotoOptionsHandler(button);
       break;
@@ -46,6 +47,7 @@ function buttonClicked(button) {
       break;
     case "torchScreen":
       torchScreenHandler(button);
+      break;
     case "calculatorScreen":
       calculatorHandler(button);
       break;
@@ -155,6 +157,7 @@ function turnOfflcd() {
       break;
     case "idleScreen":
       hideIdleScreen();
+      break;
     case "appScreen":
       hideMenuScreen();
       break;
