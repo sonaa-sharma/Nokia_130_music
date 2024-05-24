@@ -12,17 +12,20 @@
 
 .calendar-navbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   height: 48px;
-  gap: 4px;
   font-weight: bolder;
   color: black;
-  /* color: ; */
   font-family: sans-serif;
   background-color: rgb(223, 224, 230);
   box-shadow: 0px 0px 10px rgb(45, 62, 176);
+}
+
+.calendar-navbar-date {
+  display: flex;
+  gap: 4px;
 }
 
 .calendar-body {
@@ -65,4 +68,20 @@
   justify-content: center;
   align-items: center;
   width: 25px;
+}
+
+.previous-month-button {
+  width: 12px;
+  height: 12px;
+  background-color: white;
+}
+
+.monthScroll-button {
+  width: 12px;
+  height: 12px;
+  padding: 4px;
+}
+
+.rotate-180 {
+  rotate: 180deg;
 }
