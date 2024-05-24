@@ -78,9 +78,7 @@ function createImage(photoSources, currentPhotoIndex) {
 
 function createBottomNavbar(){
   var optionsContainer = document.createElement("div");
-  optionsContainer.classList.add("bottom-navbar");
-  optionsContainer.classList.add("bottom-navbar-color");
-  optionsContainer.classList.add("bottom-navbar-container");
+  optionsContainer.classList.add("bottom-navbar", "bottom-navbar-color", "bottom-navbar-container");
 
   var opitonSelect = document.createElement("div");
   var opitonBack = document.createElement("div");
