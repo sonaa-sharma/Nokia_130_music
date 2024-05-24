@@ -52,7 +52,6 @@ function mountCalendar() {
   var calendarBodyContainer = createCalendarBodyContainer();
   calendarScreenNode.appendChild(calendarBodyContainer);
   mountCalendarScreen(true);
-  updateNavbar(calendarConfig.currentYear, calendarConfig.currentMonth);
   showGreyShade(calendarConfig.currentYear, calendarConfig.currentMonth, 1);
   highlightTodayDate();
   screenName = "calendarScreen";
@@ -157,12 +156,17 @@ function createForwardIcon() {
 function createCalendarMonth() {
   var container = document.createElement("span");
   container.id = "monthId";
+  var clockMonth = calendarConfig.currentMonth;
+  clockMonth = monthNumberToName(clockMonth);
+  container.innerHTML = clockMonth;
   return container;
 }
 
 function createCalendarYear() {
   var container = document.createElement("span");
   container.id = "yearId";
+  var clockYear = calendarConfig.currentYear;
+  container.innerHTML = clockYear;
   return container;
 }
 
