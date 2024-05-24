@@ -14,7 +14,7 @@ var homeScreenWallpaperClassName = "theme1";
 
 function mountIdleScreenWallPaper(show) {
   var lcd = getLcd();
-  AddRemoveClassList(lcd, homeScreenWallpaperClassName, show);
+  lcd.style.backgroundImage = 'url("wallpaper/grass.jpg")';
 }
 
 function mountNavbar(show) {

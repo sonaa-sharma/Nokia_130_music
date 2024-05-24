@@ -1,18 +1,25 @@
-var themeList = ["theme1", "theme2", "theme3"];
+var themeList = [
+  "wallpaper/grass.jpg",
+  "wallpaper/wp1.jpg",
+  "wallpaper/wp2.jpg",
+];
 
 var themeIndex = 0;
 var previousThemeId;
-var currentThemeId = themeList[themeIndex];
+var currentTheme = themeList[themeIndex];
 
 function wallpaperHandler(button) {
   switch (button.id) {
     case "left-select-button":
       hideWallpaperScreen();
       if (currentSettingId === "lock-screen-setting") {
-        lockScreenWallpaperClassName = currentThemeId;
+        var lcd = getLcd();
+        lcd.style.backgroundImage = url(currentTheme);
+    
+        mountLockScreenWallPaper(true);
         showSettings();
       } else if (currentSettingId === "home-screen-setting") {
-        homeScreenWallpaperClassName = currentThemeId;
+        homeScreenWallpaperClassName = currentTheme;
         showSettings();
       }
       break;
@@ -47,7 +54,7 @@ function themeSelectUp() {
     themeIndex = themeList.length - 1;
   }
 
-  currentThemeId = themeList[themeIndex];
+  currentTheme = themeList[themeIndex];
   addWallpaperBorder();
   addTheme();
 }
@@ -57,7 +64,7 @@ function themeSelectDown() {
     themeIndex = 0;
   }
 
-  currentThemeId = themeList[themeIndex];
+  currentTheme = themeList[themeIndex];
   addWallpaperBorder();
   addTheme();
 }
@@ -71,8 +78,8 @@ function themeDeselectUp() {
     themeIndex = 0;
   }
 
-  currentThemeId = themeList[themeIndex];
-  previousThemeId = currentThemeId;
+  currentTheme = themeList[themeIndex];
+  previousThemeId = currentTheme;
   removeWallpaperBorder();
   removeTheme();
 
@@ -84,8 +91,8 @@ function themeDeselectDown() {
     themeIndex = 0;
   }
 
-  currentThemeId = themeList[themeIndex];
-  previousThemeId = currentThemeId;
+  currentTheme = themeList[themeIndex];
+  previousThemeId = currentTheme;
   removeWallpaperBorder();
   removeTheme();
 
@@ -109,22 +116,22 @@ function hideWallpaperScreen() {
 
 function removeTheme() {
   var backgroundWallpaper = getLcd();
-  AddRemoveClassList(backgroundWallpaper, currentThemeId, false);
+  AddRemoveClassList(backgroundWallpaper, currentTheme, false);
 }
 
 function removeWallpaperBorder() {
-  var theme = document.getElementById(currentThemeId);
+  var theme = document.getElementById(currentTheme);
   AddRemoveClassList(theme, "wallpaper-border", false);
 }
 
 function addWallpaperBorder() {
-  var theme = document.getElementById(currentThemeId);
+  var theme = document.getElementById(currentTheme);
   AddRemoveClassList(theme, "wallpaper-border", true);
 }
 
 function addTheme() {
   var backgroundWallpaper = getLcd();
-  AddRemoveClassList(backgroundWallpaper, currentThemeId, true);
+  AddRemoveClassList(backgroundWallpaper, currentTheme, true);
 }
 
 function mountWallpaperScreen(show) {
@@ -137,7 +144,7 @@ function resetWallapperTheme(resetCondition) {
     removeWallpaperBorder();
     removeTheme();
     themeIndex = 0;
-    currentThemeId = themeList[themeIndex];
+    currentTheme = themeList[themeIndex];
   }
   addWallpaperBorder();
   addTheme();
