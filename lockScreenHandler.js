@@ -53,11 +53,16 @@ function starKeyPressed(button) {
   showIdleScreen();
 }
 
-var lockScreenWallpaperClassName = "theme1";
 
-function mountLockScreenWallPaper(show) {
+function mountLockScreenWallPaper(show, imageUrl) {
   var lcd = getLcd();
-  AddRemoveClassList(lcd, lockScreenWallpaperClassName, show);
+  if(show){
+    lcd.style.backgroundImage = imageUrl;
+    console.log(imageUrl);
+  }
+  else{
+    lcd.style.backgroundImage = 'none';
+  }
 }
 
 function mountLockScreen(show) {
@@ -124,7 +129,7 @@ function mountUnlockWithoutSpace(show) {
 }
 
 function showLockScreen() {
-  mountLockScreenWallPaper(true);
+  mountLockScreenWallPaper(true, "wallpaper/grass.jpg");
   mountUnlockText(true);
   mountDateTimeContainer(true);
   mountNavbar(true);

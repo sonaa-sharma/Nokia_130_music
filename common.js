@@ -10,11 +10,14 @@ function AddRemoveClassList(node, className, show) {
   }
 }
 
-var homeScreenWallpaperClassName = "theme1";
-
 function mountIdleScreenWallPaper(show) {
   var lcd = getLcd();
-  lcd.style.backgroundImage = 'url("wallpaper/grass.jpg")';
+  if(show){
+    lcd.style.backgroundImage = 'url("wallpaper/wp1.jpg")';
+  }
+  else{
+    lcd.style.backgroundImage = 'none';
+  }
 }
 
 function mountNavbar(show) {
