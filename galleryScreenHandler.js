@@ -179,3 +179,4 @@ function imageScrolling(menuItemIds, nextMenuIndex, selectedClassName) {
   });
   galleryScreenConfig.currentImageIndex = nextMenuIndex;
 }
+

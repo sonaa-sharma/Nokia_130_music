@@ -1,9 +1,22 @@
 var calendarConfig = null;
 
 function getCalendarConfig() {
-  var currentDay;
-  var currentMonth;
-  var currentYear;
+  var date = new Date();
+  var currentDay = date.getDay();
+  var currentMonth = date.getMonth();
+  var currentYear = date.getFullYear();
+  var idsArray = [];
+  for (i = 1; i <= 35; i++) {
+    idsArray.push("day" + i);
+  }
+  var initialConfig = {
+    currentDay,
+    currentMonth,
+    currentYear,
+    idsArray,
+  };
+
+  return initialConfig;
 }
 
 function calendarHandler(button) {
@@ -35,7 +48,8 @@ function mountCalendar() {
   var calendarBodyContainer = createCalendarBodyContainer();
   calendarScreenNode.appendChild(calendarBodyContainer);
   mountCalendarScreen(true);
-  updateNavbar(2024, 4);
+  updateNavbar(calendarConfig.currentYear, calendarConfig.currentMonth);
+  showGreyShade(calendarConfig.currentYear, calendarConfig.currentMonth, 1);
 
   screenName = "calendarScreen";
 }
@@ -44,6 +58,7 @@ function unmountCalendar() {
   var calendarScreenNode = document.getElementById("calendar-screen-id");
   var calendarBodyContainer = getCalendarBodyContainerNode();
   calendarScreenNode.removeChild(calendarBodyContainer);
+  calendarConfig = null;
   mountCalendarScreen(false);
 }
 
@@ -113,6 +128,15 @@ function createCalendarNavbar() {
   return container;
 }
 
+function createBackwardIcon(){
+ var icon = document.createElement("img");
+ icon.src = "";
+}
+
+function createForwardIcon(){
+
+}
+
 function createCalendarMonth() {
   var container = document.createElement("span");
   container.id = "monthId";
@@ -135,21 +159,18 @@ function createCalendarBody() {
   var weekName = [];
   var number = 1;
 
-  var currentMonth = getCurrentMonth();
-  var currentYear = getCurrentYear();
+  var currentMonth = calendarConfig.currentMonth;
+  var currentYear = calendarConfig.currentYear;
 
   var firstDate = getFirstDate(currentYear, currentMonth, 1);
 
   var previousMonth = currentMonth - 1;
-  var nextMonth = currentMonth + 1;
 
-  var currentMonthLength = getNoOfDaysInAMonth(currentMonth);
-  var previousMonthLength = getNoOfDaysInAMonth(previousMonth);
-  var nextMonthLength = getNoOfDaysInAMonth(nextMonth);
+  var currentMonthLength = getNoOfDaysInAMonth(currentYear, currentMonth);
+  var previousMonthLength = getNoOfDaysInAMonth(currentYear, previousMonth);
 
   var preMonth = previousMonthLength - firstDate + 1;
-
-  for (i = 0; i <= currentMonthLength + firstDate; i++) {
+  for (i = 0; i <= 34; i++) {
     if (i < firstDate) {
       weekName.push(preMonth);
       preMonth++;
@@ -165,7 +186,6 @@ function createCalendarBody() {
 
   var weeksNode = createCalendarWeeks(weekName);
   container.appendChild(weeksNode);
-
   return container;
 }
 
@@ -195,7 +215,9 @@ function createCalendarWeeks(weekName) {
   for (i = 0; i < weekName.length; i++) {
     var dates = createCalendarDates();
     dates.innerHTML = weekName[i];
+    dates.id = calendarConfig.idsArray[i];
     dateContainer.appendChild(dates);
+    console.log("id = ", dates.id);
   }
   return dateContainer;
 }
@@ -228,24 +250,80 @@ function getFirstDate(currentYear, currentMonth, currentDay) {
   return (todayDate = date.getDay());
 }
 
-function getNoOfDaysInAMonth(month) {
-  var date = new Date();
-  fullYear = date.getFullYear();
-  console.log(fullYear);
+function getNoOfDaysInAMonth(currentYear, currentMonth) {
   var days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-  if (fullYear % 4 === 0) {
+  if (currentYear % 4 === 0) {
     days[1] = 29;
   }
-  console.log(days[month]);
-  return days[month];
+  console.log(days[currentMonth]);
+  return days[currentMonth];
 }
 
-function getCurrentMonth() {
-  var date = new Date();
-  return date.getMonth();
+function getPreviousMonth() {
+  calendarConfig.currentMonth - 1;
+
+  if (calendarConfig.currentMonth < 0) {
+    calendarConfig.currentMonth = 11;
+    calendarConfig.currentYear = calendarConfig.currentYear - 1;
+  }
 }
 
-function getCurrentYear() {
+function getNextMonth() {
+  calendarConfig.currentMonth + 1;
+
+  if (calendarConfig.currentMonth > 11) {
+    calendarConfig.currentMonth = 0;
+    calendarConfig.currentYear = calendarConfig.currentYear + 1;
+  }
+}
+
+function getPreviousYear() {
+  calendarConfig.currentMonth - 1;
+
+  if (calendarConfig.currentMonth < 0) {
+    calendarConfig.currentMonth = 11;
+    calendarConfig.currentYear = calendarConfig.currentYear - 1;
+  }
+}
+
+function getNextYear() {
+  calendarConfig.currentMonth - 1;
+
+  if (calendarConfig.currentMonth < 0) {
+    calendarConfig.currentMonth = 11;
+    calendarConfig.currentYear = calendarConfig.currentYear - 1;
+  }
+}
+
+function showGreyShade(currentYear, currentMonth, currentDay) {
+  var firstDay = getFirstDate(currentYear, currentMonth, currentDay);
+  console.log(firstDay);
+  var todayDay = getTodayDate();
+  todayDay = todayDay + firstDay - 1;
+  var node;
+  var currentMonthLength = getNoOfDaysInAMonth(currentYear, currentMonth);
+
+  for (i = 0; i < firstDay; i++) {
+    id = calendarConfig.idsArray[i];
+    node = document.getElementById(id);
+    node.style.color = "rgb(213, 210, 210)";
+  }
+  i = currentMonthLength + firstDay;
+  for (; i < 35; i++) {
+    id = calendarConfig.idsArray[i];
+    node = document.getElementById(id);
+    node.style.color = "rgb(213, 210, 210)";
+  }
+
+  id = calendarConfig.idsArray[todayDay];
+  node = document.getElementById(id);
+  node.style.color = "red";
+
+  console.log(id);
+}
+
+function getTodayDate() {
   var date = new Date();
-  return date.getFullYear();
+  day = date.getDate();
+  return day;
 }
