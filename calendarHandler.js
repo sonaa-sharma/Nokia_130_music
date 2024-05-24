@@ -20,7 +20,6 @@ function getCalendarConfig() {
   return initialConfig;
 }
 
-var _calendarNode;
 function calendarHandler(button) {
   switch (button.id) {
     case "left-button":
