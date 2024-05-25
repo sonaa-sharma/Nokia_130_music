@@ -1,46 +1,59 @@
-var menuItemIds = [
-  ["gallery", "snake-game", "video"],
-  ["about", "music", "calculator"],
-  ["calendar", "torch", "setting"],
-];
+var menuItems =[
+  {class:'gallery-item', id: 'gallery', src: 'Icons/picture.png', label: 'gallery', iconContainerClass: 'gallery-icon-container', iconClass: 'gallery-icon'},
+  {class:'snake-game-item', id: 'snake-game', src: 'Icons/icons8-snake-48.png', label: 'snake-game', iconContainerClass: 'snake-game-icon-container', iconClass: 'snake-game-icon'},
+  {class:'video-player-item', id: 'video-player', src: 'Icons/icons8-video-player-48.png', label: 'video-player', iconContainerClass: 'video-player-icon-container', iconClass: 'video-player-icon'},
+  {class:'about-item', id: 'about', src: 'Icons/icons8-about (1).svg', label: 'about', iconContainerClass: 'about-icon-container', iconClass: 'about-icon'},
+  {class:'music-player-item', id: 'music-player', src: 'wallpaper/musical-note-1314942_1280.png', label: 'music-player', iconContainerClass: 'music-player-icon-container', iconClass: 'music-player-icon'},
+  {class:'calculator-item', id: 'calculator', src: 'Icons/icons8-math-48.png', label: 'calculator', iconContainerClass: 'calculator-icon-container', iconClass: 'calculator-icon'},
+  {class:'calendar-item', id: 'calendar', src: 'wallpaper/calendar (1).png', label: 'calendar', iconContainerClass: 'calendar-icon-container', iconClass: 'calendar-icon'},
+  {class:'torch-item', id: 'torch', src: 'wallpaper/torch.png', label: 'torch', iconContainerClass: 'torch-icon-container', iconClass: 'torch-icon'},
+  {class:'setting-item', id: 'setting', src: 'wallpaper/gear-1807204_1920.png', label: 'setting', iconContainerClass: 'setting-icon-container', iconClass: 'setting-icon'},
+]
 
-var currentMenuIndexX = 0;
-var currentMenuIndexY = 0;
+var WIDTH_LENGTH = 3;
+var currentMenuIndex = 0;
+var RESET = true;
 
 function appScreenHandler(button) {
-  var nextAppIndex;
+  var nextMenuIndex;
+  var menuItemsLength = menuItems.length;
+  var currentAppId = menuItems[currentMenuIndex].id;
 
   switch (button.id) {
     case "left-select-button":
-      hideMenuScreen();
-      var currentAppId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
-      findAppSelection(currentAppId);
+      unmountMenu();
+      openApp(currentAppId);
       break;
 
     case "power-button":
 
     case "right-select-button":
-      goToBackScreen();
+      unmountMenu();
+      showIdleScreen();
       break;
 
     case "top-button":
-      nextAppIndex = goUp(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-      menuScrolling(nextAppIndex[0], nextAppIndex[1]);
+      nextMenuIndex = goUp(menuItemsLength, currentMenuIndex, WIDTH_LENGTH, RESET);
+      menuScrolling(menuItems, nextMenuIndex, "selected");
       break;
 
     case "left-button":
-      nextAppIndex = goLeft(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-      menuScrolling(nextAppIndex[0], nextAppIndex[1]);
+      nextMenuIndex = goLeft(menuItemsLength, currentMenuIndex, RESET);
+      menuScrolling(menuItems, nextMenuIndex, "selected");
+
       break;
 
     case "right-button":
-      nextAppIndex = goRight(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-      menuScrolling(nextAppIndex[0], nextAppIndex[1]);
+      nextMenuIndex = goRight(menuItemsLength, currentMenuIndex, RESET);
+      menuScrolling(menuItems, nextMenuIndex, "selected");
+
       break;
 
     case "bottom-button":
-      nextAppIndex = goDown(menuItemIds, currentMenuIndexX, currentMenuIndexY);
-      menuScrolling(nextAppIndex[0], nextAppIndex[1]);
+      nextMenuIndex = goDown(menuItemsLength, currentMenuIndex, WIDTH_LENGTH, RESET);
+      menuScrolling(menuItems, nextMenuIndex, 'selected');
+      var currentAppId = menuItems[currentMenuIndex];
+
       break;
 
     default:
@@ -48,167 +61,134 @@ function appScreenHandler(button) {
   }
 }
 
-function menuScrolling(nextMenuIndexX, nextMenuIndexY) {
-  var itemId = menuItemIds[nextMenuIndexX][nextMenuIndexY];
-  var nextApp = document.getElementById(itemId);
-  var currentId = menuItemIds[currentMenuIndexX][currentMenuIndexY];
-  var currentApp = document.getElementById(currentId);
-
-  AddRemoveClassList(nextApp, "selected", true);
-  AddRemoveClassList(currentApp, "selected", false);
-  
-  currentMenuIndexX = nextMenuIndexX;
-  currentMenuIndexY = nextMenuIndexY;
-}
-
-function goRight(menuItemIds, x, y) {
-  var nextIndexX = x;
-  var nextIndexY = y + 1;
-
-  if (nextIndexY === menuItemIds[x].length) {
-    nextIndexX++;
-    nextIndexY = 0;
-  }
-
-  if (nextIndexX === menuItemIds.length) {
-    nextIndexX = 0;
-  }
-
-  return [nextIndexX, nextIndexY];
-}
-
-function goLeft(menuItemIds, x, y) {
-  var backIndexX = x;
-  var backIndexY = y - 1;
-
-  if (backIndexY < 0) {
-    backIndexY = menuItemIds[x].length - 1;
-    backIndexX--;
-  }
-
-  if (backIndexX < 0) {
-    backIndexX = menuItemIds.length - 1;
-  }
-
-  return [backIndexX, backIndexY];
-}
-
-function goUp(menuItemIds, x, y) {
-  var backIndexX = x - 1;
-  var backIndexY = y;
-
-  if (backIndexX < 0) {
-    backIndexX = menuItemIds.length - 1;
-    backIndexY--;
-  }
-
-  if (backIndexY < 0) {
-    backIndexY = menuItemIds[x].length - 1;
-  }
-
-  return [backIndexX, backIndexY];
-}
-
-function goDown(menuItemIds, x, y) {
-  var nextIndexX = x + 1;
-  var nextIndexY = y;
-
-  if (nextIndexX === menuItemIds.length) {
-    nextIndexX = 0;
-    nextIndexY++;
-  }
-
-  if (nextIndexY === menuItemIds[x].length) {
-    nextIndexY = 0;
-  }
-
-  return [nextIndexX, nextIndexY];
-}
-
-function findAppSelection(currentAppId) {
+function openApp(currentAppId) {
   switch (currentAppId) {
     case "gallery":
       mountGalleryScreen(true);
       break;
-    case "about":
-      showAboutScreen();
+    case "video-player":
+      showVideoPlayer();
       break;
-    case "music":
+  
+    case "music-player":
       showMusicPlayer();
-      break;
-    case "calculator":
-      mountCalculator();
       break;
     case "setting":
       showSettings(true);
       break;
-    case "torch":
-      showTorchScreen();
-      break;
+
     default:
       showDefaultScreen();
       break;
   }
 }
 
-function resetSelectedApp(resetAppPosition) {
-  if (resetAppPosition) {
-    highlightApp(false, currentMenuIndexX, currentMenuIndexY);
-    currentMenuIndexX = 0;
-    currentMenuIndexY = 0;
-  }
-  highlightApp(true, currentMenuIndexX, currentMenuIndexY);
+ function mountMenu(resetAppPosition) {
+  var menuScreenNode = document.getElementById("menu-screen-container");
+  var menuItemsNode = createMenuItemsNode(menuItems);
+  var menuContainerNode = document.getElementById("menu-containerId");
+  menuContainerNode.appendChild(menuItemsNode);
+
+  resetSelectedApp(resetAppPosition);
+  mountNavbar(true);
+  mountIdleScreenWallPaper(true);
+  AddRemoveClassList(menuScreenNode, "hide", false);
+  
+  screenName = "appScreen";
 }
 
-function highlightApp(showHide, highlightAppIndexX, highlightAppIndexY) {
-  var highlightAppId = menuItemIds[highlightAppIndexX][highlightAppIndexY];
+function unmountMenu() {
+  var menuScreenNode = document.getElementById("menu-screen-container");
+  var menuContainer = document.getElementById("menu-containerId");
+  var menuContainerNode = getMenuContainerNode();
+  menuContainer.removeChild(menuContainerNode);
+  mountNavbar(false);
+  mountIdleScreenWallPaper(false);
+  AddRemoveClassList(menuScreenNode, "hide", true);
+}
+
+var menuItemsContainerNode;
+
+function getMenuContainerNode() {
+  return menuItemsContainerNode;
+}
+
+function createMenuItemsNode(menuItems) {
+  menuItemsContainerNode = createMenuItemsContainerNode();
+  for (var menuItem of menuItems) {
+    var appContainer = createMenuItem(menuItem);
+
+    menuItemsContainerNode.appendChild(appContainer);
+  }
+  return menuItemsContainerNode;
+}
+
+
+function createMenuItemsContainerNode() {
+  var menuContainerNode = document.createElement("div");
+  menuContainerNode.classList.add("menuItems-container");
+  return menuContainerNode;
+}
+
+function createMenuItem(menuItem) {
+  var appContainerNode = document.createElement("div");
+  appContainerNode.classList.add("app-container");
+  var iconContainer = createIconContainer(menuItem);
+  appContainerNode.appendChild(iconContainer);
+
+  appContainerNode.id = menuItem.id;
+  
+  return appContainerNode;
+}
+
+function createIconContainer(menuItem) {
+  var iconContainerNode = document.createElement("div");
+  iconContainerNode.classList.add("icon-container", menuItem.iconContainerClass);
+  
+  var icon = createIconNode(menuItem);
+  iconContainerNode.appendChild(icon);
+  return iconContainerNode;
+}
+
+
+function createIconNode(menuItem) {
+  var iconNode = document.createElement("img");
+
+  iconNode.classList.add("iconClass", menuItem.iconClass);
+  
+  iconNode.src = menuItem.src;
+
+  return iconNode;
+}
+
+function resetSelectedApp(resetAppPosition) {
+  if (resetAppPosition) {
+    highlightApp(false, currentMenuIndex);
+    currentMenuIndex = 0;
+  }
+  highlightApp(true, currentMenuIndex);
+}
+
+function highlightApp(showHide, highlightAppIndex) {
+  var highlightAppId = menuItems[highlightAppIndex].id;
   var highlightNode = document.getElementById(highlightAppId);
   AddRemoveClassList(highlightNode, "selected", showHide);
 }
 
-function showMenu(resetAppPosition) {
-  mountAppScreen(true);
-  mountNavbar(true);
-  mountSelectText(true);
-  mountBackText(true);
-  mountAppScreenContainer(true);
-  mountIdleScreenWallPaper(true);
-  resetSelectedApp(resetAppPosition);
-  screenName = "appScreen";
+function menuScrolling(menuItemIds, nextMenuIndex, selectedClassName) {
+  var itemId = menuItemIds[nextMenuIndex].id;
+  var nextApp = document.getElementById(itemId);
+  var currentId = menuItemIds[currentMenuIndex].id;
+  var currentApp = document.getElementById(currentId);
+
+  AddRemoveClassList(currentApp, selectedClassName, false);
+  AddRemoveClassList(nextApp, selectedClassName, true);
+  currentApp.scrollIntoView({
+    behavior: "smooth",
+    inline: "center",
+    block: "center",
+  });
+
+  currentMenuIndex = nextMenuIndex;
+
 }
-
-function hideMenuScreen() {
-  mountIdleScreenWallPaper(false);
-  mountAppScreen(false);
-  mountNavbar(false);
-  mountSelectText(false);
-  mountBackText(false);
-  mountAppScreenContainer(false);
-}
-
-function goToBackScreen() {
-  hideMenuScreen();
-  showIdleScreen();
-}
-
-function mountSelectText(show) {
-  var selectText = document.getElementById("select");
-  AddRemoveClassList(selectText, "hide", !show);
-}
-
-function mountBackText(show) {
-  var backText = document.getElementById("back");
-  AddRemoveClassList(backText, "hide", !show);
-}
-
-function mountAppScreen(show) {
-  var apps = document.getElementById("apps-div");
-  AddRemoveClassList(apps, "hide", !show);
-}
-
-function mountAppScreenContainer(show) {
-  var apps = document.getElementById("app-screen-container");
-  AddRemoveClassList(apps, "hide", !show);
-}
-
-

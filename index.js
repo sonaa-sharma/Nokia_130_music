@@ -16,6 +16,7 @@ function clickEventFunction(event) {
 // button click events----------->
 
 function buttonClicked(button) {
+  // console.log(screenName);
   switch (screenName) {
     case "lockScreen":
       lockScreenHandler(button);
@@ -35,11 +36,18 @@ function buttonClicked(button) {
     case "aboutScreen":
       aboutScreenHandler(button);
       break;
+    case "setPhotoOptionsScreen":
+      setPhotoOptionsHandler(button);
+      break;
+    case "videoPlayerScreen":
+      videoPlayerHandler(button);
+      break;
     case "musicPlayerScreen":
       musicPlayerHandler(button);
       break;
     case "torchScreen":
       torchScreenHandler(button);
+      break;
     case "calculatorScreen":
       calculatorHandler(button);
       break;
@@ -149,11 +157,12 @@ function turnOfflcd() {
       break;
     case "idleScreen":
       hideIdleScreen();
+      break;
     case "appScreen":
       hideMenuScreen();
       break;
     case "galleryScreen":
-      mountGalleryScreen(false);
+      mountGalleryScreen(true, false);
       break;
     case "aboutScreen":
       hideAboutScreen();

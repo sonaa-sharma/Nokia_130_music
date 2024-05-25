@@ -33,16 +33,9 @@
     border: 2px solid transparent;
   }
 
-  .photos-screen-div {
-    text-align: center;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: blueviolet;
+  .pic-selected {
+    border-color: white;
   }
-  
-  .photo-div {
-    text-align: center;
-  }
+
+
   

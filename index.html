@@ -7,21 +7,26 @@
     <title>Nokia 130 Music</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="screen_style.css">
+    <link rel="stylesheet" href="menu_style.css">
     <link rel="stylesheet" href="gallery_style.css">
-    <link rel="stylesheet" href="torch_style.css">
-    <link rel="stylesheet" href="about_style.css">
+    <link rel="stylesheet" href="photos_style.css">
+    <link rel="stylesheet" href="snake_game_style.css">
+    <link rel="stylesheet" href="videoPlayer_style.css">
+    <link rel="stylesheet" href="musicPlayer_style.css">
     <link rel="stylesheet" href="calculator_style.css">
+    <link rel="stylesheet" href="calendar_style.css">
     <link rel="stylesheet" href="keypad_style.css">
     <link rel="stylesheet" href="common.css">
     <script type="text/javascript" await src="lockScreenHandler.js"></script>
     <script type="text/javascript" await src="idleScreenHandler.js"></script>
     <script type="text/javascript" await src="menuScreenHandler.js"></script>
     <script type="text/javascript" await src="galleryScreenHandler.js"></script>
+    <script type="text/javascript" await src="setPhotoOptionsHandler.js"></script>
     <script type="text/javascript" await src="photosHandler.js"></script>
-    <script type="text/javascript" await src="aboutScreenHandler.js"></script>
-    <script type="text/javascript" await src="musicPlayerHandler.js"></script>
-    <script type="text/javascript" await src="torchScreenHandler.js"></script>
+    <script type="text/javascript" await src="snakeGameHandler.js"></script>
+    <script type="text/javascript" await src="videoPlayerHandler.js"></script>
     <script type="text/javascript" await src="calculatorHandler.js"></script>
+    <script type="text/javascript" await src="musicPlayerHandler.js"></script>
     <script type="text/javascript" await src="settingsHandler.js"></script>
     <script type="text/javascript" await src="wallpaperHandler.js"></script>
     <script type="text/javascript" await src="defaultCaseHandler.js"></script>
@@ -108,7 +113,7 @@
 
                         <!-- menu screen -->
 
-                        <div id="menu-screen-div" class="hide idle-screen">
+                        <div id="idle-screen-div" class="hide idle-screen">
                             <div class="date-time center">
                                 <div class="time" id="time1"><span id="clock-hour1"></span>:<span
                                         id="clock-min1"></span>
@@ -121,56 +126,8 @@
 
                         <!-- apps screen  -->
 
-                        <div class="app-screen-div hide" id="app-screen-container">
-                            <div class="apps-div hide" id="apps-div">
-                                <div class="icon-container" id="gallery">
-                                    <div class="apps-container">
-                                        <img src="Icons\picture.png" alt="photos" width="40px">
-                                    </div>
-                                </div>
-                                <div class="icon-container" id="snake-game">
-                                    <div class="apps-container">
-                                        <img src="Icons\icons8-snake-48.png" alt="snakeGame" width="40px">
-                                    </div>
-                                </div>
-                                <div class="icon-container" id="video">
-                                    <div class="apps-container">
-                                        <img src="Icons\icons8-video-player-48.png" alt="video" width="40px">
-                                    </div>
-                                </div>
-
-                                <div class="icon-container" id="about">
-                                    <div class="apps-container">
-                                        <img src="Icons\icons8-about (1).svg" alt="about" width="40px">
-                                    </div>
-                                </div>
-                                <div class="icon-container" id="music">
-                                    <div class="apps-container music">
-                                        <img src="wallpaper\musical-note-1314942_1280.png" alt="music" width="24px">
-                                    </div>
-                                </div>
-                                <div class="icon-container" id="calculator">
-                                    <div class="apps-container">
-                                        <img src="Icons\icons8-math-48.png" alt="calculator" width="40px">
-                                    </div>
-                                </div>
-                                <div class="icon-container" id="calendar">
-                                    <div class="apps-container">
-
-                                        <img src="wallpaper\calendar (1).png" alt="calendar" width="36px">
-                                    </div>
-                                </div>
-                                <div class="icon-container" id="torch">
-                                    <div class="apps-container torch">
-                                        <img src="wallpaper\torch.png" alt="torch" width="24px">
-                                    </div>
-                                </div>
-                                <div class="icon-container" id="setting">
-                                    <div class="apps-container settings">
-                                        <img src="wallpaper\gear-1807204_1920.png" alt="settings" width="40px">
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="menu-screen-div hide" id="menu-screen-container">
+                            <div class="menu-container" id="menu-containerId"></div>
                             <div class="bottom-navbar bottom-navbar-color">
                                 <div id="select">Select</div>
                                 <div id="back">Back</div>
@@ -197,135 +154,128 @@
                             </div>
                         </div>
 
-                        <div class="photos-screen-div hide" id="photos-screen">
-                            photo
-                            <div class="bottom-navbar bottom-navbar-color">
-                                <div></div>
+                        <div class="photos-screen-div hide" id="photos-screen"></div>
+
+                        <div class="snake-game-screen-div hide" id="snake-game-container">
+                            <div class="snake-game-div">
+                                <h1>Features coming soon</h1>
+                            </div>
+                            <div class="bottom-navbar">
+                                <div>Select</div>
                                 <div>Back</div>
                             </div>
                         </div>
 
-                        <div class="about-screen-div hide" id="about-screen-id">
-                            <div class="about-div">
-                                <h4>Creator: Sonam Sharma</h4>
-                                <hr>
-                                <p class="creator">
-                                    "As the creator of this innovative mobile phone, I bring a passion for
-                                    technology and a dedication to user experience. As a developing software developer
-                                    with months of experience in creating web applications using HTML, CSS, and
-                                    JavaScript, I embarked on the journey of crafting this mobile phone, leveraging my
-                                    expertise to design a device that seamlessly integrates various functionalities to
-                                    enhance the user experience.
-                                    I have crafted this device that combines
-                                    functionality with creativity, providing users with a unique and enjoyable mobile
-                                    experience."
-                                </p>
-                                <h4>About the Phone:</h4>
-                                <p class="info">
-                                    This mobile phone is more than just a communication device; it's a versatile tool
-                                    designed to enhance everyday life. Built using HTML, CSS, and JavaScript, this
-                                    device offers a range of applications that cater to various needs and interests.
-                                </p>
-                                <hr>
-
-                                <h5>
-                                    App Details:
-                                </h5>
-                                <p class="app-details">
-                                    Gallery: Browse through your photos and videos effortlessly with the intuitive
-                                    gallery app. Whether you're reminiscing about past memories or capturing new ones,
-                                    this app makes it easy to access and manage your media files.
-                                </p>
-                                <hr>
-                                <p>
-                                    Snake Game: Relive the nostalgia of classic gaming with the snake game app. Test
-                                    your reflexes and strategy as you maneuver the snake to collect food and avoid
-                                    obstacles, providing hours of entertainment.
-                                    <hr>
-                                    Video Player: Watch videos in stunning clarity with the integrated video player.
-                                    <hr>
-
-                                    Music Player: Enjoy your favorite tunes on the go with the built-in music player.
-                                    <hr>
-
-                                    Torch: Illuminate your surroundings with the torch app.
-                                    <hr>
-
-                                    Calendar: Stay organized and on schedule with the calendar app.
-                                    <hr>
-
-                                    Calculator: Perform calculations quickly and accurately with the calculator app.
-                                    <hr>
-
-                                    Settings: Customize your mobile experience with the settings app. From adjusting
-                                    of your device.
-                                    <hr>
-
-                                    Each app is designed with user convenience and functionality in mind, offering a
-                                    seamless experience that enhances productivity and entertainment on the go.
-
-                                </p>
-                            </div>
-                            <div class="bottom-navbar bottom-navbar-color">
-                                <div></div>
-                                <div>Back</div>
-                            </div>
-                        </div>
-
-                        <div class="musicPlayer-screen-div hide" id="music-player-container">
-                            <div class="music-player-div">
-                                <h2>Music Player</h2>
-                                <div class="music-player">
-                                    <audio id="audioPlayerId" class="audio"
-                                        src="MusicFolder\RADHA_RANI_LAGE_SIMPAL_KHAREL_NEW_SONG_RADHA_KRISHNA_BHAJAN_2023.mp3"
-                                        controls></audio>
+                        <div class="videoPlayer-screen-div hide" id="video-player-containerId">
+                            <div class="video-player-div">
+                                <div class="video-player-container center">
+                                    <div class="video-player">
+                                        <video id="videoId" class="video"
+                                            src="videoFolder\krishnaFlute.mp4"></video>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="bottom-navbar bottom-navbar-color">
-                                <div id="play-pause-text">Play</div>
-                                <div>Back</div>
-                            </div>
-                        </div>
-
-                        <div class="calculator-screen-div hide" id="calculator-screen-id">
-                            <div class="calculator-body-container">
-                                <div class="calculation-box-container" id="calculation-box-id">
-                                    <div class="first-input-box" id="first-inputId"></div>
-                                </div>
-                                <div class="operators-container-body">
-                                    <div class="operators-container">
-                                        <div class="addition operators" id="add-signId"><span class="rotate-45">+</span></div>
-                                        <div class="multiply operators" id="mul-signId"><span class="rotate-45">×</span></div>
-                                        <div class="division operators" id="div-signId"><span class="rotate-45">÷</span></div>
-                                        <div class="subtract operators" id="sub-signId"><span class="rotate-45">−</span></div>
+                                <div id="video-des" class="video-description">Nature-Butterfly</div>
+                                <div class="video-control-bar-container">
+                                    <div class="progress-bar-container center">
+                                        <div id="current-tim" class="timer-div"><span id="current-time-min"></span>:<span id="current-time-sec"></span></div>
+                                        <input type="range" disabled value="0" class="progress-bar" min="0" max="100" id="progress-bar-id">
+                                        <div id="total-tim" class="timer-div"><span id="total-time-min"></span>:<span id="total-time-sec"></span></div>
+                                    </div>
+                                    <div class="controls-container center">
+                                        <div class="play-pause-container" id="previous-video">
+                                            <img class="image-width rotate-180"
+                                                src="Icons\pause-play-button.png" alt="pre">
+                                        </div>
+                                        <div class="play-pause-container" id="play-pause-option">
+                                            <img class="image-width pause-icon" id="play-pause-id" src="Icons\pause-icon.png"
+                                                alt="play/pause">
+                                        </div>
+                                        <div class="play-pause-container" id="next-video">
+                                            <img class="image-width" src="Icons\pause-play-button.png"
+                                                alt="next">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="bottom-navbar bottom-navbar-color">
-                                <div>Equals</div>
+                                <div id="full-screen"></div>
+                                <div id="backTextId">Back</div>
+                            </div>
+                        </div>
+
+                        <div class="about-screen-div hide" id="about-container">
+                            <div class="about"></div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div>Select</div>
                                 <div>Back</div>
                             </div>
                         </div>
+
+
+                        <div class="musicPlayer-screen-div hide" id="music-player-containerId">
+                            <div class="audio-player-div">
+                                <div class="audio-player-container center">
+                                    <div class="audio-cover-photo-container">
+                                        <img id="music-cover-photo" class="audio-cover-photo" src="Icons\radha-rani-song.jpg" alt="radharani-cover">
+                                    </div>
+                                    <div class="audio-holder">
+                                        <audio id="audioId" class="audio"
+                                            src="MusicFolder\RADHA_RANI_LAGE_SIMPAL_KHAREL_NEW_SONG_RADHA_KRISHNA_BHAJAN_2023.mp3"></audio>
+                                    </div>
+                                </div>
+                                <div id="audio-des" class="audio-description">
+                                    <h4 id="song-nameId">Radha Rani Lage</h4>
+                                    <p id="singer-nameId">...Simple Kharel</p>
+                                </div>
+                                <div class="video-control-bar-container">
+                                    <div class="progress-bar-container center">
+                                        <div class="timer-div"><span id="audio-current-time-min">00</span>:<span id="audio-current-time-sec">00</span></div>
+                                        <input type="range" disabled value="0" class="progress-bar" min="0" max="100" id="progress-bar-audioId">
+                                        <div class="timer-div"><span id="audio-total-time-min">00</span>:<span id="audio-total-time-sec">00</span></div>
+                                    </div>
+                                    <div class="controls-container center">
+                                        <div class="play-pause-container" id="previous-audio">
+                                            <img class="image-width rotate-180"
+                                                src="Icons\pause-play-button.png" alt="pre">
+                                        </div>
+                                        <div class="play-pause-container" id="play-pause-optionId">
+                                            <img class="image-width pause-icon" id="play-pause-audioId" src="Icons\pause-icon.png"
+                                                alt="play/pause">
+                                        </div>
+                                        <div class="play-pause-container" id="next-audio">
+                                            <img class="image-width" src="Icons\pause-play-button.png"
+                                                alt="next">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-navbar bottom-navbar-color">
+                                <div></div>
+                                <div>Back</div>
+                            </div>   
+                        </div>
+
 
                         <div class="calendar hide" id="calendar-screen">
                             <div class="calendar-div">
                                 <h1>Features coming soon</h1>
                             </div>
                             <div class="bottom-navbar">
+                                <div>Select</div>
                                 <div>Back</div>
                             </div>
                         </div>
 
-                        <div class="torch-screen-div hide" id="torch-screen-containerId">
-                            <div class="text-content-div">
-                                <img class="torch-icon-style" src="wallpaper\torch.png" alt="torch" width="24px">
-                                <h4 id="text-content">Turn on </h4>
+                        <div class="calculator-screen-div hide" id="calculator-screen-container">
+                            <div class="calculator-div">
+                                <h1>Features coming soon</h1>
                             </div>
-                            <div class="bottom-navbar bottom-navbar-color">
-                                <div></div>
+                            <div class="bottom-navbar">
+                                <div>Select</div>
                                 <div>Back</div>
                             </div>
                         </div>
+
 
                         <div class="setting-screen-div hide" id="setting-container">
                             <div class="wallpaper-div">
@@ -425,7 +375,7 @@
                 </div>
                 <div class="number-keys-container">
                     <div class="key-button-row">
-                        <div class="keys two-char-space" data-name="buttons" id="1"> 1
+                        <div class="keys two-char-space" data-name="buttons"> 1
                             <svg class="icon voice-mail-icon keys-alphabet" id="Layer_1" data-name="Layer 1"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 50.99">
                                 <title>voicemail</title>
@@ -433,24 +383,24 @@
                                     d="M25.49,0A25.49,25.49,0,0,1,45.68,41.06H77.2a25.49,25.49,0,1,1,22.17,9.85,4.94,4.94,0,0,1-.87.08h-73a25.5,25.5,0,0,1,0-51ZM108.4,14.48a15.57,15.57,0,1,0,4.56,11,15.56,15.56,0,0,0-4.56-11Zm-71.9,0a15.57,15.57,0,1,0,4.56,11,15.54,15.54,0,0,0-4.56-11Z" />
                             </svg>
                         </div>
-                        <div class="keys" data-name="buttons" id="2"> 2 <span class="keys-alphabet"> abc </span> </div>
-                        <div class="keys" data-name="buttons" id="3"> <span class="keys-alphabet"> def </span> 3 </div>
+                        <div class="keys" data-name="buttons"> 2 <span class="keys-alphabet"> abc </span> </div>
+                        <div class="keys" data-name="buttons"> <span class="keys-alphabet"> def </span> 3 </div>
                     </div>
 
                     <div class="key-button-row">
-                        <div class="keys" data-name="buttons" id="4"> 4 <span class="keys-alphabet"> ghi </span> </div>
-                        <div class="keys" data-name="buttons" id="5">
+                        <div class="keys" data-name="buttons"> 4 <span class="keys-alphabet"> ghi </span> </div>
+                        <div class="keys" data-name="buttons">
                             <div class="pop-up"></div>
                             <div class="gap-8 center"><span>5</span> <span class="keys-alphabet"> jkl </span></div>
                             <div class="pop-up"></div>
                         </div>
-                        <div class="keys" data-name="buttons" id="6"> <span class="keys-alphabet"> mno </span> 6 </div>
+                        <div class="keys" data-name="buttons"> <span class="keys-alphabet"> mno </span> 6 </div>
                     </div>
 
                     <div class="key-button-row">
-                        <div class="keys" data-name="buttons" id="7"> 7 <span class="keys-alphabet"> pqrs </span> </div>
-                        <div class="keys" data-name="buttons" id="8"> 8 <span class="keys-alphabet"> tuv </span> </div>
-                        <div class="keys" data-name="buttons" id="9"> <span class="keys-alphabet"> wxyz </span> 9 </div>
+                        <div class="keys" data-name="buttons"> 7 <span class="keys-alphabet"> pqrs </span> </div>
+                        <div class="keys" data-name="buttons"> 8 <span class="keys-alphabet"> tuv </span> </div>
+                        <div class="keys" data-name="buttons"> <span class="keys-alphabet"> wxyz </span> 9 </div>
                     </div>
 
                     <div class="key-button-row">
@@ -461,7 +411,7 @@
                             </svg>
                             <span class="keys-alphabet"> + </span>
                         </div>
-                        <div class="keys two-char-space" data-name="buttons" id="0"> 0
+                        <div class="keys two-char-space" data-name="buttons"> 0
                             <svg class="icon spacebar-icon" viewBox="0 0 24 24" version="1.1"
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->

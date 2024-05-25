@@ -2,12 +2,12 @@ function defaultCaseHandler(button) {
   switch (button.id) {
     case "right-select-button":
       hideDefaultScreen();
-      showMenu(false);
+      mountMenu(false);
       break;
 
     case "power-button":
       hideDefaultScreen();
-      showMenu(true);
+      mountMenu(true);
       break;
 
     default:

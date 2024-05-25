@@ -1,0 +1,12 @@
+.photos-screen-div {
+  height: 100%;
+  background-color: blueviolet;
+}
+
+.background-photo{
+  display: flex;
+  flex-direction: column;
+  background-size: cover;
+  justify-content: space-between;
+  height: 100%;
+}

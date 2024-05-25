@@ -4,34 +4,39 @@ var settingList = [
   "date-time-setting",
 ];
 
-var settingIndex = 0;
-var currentSettingId = settingList[settingIndex];
-var previousSettingId;
+var currentSettingIndex = 0;
+var currentSettingId = settingList[currentSettingIndex];
 
 function settingsHandler(button) {
+currentSettingId = settingList[currentSettingIndex];
+
   switch (button.id) {
     case "left-select-button":
       hideSettings();
-      if (currentSettingId != "date-time-setting") {
-        showWallpaperScreen(true);
-      } else {
-        showDefaultScreen();
+      switch(currentSettingId){
+        case "lock-screen-setting":
+        case "home-screen-setting":
+          showWallpaperScreen(true);
+          break;
+        default:
+          showDefaultScreen(); 
+          break;
       }
       break;
 
     case "top-button":
-      settingDeselectUp();
-      settingSelectUp();
+      var nextSettingIndex = goUpButton(settingList, currentSettingIndex);
+      setSettingOptionsBorder(settingList, nextSettingIndex);
       break;
 
     case "bottom-button":
-      settingDeselectDown();
-      settingSelectDown();
+      var nextSettingIndex = goDownButton(settingList, currentSettingIndex);
+      setSettingOptionsBorder(settingList, nextSettingIndex);
       break;
 
     case "right-select-button":
       hideSettings();
-      showMenu(false);
+      mountMenu(false);
       break;
 
     case "power-button":
@@ -49,19 +54,15 @@ function showSettings(resetBoxPosition) {
   mountIdleScreenWallPaper(true);
   mountSettingsScreen(true);
   mountNavbar(true);
-  resetBoxSelection(resetBoxPosition);
-
+  resetBoxSelection(resetBoxPosition, settingList);
   screenName = "settingsScreen";
 }
 
-function resetBoxSelection(resetBoxPosition) {
+function resetBoxSelection(resetBoxPosition, settingList) {
   if (resetBoxPosition) {
-    removeSettingOptionsBorder();
-    settingIndex = 0;
-    currentSettingId = settingList[settingIndex];
-
+    var nextSettingIndex = 0
+    setSettingOptionsBorder(settingList, nextSettingIndex);
   }
-  addSettingOptionsBorder();
 }
 
 function hideSettings() {
@@ -75,52 +76,33 @@ function mountSettingsScreen(show) {
   AddRemoveClassList(setting, "hide", !show);
 }
 
-function addSettingOptionsBorder() {
-  var option = document.getElementById(currentSettingId);
-  AddRemoveClassList(option, "wallpaper-border", true);
+function setSettingOptionsBorder(settingList, nextSettingIndex) {
+  var currentSettingId = settingList[currentSettingIndex];
+  var nextSettingId = settingList[nextSettingIndex];
+  var currentBox = document.getElementById(currentSettingId);
+  var nextBox = document.getElementById(nextSettingId);
+
+  AddRemoveClassList(currentBox, "wallpaper-border", false);
+  AddRemoveClassList(nextBox, "wallpaper-border", true);
+
+  currentSettingIndex = nextSettingIndex;
 }
 
-function removeSettingOptionsBorder() {
-  var option = document.getElementById(currentSettingId);
-  AddRemoveClassList(option, "wallpaper-border", false);
-}
 
-function settingSelectUp() {
-  if (settingIndex < 0) {
-    settingIndex = settingList.length - 1;
+function goUpButton(settingList, currentIndex) {
+  nextIndex = currentIndex - 1;
+  if (nextIndex < 0) {
+    nextIndex = settingList.length - 1;
+    return nextIndex;
   }
-  currentSettingId = settingList[settingIndex];
-  addSettingOptionsBorder();
+  return nextIndex;
 }
 
-function settingSelectDown() {
-  if (settingIndex === settingList.length) {
-    settingIndex = 0;
+function goDownButton(settingList, currentIndex) {
+  nextIndex = currentIndex + 1;
+  if (nextIndex === settingList.length) {
+    nextIndex = 0;
+    return nextIndex;
   }
-  currentSettingId = settingList[settingIndex];
-  addSettingOptionsBorder();
+  return nextIndex;
 }
-
-function settingDeselectUp() {
-  if (settingIndex < 0) {
-    settingIndex = settingList.length - 1;
-  }
-  if (settingIndex === settingList.length) {
-    settingIndex = 0;
-  }
-  currentSettingId = settingList[settingIndex];
-  previousSettingId = currentSettingId;
-  removeSettingOptionsBorder();
-  settingIndex--;
-}
-
-function settingDeselectDown() {
-  if (settingIndex === settingList.length) {
-    settingIndex = 0;
-  }
-  currentSettingId = settingList[settingIndex];
-  previousSettingId = currentSettingId;
-  removeSettingOptionsBorder();
-  settingIndex++;
-}
-
