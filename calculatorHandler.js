@@ -29,7 +29,7 @@ function calculatorHandler(button) {
       break;
     case "right-select-button":
       unmountCalculator();
-      showMenu();
+      mountMenu();
       break;
     case "power-button":
       unmountCalculator();

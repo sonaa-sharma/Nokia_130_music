@@ -32,7 +32,7 @@ function calendarHandler(button) {
 
     case "right-select-button":
       unmountCalendar();
-      showMenu();
+      mountMenu();
       break;
 
     case "power-button":
