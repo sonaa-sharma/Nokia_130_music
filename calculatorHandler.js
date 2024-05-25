@@ -29,7 +29,7 @@ function calculatorHandler(button) {
       break;
     case "right-select-button":
       unmountCalculator();
-      showMenu();
+      mountMenu();
       break;
     case "power-button":
       unmountCalculator();
@@ -47,34 +47,34 @@ function calculatorHandler(button) {
     case "bottom-button":
       selectOperator(operators.subtract);
       break;
-    case "0":
+    case "value-0":
       updateParam(0);
       break;
-    case "1":
+    case "value-1":
       updateParam(1);
       break;
-    case "2":
+    case "value-2":
       updateParam(2);
       break;
-    case "3":
+    case "value-3":
       updateParam(3);
       break;
-    case "4":
+    case "value-4":
       updateParam(4);
       break;
-    case "5":
+    case "value-5":
       updateParam(5);
       break;
-    case "6":
+    case "value-6":
       updateParam(6);
       break;
-    case "7":
+    case "value-7":
       updateParam(7);
       break;
-    case "8":
+    case "value-8":
       updateParam(8);
       break;
-    case "9":
+    case "value-9":
       updateParam(9);
       break;
     default:

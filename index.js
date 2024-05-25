@@ -55,7 +55,8 @@ function buttonClicked(button) {
       calendarHandler(button);
       break;
     case "torchScreen":
-      torchScreenHandler(button);  
+      torchScreenHandler(button); 
+      break; 
     case "settingsScreen":
       settingsHandler(button);
       break;
@@ -173,13 +174,13 @@ function turnOfflcd() {
       hideAboutScreen();
       break;
     case "photosScreen":
-      hidePhotos();
+      hidePhoto();
       break;
     case "musicPlayerScreen":
       hideMusicPlayer();
       break;
     case "calculatorScreen":
-      hideCalculator();
+      unmountCalculator();
       break;
     case "calendarScreen":
       unmountCalendar();

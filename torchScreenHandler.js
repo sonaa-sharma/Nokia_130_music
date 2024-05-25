@@ -12,7 +12,7 @@ function torchScreenHandler(button) {
 
     case "right-select-button":
       hideTorchScreen();
-      showMenu();
+      mountMenu();
       break;
 
     case "power-button":

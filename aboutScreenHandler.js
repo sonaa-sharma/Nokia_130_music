@@ -2,7 +2,7 @@ function aboutScreenHandler(button) {
   switch (button.id) {
     case "right-select-button":
       hideAboutScreen();
-      showMenu();
+      mountMenu();
       break;
 
     case "power-button":
