@@ -55,8 +55,8 @@ function buttonClicked(button) {
       calendarHandler(button);
       break;
     case "torchScreen":
-      torchScreenHandler(button); 
-      break; 
+      torchScreenHandler(button);
+      break;
     case "settingsScreen":
       settingsHandler(button);
       break;
@@ -103,7 +103,7 @@ function showBrandAnimation() {
   mountWhiteScreen(true);
   mountBrandAnimation(true);
   brandAnimation.play();
-  const videoDuration = brandAnimation.duration*1000;
+  const videoDuration = brandAnimation.duration * 1000;
   setTimeout(onBrandAnimationFinish, videoDuration);
 }
 
@@ -168,13 +168,16 @@ function turnOfflcd() {
       hideMenuScreen();
       break;
     case "galleryScreen":
-      mountGalleryScreen(true, false);
-      break;
-    case "aboutScreen":
-      hideAboutScreen();
+      mountGalleryScreen(false);
       break;
     case "photosScreen":
       hidePhoto();
+      break;
+    case "setPhotoOptionsScreen":
+      hidePhoto();
+      break;
+    case "aboutScreen":
+      hideAboutScreen();
       break;
     case "musicPlayerScreen":
       hideMusicPlayer();
