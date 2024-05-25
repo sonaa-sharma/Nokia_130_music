@@ -66,17 +66,30 @@ function openApp(currentAppId) {
     case "gallery":
       mountGalleryScreen(true);
       break;
+    case "snake-game":
+      showSnakeGame();
+      break;
     case "video-player":
       showVideoPlayer();
       break;
-  
+    case "about":
+      showAboutScreen();
+      break;
     case "music-player":
       showMusicPlayer();
+      break;
+    case "calculator":
+      mountCalculator();
+      break;
+    case "calendar":
+      mountCalendar();
+      break;
+    case "torch":
+      showTorchScreen();
       break;
     case "setting":
       showSettings(true);
       break;
-
     default:
       showDefaultScreen();
       break;

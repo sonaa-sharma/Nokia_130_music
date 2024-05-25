@@ -33,26 +33,29 @@ function buttonClicked(button) {
     case "photosScreen":
       photosScreenHandler(button);
       break;
-    case "aboutScreen":
-      aboutScreenHandler(button);
-      break;
     case "setPhotoOptionsScreen":
       setPhotoOptionsHandler(button);
+      break;
+    case "snakeGameScreen":
+      snakeGameHandler(button);
       break;
     case "videoPlayerScreen":
       videoPlayerHandler(button);
       break;
+    case "aboutScreen":
+      aboutScreenHandler(button);
+      break;
     case "musicPlayerScreen":
       musicPlayerHandler(button);
-      break;
-    case "torchScreen":
-      torchScreenHandler(button);
-    case "calendarScreen":
-      calendarHandler(button);
       break;
     case "calculatorScreen":
       calculatorHandler(button);
       break;
+    case "calendarScreen":
+      calendarHandler(button);
+      break;
+    case "torchScreen":
+      torchScreenHandler(button);  
     case "settingsScreen":
       settingsHandler(button);
       break;
@@ -175,10 +178,14 @@ function turnOfflcd() {
     case "musicPlayerScreen":
       hideMusicPlayer();
       break;
-    case "torchScreen":
-      hideTorchScreen();
     case "calculatorScreen":
       hideCalculator();
+      break;
+    case "calendarScreen":
+      unmountCalendar();
+      break;
+    case "torchScreen":
+      hideTorchScreen();
       break;
     case "settingsScreen":
       hideSettings();
