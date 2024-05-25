@@ -84,25 +84,25 @@ function goUp(menuItemsLength, currentPosition, widthSize, rotation_allowed) {
     return 0;
   }
 
-  var gridSize1 = getGridSize1(menuItemsLength, widthSize);
+  var gridSizeSmaller = getGridSizeSmaller(menuItemsLength, widthSize);
 
-  if (nextPosition < 0 && gridSize1 > menuItemsLength) {
-    nextPosition = nextPosition + gridSize1 - 1;
+  if (nextPosition < 0 && gridSizeSmaller > menuItemsLength) {
+    nextPosition = nextPosition + gridSizeSmaller - 1;
     if (nextPosition >= menuItemsLength) {
       return nextPosition - widthSize;
     }
     if(nextPosition<0){
-      nextPosition = nextPosition + gridSize1 - 1;
+      nextPosition = nextPosition + gridSizeSmaller - 1;
       return nextPosition;
     }
   }
 
-  if (nextPosition < 0 && gridSize1 === menuItemsLength) {
-    nextPosition = nextPosition + gridSize1 - 1;
+  if (nextPosition < 0 && gridSizeSmaller === menuItemsLength) {
+    nextPosition = nextPosition + gridSizeSmaller - 1;
 
   }
 
-  if (currentPosition === 0 && rotation_allowed === true && gridSize1 === menuItemsLength) {
+  if (currentPosition === 0 && rotation_allowed === true && gridSizeSmaller === menuItemsLength) {
     nextPosition = menuItemsLength - 1;
 
     return nextPosition;
@@ -149,8 +149,8 @@ function getGridSize(menuItemsLength, widthSize, currentPosition) {
   return gridSize;
 }
 
-function getGridSize1(menuItemsLength, widthSize) {
+function getGridSizeSmaller(menuItemsLength, widthSize) {
   var lines = Math.ceil(menuItemsLength / widthSize);
-  var gridSize1 = lines * widthSize;
-  return gridSize1;
+  var gridSize = lines * widthSize;
+  return gridSize;
 }
