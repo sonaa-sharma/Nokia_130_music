@@ -32,6 +32,7 @@ function showTorchScreen() {
 
 function hideTorchScreen() {
   mountTorchScreen(false);
+  turnOffTorch();
 }
 
 function mountTorchScreen(show) {
