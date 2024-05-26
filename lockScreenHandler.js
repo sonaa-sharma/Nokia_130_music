@@ -7,7 +7,7 @@ function setDate() {
   var clockYear = time.getFullYear();
   var clockMonth = time.getMonth() + 1;
   var clockDay = time.getDate();
-  
+
   var currentYear = document.getElementById("year");
   var currentMonth = document.getElementById("month");
   var currentDay = document.getElementById("day");
@@ -17,10 +17,10 @@ function setDate() {
   currentDay.innerHTML = getTwoDigitNumber(clockDay);
 }
 
-function setDateTime(){
+function setDateTime() {
   setDate();
   setTime("clock-hour", "clock-min");
-}  
+}
 
 function lockScreenHandler(button) {
   switch (button.id) {
@@ -53,11 +53,10 @@ function starKeyPressed(button) {
   showIdleScreen();
 }
 
-var lockScreenWallpaperClassName = "theme1";
+var lockScreenWallpaperClassName = 'url("wallpaper/grass.jpg")';
 
-function mountLockScreenWallPaper(show) {
-  var lcd = getLcd();
-  AddRemoveClassList(lcd, lockScreenWallpaperClassName, show);
+function mountLockScreenWallPaper() {
+  setWallPaper(lockScreenWallpaperClassName);
 }
 
 function mountLockScreen(show) {
@@ -124,7 +123,7 @@ function mountUnlockWithoutSpace(show) {
 }
 
 function showLockScreen() {
-  mountLockScreenWallPaper(true);
+  mountLockScreenWallPaper();
   mountUnlockText(true);
   mountDateTimeContainer(true);
   mountNavbar(true);
@@ -137,7 +136,6 @@ function showLockScreen() {
 }
 
 function hideLockScreen() {
-  mountLockScreenWallPaper(false);
   mountNavbar(false);
   mountLockScreen(false);
   mountDateTimeContainer(false);
