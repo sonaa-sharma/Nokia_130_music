@@ -195,7 +195,7 @@ function createCalendar() {
   var firstDate = getFirstDate(currentYear, currentMonth, 1);
 
   var previousMonth = currentMonth - 1;
-  if(currentMonth === 0){
+  if (currentMonth === 0) {
     previousMonth = 11;
   }
 
@@ -222,17 +222,17 @@ function createCalendar() {
   return calendarNode;
 }
 
-function getCalendarNode(){
+function getCalendarNode() {
   return document.getElementById("calendarId");
 }
 
-function removeCalendar(){
+function removeCalendar() {
   var container = document.getElementById("calendarBodyId");
   var calendar = getCalendarNode();
   container.removeChild(calendar);
 }
 
-function addCalendar(){
+function addCalendar() {
   var container = document.getElementById("calendarBodyId");
   var calendar = createCalendar();
   container.appendChild(calendar);
@@ -261,11 +261,17 @@ function createWeekDay() {
 }
 
 function createCalendarWeeks(weekName) {
+  var highlightSunday = 0;
   var dateContainer = createCalendarDateContainer();
   for (i = 0; i < weekName.length; i++) {
     var dates = createCalendarDates();
     dates.innerHTML = weekName[i];
     dates.id = calendarConfig.idsArray[i];
+    if (i === highlightSunday) {
+      console.log(dates);
+      dates.style.color = "blue";
+      highlightSunday = highlightSunday + 7;
+    }
     dateContainer.appendChild(dates);
   }
   return dateContainer;
@@ -351,11 +357,11 @@ function getTodayDate() {
   return day;
 }
 
-function highlightTodayDate(){
+function highlightTodayDate() {
   var date = new Date();
   var currentYear = date.getFullYear();
   var currentMonth = date.getMonth();
-  
+
   var firstDay = getFirstDate(currentYear, currentMonth, 1);
   var todayDay = getTodayDate();
   todayDay = todayDay + firstDay - 1;
@@ -364,14 +370,14 @@ function highlightTodayDate(){
   node.style.color = "red";
 }
 
-function showNextMonth(){
+function showNextMonth() {
   getNextMonth();
   updateNavbar(calendarConfig.currentYear, calendarConfig.currentMonth);
   removeCalendar();
   addCalendar();
 }
 
-function showPreviousMonth(){
+function showPreviousMonth() {
   getPreviousMonth();
   updateNavbar(calendarConfig.currentYear, calendarConfig.currentMonth);
   removeCalendar();
