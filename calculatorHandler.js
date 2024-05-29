@@ -12,6 +12,8 @@ function getInitialCalculatorConfig() {
     maxValue: 9999999999,
     firstParam: 0,
     secondParam: 0,
+    result: 0,
+    clearDisplay: 0,
     selectedOperator: null,
     operatorIds: {
       [operators.add]: "add-signId",
@@ -28,8 +30,13 @@ function calculatorHandler(button) {
       showResult();
       break;
     case "right-select-button":
-      unmountCalculator();
-      mountMenu();
+      if(calculatorHandlerConfig.clearDisplay === 1){
+        clearDisplay();
+      }
+      else{
+        unmountCalculator();
+        mountMenu();
+      }
       break;
     case "power-button":
       unmountCalculator();
@@ -93,12 +100,37 @@ function mountCalculator() {
 function unmountCalculator() {
   mountCalculatorScreen(false);
   mountNavbar(false);
-  var operator = calculatorHandlerConfig.selectedOperator;
-  if (operator) {
-    var operatorId = calculatorHandlerConfig.operatorIds[operator];
+  if (calculatorHandlerConfig.selectedOperator) {
+    var operatorId = calculatorHandlerConfig.operatorIds[calculatorHandlerConfig.selectedOperator];
     highlightOperator(operatorId, false);
   }
   calculatorHandlerConfig = null;
+}
+
+function showClearDisplayOption(){
+  calculatorHandlerConfig.clearDisplay = 1;
+  var clearButton = document.getElementById("clear-back-button");
+  clearButton.innerHTML = "Clear";
+}
+
+function showBackOption(){
+  calculatorHandlerConfig.clearDisplay = 0;
+  var clearButton = document.getElementById("clear-back-button");
+  clearButton.innerHTML = "Back";
+}
+
+function clearDisplay(){
+  if (calculatorHandlerConfig.selectedOperator) {
+    console.log(calculatorHandlerConfig.selectedOperator);
+    var operatorId = calculatorHandlerConfig.operatorIds[calculatorHandlerConfig.selectedOperator];
+    highlightOperator(operatorId, false);
+  }
+  calculatorHandlerConfig.firstParam = 0;
+  calculatorHandlerConfig.secondParam = 0;
+  calculatorHandlerConfig.result = 0;
+  calculatorHandlerConfig.selectedOperator = null;
+  updateParamInDocument(0);
+  showBackOption();
 }
 
 function mountCalculatorScreen(show) {
@@ -107,44 +139,23 @@ function mountCalculatorScreen(show) {
 }
 
 function updateParam(number) {
-  var currentOperator = calculatorHandlerConfig.selectedOperator;
-  if (currentOperator) {
-    var currentId = calculatorHandlerConfig.operatorIds[currentOperator];
-    highlightOperator(currentId, false);
-    updateAndShowSecondParam(number);
-    return;
+  showClearDisplayOption();
+  if (calculatorHandlerConfig.selectedOperator) {
+    calculatorHandlerConfig.secondParam = addDigitToNumber(number, calculatorHandlerConfig.secondParam);
+    updateParamInDocument(calculatorHandlerConfig.secondParam);
+  } else {
+    if(calculatorHandlerConfig.result){
+      calculatorHandlerConfig.firstParam = 0;
+      calculatorHandlerConfig.result = 0;
+    }
+    calculatorHandlerConfig.firstParam = addDigitToNumber(number, calculatorHandlerConfig.firstParam);
+    updateParamInDocument(calculatorHandlerConfig.firstParam);
   }
-
-  updateAndShowFirstParam(number);
-}
-
-function updateFirstParam(input) {
-  return (calculatorHandlerConfig.firstParam = addDigitToNumber(
-    input,
-    calculatorHandlerConfig.firstParam
-  ));
-}
-
-function updateAndShowFirstParam(input) {
-  var number = updateFirstParam(input);
-  updateParamInDocument(number);
 }
 
 function updateParamInDocument(number) {
   var box = document.getElementById("first-inputId");
   box.innerHTML = number;
-}
-
-function updateAndShowSecondParam(input) {
-  var number = updateSecondParam(input);
-  updateParamInDocument(number);
-}
-
-function updateSecondParam(input) {
-  return (calculatorHandlerConfig.secondParam = addDigitToNumber(
-    input,
-    calculatorHandlerConfig.secondParam
-  ));
 }
 
 function addDigitToNumber(digit, number) {
@@ -159,17 +170,13 @@ function highlightOperator(operatorSignId, show) {
   AddRemoveClassList(box, "highlight-operator-box", show);
 }
 
-function updateValueAfterSelectingOperator() {
-  calculateResult();
-  calculatorHandlerConfig.secondParam = 0;
-}
-
 function selectOperator(operator) {
+  showClearDisplayOption();
   var currentOperator = calculatorHandlerConfig.selectedOperator;
   if (currentOperator) {
     var currentId = calculatorHandlerConfig.operatorIds[currentOperator];
-    updateValueAfterSelectingOperator();
     highlightOperator(currentId, false);
+    showResult();
   }
 
   var nextId = calculatorHandlerConfig.operatorIds[operator];
@@ -179,40 +186,55 @@ function selectOperator(operator) {
 
 function calculateResult() {
   var selectOperator = calculatorHandlerConfig.selectedOperator;
+
   if (!selectOperator) {
-    return;
+    return calculatorHandlerConfig.firstParam;
   }
+
+  if(!calculatorHandlerConfig.secondParam){
+    removeOperatorHighlight();
+    return calculatorHandlerConfig.firstParam;
+  }
+
   var firstParam = calculatorHandlerConfig.firstParam;
   var secondParam = calculatorHandlerConfig.secondParam;
-  var result;
+  var result = calculatorHandlerConfig.result;
+
   switch (selectOperator) {
     case operators.add:
       result = firstParam + secondParam;
+      removeOperatorHighlight();
       break;
     case operators.multiply:
       result = firstParam * secondParam;
+      removeOperatorHighlight();
       break;
     case operators.divide:
       result = firstParam / secondParam;
+      removeOperatorHighlight();
       break;
     case operators.subtract:
       result = firstParam - secondParam;
+      removeOperatorHighlight();
       break;
     default:
       break;
   }
-
-  calculatorHandlerConfig.firstParam = result;
   return result;
 }
 
-function resetValuesToInitial() {
-  calculatorHandlerConfig.secondParam = 0;
-  calculatorHandlerConfig.selectedOperator = null;
+function showResult() {
+  if (calculatorHandlerConfig.selectedOperator) {
+    var result = calculateResult();
+    calculatorHandlerConfig.result = result;
+    calculatorHandlerConfig.firstParam = result;
+    calculatorHandlerConfig.secondParam = 0;
+    calculatorHandlerConfig.selectedOperator = null;
+    updateParamInDocument(result);
+  }
 }
 
-function showResult(){
-  var result = calculateResult();
-  updateParamInDocument(result);
-  resetValuesToInitial();
+function removeOperatorHighlight(){
+  var id = calculatorHandlerConfig.operatorIds[calculatorHandlerConfig.selectedOperator] 
+  highlightOperator(id, false);
 }
