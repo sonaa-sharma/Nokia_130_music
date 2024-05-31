@@ -25,7 +25,7 @@ function playVideo() {
   videoTimeoutId = setInterval(function () {
     moveProgressBar(videoPlayer, "progress-bar-id");
     videoCurrentPlayDuration(videoPlayer);
-  }, 33);
+  }, 500);
   videoPlayer.addEventListener("ended", onVideoEnd);
   videoflag = 1;
 }
@@ -103,6 +103,8 @@ function playNextVideo() {
   videoIndex = goRight(videoArray.length, videoIndex, true);
   videoTotalDuration();
   updateVideoInfo();
+  setCurrentTimeAtZero("current-time-min", "current-time-sec");
+  setProgressBarAtZero("progress-bar-id");
   playVideo();
 }
 
@@ -112,6 +114,8 @@ function playPreviousVideo() {
   videoTotalDuration();
   videoIndex = goLeft(videoArray.length, videoIndex, true);
   updateVideoInfo();
+  setCurrentTimeAtZero("current-time-min", "current-time-sec");
+  setProgressBarAtZero("progress-bar-id");
   playVideo();
 }
 
