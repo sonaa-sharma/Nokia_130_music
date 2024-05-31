@@ -108,6 +108,50 @@ function createCalendarBody() {
   return container;
 }
 
+function createCalendarDays() {
+  var calendarNode = document.createElement("div");
+  calendarNode.id = "calendarId";
+  var weekDaysArray = [];
+  var number = 1;
+
+  var currentMonth = calendarConfig.nextMonth;
+  var currentYear = calendarConfig.nextYear;
+
+  var firstDate = getFirstDate(currentYear, currentMonth, 1);
+  var daysFallingInCurrMonth = firstDate;
+
+  var previousMonth = currentMonth - 1;
+  if (currentMonth === 0) {
+    previousMonth = 11;
+  }
+
+  var currentMonthLength = getNoOfDaysInAMonth(currentYear, currentMonth);
+  var previousMonthLength = getNoOfDaysInAMonth(currentYear, previousMonth);
+
+  var previousMonthFirstDate = previousMonthLength - daysFallingInCurrMonth + 1;
+
+  for (i = 0; i < 35; i++) {
+    if (i < firstDate) {
+      weekDaysArray.push(previousMonthFirstDate);
+      previousMonthFirstDate++;
+    } else {
+      if (i === currentMonthLength + daysFallingInCurrMonth) {
+        number = 1;
+      }
+      weekDaysArray.push(number);
+      number++;
+    }
+  }
+
+  var weeksNode = createCalendarWeeks(weekDaysArray, currentYear, currentMonth);
+  calendarNode.appendChild(weeksNode);
+  return calendarNode;
+}
+
+function getCalendarNode() {
+  return document.getElementById("calendarId");
+}
+
 function createWeekDaysHeader() {
   var weekdaysContainer = document.createElement("div");
   weekdaysContainer.classList.add("weekdays-container");
@@ -219,6 +263,12 @@ function createCalendarDateContainer() {
   return container;
 }
 
+function createCalendarDay() {
+  var date = document.createElement("div");
+  date.classList.add("calendar-date");
+  return date;
+}
+
 function getFirstDate(currentYear, currentMonth) {
   var date = new Date(currentYear, currentMonth, 1);
   return date.getDay();
@@ -234,6 +284,7 @@ function getTodayDate() {
     return day;
   } else {
     return;
+    return 0;
   }
 }
 
