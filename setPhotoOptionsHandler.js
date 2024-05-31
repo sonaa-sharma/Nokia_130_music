@@ -14,11 +14,14 @@ function setPhotoOptionsHandler(button) {
     case "left-select-button":
       switch (currentOptionId) {
         case "set-as-home":
-          setImageWallpaper();
+          setImageAsWallpaper("home");
           hidePhoto();
           mountMenu();
           break;
         case "set-as-lock":
+          setImageAsWallpaper("lock");
+          hidePhoto();
+          mountMenu();
           break;
         default:
           break;
@@ -53,13 +56,12 @@ function setPhotoOptionsBorder(selectOptionList, nextOptionIndex) {
   currentOptionIndex = nextOptionIndex;
 }
 
-function setImageWallpaper() {
+function setImageAsWallpaper(screen) {
   var imageNode = _photoSources[_currentPhotoIndex];
-  var lcd = getLcd();
-  lcd.style.backgroundImage = "url('" + imageNode + "')";
-}
-
-function removeWallpaper(){
-  var lcd = getLcd();
-  lcd.style.backgroundImage = "none";
+  if(screen === "home"){
+    homeScreenWallpaperClassName = "url" + "(" + imageNode + ")";
+  }
+  else if(screen === "lock"){
+    lockScreenWallpaperClassName = "url" + "(" + imageNode + ")";
+  }
 }
