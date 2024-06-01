@@ -115,12 +115,18 @@ function createWeekDaysHeader() {
   var daysName = ["S", "M", "T", "W", "T", "F", "S"];
 
   for (i = 0; i < 7; i++) {
-    var day = createDaysName();
+    var day = createWeekDay();
     day.innerHTML = daysName[i];
     weekdaysContainer.appendChild(day);
   }
 
   return weekdaysContainer;
+}
+
+function createWeekDay() {
+  var dayName = document.createElement("div");
+  dayName.classList.add("day-name");
+  return dayName;
 }
 
 function createCalendarDays() {
