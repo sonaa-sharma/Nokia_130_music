@@ -6,12 +6,14 @@ function getCalendarConfig() {
   var currentYear = date.getFullYear();
   var nextMonth = currentMonth;
   var nextYear = currentYear;
+  var arrayIndex = 0;
 
   var initialConfig = {
     currentMonth,
     currentYear,
     nextMonth,
     nextYear,
+    arrayIndex,
   };
 
   return initialConfig;
@@ -25,6 +27,14 @@ function calendarHandler(button) {
 
     case "right-button":
       showNextMonth();
+      break;
+
+    case "top-button":
+      showPreviousYear();
+      break;
+
+    case "bottom-button":
+      showNextYear();
       break;
 
     case "right-select-button":
@@ -98,17 +108,40 @@ function createCalendarBody() {
   return container;
 }
 
+function createWeekDaysHeader() {
+  var weekdaysContainer = document.createElement("div");
+  weekdaysContainer.classList.add("weekdays-container");
+
+  var daysName = ["S", "M", "T", "W", "T", "F", "S"];
+
+  for (i = 0; i < 7; i++) {
+    var day = createWeekDay();
+    day.innerHTML = daysName[i];
+    weekdaysContainer.appendChild(day);
+  }
+
+  return weekdaysContainer;
+}
+
+function createWeekDay() {
+  var dayName = document.createElement("div");
+  dayName.classList.add("day-name");
+  return dayName;
+}
+
 function createCalendarDays() {
   var calendarNode = document.createElement("div");
   calendarNode.id = "calendarId";
   var weekDaysArray = [];
-  var number = 1;
+  var number;
 
   var currentMonth = calendarConfig.nextMonth;
   var currentYear = calendarConfig.nextYear;
 
   var firstDate = getFirstDate(currentYear, currentMonth, 1);
   var daysFallingInCurrMonth = firstDate;
+  var todayDay = getTodayDate();
+  todayDay = todayDay + daysFallingInCurrMonth - 1;
 
   var previousMonth = currentMonth - 1;
   if (currentMonth === 0) {
@@ -119,21 +152,34 @@ function createCalendarDays() {
   var previousMonthLength = getNoOfDaysInAMonth(currentYear, previousMonth);
 
   var previousMonthFirstDate = previousMonthLength - daysFallingInCurrMonth + 1;
+  var isLastMonth = false;
+  var isNextMonth = false;
+  var isToday = false;
 
-  for (i = 0; i < 35; i++) {
-    if (i < firstDate) {
-      weekDaysArray.push(previousMonthFirstDate);
+  for (i = 0; i < 42; i++) {
+    if (i < daysFallingInCurrMonth) {
+      number = previousMonthFirstDate;
       previousMonthFirstDate++;
-    } else {
-      if (i === currentMonthLength + daysFallingInCurrMonth) {
-        number = 1;
-      }
-      weekDaysArray.push(number);
-      number++;
+      isLastMonth = true;
     }
+    if (i === daysFallingInCurrMonth) {
+      number = 1;
+    }
+    if (i === todayDay) {
+      isToday = true;
+    }
+    if (i === currentMonthLength + daysFallingInCurrMonth) {
+      number = 1;
+      isNextMonth = true;
+    }
+
+    weekDaysArray.push({ day: number, isLastMonth, isNextMonth, isToday });
+    isToday = false;
+    isLastMonth = false;
+    number++;
   }
 
-  var weeksNode = createCalendarWeeks(weekDaysArray, currentYear, currentMonth);
+  var weeksNode = createCalendarWeeks(weekDaysArray);
   calendarNode.appendChild(weeksNode);
   return calendarNode;
 }
@@ -142,64 +188,41 @@ function getCalendarNode() {
   return document.getElementById("calendarId");
 }
 
-function createWeekDaysHeader() {
+function createCalendarWeeks(weekDaysArray) {
   var weekdaysContainer = document.createElement("div");
-  weekdaysContainer.classList.add("weekdays-container");
 
-  var daysName = ["S", "M", "T", "W", "T", "F", "S"];
-
-  for (i = 0; i < 7; i++) {
-    var day = createDaysName();
-    day.innerHTML = daysName[i];
-    weekdaysContainer.appendChild(day);
+  var arrayIndex = calendarConfig.arrayIndex;
+  for (i = 0; i < 6; i++) {
+    var dateContainer = createCalendarDateContainer();
+    for (j = 0; j < 7; j++) {
+      var date = createCalendarDay(weekDaysArray[arrayIndex]);
+      dateContainer.appendChild(date);
+      arrayIndex++;
+    }
+    weekdaysContainer.appendChild(dateContainer)
   }
 
   return weekdaysContainer;
 }
 
-function createDaysName() {
-  var dayName = document.createElement("div");
-  dayName.classList.add("day-name");
-  return dayName;
-}
+function createCalendarDay(dayDetails) {
+  var date = document.createElement("span");
+  date.classList.add("calendar-date");
+  date.innerHTML = dayDetails.day;
 
-function createCalendarWeeks(weekDaysArray, currentYear, currentMonth) {
-  var currentMonthLength = getNoOfDaysInAMonth(currentYear, currentMonth);
-  var firstDay = getFirstDate(currentYear, currentMonth);
-  var daysFallingInCurrMonth = firstDay;
-  var todayDay = getTodayDate();
-  todayDay = todayDay + firstDay - 1;
-  var currentMonth;
-  var dateContainer = createCalendarDateContainer();
-
-  for (i = 0; i < weekDaysArray.length; i++) {
-    var date = createCalendarDay();
-    date.innerHTML = weekDaysArray[i];
-
-    if (i < daysFallingInCurrMonth) {
-      AddRemoveClassList(date, "otherMonths-highlight", true);
-    } else if (i >= currentMonthLength + daysFallingInCurrMonth) {
-      AddRemoveClassList(date, "otherMonths-highlight", true);
-    } else if (i === todayDay) {
-      AddRemoveClassList(date, "today-highlight", true);
-    }
-
-    dateContainer.appendChild(date);
+  if (dayDetails.isToday) {
+    AddRemoveClassList(date, "today-highlight", true);
+  } else if (dayDetails.isLastMonth || dayDetails.isNextMonth) {
+    AddRemoveClassList(date, "otherMonths-highlight", true);
   }
 
-  return dateContainer;
+  return date;
 }
 
 function createCalendarDateContainer() {
   var container = document.createElement("div");
   container.classList.add("calendar-date-container");
   return container;
-}
-
-function createCalendarDay() {
-  var date = document.createElement("div");
-  date.classList.add("calendar-date");
-  return date;
 }
 
 function getFirstDate(currentYear, currentMonth) {
@@ -216,7 +239,7 @@ function getTodayDate() {
     day = date.getDate();
     return day;
   } else {
-    return 0;
+    return;
   }
 }
 
@@ -226,6 +249,14 @@ function getNoOfDaysInAMonth(currentYear, currentMonth) {
     days[1] = 29;
   }
   return days[currentMonth];
+}
+
+function goToPreviousYear() {
+  calendarConfig.nextYear = calendarConfig.nextYear - 1;
+}
+
+function goToNextYear() {
+  calendarConfig.nextYear = calendarConfig.nextYear + 1;
 }
 
 function goToPreviousMonth() {
@@ -253,6 +284,16 @@ function showNextMonth() {
 
 function showPreviousMonth() {
   goToPreviousMonth();
+  reRenderCalendar();
+}
+
+function showPreviousYear() {
+  goToPreviousYear();
+  reRenderCalendar();
+}
+
+function showNextYear() {
+  goToNextYear();
   reRenderCalendar();
 }
 
@@ -386,4 +427,3 @@ function createCalendarBottomNavbar() {
 
   return navbar;
 }
-
