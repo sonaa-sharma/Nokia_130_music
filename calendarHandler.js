@@ -138,8 +138,8 @@ function createCalendarDays() {
   var currentMonth = calendarConfig.nextMonth;
   var currentYear = calendarConfig.nextYear;
 
-  var firstDate = getFirstDate(currentYear, currentMonth, 1);
-  var daysFallingInCurrMonth = firstDate;
+  var firstDayOfCurrMonth = getFirstDate(currentYear, currentMonth, 1);
+  var daysFallingInCurrMonth = firstDayOfCurrMonth;
   var todayDay = getTodayDate();
   todayDay = todayDay + daysFallingInCurrMonth - 1;
 
