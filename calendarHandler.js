@@ -307,6 +307,18 @@ function reRenderNavbar() {
   updateNavbar(calendarConfig.nextYear, calendarConfig.nextMonth);
 }
 
+function removeCalendar() {
+  var container = document.getElementById("calendarBodyId");
+  var calendar = getCalendarNode();
+  container.removeChild(calendar);
+}
+
+function addCalendar() {
+  var container = document.getElementById("calendarBodyId");
+  var calendar = createCalendarDays();
+  container.appendChild(calendar);
+}
+
 function updateNavbar(clockYear, clockMonth) {
   var currentYear = document.getElementById("yearId");
   currentYear.innerHTML = clockYear;
@@ -402,17 +414,6 @@ function createCalendarYear() {
   return container;
 }
 
-function removeCalendar() {
-  var container = document.getElementById("calendarBodyId");
-  var calendar = getCalendarNode();
-  container.removeChild(calendar);
-}
-
-function addCalendar() {
-  var container = document.getElementById("calendarBodyId");
-  var calendar = createCalendarDays();
-  container.appendChild(calendar);
-}
 
 function createCalendarBottomNavbar() {
   var navbar = document.createElement("div");
