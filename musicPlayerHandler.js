@@ -84,8 +84,6 @@ function musicPlayerHandler(button) {
 }
 
 function showMusicPlayer() {
-  audioIndex = 0;
-  flag = 0;
   mountMusicPlayerScreen(true);
   audioTotalDuration();
 
