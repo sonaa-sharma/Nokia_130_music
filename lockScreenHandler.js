@@ -25,10 +25,10 @@ function setDateTime() {
 function lockScreenHandler(button) {
   switch (button.id) {
     case "left-select-button":
-      selectButtonPressed(button);
+      selectButtonPressed();
       break;
     case "star-key":
-      starKeyPressed(button);
+      starKeyPressed();
       break;
     default:
       clearTimeout(clearGoBackId);
@@ -42,7 +42,7 @@ function selectButtonPressed() {
   showUnlockMessage();
 }
 
-function starKeyPressed(button) {
+function starKeyPressed() {
   if (!isSelectkeyPressed) {
     return;
   }
