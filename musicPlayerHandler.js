@@ -1,4 +1,4 @@
-// var audioIndex = 0;
+var audioIndex = 0;
 var audioTimeoutId;
 var flag = 0;
 
