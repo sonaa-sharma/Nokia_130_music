@@ -24,7 +24,7 @@
   
   .picture-container {
     display: flex;
-    padding: 2px;
+    gap: 2px;
   }
   
   .pic{
