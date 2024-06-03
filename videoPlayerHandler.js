@@ -83,6 +83,32 @@ function videoPlayerHandler(button) {
   }
 }
 
+function videoPlayerMouseDownHandler(button) {
+  switch (button.id) {
+    case "left-button":
+      showBorder("previous-video");
+      break;
+    case "right-button":
+      showBorder("next-video");
+      break;
+    default:
+      break;
+  }
+}
+
+function videoPlayerMouseUpHandler(button) {
+  switch (button.id) {
+    case "left-button":
+      removeBorder("previous-video");
+      break;
+    case "right-button":
+      removeBorder("next-video");
+      break;
+    default:
+      break;
+  }
+}
+
 function showVideoPlayer() {
   videoIndex = 0;
   videoflag = 0;
@@ -92,7 +118,7 @@ function showVideoPlayer() {
   setProgressBarAtZero("progress-bar-id");
   videoTotalDuration();
   updateVideoInfo();
-  
+
   screenName = "videoPlayerScreen";
 }
 
@@ -104,7 +130,6 @@ function hideVideoPlayer() {
 
 function playNextVideo() {
   clearInterval(videoTimeoutId);
-  showSelection("right-button", "next-video");
   videoIndex = goRight(videoArray.length, videoIndex, true);
   videoTotalDuration();
   updateVideoInfo();
@@ -115,7 +140,6 @@ function playNextVideo() {
 
 function playPreviousVideo() {
   clearInterval(videoTimeoutId);
-  showSelection("left-button", "previous-video");
   videoTotalDuration();
   videoIndex = goLeft(videoArray.length, videoIndex, true);
   updateVideoInfo();
@@ -124,17 +148,17 @@ function playPreviousVideo() {
   playVideo();
 }
 
-function showPauseIcon(playNodeId){
+function showPauseIcon(playNodeId) {
   var playPause = document.getElementById(playNodeId);
   playPause.src = "Icons/pause-icon.png";
 }
 
-function showPlayIcon(pauseNodeId){
+function showPlayIcon(pauseNodeId) {
   var playPause = document.getElementById(pauseNodeId);
   playPause.src = "Icons/play-icon.png";
 }
 
-function updateVideoInfo(){
+function updateVideoInfo() {
   var videoNode = videoArray[videoIndex];
   var videoBoxId = document.getElementById("videoId");
   videoBoxId.src = videoNode;
@@ -142,22 +166,16 @@ function updateVideoInfo(){
   videoDes.innerHTML = videoDescription[videoIndex];
 }
 
-function setProgressBarAtZero(progressBarId){
+function setProgressBarAtZero(progressBarId) {
   var barNode = document.getElementById(progressBarId);
   barNode.value = 0;
 }
 
-function setCurrentTimeAtZero(timeInMin, timeInSec){
+function setCurrentTimeAtZero(timeInMin, timeInSec) {
   var minCurrentTimeNode = document.getElementById(timeInMin);
   var secCurrentTimeNode = document.getElementById(timeInSec);
   minCurrentTimeNode.innerHTML = "00";
   secCurrentTimeNode.innerHTML = "00";
-}
-
-function showSelection(buttonId, elementId) {
-    var buttonClick = document.getElementById(buttonId);
-    buttonClick.addEventListener("mousedown",function(){ showBorder(elementId)});
-    buttonClick.addEventListener("mouseup",function(){ removeBorder(elementId)});
 }
 
 function showBorder(elementId) {
@@ -192,7 +210,11 @@ function videoCurrentPlayDuration() {
   var videoNode = document.getElementById("videoId");
   var currentTime = videoNode.currentTime;
   currentTime = Math.ceil(currentTime);
-  showMinSecFormatCurrentTime(currentTime, "current-time-min", "current-time-sec");
+  showMinSecFormatCurrentTime(
+    currentTime,
+    "current-time-min",
+    "current-time-sec"
+  );
 }
 
 function videoTotalDuration() {

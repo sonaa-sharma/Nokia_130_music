@@ -20,7 +20,6 @@
   color: black;
   font-family: sans-serif;
   background-color: rgb(223, 224, 230);
-  box-shadow: 0px 0px 10px rgb(45, 62, 176);
 }
 
 .calendar-navbar-date {
@@ -74,21 +73,27 @@
   height: 12px;
   background-color: white;
 }
+.month-scroll-button-container {
+  width: 34px;
+  height: 34px;
+}
 
-.monthScroll-button {
-  width: 12px;
-  height: 12px;
-  padding: 4px;
+.month-scroll-button-container-active{
+  background-color: rgb(159, 162, 169);
+}
+
+.month-scroll-button {
+  width: 20px;
 }
 
 .rotate-180 {
   rotate: 180deg;
 }
 
-.otherMonths-highlight{
-color: rgb(213, 210, 210);
+.otherMonths-highlight {
+  color: rgb(213, 210, 210);
 }
 
-.today-highlight{
+.today-highlight {
   color: red;
 }

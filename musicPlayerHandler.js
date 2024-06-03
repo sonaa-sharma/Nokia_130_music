@@ -88,6 +88,32 @@ function musicPlayerHandler(button) {
   }
 }
 
+function audioPlayerMouseDownHandler(button) {
+  switch (button.id) {
+    case "left-button":
+      showBorder("previous-audio");
+      break;
+    case "right-button":
+      showBorder("next-audio");
+      break;
+    default:
+      break;
+  }
+}
+
+function audioPlayerMouseUpHandler(button) {
+  switch (button.id) {
+    case "left-button":
+      removeBorder("previous-audio");
+      break;
+    case "right-button":
+      removeBorder("next-audio");
+      break;
+    default:
+      break;
+  }
+}
+
 function showMusicPlayer() {
   mountMusicPlayerScreen(true);
   audioTotalDuration();
@@ -120,7 +146,6 @@ function audioTotalDuration() {
 
 function playNextAudio() {
   clearInterval(audioTimeoutId);
-  showSelection("right-button", "next-audio");
   nextIndex = goLeft(audioArray.length, audioIndex, true);
   audioTotalDuration();
   audioIndex = nextIndex;
@@ -132,7 +157,6 @@ function playNextAudio() {
 
 function playPreviousAudio() {
   clearInterval(audioTimeoutId);
-  showSelection("left-button", "previous-audio");
   audioTotalDuration();
   nextIndex = goLeft(audioArray.length, audioIndex, true);
   audioIndex = nextIndex;
