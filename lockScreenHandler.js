@@ -40,7 +40,6 @@ function lockScreenHandler(button) {
 function selectButtonPressed() {
   isSelectkeyPressed = true;
   showUnlockMessage();
-  showButtonPressed("left-select-button", "unlock");
 }
 
 function starKeyPressed() {
