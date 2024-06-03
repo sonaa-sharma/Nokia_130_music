@@ -288,17 +288,6 @@
   border-color: white;
 }
 
-.theme1 {
-  background-image: url("wallpaper/grass.jpg");
-}
-
-.theme2 {
-  background-image: url("wallpaper/wp1.jpg");
-}
-.theme3 {
-  background-image: url("wallpaper/wp2.jpg");
-}
-
 .lcd-off-wallpaper {
   background-color: rgb(10, 10, 10);
 }

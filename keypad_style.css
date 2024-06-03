@@ -25,7 +25,6 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
 }
 
 .keys {
@@ -43,7 +42,6 @@
     "Lucida Sans", Arial, sans-serif;
   padding: 4px 4px;
   cursor: pointer;
-
 }
 
 .two-char-space {
@@ -188,16 +186,16 @@
   cursor: pointer;
 }
 
-.left:active{
-    box-shadow: -3px 0px 4px 0px #38373d;
+.left:active, .left-active {
+  box-shadow: -3px 0px 4px 0px #38373d;
 }
-.right:active{
-    box-shadow: 3px 0px 4px 0px #38373d;
+.right:active, .right-active {
+  box-shadow: 3px 0px 4px 0px #38373d;
 }
-.up:active{
-    box-shadow: 0px -3px 4px 0px #38373d;
+.up:active, .up-active {
+  box-shadow: 0px -3px 4px 0px #38373d;
 }
-.low:active{
+.low:active, .low-active {
   box-shadow: 0px 3px 4px 0px #38373d;
 }
 

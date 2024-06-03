@@ -44,8 +44,6 @@ function selectButtonPressed() {
 }
 
 function showButtonPressed(buttonId, elementId) {
-  console.log(buttonId);
-  console.log(elementId);
   var buttonClick = document.getElementById(buttonId);
   buttonClick.addEventListener("mousedown", function () {
     showShadow(elementId);
