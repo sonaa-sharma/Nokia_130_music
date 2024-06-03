@@ -208,8 +208,6 @@ function getBrandAnimationNode() {
   return document.getElementById("brand-animation");
 }
 
-function onKeyDown(event) {}
-
 var keyCodeMap = {
   arrowLeft: 37,
   arrowUp: 38,
@@ -242,45 +240,67 @@ var keyCodeMap = {
 };
 
 var keyIdMaping = {
-  [keyCodeMap.arrowLeft]: "left-button",
-  [keyCodeMap.arrowUp]: "top-button",
-  [keyCodeMap.arrowRight]: "right-button",
-  [keyCodeMap.arrowDown]: "bottom-button",
-  [keyCodeMap.enterKey]: "left-select-button",
-  [keyCodeMap.backSpaceKey]: "right-select-button",
-  [keyCodeMap.escapeKey]: "power-button",
-  [keyCodeMap.starKey]: "star-key",
-  [keyCodeMap.key0]: "value-0",
-  [keyCodeMap.key1]: "value-1",
-  [keyCodeMap.key2]: "value-2",
-  [keyCodeMap.key3]: "value-3",
-  [keyCodeMap.key4]: "value-4",
-  [keyCodeMap.key5]: "value-5",
-  [keyCodeMap.key6]: "value-6",
-  [keyCodeMap.key7]: "value-7",
-  [keyCodeMap.key8]: "value-8",
-  [keyCodeMap.key9]: "value-9",
-  [keyCodeMap.numPad0]: "value-0",
-  [keyCodeMap.numPad1]: "value-1",
-  [keyCodeMap.numPad2]: "value-2",
-  [keyCodeMap.numPad3]: "value-3",
-  [keyCodeMap.numPad4]: "value-4",
-  [keyCodeMap.numPad5]: "value-5",
-  [keyCodeMap.numPad6]: "value-6",
-  [keyCodeMap.numPad7]: "value-7",
-  [keyCodeMap.numPad8]: "value-8",
-  [keyCodeMap.numPad9]: "value-9",
+  [keyCodeMap.arrowLeft]: { id: "left-button", class: "left-active" },
+  [keyCodeMap.arrowUp]: { id: "top-button", class: "up-active" },
+  [keyCodeMap.arrowRight]: { id: "right-button", class: "right-active" },
+  [keyCodeMap.arrowDown]: { id: "bottom-button", class: "low-active" },
+  [keyCodeMap.enterKey]: { id: "left-select-button", class: "key-active" },
+  [keyCodeMap.backSpaceKey]: { id: "right-select-button", class: "key-active" },
+  [keyCodeMap.escapeKey]: { id: "power-button", class: "key-active" },
+  [keyCodeMap.starKey]: { id: "star-key", class: "key-active" },
+  [keyCodeMap.key0]: { id: "value-0", class: "key-active" },
+  [keyCodeMap.key1]: { id: "value-1", class: "key-active" },
+  [keyCodeMap.key2]: { id: "value-2", class: "key-active" },
+  [keyCodeMap.key3]: { id: "value-3", class: "key-active" },
+  [keyCodeMap.key4]: { id: "value-4", class: "key-active" },
+  [keyCodeMap.key5]: { id: "value-5", class: "key-active" },
+  [keyCodeMap.key6]: { id: "value-6", class: "key-active" },
+  [keyCodeMap.key7]: { id: "value-7", class: "key-active" },
+  [keyCodeMap.key8]: { id: "value-8", class: "key-active" },
+  [keyCodeMap.key9]: { id: "value-9", class: "key-active" },
+  [keyCodeMap.numPad0]: { id: "value-0", class: "key-active" },
+  [keyCodeMap.numPad1]: { id: "value-1", class: "key-active" },
+  [keyCodeMap.numPad2]: { id: "value-2", class: "key-active" },
+  [keyCodeMap.numPad3]: { id: "value-3", class: "key-active" },
+  [keyCodeMap.numPad4]: { id: "value-4", class: "key-active" },
+  [keyCodeMap.numPad5]: { id: "value-5", class: "key-active" },
+  [keyCodeMap.numPad6]: { id: "value-6", class: "key-active" },
+  [keyCodeMap.numPad7]: { id: "value-7", class: "key-active" },
+  [keyCodeMap.numPad8]: { id: "value-8", class: "key-active" },
+  [keyCodeMap.numPad9]: { id: "value-9", class: "key-active" },
 };
 
-function onKeyUp(event) {
-  console.log(event);
-  var id = keyIdMaping[event.keyCode];
+function onKeyDown(event) {
+  var keyData = keyIdMaping[event.keyCode];
 
-  if (!id || !isDeviceOn) {
+  if (!keyData || !isDeviceOn) {
     return;
   }
 
-  var node = document.getElementById(id);
+  var node = document.getElementById(keyData.id);
+  if (!node) {
+    return;
+  }
+
+  console.log(keyData.class);
+  AddRemoveClassList(node, keyData.class, true);
+
+  // buttonClicked(node);
+}
+
+function onKeyUp(event) {
+  var keyData = keyIdMaping[event.keyCode];
+
+  if (!keyData || !isDeviceOn) {
+    return;
+  }
+
+  var node = document.getElementById(keyData.id);
+  if (!node) {
+    return;
+  }
+
+  AddRemoveClassList(node, keyData.class, false);
 
   buttonClicked(node);
 }

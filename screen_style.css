@@ -33,7 +33,7 @@
   align-self: center;
 }
 
-#lcd {
+.lcd {
   height: 240px;
   width: 200px;
   background-size: cover;
@@ -275,6 +275,7 @@
 
 .unlock-text{
   padding: 4px 8px;
+  width: 48px;
 }
 
 .theme {
@@ -285,17 +286,6 @@
 
 .wallpaper-border {
   border-color: white;
-}
-
-.theme1 {
-  background-image: url("wallpaper/grass.jpg");
-}
-
-.theme2 {
-  background-image: url("wallpaper/wp1.jpg");
-}
-.theme3 {
-  background-image: url("wallpaper/wp2.jpg");
 }
 
 .lcd-off-wallpaper {

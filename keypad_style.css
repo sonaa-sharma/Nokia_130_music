@@ -25,7 +25,6 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-
 }
 
 .keys {
@@ -43,7 +42,6 @@
     "Lucida Sans", Arial, sans-serif;
   padding: 4px 4px;
   cursor: pointer;
-
 }
 
 .two-char-space {
@@ -82,14 +80,12 @@
 
 .mid-function-button:active {
   box-shadow: 0px 2px 2px #38373d;
-  /* shadow:  */
 }
 
 .mid-function-button {
   height: auto;
   width: auto;
   border-radius: 20px;
-  /* padding: 8px; */
 }
 
 .mid-function-button-inner {
@@ -104,6 +100,7 @@
 }
 
 .keys:active,
+.key-active,
 .function-buttons:active,
 .mid-function-button-inner:active {
   box-shadow: none;
@@ -183,28 +180,26 @@
 }
 
 .up-low {
-  /* background-color: crimson; */
   height: 8px;
   width: 46px;
   border-radius: 20px;
   cursor: pointer;
 }
 
-.left:active{
-    box-shadow: -3px 0px 4px 0px #38373d;
+.left:active, .left-active {
+  box-shadow: -3px 0px 4px 0px #38373d;
 }
-.right:active{
-    box-shadow: 3px 0px 4px 0px #38373d;
+.right:active, .right-active {
+  box-shadow: 3px 0px 4px 0px #38373d;
 }
-.up:active{
-    box-shadow: 0px -3px 4px 0px #38373d;
+.up:active, .up-active {
+  box-shadow: 0px -3px 4px 0px #38373d;
 }
-.low:active{
+.low:active, .low-active {
   box-shadow: 0px 3px 4px 0px #38373d;
 }
 
 .left-right {
-  /* background-color: chartreuse; */
   height: 46px;
   width: 8px;
   border-radius: 4px;
