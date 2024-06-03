@@ -50,6 +50,11 @@ function pauseAudio() {
 function musicPlayerHandler(button) {
   switch (button.id) {
     case "left-select-button":
+      if (flag === 1) {
+        pauseAudio();
+      } else {
+        playAudio();
+      }
       break;
 
     case "mid-button-inner":

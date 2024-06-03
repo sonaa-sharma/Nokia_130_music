@@ -2,6 +2,14 @@ torchFlag = 0;
 
 function torchScreenHandler(button) {
   switch (button.id) {
+    case "left-select-button":
+      if (torchFlag === 1) {
+        turnOffTorch();
+      } else {
+        turnOnTorch();
+      }
+      break;
+
     case "mid-button-inner":
       if (torchFlag === 1) {
         turnOffTorch();

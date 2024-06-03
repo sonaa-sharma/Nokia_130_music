@@ -273,6 +273,7 @@ var keyIdMaping = {
 };
 
 function onKeyUp(event) {
+  console.log(event);
   var id = keyIdMaping[event.keyCode];
 
   if (!id || !isDeviceOn) {

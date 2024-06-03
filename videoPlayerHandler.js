@@ -45,6 +45,11 @@ function pauseVideo() {
 function videoPlayerHandler(button) {
   switch (button.id) {
     case "left-select-button":
+      if (videoflag === 1) {
+        pauseVideo();
+      } else {
+        playVideo();
+      }
       break;
 
     case "mid-button-inner":
