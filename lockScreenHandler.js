@@ -37,9 +37,39 @@ function lockScreenHandler(button) {
   }
 }
 
+function lockScreenMouseDownHandler(button){
+  switch (button.id) {
+    case "left-select-button":
+      showShadow("unlock");
+      break;
+    default:
+      break;
+  }
+}
+
+function lockScreenMouseUpHandler(button){
+  switch (button.id) {
+    case "left-select-button":
+      hideShadow("unlock");
+      break;
+    default:
+      break;
+  }
+}
+
 function selectButtonPressed() {
   isSelectkeyPressed = true;
   showUnlockMessage();
+}
+
+function showShadow(elementId) {
+  var styleButton = document.getElementById(elementId);
+  AddRemoveClassList(styleButton, "unlock-hover", true);
+}
+
+function hideShadow(elementId) {
+  var styleButton = document.getElementById(elementId);
+  AddRemoveClassList(styleButton, "unlock-hover", false);
 }
 
 function starKeyPressed() {
@@ -141,3 +171,4 @@ function hideLockScreen() {
   mountDateTimeContainer(false);
   clearInterval(lockScreenTimeoutId);
 }
+

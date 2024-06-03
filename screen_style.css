@@ -275,7 +275,7 @@
 
 .unlock-text{
   padding: 4px 8px;
-  width: 48px;
+  width: 50%;
 }
 
 .theme {
@@ -290,4 +290,9 @@
 
 .lcd-off-wallpaper {
   background-color: rgb(10, 10, 10);
+}
+
+
+.unlock-hover{
+  background-color: rgba(0, 0, 0, 0.2);
 }

@@ -52,6 +52,42 @@ function calendarHandler(button) {
   }
 }
 
+function calendarMouseDownHandler(button) {
+  switch (button.id) {
+    case "left-button":
+      showMonthScrollColor("backwardButtonId");
+      break;
+    case "right-button":
+      showMonthScrollColor("forwardButtonId");
+      break;
+    default:
+      break;
+  }
+}
+
+function calendarMouseUpHandler(button) {
+  switch (button.id) {
+    case "left-button":
+      hideMonthScrollColor("backwardButtonId");
+      break;
+    case "right-button":
+      hideMonthScrollColor("forwardButtonId");
+      break;
+    default:
+      break;
+  }
+}
+
+function showMonthScrollColor(elementId) {
+  var styleButton = document.getElementById(elementId);
+  AddRemoveClassList(styleButton, "month-scroll-button-container-active", true);
+}
+
+function hideMonthScrollColor(elementId) {
+  var styleButton = document.getElementById(elementId);
+  AddRemoveClassList(styleButton, "month-scroll-button-container-active", false);
+}
+
 function mountCalendar() {
   calendarConfig = getCalendarConfig();
   var calendarScreenNode = document.getElementById("calendar-screen-id");
@@ -353,19 +389,29 @@ function createCalendarNavbar() {
 }
 
 function createBackwardIcon() {
+  var container = document.createElement("div");
+  container.classList.add("month-scroll-button-container", "center");
+  container.id = "backwardButtonId";
+
   var icon = document.createElement("img");
-  icon.classList.add("monthScroll-button", "rotate-180");
-  icon.id = "backwardButtonId";
+  icon.classList.add("month-scroll-button", "rotate-180");
   icon.src = "Icons/right-chevron.png";
-  return icon;
+  container.appendChild(icon);
+
+  return container;
 }
 
 function createForwardIcon() {
+  var container = document.createElement("div");
+  container.classList.add("month-scroll-button-container", "center");
+  container.id = "forwardButtonId";
+
   var icon = document.createElement("img");
-  icon.classList.add("monthScroll-button");
-  icon.id = "forwardButtonId";
+  icon.classList.add("month-scroll-button");
   icon.src = "Icons/right-chevron.png";
-  return icon;
+  container.appendChild(icon);
+
+  return container;
 }
 
 function createMonthAndYear() {

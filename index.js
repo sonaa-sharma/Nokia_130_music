@@ -171,6 +171,9 @@ function turnOfflcd() {
     case "setPhotoOptionsScreen":
       hidePhoto();
       break;
+    case "videoPlayerScreen":
+      hideVideoPlayer();
+      break;
     case "aboutScreen":
       hideAboutScreen();
       break;
@@ -277,15 +280,13 @@ function onKeyDown(event) {
     return;
   }
 
-  var node = document.getElementById(keyData.id);
-  if (!node) {
+  var buttonNode = document.getElementById(keyData.id);
+  if (!buttonNode) {
     return;
   }
+  AddRemoveClassList(buttonNode, keyData.class, true);
 
-  console.log(keyData.class);
-  AddRemoveClassList(node, keyData.class, true);
-
-  // buttonClicked(node);
+  buttonMouseDown(buttonNode);
 }
 
 function onKeyUp(event) {
@@ -295,26 +296,96 @@ function onKeyUp(event) {
     return;
   }
 
-  var node = document.getElementById(keyData.id);
-  if (!node) {
+  var buttonNode = document.getElementById(keyData.id);
+
+  if (!buttonNode) {
     return;
   }
 
-  AddRemoveClassList(node, keyData.class, false);
+  AddRemoveClassList(buttonNode, keyData.class, false);
+  buttonClicked(buttonNode);
 
-  buttonClicked(node);
+  buttonMouseUp(buttonNode);
+}
+
+function onKeypadMousedown(event) {
+  event.stopPropagation();
+  var targetNode = event.target;
+  var button = getButtonNode(targetNode);
+
+  if (!button || !isDeviceOn) {
+    return;
+  }
+
+  buttonMouseDown(button);
+}
+
+function onKeypadMouseup(event) {
+  var targetNode = event.target;
+  var button = getButtonNode(targetNode);
+
+  if (!button || !isDeviceOn) {
+    return;
+  }
+
+  buttonMouseUp(button);
+}
+
+function buttonMouseDown(button) {
+  switch (screenName) {
+    case "lockScreen":
+      lockScreenMouseDownHandler(button);
+      break;
+    case "videoPlayerScreen":
+      videoPlayerMouseDownHandler(button);
+      break;
+    case "musicPlayerScreen":
+      audioPlayerMouseDownHandler(button);
+      break;
+    case "calendarScreen":
+      calendarMouseDownHandler(button);
+      break;
+
+    default:
+      break;
+  }
+}
+
+function buttonMouseUp(button) {
+  switch (screenName) {
+    case "lockScreen":
+      lockScreenMouseUpHandler(button);
+      break;
+    case "videoPlayerScreen":
+      videoPlayerMouseUpHandler(button);
+      break;
+    case "musicPlayerScreen":
+      audioPlayerMouseUpHandler(button);
+      break;
+    case "calendarScreen":
+      calendarMouseUpHandler(button);
+      break;
+
+    default:
+      break;
+  }
 }
 
 function initializeEvent() {
   var keypadButton = document.getElementById("keypad-box");
   var powerButton = document.getElementById("power-button");
+
   keypadButton.addEventListener("click", clickEventFunction);
+  keypadButton.addEventListener("mousedown", onKeypadMousedown);
+  keypadButton.addEventListener("mouseup", onKeypadMouseup);
+
   powerButton.addEventListener("mousedown", startPoweringOn);
   powerButton.addEventListener("mouseup", stopPoweringOn);
   powerButton.addEventListener("mouseleave", stopPoweringOn);
   powerButton.addEventListener("touchstart", startPoweringOn);
   powerButton.addEventListener("touchend", stopPoweringOn);
   powerButton.addEventListener("touchcancel", stopPoweringOn);
+
   document.body.addEventListener("keydown", onKeyDown);
   document.body.addEventListener("keyup", onKeyUp);
 }
