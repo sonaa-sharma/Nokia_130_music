@@ -270,10 +270,10 @@ var keyIdMaping = {
   [keyCodeMap.numPad7]: "value-7",
   [keyCodeMap.numPad8]: "value-8",
   [keyCodeMap.numPad9]: "value-9",
+  
 };
 
 function onKeyUp(event) {
-  console.log(event);
   var id = keyIdMaping[event.keyCode];
 
   if (!id || !isDeviceOn) {

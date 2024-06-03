@@ -82,14 +82,12 @@
 
 .mid-function-button:active {
   box-shadow: 0px 2px 2px #38373d;
-  /* shadow:  */
 }
 
 .mid-function-button {
   height: auto;
   width: auto;
   border-radius: 20px;
-  /* padding: 8px; */
 }
 
 .mid-function-button-inner {
@@ -104,6 +102,7 @@
 }
 
 .keys:active,
+.key-active,
 .function-buttons:active,
 .mid-function-button-inner:active {
   box-shadow: none;
@@ -183,7 +182,6 @@
 }
 
 .up-low {
-  /* background-color: crimson; */
   height: 8px;
   width: 46px;
   border-radius: 20px;
@@ -204,7 +202,6 @@
 }
 
 .left-right {
-  /* background-color: chartreuse; */
   height: 46px;
   width: 8px;
   border-radius: 4px;

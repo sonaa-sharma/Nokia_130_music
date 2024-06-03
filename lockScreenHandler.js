@@ -40,6 +40,29 @@ function lockScreenHandler(button) {
 function selectButtonPressed() {
   isSelectkeyPressed = true;
   showUnlockMessage();
+  showButtonPressed("left-select-button", "unlock");
+}
+
+function showButtonPressed(buttonId, elementId) {
+  console.log(buttonId);
+  console.log(elementId);
+  var buttonClick = document.getElementById(buttonId);
+  buttonClick.addEventListener("mousedown", function () {
+    showShadow(elementId);
+  });
+  buttonClick.addEventListener("mouseup", function () {
+    hideShadow(elementId);
+  });
+}
+
+function showShadow(elementId) {
+  var backwardButton = document.getElementById(elementId);
+  backwardButton.style.boxShadow = "1px 1px 10px white";
+}
+
+function hideShadow(elementId) {
+  var backwardButton = document.getElementById(elementId);
+  backwardButton.style.boxShadow = "none";
 }
 
 function starKeyPressed() {

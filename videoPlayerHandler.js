@@ -155,8 +155,6 @@ function setCurrentTimeAtZero(timeInMin, timeInSec){
 }
 
 function showSelection(buttonId, elementId) {
-  console.log(buttonId);
-  console.log(elementId);
     var buttonClick = document.getElementById(buttonId);
     buttonClick.addEventListener("mousedown",function(){ showBorder(elementId)});
     buttonClick.addEventListener("mouseup",function(){ removeBorder(elementId)});
