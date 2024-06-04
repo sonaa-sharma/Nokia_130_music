@@ -202,9 +202,10 @@ function turnOfflcd() {
       break;
   }
 
-  mountBlackScreen(true);
-
+  var lcd = getLcd();
+  lcd.style.background = "";
   localStorage.setItem("deviceOn", false);
+  mountBlackScreen(true);
 }
 
 function getBrandAnimationNode() {
@@ -345,7 +346,9 @@ function buttonMouseDown(button) {
     case "calendarScreen":
       calendarMouseDownHandler(button);
       break;
-
+    case "appScreen":
+      menuMouseDownHandler(button);
+      break;
     default:
       break;
   }
@@ -365,7 +368,9 @@ function buttonMouseUp(button) {
     case "calendarScreen":
       calendarMouseUpHandler(button);
       break;
-
+    case "appScreen":
+      menuMouseUpHandler(button);
+      break;
     default:
       break;
   }

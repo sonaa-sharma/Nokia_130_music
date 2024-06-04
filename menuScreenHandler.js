@@ -96,6 +96,58 @@ function openApp(currentAppId) {
   }
 }
 
+function menuMouseDownHandler(button) {
+  var currentAppId = menuItems[currentMenuIndex].id;
+
+  switch (button.id) {
+    case "left-button":
+      showMenuScrollColor(currentAppId);
+      break;
+    case "right-button":
+      showMenuScrollColor(currentAppId);
+      break;
+      case "top-button":
+      showMenuScrollColor(currentAppId);
+      break;
+    case "bottom-button":
+      showMenuScrollColor(currentAppId);
+      break;
+    default:
+      break;
+  }
+}
+
+function menuMouseUpHandler(button) {
+  var currentAppId = menuItems[currentMenuIndex].id;
+
+  switch (button.id) {
+    case "left-button":
+      hideMenuScrollColor(currentAppId);
+      break;
+    case "right-button":
+      hideMenuScrollColor(currentAppId);
+      break;
+      case "top-button":
+      hideMenuScrollColor(currentAppId);
+      break;
+    case "bottom-button":
+      hideMenuScrollColor(currentAppId);
+      break;
+    default:
+      break;
+  }
+}
+
+function showMenuScrollColor(elementId) {
+  var styleButton = document.getElementById(elementId);
+  AddRemoveClassList(styleButton, "menu-scroll-active", true);
+}
+
+function hideMenuScrollColor(elementId) {
+  var styleButton = document.getElementById(elementId);
+  AddRemoveClassList(styleButton, "menu-scroll-active", false);
+}
+
  function mountMenu(resetAppPosition) {
   var menuScreenNode = document.getElementById("menu-screen-container");
   var menuItemsNode = createMenuItemsNode(menuItems);
