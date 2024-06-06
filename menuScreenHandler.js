@@ -1,14 +1,77 @@
-var menuItems =[
-  {class:'gallery-item', id: 'gallery', src: 'Icons/picture.png', label: 'gallery', iconContainerClass: 'gallery-icon-container', iconClass: 'gallery-icon'},
-  {class:'snake-game-item', id: 'snake-game', src: 'Icons/icons8-snake-48.png', label: 'snake-game', iconContainerClass: 'snake-game-icon-container', iconClass: 'snake-game-icon'},
-  {class:'video-player-item', id: 'video-player', src: 'Icons/icons8-video-player-48.png', label: 'video-player', iconContainerClass: 'video-player-icon-container', iconClass: 'video-player-icon'},
-  {class:'about-item', id: 'about', src: 'Icons/icons8-about (1).svg', label: 'about', iconContainerClass: 'about-icon-container', iconClass: 'about-icon'},
-  {class:'music-player-item', id: 'music-player', src: 'wallpaper/musical-note-1314942_1280.png', label: 'music-player', iconContainerClass: 'music-player-icon-container', iconClass: 'music-player-icon'},
-  {class:'calculator-item', id: 'calculator', src: 'Icons/icons8-math-48.png', label: 'calculator', iconContainerClass: 'calculator-icon-container', iconClass: 'calculator-icon'},
-  {class:'calendar-item', id: 'calendar', src: 'wallpaper/calendar (1).png', label: 'calendar', iconContainerClass: 'calendar-icon-container', iconClass: 'calendar-icon'},
-  {class:'torch-item', id: 'torch', src: 'wallpaper/torch.png', label: 'torch', iconContainerClass: 'torch-icon-container', iconClass: 'torch-icon'},
-  {class:'setting-item', id: 'setting', src: 'wallpaper/gear-1807204_1920.png', label: 'setting', iconContainerClass: 'setting-icon-container', iconClass: 'setting-icon'},
-]
+var menuItems = [
+  {
+    class: "gallery-item",
+    id: "gallery",
+    src: "Icons/picture.png",
+    label: "gallery",
+    iconContainerClass: "gallery-icon-container",
+    iconClass: "gallery-icon",
+  },
+  {
+    class: "snake-game-item",
+    id: "snake-game",
+    src: "Icons/icons8-snake-48.png",
+    label: "snake-game",
+    iconContainerClass: "snake-game-icon-container",
+    iconClass: "snake-game-icon",
+  },
+  {
+    class: "video-player-item",
+    id: "video-player",
+    src: "Icons/icons8-video-player-48.png",
+    label: "video-player",
+    iconContainerClass: "video-player-icon-container",
+    iconClass: "video-player-icon",
+  },
+  {
+    class: "about-item",
+    id: "about",
+    src: "Icons/icons8-about (1).svg",
+    label: "about",
+    iconContainerClass: "about-icon-container",
+    iconClass: "about-icon",
+  },
+  {
+    class: "music-player-item",
+    id: "music-player",
+    src: "wallpaper/musical-note-1314942_1280.png",
+    label: "music-player",
+    iconContainerClass: "music-player-icon-container",
+    iconClass: "music-player-icon",
+  },
+  {
+    class: "calculator-item",
+    id: "calculator",
+    src: "Icons/icons8-math-48.png",
+    label: "calculator",
+    iconContainerClass: "calculator-icon-container",
+    iconClass: "calculator-icon",
+  },
+  {
+    class: "calendar-item",
+    id: "calendar",
+    src: "wallpaper/calendar (1).png",
+    label: "calendar",
+    iconContainerClass: "calendar-icon-container",
+    iconClass: "calendar-icon",
+  },
+  {
+    class: "torch-item",
+    id: "torch",
+    src: "wallpaper/torch.png",
+    label: "torch",
+    iconContainerClass: "torch-icon-container",
+    iconClass: "torch-icon",
+  },
+  {
+    class: "setting-item",
+    id: "setting",
+    src: "wallpaper/gear-1807204_1920.png",
+    label: "setting",
+    iconContainerClass: "setting-icon-container",
+    iconClass: "setting-icon",
+  },
+];
 
 var WIDTH_LENGTH = 3;
 var currentMenuIndex = 0;
@@ -33,7 +96,12 @@ function appScreenHandler(button) {
       break;
 
     case "top-button":
-      nextMenuIndex = goUp(menuItemsLength, currentMenuIndex, WIDTH_LENGTH, RESET);
+      nextMenuIndex = goUp(
+        menuItemsLength,
+        currentMenuIndex,
+        WIDTH_LENGTH,
+        RESET
+      );
       menuScrolling(menuItems, nextMenuIndex, "selected");
       break;
 
@@ -50,8 +118,13 @@ function appScreenHandler(button) {
       break;
 
     case "bottom-button":
-      nextMenuIndex = goDown(menuItemsLength, currentMenuIndex, WIDTH_LENGTH, RESET);
-      menuScrolling(menuItems, nextMenuIndex, 'selected');
+      nextMenuIndex = goDown(
+        menuItemsLength,
+        currentMenuIndex,
+        WIDTH_LENGTH,
+        RESET
+      );
+      menuScrolling(menuItems, nextMenuIndex, "selected");
       var currentAppId = menuItems[currentMenuIndex];
 
       break;
@@ -101,7 +174,10 @@ function menuMouseDownHandler(button) {
 
   switch (button.id) {
     case "left-select-button":
-      showMenuSelectColor(currentAppId);
+      showMenuSelectEffect(currentAppId);
+      break;
+    case "right-select-button":
+      showMenuBackButtonEffect();
       break;
     default:
       break;
@@ -113,24 +189,42 @@ function menuMouseUpHandler(button) {
 
   switch (button.id) {
     case "left-select-button":
-      hideMenuSelectColor(currentAppId);
+      hideMenuSelectEffect(currentAppId);
+      break;
+    case "right-select-button":
+      hideMenuBackButtonEffect();
       break;
     default:
       break;
   }
 }
 
-function showMenuSelectColor(elementId) {
+function showMenuSelectEffect(elementId) {
   var styleButton = document.getElementById(elementId);
   AddRemoveClassList(styleButton, "menu-select-active", true);
+  var select = document.getElementById("select");
+  AddRemoveClassList(select, "menu-select-active", true);
 }
 
-function hideMenuSelectColor(elementId) {
+function hideMenuSelectEffect(elementId) {
   var styleButton = document.getElementById(elementId);
   AddRemoveClassList(styleButton, "menu-select-active", false);
+  var select = document.getElementById("select");
+  AddRemoveClassList(select, "menu-select-active", false);
 }
 
- function mountMenu(resetAppPosition) {
+function showMenuBackButtonEffect() {
+  var select = document.getElementById("back");
+  AddRemoveClassList(select, "menu-select-active", true);
+}
+
+function hideMenuBackButtonEffect() {
+  var select = document.getElementById("back");
+  AddRemoveClassList(select, "menu-select-active", false);
+}
+
+
+function mountMenu(resetAppPosition) {
   var menuScreenNode = document.getElementById("menu-screen-container");
   var menuItemsNode = createMenuItemsNode(menuItems);
   var menuContainerNode = document.getElementById("menu-containerId");
@@ -140,7 +234,7 @@ function hideMenuSelectColor(elementId) {
   mountNavbar(true);
   mountIdleScreenWallPaper(true);
   AddRemoveClassList(menuScreenNode, "hide", false);
-  
+
   screenName = "appScreen";
 }
 
@@ -170,7 +264,6 @@ function createMenuItemsNode(menuItems) {
   return menuItemsContainerNode;
 }
 
-
 function createMenuItemsContainerNode() {
   var menuContainerNode = document.createElement("div");
   menuContainerNode.classList.add("menuItems-container");
@@ -184,25 +277,27 @@ function createMenuItem(menuItem) {
   appContainerNode.appendChild(iconContainer);
 
   appContainerNode.id = menuItem.id;
-  
+
   return appContainerNode;
 }
 
 function createIconContainer(menuItem) {
   var iconContainerNode = document.createElement("div");
-  iconContainerNode.classList.add("icon-container", menuItem.iconContainerClass);
-  
+  iconContainerNode.classList.add(
+    "icon-container",
+    menuItem.iconContainerClass
+  );
+
   var icon = createIconNode(menuItem);
   iconContainerNode.appendChild(icon);
   return iconContainerNode;
 }
 
-
 function createIconNode(menuItem) {
   var iconNode = document.createElement("img");
 
   iconNode.classList.add("iconClass", menuItem.iconClass);
-  
+
   iconNode.src = menuItem.src;
 
   return iconNode;
@@ -237,5 +332,4 @@ function menuScrolling(menuItemIds, nextMenuIndex, selectedClassName) {
   });
 
   currentMenuIndex = nextMenuIndex;
-
 }
