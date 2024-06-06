@@ -116,13 +116,12 @@ function mountBrandAnimation(show) {
 }
 
 function mountWhiteScreen(show) {
-  var lcd = getLcd();
-  AddRemoveClassList(lcd, "lcd-white", show);
-}
-
-function mountBlackScreen(show) {
-  var lcd = getLcd();
-  AddRemoveClassList(lcd, "lcd-off-wallpaper", show);
+  if(show){
+    setWallPaper("white");
+  }
+  else{
+    setWallPaper("");
+  }
 }
 
 function handlePowerOn() {
@@ -147,7 +146,6 @@ function getLcd() {
 }
 
 function turnOnlcd() {
-  mountBlackScreen(false);
   showBrandAnimation();
 }
 
@@ -160,7 +158,7 @@ function turnOfflcd() {
       hideIdleScreen();
       break;
     case "appScreen":
-      hideMenuScreen();
+      unmountMenu();
       break;
     case "galleryScreen":
       mountGalleryScreen(false);
@@ -202,9 +200,8 @@ function turnOfflcd() {
       break;
   }
 
-  setWallPaper();
+  setWallPaper("black");
   localStorage.setItem("deviceOn", false);
-  mountBlackScreen(true);
 }
 
 function getBrandAnimationNode() {
