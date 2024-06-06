@@ -13,7 +13,8 @@ function getInitialSnakeGameConfig() {
     gridColumnSize,
     snakePixels,
     snakeMovingDirection: "right",
-    snakeSpeed: 100,
+    snakeSpeed: 250,
+    nextMovingDirection: "right",
   };
 
   return initialSnakeGameConfig;
@@ -23,31 +24,31 @@ function snakeGameHandler(button) {
   var direction = snakeGameConfig.snakeMovingDirection;
   switch (button.id) {
     case "left-button":
-      if(direction === "right"){
+      if (direction === "right") {
         return;
       }
-      snakeGameConfig.snakeMovingDirection = "left";
+      snakeGameConfig.nextMovingDirection = "left";
       break;
 
     case "right-button":
-      if(direction === "left"){
+      if (direction === "left") {
         return;
       }
-      snakeGameConfig.snakeMovingDirection = "right";
+      snakeGameConfig.nextMovingDirection = "right";
       break;
 
     case "top-button":
-      if(direction === "down"){
+      if (direction === "down") {
         return;
       }
-      snakeGameConfig.snakeMovingDirection = "up";
+      snakeGameConfig.nextMovingDirection = "up";
       break;
 
     case "bottom-button":
-      if(direction === "up"){
+      if (direction === "up") {
         return;
       }
-      snakeGameConfig.snakeMovingDirection = "down";
+      snakeGameConfig.nextMovingDirection = "down";
       break;
 
     case "right-select-button":
@@ -71,6 +72,10 @@ function snakeGameMouseDownHandler(button) {
       break;
     case "right-button":
       break;
+    case "top-button":
+      break;
+    case "bottom-button":
+      break;
     default:
       break;
   }
@@ -81,6 +86,10 @@ function snakeGameMouseUpHandler(button) {
     case "left-button":
       break;
     case "right-button":
+      break;
+    case "top-button":
+      break;
+    case "bottom-button":
       break;
     default:
       break;
@@ -216,7 +225,10 @@ function createSnakeGameBottomNavbar() {
 //snake functioning code-------------->>>>>>>>>>>>
 
 function startSnakeCrawling() {
-  snakeGameConfig.timeIntervalId = setInterval(snakeCrawling, snakeGameConfig.snakeSpeed);
+  snakeGameConfig.timeIntervalId = setInterval(
+    snakeCrawling,
+    snakeGameConfig.snakeSpeed
+  );
 }
 
 function snakeCrawling() {
@@ -227,7 +239,8 @@ function snakeCrawling() {
 function moveSnakeHead() {
   var snakePixels = snakeGameConfig.snakePixels;
   var snakeHeadPosition = snakePixels[snakePixels.length - 1];
-  var snakeMovingDirection = snakeGameConfig.snakeMovingDirection;
+  var snakeMovingDirection = snakeGameConfig.nextMovingDirection;
+  snakeGameConfig.snakeMovingDirection = snakeMovingDirection;
   var screenRowSize = snakeGameConfig.gridRowSize;
   var screenColumnSize = snakeGameConfig.gridColumnSize;
 
