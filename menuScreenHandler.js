@@ -100,17 +100,8 @@ function menuMouseDownHandler(button) {
   var currentAppId = menuItems[currentMenuIndex].id;
 
   switch (button.id) {
-    case "left-button":
-      showMenuScrollColor(currentAppId);
-      break;
-    case "right-button":
-      showMenuScrollColor(currentAppId);
-      break;
-      case "top-button":
-      showMenuScrollColor(currentAppId);
-      break;
-    case "bottom-button":
-      showMenuScrollColor(currentAppId);
+    case "left-select-button":
+      showMenuSelectColor(currentAppId);
       break;
     default:
       break;
@@ -121,31 +112,22 @@ function menuMouseUpHandler(button) {
   var currentAppId = menuItems[currentMenuIndex].id;
 
   switch (button.id) {
-    case "left-button":
-      hideMenuScrollColor(currentAppId);
-      break;
-    case "right-button":
-      hideMenuScrollColor(currentAppId);
-      break;
-      case "top-button":
-      hideMenuScrollColor(currentAppId);
-      break;
-    case "bottom-button":
-      hideMenuScrollColor(currentAppId);
+    case "left-select-button":
+      hideMenuSelectColor(currentAppId);
       break;
     default:
       break;
   }
 }
 
-function showMenuScrollColor(elementId) {
+function showMenuSelectColor(elementId) {
   var styleButton = document.getElementById(elementId);
-  AddRemoveClassList(styleButton, "menu-scroll-active", true);
+  AddRemoveClassList(styleButton, "menu-select-active", true);
 }
 
-function hideMenuScrollColor(elementId) {
+function hideMenuSelectColor(elementId) {
   var styleButton = document.getElementById(elementId);
-  AddRemoveClassList(styleButton, "menu-scroll-active", false);
+  AddRemoveClassList(styleButton, "menu-select-active", false);
 }
 
  function mountMenu(resetAppPosition) {

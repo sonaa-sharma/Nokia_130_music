@@ -66,6 +66,6 @@
   width: 24px;
 }
 
-.menu-scroll-active {
-  background-color: rgb(116, 135, 181);
+.menu-select-active {
+  background-color: rgba(169, 174, 188, .5);
 }

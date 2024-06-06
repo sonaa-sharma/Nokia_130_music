@@ -202,8 +202,7 @@ function turnOfflcd() {
       break;
   }
 
-  var lcd = getLcd();
-  lcd.style.background = "";
+  setWallPaper();
   localStorage.setItem("deviceOn", false);
   mountBlackScreen(true);
 }
