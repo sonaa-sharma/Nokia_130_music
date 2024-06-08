@@ -28,3 +28,11 @@
 .snake-color {
   background-color: green;
 }
+
+.snakeGame-navbar{
+  width: 184px;
+  height: 20px;
+  background-color: rgb(21, 20, 23);
+  color: white;
+  padding: 8px;
+}

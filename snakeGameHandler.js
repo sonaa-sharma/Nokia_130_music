@@ -2,7 +2,7 @@ var snakeGameConfig = null;
 
 function getInitialSnakeGameConfig() {
   var timeIntervalId;
-  var gridRowSize = 37;
+  var gridRowSize = 30;
   var gridColumnSize = 35;
   var snakeStartIndex = Math.floor(gridRowSize / 2) * gridColumnSize - 3;
   var snakePixels = [snakeStartIndex, snakeStartIndex + 1, snakeStartIndex + 2];
@@ -15,6 +15,7 @@ function getInitialSnakeGameConfig() {
     snakeMovingDirection: "right",
     snakeSpeed: 250,
     nextMovingDirection: "right",
+    score: 0,
   };
 
   return initialSnakeGameConfig;
@@ -66,35 +67,6 @@ function snakeGameHandler(button) {
   }
 }
 
-function snakeGameMouseDownHandler(button) {
-  switch (button.id) {
-    case "left-button":
-      break;
-    case "right-button":
-      break;
-    case "top-button":
-      break;
-    case "bottom-button":
-      break;
-    default:
-      break;
-  }
-}
-
-function snakeGameMouseUpHandler(button) {
-  switch (button.id) {
-    case "left-button":
-      break;
-    case "right-button":
-      break;
-    case "top-button":
-      break;
-    case "bottom-button":
-      break;
-    default:
-      break;
-  }
-}
 
 function mountSnakeGame() {
   snakeGameConfig = getInitialSnakeGameConfig();
@@ -201,8 +173,10 @@ function createSnakeGameBoxContainer() {
 }
 
 function createSnakeGameNavbar() {
+  var score = snakeGameConfig.score;
   var navbar = document.createElement("div");
   navbar.classList.add("snakeGame-navbar");
+  navbar.innerHTML = "Score: " + score;
 
   return navbar;
 }
