@@ -36,6 +36,9 @@ function buttonClicked(button) {
     case "snakeGameScreen":
       snakeGameHandler(button);
       break;
+    case "snakeGameOverScreen":
+      snakeGameOverHandler(button);
+      break;
     case "videoPlayerScreen":
       videoPlayerHandler(button);
       break;
@@ -172,6 +175,9 @@ function turnOfflcd() {
       hidePhoto();
       break;
     case "snakeGameScreen":
+      unmountSnakeGame();
+      break;
+    case "snakeGameOverScreen":
       unmountSnakeGame();
       break;
     case "videoPlayerScreen":

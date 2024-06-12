@@ -1,30 +1,26 @@
 var snakeGameConfig = null;
 
 function getInitialSnakeGameConfig() {
-  var timeIntervalId;
-  var scoreIncrement = 7;
-  var initialScore = 0;
-  var boosterInterval = 1;
   var gridRowSize = 30;
   var gridColumnSize = 35;
   var snakeStartIndex = Math.floor(gridRowSize / 2) * gridColumnSize - 3;
   var snakePixels = [snakeStartIndex, snakeStartIndex + 1, snakeStartIndex + 2];
 
   var initialSnakeGameConfig = {
-    timeIntervalId,
+    timeIntervalId: null,
     gridRowSize,
     gridColumnSize,
     snakePixels,
     snakeMovingDirection: "right",
     snakeSpeed: 250,
     nextMovingDirection: "right",
-    scoreIncrement,
-    initialScore,
-    boosterInterval,
-    scoreBooster: scoreIncrement * 5,
-    snakeFoodIndex: getFoodPosition(gridRowSize * gridColumnSize),
-    foodBoosterIndex: getFoodPosition(gridRowSize * gridColumnSize),
-    isFoodEaten: false,
+    scoreIncrement: 7,
+    score: 0,
+    boosterInterval: 1,
+    boostScoreIncrement: 42,
+    boosterTimeoutId: null,
+    snakeFoodIndex: getFoodPosition(gridRowSize * gridColumnSize, snakePixels),
+    foodBoosterIndex: -1,
     pauseFlag: false,
   };
 
@@ -38,40 +34,44 @@ function snakeGameHandler(button) {
       if (snakeGameConfig.pauseFlag) {
         return;
       }
-      if (direction === "right") {
+      if (direction === "right" || direction === "left") {
         return;
       }
       snakeGameConfig.nextMovingDirection = "left";
+      moveSnakeImmedieately();
       break;
 
     case "right-button":
       if (snakeGameConfig.pauseFlag) {
         return;
       }
-      if (direction === "left") {
+      if (direction === "left" || direction === "right") {
         return;
       }
       snakeGameConfig.nextMovingDirection = "right";
+      moveSnakeImmedieately();
       break;
 
     case "top-button":
       if (snakeGameConfig.pauseFlag) {
         return;
       }
-      if (direction === "down") {
+      if (direction === "down" || direction === "up") {
         return;
       }
       snakeGameConfig.nextMovingDirection = "up";
+      moveSnakeImmedieately();
       break;
 
     case "bottom-button":
       if (snakeGameConfig.pauseFlag) {
         return;
       }
-      if (direction === "up") {
+      if (direction === "up" || direction === "down") {
         return;
       }
       snakeGameConfig.nextMovingDirection = "down";
+      moveSnakeImmedieately();
       break;
 
     case "left-select-button":
@@ -97,16 +97,44 @@ function snakeGameHandler(button) {
   }
 }
 
+function snakeGameOverHandler(button) {
+  switch (button.id) {
+    case "left-select-button":
+      unmountSnakeGame();
+      mountSnakeGame();
+      break;
+
+    case "right-select-button":
+      unmountSnakeGame();
+      mountMenu();
+      break;
+
+    default:
+      break;
+  }
+}
+
+function moveSnakeImmedieately(){
+  var success = snakeCrawling();
+  if(success){
+    restartSnakeCrawling();
+  }
+}
+
+function restartSnakeCrawling() {
+  clearInterval(snakeGameConfig.timeIntervalId);
+  startSnakeCrawling();
+}
+
+// mount unmount snake game--------------->>>>>>>>>>>>>>>>>>>>>
+
 function mountSnakeGame() {
   snakeGameConfig = getInitialSnakeGameConfig();
-
   var snakeGameScreenNode = document.getElementById("snakeGame-screen-id");
-
   var snakeGame = createSnakeGame();
   snakeGameScreenNode.appendChild(snakeGame);
 
   mountSnakeGameScreen(true);
-
   startSnakeCrawling();
 
   screenName = "snakeGameScreen";
@@ -197,6 +225,14 @@ function getPixelId(index) {
 function createSnakeGameBox() {
   var box = document.createElement("div");
   box.classList.add("snakeGame-box");
+  var snakeGameCircle = createSnakeGameCircle();
+  box.appendChild(snakeGameCircle);
+  return box;
+}
+
+function createSnakeGameCircle() {
+  var box = document.createElement("div");
+  box.classList.add("snakeGame-circle");
   return box;
 }
 
@@ -210,44 +246,44 @@ function createSnakeGameNavbar() {
   var navbar = document.createElement("div");
   navbar.classList.add("snakeGame-navbar");
   navbar.id = "scoreBoxId";
-  navbar.innerHTML = "Score: " + snakeGameConfig.initialScore;
+  navbar.innerHTML = "Score: " + snakeGameConfig.score;
 
   return navbar;
 }
 
+function getSnakeIndexId(snakeIndex) {
+  return getPixelId(snakeIndex);
+}
+
+// snake game over -------------------->>>>>>>>>>>>>>>>>
+
 function createGameOverBody() {
   var container = document.createElement("div");
-  container.classList.add("snake-game-over-body");
+  container.classList.add("snake-game-over-body", "overlay");
   container.id = "gameOverScreenId";
 
   var gameOver = document.createElement("div");
   gameOver.classList.add("snakeGameOverText");
+  gameOver.innerHTML = "GAME OVER";
   container.appendChild(gameOver);
-
-  // var yourScore = document.createElement("div");
-  // yourScore.classList.add("yourScore");
-  // yourScore.innerHTML = "Your Score: " + snakeGameConfig.initialScore;
-  // container.appendChild(yourScore);
-
-  // var highestScore = document.createElement("div");
-  // highestScore.classList.add("highestScore");
-  // highestScore.innerHTML = "HighestScore: 10000";
-  // container.appendChild(highestScore);
 
   return container;
 }
 
-function showGameOverScreen() {
-  var gameScreen = document.getElementById("snakeGameBodyId");
-  var gamePlayGround = document.getElementById("gridContainerId");
-  var gameOverScreen = createGameOverBody();
+function mountSnakeGameOver() {
   var select = document.getElementById("playPauseBtn");
   select.innerHTML = "Restart";
-  var scoreBox = document.getElementById("scoreBoxId");
-  scoreBox.innerHTML = "Your Score: " + snakeGameConfig.initialScore;
+  var back = document.getElementById("backBtn");
+  back.innerHTML = "Exit";
 
-  gameScreen.removeChild(gamePlayGround);
-  gameScreen.appendChild(gameOverScreen);
+  var snakeGameScreenNode = document.getElementById("snakeGameBodyId");
+  var gameOverScreen = createGameOverBody();
+  snakeGameScreenNode.appendChild(gameOverScreen);
+  screenName = "snakeGameOverScreen";
+}
+
+function getGameOverNode() {
+  return document.getElementById("gameOverScreenId");
 }
 
 function createSnakeGameBottomNavbar() {
@@ -261,6 +297,7 @@ function createSnakeGameBottomNavbar() {
 
   var back = document.createElement("div");
   back.innerHTML = "Back";
+  back.id = "backBtn";
   navbar.appendChild(back);
 
   return navbar;
@@ -276,12 +313,73 @@ function startSnakeCrawling() {
   );
 }
 
-function snakeCrawling() {
-  moveSnakeHead();
-  if (snakeGameConfig.isFoodEaten) {
-    return;
+function setFoodBooster() {
+  var { snakeFoodIndex, gridColumnSize, gridRowSize, snakePixels } =
+    snakeGameConfig;
+
+  snakeFoodIndex = getFoodPosition(gridColumnSize * gridRowSize, snakePixels);
+
+  showFoodBooster(snakeFoodIndex);
+  snakeGameConfig.boosterTimeoutId = setTimeout(foodBoosterDisappear, 7000);
+}
+
+function relocateSnakeFood() {
+  var { snakeFoodIndex, gridColumnSize, gridRowSize, snakePixels } =
+    snakeGameConfig;
+
+  hideSnakeFood(snakeFoodIndex);
+  snakeFoodIndex = getFoodPosition(gridColumnSize * gridRowSize, snakePixels);
+
+  showSnakeFood(snakeFoodIndex, snakePixels);
+}
+
+function onFoodEaten() {
+  relocateSnakeFood();
+
+  snakeGameConfig.boosterInterval += 1;
+
+  if (snakeGameConfig.boosterInterval % 5 === 0) {
+    setFoodBooster();
   }
-  removeSnakeTail();
+
+  updateScore();
+  updateSnakeSpeed(snakeGameConfig.snakeSpeed);
+}
+
+function onBoosterEaten() {
+  hideFoodBooster();
+  clearTimeout(snakeGameConfig.boosterTimeoutId);
+  updateScore(true);
+}
+
+function setGameOver(){
+  pauseSnakeGame();
+  mountSnakeGameOver();
+}
+
+function snakeCrawling() {
+  var success = moveSnakeHead();
+  var { snakePixels, snakeFoodIndex, foodBoosterIndex } = snakeGameConfig;
+  if (!success) {
+    setGameOver();
+    return success;
+  }
+  var snakeNextHeadPosition = snakePixels[snakePixels.length - 1];
+
+  var isFoodEaten = snakeNextHeadPosition === snakeFoodIndex;
+
+  if (isFoodEaten) {
+    onFoodEaten();
+  } else {
+    removeSnakeTail();
+  }
+
+  var isBoosterEaten = snakeNextHeadPosition === foodBoosterIndex;
+
+  if (isBoosterEaten) {
+    onBoosterEaten()
+  }
+  return success;
 }
 
 // move snake head------------------>>>>>>>>>>>>>>>>>>>>>
@@ -304,68 +402,41 @@ function moveSnakeHead() {
   );
 
   var isSelfBody = isSelfBodyIndex(snakePixels, snakeNextHeadPosition);
+
   if (isSelfBody) {
-    showGameOver();
-    return;
+    return false;
   }
 
   snakeGameConfig.snakePixels.push(snakeNextHeadPosition);
   var snakeHeadId = getSnakeIndexId(snakeNextHeadPosition);
 
-  var snakeFoodIndex = snakeGameConfig.snakeFoodIndex;
-  var foodBoosterIndex = snakeGameConfig.foodBoosterIndex;
-  var initialScore = snakeGameConfig.initialScore;
-  var scoreIncrement = snakeGameConfig.scoreIncrement;
-  var scoreBooster = snakeGameConfig.scoreBooster;
-  var boosterInterval = snakeGameConfig.boosterInterval;
-  console.log(boosterInterval);
-
-  if (snakeNextHeadPosition === foodBoosterIndex) {
-    snakeGameConfig.isFoodEaten = true;
-    hideFoodBooster();
-    updateBoosterScore(initialScore, scoreBooster);
-  }
-
-  if (snakeNextHeadPosition === snakeFoodIndex) {
-    snakeGameConfig.isFoodEaten = true;
-    hideSnakeFood(snakeFoodIndex)
-    snakeGameConfig.boosterInterval += 1;
-
-    if (snakeGameConfig.boosterInterval % 5 === 0) {
-      snakeFoodIndex = getFoodPosition(screenRowSize * screenColumnSize);
-      showFoodBooster(snakeFoodIndex);
-    }
-
-    snakeFoodIndex = getFoodPosition(screenRowSize * screenColumnSize);
-    showSnakeFood(snakeFoodIndex, snakePixels);
-
-    updateScore(initialScore, scoreIncrement);
-    updateSnakeSpeed(snakeGameConfig.snakeSpeed);
-    restartGame();
-  } else {
-    snakeGameConfig.isFoodEaten = false;
-  }
-
   var snakeHeadNode = document.getElementById(snakeHeadId);
   AddRemoveClassList(snakeHeadNode, "snake-color", true);
+
+  return true;
 }
 
+// food update code------------------->>>>>>>>>>>>>>>>>>
 
-function getFoodPosition(max) {
-  return Math.floor(Math.random() * max);
-}
-
-function showSnakeFood(foodIndex, snakePixels) {
-  for (i = 0; i < snakePixels.length; i++) {
-    if (foodIndex === snakePixels[i]) {
-      return;
+function getFoodPosition(max, snakePixels) {
+  var foodIndex = Math.floor(Math.random() * max);
+  while (snakePixels.includes(foodIndex)) {
+    foodIndex++;
+    if (
+      foodIndex >
+      snakeGameConfig.gridColumnSize * snakeGameConfig.gridRowSize - 1
+    ) {
+      foodIndex = 0;
     }
-    var id = getPixelId(foodIndex);
-    var node = document.getElementById(id);
-
-    AddRemoveClassList(node, "snake-food", true);
-    snakeGameConfig.snakeFoodIndex = foodIndex;
   }
+  return foodIndex;
+}
+
+function showSnakeFood(foodIndex) {
+  var id = getPixelId(foodIndex);
+  var node = document.getElementById(id);
+  AddRemoveClassList(node, "snake-food", true);
+  snakeGameConfig.snakeFoodIndex = foodIndex;
 }
 
 function hideSnakeFood(foodIndex) {
@@ -375,7 +446,10 @@ function hideSnakeFood(foodIndex) {
 }
 
 function showFoodBooster(max) {
-  foodBoosterIndex = getFoodPosition(max);
+  foodBoosterIndex = getFoodPosition(max, [
+    ...snakeGameConfig.snakePixels,
+    snakeGameConfig.snakeFoodIndex,
+  ]);
   var id = getPixelId(foodBoosterIndex);
   var node = document.getElementById(id);
   AddRemoveClassList(node, "food-booster", true);
@@ -388,44 +462,34 @@ function hideFoodBooster() {
   AddRemoveClassList(node, "food-booster", false);
 }
 
+function foodBoosterDisappear() {
+  hideFoodBooster();
+  snakeGameConfig.foodBoosterIndex = -1;
+}
+
 function isSelfBodyIndex(snakePixels, snakeNextHeadPosition) {
-  for (i = 0; i < snakePixels.length; i++) {
-    if (snakeNextHeadPosition === snakePixels[i]) {
-      return true;
-    }
-  }
-  return false;
+  return snakePixels.includes(snakeNextHeadPosition);
 }
 
 function updateSnakeSpeed(snakeSpeed) {
-  snakeSpeed = snakeSpeed - (snakeSpeed * 5) / 100;
+  snakeSpeed = snakeSpeed - (snakeSpeed * 2) / 100;
   snakeSpeed = Math.floor(snakeSpeed);
-  if (snakeSpeed < 50) {
-    snakeSpeed = 50;
-  }
   snakeGameConfig.snakeSpeed = snakeSpeed;
-  console.log(snakeGameConfig.snakeSpeed);
+  restartGame();
 }
 
-function updateScore(initialScore, scoreIncrement) {
-  initialScore = initialScore + scoreIncrement;
+function updateScore(isBoosterScore) {
+  if (isBoosterScore) {
+    score = snakeGameConfig.score + snakeGameConfig.boostScoreIncrement;
+  } else {
+    score = snakeGameConfig.score + snakeGameConfig.scoreIncrement;
+  }
   var scoreBox = document.getElementById("scoreBoxId");
-  scoreBox.innerHTML = "Score: " + initialScore;
-  snakeGameConfig.initialScore = initialScore;
+  scoreBox.innerHTML = "Score: " + score;
+  snakeGameConfig.score = score;
 }
 
-function updateBoosterScore(initialScore, scoreBooster) {
-  initialScore = initialScore + scoreBooster;
-  var scoreBox = document.getElementById("scoreBoxId");
-  scoreBox.innerHTML = "Score: " + initialScore;
-  snakeGameConfig.initialScore = initialScore;
-}
-// sorted code---------------->>>>>>>>>>>>
-
-function showGameOver() {
-  clearInterval(snakeGameConfig.timeIntervalId);
-  showGameOverScreen();
-}
+// play pause restart code---------------->>>>>>>>>>>>
 
 function pauseSnakeGame() {
   var playBtn = document.getElementById("playPauseBtn");
@@ -446,9 +510,6 @@ function restartGame() {
   playSnakeGame();
 }
 
-function getSnakeIndexId(snakeIndex) {
-  return getPixelId(snakeIndex);
-}
 
 // remove tail------------>>>>>>>>>>>>>
 

@@ -170,8 +170,6 @@ function unmountMenu() {
   mountNavbar(false);
   mountIdleScreenWallPaper(false);
   AddRemoveClassList(menuScreenNode, "hide", true);
-  var lcd = getLcd();
-  lcd.style.backgroundImage = "";
 }
 
 var menuItemsContainerNode;

@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="torch_style.css">
     <link rel="stylesheet" href="keypad_style.css">
     <link rel="stylesheet" href="common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tiny5&display=swap" rel="stylesheet">
     <script type="text/javascript" await src="lockScreenHandler.js"></script>
     <script type="text/javascript" await src="idleScreenHandler.js"></script>
     <script type="text/javascript" await src="menuScreenHandler.js"></script>
@@ -167,29 +170,30 @@
                             <div class="video-player-div">
                                 <div class="video-player-container center">
                                     <div class="video-player">
-                                        <video id="videoId" class="video"
-                                            src="videoFolder\krishnaFlute.mp4"></video>
+                                        <video id="videoId" class="video" src="videoFolder\krishnaFlute.mp4"></video>
                                     </div>
                                 </div>
                                 <div id="video-des" class="video-description">Nature-Butterfly</div>
                                 <div class="video-control-bar-container">
                                     <div class="progress-bar-container center">
-                                        <div id="current-tim" class="timer-div"><span id="current-time-min"></span>:<span id="current-time-sec"></span></div>
-                                        <input type="range" disabled value="0" class="progress-bar" min="0" max="100" id="progress-bar-id">
-                                        <div id="total-tim" class="timer-div"><span id="total-time-min"></span>:<span id="total-time-sec"></span></div>
+                                        <div id="current-tim" class="timer-div"><span
+                                                id="current-time-min"></span>:<span id="current-time-sec"></span></div>
+                                        <input type="range" disabled value="0" class="progress-bar" min="0" max="100"
+                                            id="progress-bar-id">
+                                        <div id="total-tim" class="timer-div"><span id="total-time-min"></span>:<span
+                                                id="total-time-sec"></span></div>
                                     </div>
                                     <div class="controls-container center">
                                         <div class="play-pause-container" id="previous-video">
-                                            <img class="image-width rotate-180"
-                                                src="Icons\pause-play-button.png" alt="pre">
+                                            <img class="image-width rotate-180" src="Icons\pause-play-button.png"
+                                                alt="pre">
                                         </div>
                                         <div class="play-pause-container" id="play-pause-option">
-                                            <img class="image-width pause-icon" id="play-pause-id" src="Icons\pause-icon.png"
-                                                alt="play/pause">
+                                            <img class="image-width pause-icon" id="play-pause-id"
+                                                src="Icons\pause-icon.png" alt="play/pause">
                                         </div>
                                         <div class="play-pause-container" id="next-video">
-                                            <img class="image-width" src="Icons\pause-play-button.png"
-                                                alt="next">
+                                            <img class="image-width" src="Icons\pause-play-button.png" alt="next">
                                         </div>
                                     </div>
                                 </div>
@@ -271,7 +275,8 @@
                             <div class="audio-player-div">
                                 <div class="audio-player-container center">
                                     <div class="audio-cover-photo-container">
-                                        <img id="music-cover-photo" class="audio-cover-photo" src="Icons\radha-rani-song.jpg" alt="radharani-cover">
+                                        <img id="music-cover-photo" class="audio-cover-photo"
+                                            src="Icons\radha-rani-song.jpg" alt="radharani-cover">
                                     </div>
                                     <div class="audio-holder">
                                         <audio id="audioId" class="audio"
@@ -284,22 +289,24 @@
                                 </div>
                                 <div class="video-control-bar-container">
                                     <div class="progress-bar-container center">
-                                        <div class="timer-div"><span id="audio-current-time-min">00</span>:<span id="audio-current-time-sec">00</span></div>
-                                        <input type="range" disabled value="0" class="progress-bar" min="0" max="100" id="progress-bar-audioId">
-                                        <div class="timer-div"><span id="audio-total-time-min">00</span>:<span id="audio-total-time-sec">00</span></div>
+                                        <div class="timer-div"><span id="audio-current-time-min">00</span>:<span
+                                                id="audio-current-time-sec">00</span></div>
+                                        <input type="range" disabled value="0" class="progress-bar" min="0" max="100"
+                                            id="progress-bar-audioId">
+                                        <div class="timer-div"><span id="audio-total-time-min">00</span>:<span
+                                                id="audio-total-time-sec">00</span></div>
                                     </div>
                                     <div class="controls-container center">
                                         <div class="play-pause-container" id="previous-audio">
-                                            <img class="image-width rotate-180"
-                                                src="Icons\pause-play-button.png" alt="pre">
+                                            <img class="image-width rotate-180" src="Icons\pause-play-button.png"
+                                                alt="pre">
                                         </div>
                                         <div class="play-pause-container" id="play-pause-optionId">
-                                            <img class="image-width pause-icon" id="play-pause-audioId" src="Icons\pause-icon.png"
-                                                alt="play/pause">
+                                            <img class="image-width pause-icon" id="play-pause-audioId"
+                                                src="Icons\pause-icon.png" alt="play/pause">
                                         </div>
                                         <div class="play-pause-container" id="next-audio">
-                                            <img class="image-width" src="Icons\pause-play-button.png"
-                                                alt="next">
+                                            <img class="image-width" src="Icons\pause-play-button.png" alt="next">
                                         </div>
                                     </div>
                                 </div>
@@ -307,7 +314,7 @@
                             <div class="bottom-navbar bottom-navbar-color">
                                 <div></div>
                                 <div>Back</div>
-                            </div>   
+                            </div>
                         </div>
 
 
@@ -320,10 +327,14 @@
                                 </div>
                                 <div class="operators-container-body">
                                     <div class="operators-container">
-                                        <div class="addition operators" id="add-signId"><span class="rotate-45">+</span></div>
-                                        <div class="multiply operators" id="mul-signId"><span class="rotate-45">×</span></div>
-                                        <div class="division operators" id="div-signId"><span class="rotate-45">÷</span></div>
-                                        <div class="subtract operators" id="sub-signId"><span class="rotate-45">−</span></div>
+                                        <div class="addition operators" id="add-signId"><span class="rotate-45">+</span>
+                                        </div>
+                                        <div class="multiply operators" id="mul-signId"><span class="rotate-45">×</span>
+                                        </div>
+                                        <div class="division operators" id="div-signId"><span class="rotate-45">÷</span>
+                                        </div>
+                                        <div class="subtract operators" id="sub-signId"><span class="rotate-45">−</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -450,24 +461,31 @@
                                     d="M25.49,0A25.49,25.49,0,0,1,45.68,41.06H77.2a25.49,25.49,0,1,1,22.17,9.85,4.94,4.94,0,0,1-.87.08h-73a25.5,25.5,0,0,1,0-51ZM108.4,14.48a15.57,15.57,0,1,0,4.56,11,15.56,15.56,0,0,0-4.56-11Zm-71.9,0a15.57,15.57,0,1,0,4.56,11,15.54,15.54,0,0,0-4.56-11Z" />
                             </svg>
                         </div>
-                        <div class="keys" data-name="buttons" id="value-2"> 2 <span class="keys-alphabet"> abc </span> </div>
-                        <div class="keys" data-name="buttons" id="value-3"> <span class="keys-alphabet"> def </span> 3 </div>
+                        <div class="keys" data-name="buttons" id="value-2"> 2 <span class="keys-alphabet"> abc </span>
+                        </div>
+                        <div class="keys" data-name="buttons" id="value-3"> <span class="keys-alphabet"> def </span> 3
+                        </div>
                     </div>
 
                     <div class="key-button-row">
-                        <div class="keys" data-name="buttons" id="value-4"> 4 <span class="keys-alphabet"> ghi </span> </div>
+                        <div class="keys" data-name="buttons" id="value-4"> 4 <span class="keys-alphabet"> ghi </span>
+                        </div>
                         <div class="keys" data-name="buttons" id="value-5">
                             <div class="pop-up"></div>
                             <div class="gap-8 center"><span>5</span> <span class="keys-alphabet"> jkl </span></div>
                             <div class="pop-up"></div>
                         </div>
-                        <div class="keys" data-name="buttons" id="value-6"> <span class="keys-alphabet"> mno </span> 6 </div>
+                        <div class="keys" data-name="buttons" id="value-6"> <span class="keys-alphabet"> mno </span> 6
+                        </div>
                     </div>
 
                     <div class="key-button-row">
-                        <div class="keys" data-name="buttons" id="value-7"> 7 <span class="keys-alphabet"> pqrs </span> </div>
-                        <div class="keys" data-name="buttons" id="value-8"> 8 <span class="keys-alphabet"> tuv </span> </div>
-                        <div class="keys" data-name="buttons" id="value-9"> <span class="keys-alphabet"> wxyz </span> 9 </div>
+                        <div class="keys" data-name="buttons" id="value-7"> 7 <span class="keys-alphabet"> pqrs </span>
+                        </div>
+                        <div class="keys" data-name="buttons" id="value-8"> 8 <span class="keys-alphabet"> tuv </span>
+                        </div>
+                        <div class="keys" data-name="buttons" id="value-9"> <span class="keys-alphabet"> wxyz </span> 9
+                        </div>
                     </div>
 
                     <div class="key-button-row">
