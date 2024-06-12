@@ -1,0 +1,84 @@
+.snake-game-screen-div {
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+  background-color: rgb(28, 27, 27);
+}
+
+.snakeGame-body {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 196px;
+  padding: 2px;
+  background-color: rgb(27, 32, 32);
+}
+
+.snake-game-over-body {
+  width: 100%;
+  height: 100%;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.snakeGameOverText {
+  text-align: center;
+  padding: 10px;
+  font-size: 20px;
+  color: white;
+  font-family: "Tiny5", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.yourScore,
+.highestScore {
+  color: rgb(96, 96, 129);
+  padding: 8px;
+}
+
+.gridContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.snakeGame-box-container {
+  display: flex;
+}
+
+.snakeGame-box {
+  padding: 2px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+}
+
+.snake-color {
+  background-color: rgb(14, 169, 14);
+}
+
+.food-booster {
+  background-color: rgb(250, 197, 6);
+}
+
+.snake-food {
+  background-color: rgb(202, 55, 106);
+}
+
+.snakeGame-navbar {
+  width: 184px;
+  height: 20px;
+  background-color: rgb(16, 16, 16);
+  color: white;
+  padding: 8px;
+}
+
+.overlay {
+  position: absolute;
+  top: 0px;
+  background-color: rgba(21, 21, 21, 0.6);
+  transition: 0.5s;
+}

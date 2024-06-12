@@ -66,9 +66,9 @@ function openApp(currentAppId) {
     case "gallery":
       mountGalleryScreen(true);
       break;
-    // case "snake-game":
-    //   showSnakeGame();
-    //   break;
+    case "snake-game":
+      mountSnakeGame();
+      break;
     case "video-player":
       showVideoPlayer();
       break;
