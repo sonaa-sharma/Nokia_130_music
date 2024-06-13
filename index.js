@@ -200,7 +200,7 @@ function turnOfflcd() {
       break;
   }
 
-  setWallPaper("black");
+  setWallPaper("rgb(10, 10, 10)");
   localStorage.setItem("deviceOn", false);
 }
 
