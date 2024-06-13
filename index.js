@@ -351,9 +351,9 @@ function buttonMouseDown(button) {
     case "calendarScreen":
       calendarMouseDownHandler(button);
       break;
-    // case "appScreen":
-    //   menuMouseDownHandler(button);
-    //   break;
+    case "appScreen":
+      menuMouseDownHandler(button);
+      break;
     default:
       break;
   }
@@ -373,9 +373,9 @@ function buttonMouseUp(button) {
     case "calendarScreen":
       calendarMouseUpHandler(button);
       break;
-    // case "appScreen":
-    //   menuMouseUpHandler(button);
-    //   break;
+    case "appScreen":
+      menuMouseUpHandler(button);
+      break;
     default:
       break;
   }
