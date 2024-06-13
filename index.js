@@ -36,6 +36,9 @@ function buttonClicked(button) {
     case "snakeGameScreen":
       snakeGameHandler(button);
       break;
+    case "snakeGameOverScreen":
+      snakeGameOverHandler(button);
+      break;
     case "videoPlayerScreen":
       videoPlayerHandler(button);
       break;
@@ -168,6 +171,12 @@ function turnOfflcd() {
       break;
     case "setPhotoOptionsScreen":
       hidePhoto();
+      break;
+    case "snakeGameScreen":
+      unmountSnakeGame();
+      break;
+    case "snakeGameOverScreen":
+      unmountSnakeGame();
       break;
     case "videoPlayerScreen":
       hideVideoPlayer();
@@ -342,9 +351,9 @@ function buttonMouseDown(button) {
     case "calendarScreen":
       calendarMouseDownHandler(button);
       break;
-    case "appScreen":
-      menuMouseDownHandler(button);
-      break;
+    // case "appScreen":
+    //   menuMouseDownHandler(button);
+    //   break;
     default:
       break;
   }
@@ -364,9 +373,9 @@ function buttonMouseUp(button) {
     case "calendarScreen":
       calendarMouseUpHandler(button);
       break;
-    case "appScreen":
-      menuMouseUpHandler(button);
-      break;
+    // case "appScreen":
+    //   menuMouseUpHandler(button);
+    //   break;
     default:
       break;
   }
